@@ -87,6 +87,11 @@ var ClienteListComponent = (function () {
         console.log('clientes');
         console.log(this._clienteService.listaClientes());
     }
+    ClienteListComponent.prototype.creaCliente = function (data) {
+        console.log("crea cliente");
+        console.log(data['nombre']);
+        //this._clienteService.creaCliente();
+    };
     ClienteListComponent = __decorate([
         core_1.Component({
             selector: 'cliente-list',
@@ -210,6 +215,10 @@ var ClienteService = (function () {
     }
     ClienteService.prototype.listaClientes = function () {
         var sql = 'Select * from cliente';
+        return this.storage.query(sql);
+    };
+    ClienteService.prototype.creaCliente = function () {
+        var sql = 'INSERT INTO cliente (nombre, telefono) VALUES (\'pedro\',\'00000\')';
         return this.storage.query(sql);
     };
     ClienteService = __decorate([

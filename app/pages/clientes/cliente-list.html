@@ -6,4 +6,10 @@
 <ion-content>
 clietnes
 
+<form #clienteformulario="ngForm" (ngSubmit)="creaCliente(clienteformulario)">
+    <input type="text" name="nombre" ngControl="nombre" />
+    <input type="text" #telefono ngControl="telefono" />
+    <input type="submit" value="crear" />
+</form>
+
 </ion-content>

@@ -15,4 +15,8 @@ export class ClienteService{
 
         return this.storage.query(sql);
     }
+    creaCliente() {
+        let sql = 'INSERT INTO cliente (nombre, telefono) VALUES (\'pedro\',\'00000\')';
+        return this.storage.query(sql);
+  }
 }

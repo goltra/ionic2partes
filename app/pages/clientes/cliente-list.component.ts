@@ -10,6 +10,8 @@ import {ClienteService} from '../../service/cliente.service';
 })
 export class ClienteListComponent{
     public clientes: Cliente[];
+
+
     constructor(private navCtrl: NavController, 
                 private navParams: NavParams,   
                 private actionSheetController: ActionSheetController,
@@ -17,6 +19,13 @@ export class ClienteListComponent{
         console.log('clientes');
         console.log(this._clienteService.listaClientes());
             
+    }
+    creaCliente(data){
+
+        console.log("crea cliente");
+        console.log(data['nombre']);
+        
+        //this._clienteService.creaCliente();
     }
 
     
