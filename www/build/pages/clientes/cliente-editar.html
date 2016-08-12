@@ -1,20 +1,46 @@
 <ion-header>
-    <ion-nav>
+    <ion-navbar>
         <ion-title>Crear cliente</ion-title>
-    </ion-nav>
+    </ion-navbar>
 </ion-header>
 <ion-content>
-    <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
-    <ion-item>
-        <ion-label floating>Nombre</ion-label>
-        <ion-input formControlName="nombre"  ></ion-input>
-    </ion-item>
-    <ion-item>
-        <ion-label floating>Telefono</ion-label>
-        <ion-input formControlName="telefono" ></ion-input>
-    </ion-item>
-    <button type="submit">Enviar</button>
 
-  
-</form>
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <ion-item>
+            <ion-label floating>Nombre</ion-label>
+            <ion-input formControlName="nombre"  ></ion-input>
+            <ion-label *ngIf="!myForm.controls['nombre'].valid">No valido</ion-label>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Telefono</ion-label>
+            <ion-input formControlName="telefono" ></ion-input>
+            <ion-label *ngIf="!myForm.controls['telefono'].valid">No valido</ion-label>
+        </ion-item>
+        <button type="submit">Enviar</button>
+    </form>
+
+    <!--<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" class="ui form" >
+        <ion-item>
+            <input type="text" name="nombre" [formControl]="myForm.controls['nombre']" >
+            <span *ngIf="!myForm.controls['nombre'].valid">Nombre no valido</span>
+        </ion-item>
+        <ion-item>
+            <input type="text" name="telefono" [formControl]="myForm.controls['telefono']" >
+            <span *ngIf="!myForm.controls['telefono'].valid">Telefono no valido</span>
+        </ion-item>
+        
+        <button type="submit">Enviar</button>
+    </form>-->
+
+    <!--<form #f="ngForm" (ngSubmit)="onSubmit(f.value)" class="ui form" >
+        <div class="field" [class.error]="!f.valid">
+            <input type="text" name="nombre" ngModel required minlength=5>
+        </div>
+        <div class="field" [class.error]="!f.valid">
+            <input type="text" name="telefono" ngModel pattern="[0-9]{9}" [formControl]="telefono">
+
+        </div>
+        <button type="submit">Enviar</button>
+
+    </form>-->
 </ion-content>

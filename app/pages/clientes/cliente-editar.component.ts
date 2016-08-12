@@ -5,39 +5,36 @@ import {ClienteService} from '../../service/cliente.service';
 import {ClienteListComponent} from './cliente-list.component';
 
 import {FORM_DIRECTIVES, 
+        REACTIVE_FORM_DIRECTIVES,
         FormBuilder,  
-        ControlGroup, 
+        FormGroup,
         Validators, 
-        AbstractControl} from '@angular/common';
+        AbstractControl} from '@angular/forms';
 
 @Component({
     templateUrl:'build/pages/clientes/cliente-editar.html',
+    directives:[FORM_DIRECTIVES,REACTIVE_FORM_DIRECTIVES],
     providers:[ClienteService],
 })
 
 export class ClienteEditarComponent{
-    public clienteForm: ControlGroup;
-    public nombre: AbstractControl;
-    public telefono: AbstractControl;
+
+    public myForm: FormGroup;
 
     constructor(private _nav: NavController, private fb: FormBuilder, 
                 private clienteService: ClienteService){
-        this.clienteForm = this.fb.group({
-            'nombre':['',Validators.compose([Validators.required,Validators.minLength(8)])],
-            'telefono':['',Validators.compose([Validators.required,Validators.minLength(8)])],
-        })
+       
+       this.myForm = this.fb.group({
+           'nombre': ['nombre por defecto',Validators.required],
+           'telefono': ['',Validators.pattern("[0-9]{9}")]
+       });
 
     }
-    onSubmit(){
-        let nombre: string;
-        let telefono:string;
-        let result: any;
-        nombre =this.clienteForm.controls['nombre'].value
-        telefono =this.clienteForm.controls['telefono'].value
-        result = this.clienteService.creaCliente(nombre,telefono);
-        this._nav.push(ClienteListComponent);
-        
+   
 
-         
+    onSubmit(){
+        let f = this.myForm.value;
+        this.clienteService.creaCliente(f.nombre,f.telefono);
+        this._nav.push(ClienteListComponent);
     }
 } 

@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {NavController,MenuController} from 'ionic-angular';
 import {ClienteListComponent} from '../clientes/cliente-list.component';
 import {ClienteEditarComponent} from '../clientes/cliente-editar.component';
 
@@ -7,8 +7,8 @@ import {ClienteEditarComponent} from '../clientes/cliente-editar.component';
   templateUrl: 'build/pages/home/home.html'
 })
 export class HomePage {
-  constructor(private navCtrl: NavController) {
-
+  constructor(private navCtrl: NavController,private menu: MenuController) {
+    this.menu.enable(true);
   }
   clientelist(){
     this.navCtrl.push(ClienteListComponent);
