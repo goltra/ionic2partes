@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Storage, SqlStorage} from 'ionic-angular';
+import {Cliente} from '../model/cliente';
 
 @Injectable()
 
@@ -12,11 +13,11 @@ export class ClienteService{
     }
     listaClientes(){
         let sql = 'Select * from cliente';
-
         return this.storage.query(sql);
     }
-    creaCliente() {
-        let sql = 'INSERT INTO cliente (nombre, telefono) VALUES (\'pedro\',\'00000\')';
+    creaCliente(nombre: string, telefono:string) {
+        let sql = 'INSERT INTO cliente (nombre, telefono) VALUES (\'' + nombre + '\',\'' + telefono + '\')';
         return this.storage.query(sql);
-  }
+
+    }
 }

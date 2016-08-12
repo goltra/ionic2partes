@@ -17,16 +17,23 @@ export class ClienteListComponent{
                 private actionSheetController: ActionSheetController,
                 private _clienteService: ClienteService){
         console.log('clientes');
-        console.log(this._clienteService.listaClientes());
+        this.listaClientes();
             
     }
-    creaCliente(data){
-
-        console.log("crea cliente");
-        console.log(data['nombre']);
-        
-        //this._clienteService.creaCliente();
+    listaClientes(){
+        let result: any;
+        this._clienteService.listaClientes().then(
+            data => {
+            this.clientes = [];
+            if (data.res.rows.length > 0) {
+            for (var i = 0; i < data.res.rows.length; i++) {
+                let item = data.res.rows.item(i);
+                this.clientes.push(new Cliente(item.nombre, item.telefono));
+            }
+            }
+        });
     }
+  
 
     
 }

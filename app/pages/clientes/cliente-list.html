@@ -4,12 +4,9 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-clietnes
-
-<form #clienteformulario="ngForm" (ngSubmit)="creaCliente(clienteformulario)">
-    <input type="text" name="nombre" ngControl="nombre" />
-    <input type="text" #telefono ngControl="telefono" />
-    <input type="submit" value="crear" />
-</form>
+<h2>Lista de clientes</h2>
+<ul>
+  <li *ngFor="#cliente of clientes">{{cliente.nombre}}</li>
+</ul>
 
 </ion-content>
