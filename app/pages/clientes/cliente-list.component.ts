@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams, ActionSheetController} from 'ionic-angular';
+import {ClienteEditarComponent} from './cliente-editar.component';
 import {Cliente} from '../../model/cliente';
 import {ClienteService} from '../../service/cliente.service';
 
@@ -21,19 +22,10 @@ export class ClienteListComponent{
     }
     listaClientes(){
         let result: any;
-        this._clienteService.listaClientes().then(
-            data => {
-            this.clientes = [];
-            if (data.res.rows.length > 0) {
-            for (var i = 0; i < data.res.rows.length; i++) {
-                let item = data.res.rows.item(i);
-                this.clientes.push(new Cliente(item.id, item.nombre, item.telefono));
-            }
-            }
-        });
+        this.clientes = this._clienteService.listaClientes();
     }
     cargaCliente(cliente:Cliente){
-        //llmaar a cliente-edit mandandole el cliente
+        this.navCtrl.push(ClienteEditarComponent,[cliente]);
     }
   
 

@@ -22,13 +22,22 @@ export class ClienteEditarComponent{
 
     public myForm: FormGroup;
 
-    constructor(private _nav: NavController, private fb: FormBuilder, 
-                private clienteService: ClienteService, private  _varios: VariosService){
-       
+    constructor(private _nav: NavController, private _navParams: NavParams,
+                private fb: FormBuilder, 
+                private clienteService: ClienteService, 
+                private  _varios: VariosService){
+       let params = _navParams;
+       let cliente: Cliente;
+       cliente = new Cliente(null,'','');
+
+       if(params.data.length>0){
+           cliente = params.data[0];
+       }
+       console.log(_navParams);
        this.myForm = this.fb.group({
-           'id':[''],
-           'nombre': ['nombre por defecto',Validators.required],
-           'telefono': ['',Validators.pattern("[0-9]{9}")]
+           'id':[cliente.id],
+           'nombre': [cliente.nombre,Validators.required],
+           'telefono': [cliente.telefono,Validators.pattern("[0-9]{9}")]
        });
 
     }
@@ -38,11 +47,30 @@ export class ClienteEditarComponent{
 
     onSubmit(){
         let f = this.myForm.value;
+        let existeCliente:number;
+
+        this.clienteService.existeCliente(f.id).then(
+            (data)=>{
+                if(data.res.rows.length>0){
+                    console.log('data');
+                    existeCliente = data.res.rows[0].numclientes;
+                    this.clienteService.modificarCliente(new Cliente(f.id,f.nombre,f.telefono));
+                }
+            },
+            (error)=>{
+                alert('Error comprobando si existe el cliente');
+            }
+        )
         //comprobar si el cliente enviado existe. Si existe actualizo
         //si no creo.
-        
-        console.log(f);
-        this.clienteService.creaCliente(f.nombre,f.telefono);
+        console.log(existeCliente);
+        /** if(existeCliente>0){
+            //console.log('llamo a modificar');
+            this.clienteService.modificarCliente(new Cliente(f.id,f.nombre,f.telefono));
+        } else {
+            //console.log('llamo a crear');
+            this.clienteService.creaCliente(f.nombre,f.telefono);
+        } */
         this._nav.setRoot(ClienteListComponent);
     }
 } 

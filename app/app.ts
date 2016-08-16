@@ -11,7 +11,7 @@ import {HomePage} from './pages/home/home';
 
 @Component({
   templateUrl: 'build/app.html',
-  providers:[VariosService]
+  providers:[VariosService],
 })
 export class MyApp {
 
