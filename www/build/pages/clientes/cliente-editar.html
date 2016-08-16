@@ -6,6 +6,7 @@
 <ion-content>
 
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <ion-input hidden formControlName="id"></ion-input>
         <ion-item>
             <ion-label floating>Nombre</ion-label>
             <ion-input formControlName="nombre"  ></ion-input>
@@ -18,6 +19,7 @@
         </ion-item>
         <button type="submit">Enviar</button>
     </form>
+    <button (click)="cancelar()">Cancelar</button>
 
     <!--<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" class="ui form" >
         <ion-item>

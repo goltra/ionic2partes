@@ -20,4 +20,16 @@ export class ClienteService{
         return this.storage.query(sql);
 
     }
+    existeCliente(id: number){
+
+        let sql = "Select count(*) as numclientes from cliente where id=" + id;
+        let data; 
+        this.storage.query(sql).then(
+            (res)=>{console.log(res.res)},
+            (error)=>{
+                console.log("error")
+            });
+
+        //console.log(data.resp);
+    }
 }

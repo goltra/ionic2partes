@@ -4,12 +4,10 @@
   </ion-toolbar>
   <ion-content>
     <ion-list>
-      <button ion-item (click)="openPage(loginPage)">
-        Login
+      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      {{p.title}}
       </button>
-      <button ion-item (click)="openPage(signupPage)">
-        Signup
-      </button>
+      
     </ion-list>
   </ion-content>
 </ion-menu>

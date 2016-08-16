@@ -4,7 +4,6 @@ import {Cliente} from '../../model/cliente';
 import {ClienteService} from '../../service/cliente.service';
 
 @Component({
-    selector: 'cliente-list',
     templateUrl: 'build/pages/clientes/cliente-list.html',
     providers:[ClienteService],
 })
@@ -28,10 +27,13 @@ export class ClienteListComponent{
             if (data.res.rows.length > 0) {
             for (var i = 0; i < data.res.rows.length; i++) {
                 let item = data.res.rows.item(i);
-                this.clientes.push(new Cliente(item.nombre, item.telefono));
+                this.clientes.push(new Cliente(item.id, item.nombre, item.telefono));
             }
             }
         });
+    }
+    cargaCliente(cliente:Cliente){
+        //llmaar a cliente-edit mandandole el cliente
     }
   
 

@@ -1,12 +1,19 @@
 <ion-header>
   <ion-navbar>
+    <button menuToggle>
+      <ion-icon name='menu'></ion-icon>
+    </button>
     <ion-title>Clientes</ion-title>
   </ion-navbar>
 </ion-header>
 <ion-content>
-<h2>Lista de clientes</h2>
-<ul>
-  <li *ngFor="let cliente of clientes">{{cliente.nombre}}</li>
-</ul>
+
+<ion-list>
+  <ion-list-header>Lista de Clientes</ion-list-header>
+  <ion-item *ngFor="let cliente of clientes" (click)="cargaCliente(cliente)">
+    <ion-icon name="contact" item-left></ion-icon>
+    <ion-note>{{cliente.nombre}}</ion-note>
+  </ion-item>
+</ion-list>
 
 </ion-content>
