@@ -47,30 +47,19 @@ export class ClienteEditarComponent{
 
     onSubmit(){
         let f = this.myForm.value;
-        let existeCliente:number;
 
-        this.clienteService.existeCliente(f.id).then(
+
+        this.clienteService.actualizaCliente(f.id,f.nombre,f.telefono).then(
             (data)=>{
-                if(data.res.rows.length>0){
-                    console.log('data');
-                    existeCliente = data.res.rows[0].numclientes;
-                    this.clienteService.modificarCliente(new Cliente(f.id,f.nombre,f.telefono));
-                }
+                    //TODO: Implementar aviso que ha guardar bien el cliente
+                    console.log(data.res);
             },
             (error)=>{
-                alert('Error comprobando si existe el cliente');
+                console.log('Error cliente-editar.component ' );
+                console.log(error);
             }
-        )
-        //comprobar si el cliente enviado existe. Si existe actualizo
-        //si no creo.
-        console.log(existeCliente);
-        /** if(existeCliente>0){
-            //console.log('llamo a modificar');
-            this.clienteService.modificarCliente(new Cliente(f.id,f.nombre,f.telefono));
-        } else {
-            //console.log('llamo a crear');
-            this.clienteService.creaCliente(f.nombre,f.telefono);
-        } */
+        );
+
         this._nav.setRoot(ClienteListComponent);
     }
 } 

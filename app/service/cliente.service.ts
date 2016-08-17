@@ -11,25 +11,16 @@ export class ClienteService{
         this.storage.query('CREATE TABLE IF NOT EXISTS cliente (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, telefono TEXT)');
 
     }
-    /** Devuelve un array de Cliente  */
+
     listaClientes(){
         let sql = 'Select * from cliente';
-        let listaClientes=[];
-        this.storage.query(sql).then(
-            (data)=>{
-                if(data.res.rows.length>0){
-                    for (var i = 0; i < data.res.rows.length; i++) {
-                        let item = data.res.rows[i];
-                        listaClientes.push(new Cliente(item.id,item.nombre,item.telefono));
-                    }
-                }
-            },
-            (error)=>{
-                alert("Error al cargar la lista de clientes");
-            }
-        );
-        return listaClientes;
+        return this.storage.query(sql);
+
     }
+    //TODO: funcion para eliminar cliente
+
+    //TODO: unificar modificar/crear para qeu la logica esté en el servicio y no desde
+    //el front
     modificarCliente(cliente: Cliente){
         let sql = "Update cliente set nombre=?,telefono=? where id=?"
         this.storage.query(sql,[cliente.nombre,cliente.telefono,cliente.id]).then(
@@ -39,9 +30,15 @@ export class ClienteService{
                         (error)=>{console.log(error)}
                     );
     }
-    creaCliente(nombre: string, telefono:string) {
-        let sql = 'INSERT INTO cliente (nombre, telefono) VALUES (?,?)';
-        return this.storage.query(sql,[nombre,telefono]);
+    actualizaCliente(id:number=null, nombre: string, telefono:string) {
+        let sql: string;
+        if(id==null){
+            sql = 'INSERT INTO cliente (nombre, telefono) VALUES (?,?)';
+            return this.storage.query(sql,[nombre,telefono]);
+        }else{
+            sql = "Update cliente set nombre=?,telefono=? where id=?"
+            return this.storage.query(sql,[nombre,telefono,id]);
+        }
     }
 
     /**Comprueba con el id recibido si el cliente existe y devuelve el numero de clientes con ese id 

@@ -10,10 +10,17 @@
 
 <ion-list>
   <ion-list-header>Lista de Clientes</ion-list-header>
-  <ion-item *ngFor="let cliente of clientes" (click)="cargaCliente(cliente)">
-    <ion-icon name="contact" item-left></ion-icon>
-    <ion-note>{{cliente.nombre}}</ion-note>
-  </ion-item>
+  <ion-item-sliding *ngFor="let cliente of clientes">
+    <ion-item  (click)="cargaCliente(cliente)">
+      <h2>{{cliente.nombre}}</h2> 
+    </ion-item>
+    <ion-item-options>
+        <button danger (click)="borrarCliente()">
+          <ion-icon name="trash" ></ion-icon>
+            Eliminar
+        </button>
+      </ion-item-options>
+  </ion-item-sliding>
 </ion-list>
 
 </ion-content>
