@@ -31,7 +31,9 @@ export class ClienteListComponent implements OnInit{
                     this.clientes=[];
                     if(data.res.rows.length>0){
                         for (let i = 0; i < data.res.rows.length; i++) {
-                            let item = data.res.rows[i];
+
+                            let item = data.res.rows.item(i);
+
                             this.clientes.push(item);
                         }
                     }

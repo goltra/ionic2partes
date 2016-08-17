@@ -4,6 +4,6 @@ import {Injectable} from '@angular/core';
 
 export class VariosService{
     hola(){
-        console.log('hola desde varios.service');
+        //console.log('hola desde varios.service');
     }
 }

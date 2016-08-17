@@ -25,9 +25,11 @@ export class ClienteService{
         let sql = "Update cliente set nombre=?,telefono=? where id=?"
         this.storage.query(sql,[cliente.nombre,cliente.telefono,cliente.id]).then(
                         (data)=>{
-                            console.log("modificarCliente(): " + data.res);
+                           // console.log("modificarCliente(): " + data.res);
                         },
-                        (error)=>{console.log(error)}
+                        (error)=>{
+                            //console.log(error);
+                            }
                     );
     }
     actualizaCliente(id:number=null, nombre: string, telefono:string) {

@@ -99,7 +99,7 @@ var ClienteEditarComponent = (function () {
         if (params.data.length > 0) {
             cliente = params.data[0];
         }
-        console.log(_navParams);
+        //console.log(_navParams);
         this.myForm = this.fb.group({
             'id': [cliente.id],
             'nombre': [cliente.nombre, forms_1.Validators.required],
@@ -113,10 +113,10 @@ var ClienteEditarComponent = (function () {
         var f = this.myForm.value;
         this.clienteService.actualizaCliente(f.id, f.nombre, f.telefono).then(function (data) {
             //TODO: Implementar aviso que ha guardar bien el cliente
-            console.log(data.res);
+            //console.log(data.res);
         }, function (error) {
-            console.log('Error cliente-editar.component ');
-            console.log(error);
+            //console.log('Error cliente-editar.component ' );
+            //console.log(error);
         });
         this._nav.setRoot(cliente_list_component_1.ClienteListComponent);
     };
@@ -164,7 +164,7 @@ var ClienteListComponent = (function () {
             _this.clientes = [];
             if (data.res.rows.length > 0) {
                 for (var i = 0; i < data.res.rows.length; i++) {
-                    var item = data.res.rows[i];
+                    var item = data.res.rows.item(i);
                     _this.clientes.push(item);
                 }
             }
@@ -254,8 +254,10 @@ var ClienteService = (function () {
     ClienteService.prototype.modificarCliente = function (cliente) {
         var sql = "Update cliente set nombre=?,telefono=? where id=?";
         this.storage.query(sql, [cliente.nombre, cliente.telefono, cliente.id]).then(function (data) {
-            console.log("modificarCliente(): " + data.res);
-        }, function (error) { console.log(error); });
+            // console.log("modificarCliente(): " + data.res);
+        }, function (error) {
+            //console.log(error);
+        });
     };
     ClienteService.prototype.actualizaCliente = function (id, nombre, telefono) {
         if (id === void 0) { id = null; }
@@ -303,7 +305,7 @@ var VariosService = (function () {
     function VariosService() {
     }
     VariosService.prototype.hola = function () {
-        console.log('hola desde varios.service');
+        //console.log('hola desde varios.service');
     };
     VariosService = __decorate([
         core_1.Injectable(), 

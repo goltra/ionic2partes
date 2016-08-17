@@ -33,7 +33,7 @@ export class ClienteEditarComponent{
        if(params.data.length>0){
            cliente = params.data[0];
        }
-       console.log(_navParams);
+       //console.log(_navParams);
        this.myForm = this.fb.group({
            'id':[cliente.id],
            'nombre': [cliente.nombre,Validators.required],
@@ -52,11 +52,11 @@ export class ClienteEditarComponent{
         this.clienteService.actualizaCliente(f.id,f.nombre,f.telefono).then(
             (data)=>{
                     //TODO: Implementar aviso que ha guardar bien el cliente
-                    console.log(data.res);
+                    //console.log(data.res);
             },
             (error)=>{
-                console.log('Error cliente-editar.component ' );
-                console.log(error);
+                //console.log('Error cliente-editar.component ' );
+                //console.log(error);
             }
         );
 
