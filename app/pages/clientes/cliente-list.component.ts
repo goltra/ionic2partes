@@ -3,6 +3,7 @@ import {NavController, NavParams, ActionSheetController} from 'ionic-angular';
 import {ClienteEditarComponent} from './cliente-editar.component';
 import {Cliente} from '../../model/cliente';
 import {ClienteService} from '../../service/cliente.service';
+import {VariosService} from '../../service/varios.service';
 
 @Component({
     templateUrl: 'build/pages/clientes/cliente-list.html',
@@ -12,10 +13,12 @@ export class ClienteListComponent implements OnInit{
     public clientes: Cliente[];
 
 
+
     constructor(private navCtrl: NavController, 
                 private navParams: NavParams,   
                 private actionSheetController: ActionSheetController,
-                private _clienteService: ClienteService){
+                private _clienteService: ClienteService,
+                private variosService: VariosService){
 
             
     }
@@ -31,24 +34,34 @@ export class ClienteListComponent implements OnInit{
                     this.clientes=[];
                     if(data.res.rows.length>0){
                         for (let i = 0; i < data.res.rows.length; i++) {
-
                             let item = data.res.rows.item(i);
-
                             this.clientes.push(item);
                         }
                     }
                 },
                 (error)=>{
-                    alert("Error al cargar la lista de clientes");
+
                 }
         );
     }
     cargaCliente(cliente:Cliente){
         this.navCtrl.push(ClienteEditarComponent,[cliente]);
     }
-  
-    borrarCliente(){
-        alert('Aún no se puede eliminar pero falta poco ');
+    crearCliente(){
+        this.navCtrl.push(ClienteEditarComponent); 
+    }
+    borrarCliente(id: number){
+        this._clienteService.borrarCliente(id).then(
+            (data)=>{
+                console.log(data.res);
+                this.variosService.showToast("Cliente eliminado","top");
+                this.listaClientes();
+            },  
+            (error)=>{
+                console.log(error);
+            }        
+            );
+        
     }
     
 }

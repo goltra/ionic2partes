@@ -1,10 +1,9 @@
 import {Component,ViewChild} from '@angular/core';
 import {Platform, ionicBootstrap, NavController, Nav, MenuController} from 'ionic-angular';
 import {ClienteListComponent} from './pages/clientes/cliente-list.component';
-import {ClienteEditarComponent} from './pages/clientes/cliente-editar.component';
+import {ParteListComponent} from './pages/parte/parte-list.component';
 import {VariosService} from './service/varios.service';
 import {StatusBar} from 'ionic-native';
-import {TabsPage} from './pages/tabs/tabs';
 import {HomePage} from './pages/home/home';
 
 
@@ -29,6 +28,10 @@ export class MyApp {
         {
           title: "Listado de clientes",
           component: ClienteListComponent
+        },
+        {
+          title: "Listado de partes",
+          component: ParteListComponent
         },
       ];
     platform.ready().then(() => {

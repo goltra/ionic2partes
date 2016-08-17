@@ -51,8 +51,7 @@ export class ClienteEditarComponent{
 
         this.clienteService.actualizaCliente(f.id,f.nombre,f.telefono).then(
             (data)=>{
-                    //TODO: Implementar aviso que ha guardar bien el cliente
-                    //console.log(data.res);
+                    this._varios.showToast("Cliente guardado correctamente","top");
             },
             (error)=>{
                 //console.log('Error cliente-editar.component ' );
