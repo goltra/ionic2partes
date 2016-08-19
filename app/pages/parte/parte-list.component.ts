@@ -34,7 +34,7 @@ export class ParteListComponent {
       }
     );
   }
-  crearParte(){
+  crearParte(clienteid:number){
     console.log('crearParte()');
     this.navCtrl.push(ParteEditarComponent);
   }

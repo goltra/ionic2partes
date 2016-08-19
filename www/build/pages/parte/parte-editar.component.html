@@ -1,1 +1,32 @@
-<h1>hola</h1>
+<ion-header>
+    <ion-navbar>
+        <ion-title>Crear Parte</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <ion-input hidden formControlName="id"></ion-input>
+        <ion-item>
+            <ion-label floating>Fecha</ion-label>
+            <ion-datetime formControlName="fecha" ></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Hora de inicio</ion-label>
+            <ion-datetime formControlName="horaini" displayFormat="HH:mm"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Hora de fin</ion-label>
+            <ion-datetime formControlName="horafin" displayFormat="HH:mm"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Trabajo realizado</ion-label>
+            <ion-textarea formControlName="trabajorealizado" ></ion-textarea>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Autorizado por:</ion-label>
+            <ion-input formControlName="personafirma" ></ion-input>
+        </ion-item>
+        <button type="submit">Enviar</button>
+    </form>
+    <button (click)="cancelar()">Cancelar</button>

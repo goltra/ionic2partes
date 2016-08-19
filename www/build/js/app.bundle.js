@@ -191,6 +191,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
 var cliente_editar_component_1 = require('./cliente-editar.component');
+var parte_editar_component_1 = require('../parte/parte-editar.component');
 var cliente_service_1 = require('../../service/cliente.service');
 var varios_service_1 = require('../../service/varios.service');
 var ClienteListComponent = (function () {
@@ -235,6 +236,9 @@ var ClienteListComponent = (function () {
             console.log(error);
         });
     };
+    ClienteListComponent.prototype.crearParte = function (clienteid) {
+        this.navCtrl.push(parte_editar_component_1.ParteEditarComponent, { clienteid: clienteid });
+    };
     ClienteListComponent = __decorate([
         core_1.Component({
             templateUrl: 'build/pages/clientes/cliente-list.html',
@@ -246,7 +250,7 @@ var ClienteListComponent = (function () {
 }());
 exports.ClienteListComponent = ClienteListComponent;
 
-},{"../../service/cliente.service":10,"../../service/varios.service":12,"./cliente-editar.component":5,"@angular/core":160,"ionic-angular":474}],7:[function(require,module,exports){
+},{"../../service/cliente.service":10,"../../service/varios.service":12,"../parte/parte-editar.component":8,"./cliente-editar.component":5,"@angular/core":160,"ionic-angular":474}],7:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -311,22 +315,32 @@ var ParteEditarComponent = (function () {
         this.parteService = parteService;
         this._varios = _varios;
         var params = _navParams;
-        // let parte: Parte;
-        var parte1 = new parte_1.Parte(null, null, null);
-        /*if(params.data.length>0){
-            parte = params.data[0];
+        var parte;
+        parte = new parte_1.Parte(null, null, null);
+        var fechaActual = _varios.getNowDate();
+        var horaActual = _varios.getNowTime();
+        var clienteid;
+        console.log(fechaActual);
+        console.log(horaActual);
+        if (!isNaN(Number(params.get('clienteid')))) {
+            //este caso siempre se debe dar cuando se trata de un nuevo parte.
+            clienteid = params.get('clienteid');
+            parte.clienteid = clienteid;
+            parte.fecha = fechaActual;
+            parte.horaini = horaActual;
+            parte.horafin = horaActual;
         }
- 
+        else {
+        }
         this.myForm = this.fb.group({
-            'id':[parte.id],
-            'clienteid':[parte.clienteid],
+            'id': [parte.id],
+            'clienteid': [parte.clienteid],
             'fecha': [parte.fecha],
             'horaini': [parte.horaini],
-            'horafin':[parte.horafin],
-            'trabajorealizado':[parte.trabajorealizado],
-            'personafirma':[parte.personafirma]
+            'horafin': [parte.horafin],
+            'trabajorealizado': [parte.trabajorealizado],
+            'personafirma': [parte.personafirma]
         });
- */
     }
     ParteEditarComponent.prototype.cancelar = function () {
         this._nav.pop();
@@ -338,7 +352,7 @@ var ParteEditarComponent = (function () {
     };
     ParteEditarComponent = __decorate([
         core_1.Component({
-            templateUrl: 'build/pages/clientes/cliente-editar.html',
+            templateUrl: 'build/pages/parte/parte-editar.component.html',
             directives: [forms_1.FORM_DIRECTIVES, forms_1.REACTIVE_FORM_DIRECTIVES],
             providers: [parte_service_1.ParteService],
         }), 
@@ -385,7 +399,7 @@ var ParteListComponent = (function () {
             console.log("Error cargando los partes " + error.err.message);
         });
     };
-    ParteListComponent.prototype.crearParte = function () {
+    ParteListComponent.prototype.crearParte = function (clienteid) {
         console.log('crearParte()');
         this.navCtrl.push(parte_editar_component_1.ParteEditarComponent);
     };
@@ -511,6 +525,26 @@ var VariosService = (function () {
             duration: 2000
         });
         toast.present();
+    };
+    /**Funcion que devuelve la fecha actual
+     * return string
+     */
+    VariosService.prototype.getNowDate = function () {
+        var now = new Date();
+        var dia = now.getDate();
+        var mes = now.getMonth() + 1;
+        var anio = now.getFullYear();
+        return dia + '/' + mes + '/' + anio;
+    };
+    /**Funcion que devuelve la hora actual
+      * return string
+      */
+    VariosService.prototype.getNowTime = function () {
+        var now = new Date();
+        var hora = now.getHours();
+        var minutos = now.getMinutes();
+        //TODO: la hora y los minutos tienen que ir con dos digitos cada uno.
+        return hora + ":" + minutos;
     };
     VariosService = __decorate([
         core_1.Injectable(), 

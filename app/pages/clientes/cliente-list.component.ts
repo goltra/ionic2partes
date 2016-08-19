@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController, NavParams, ActionSheetController} from 'ionic-angular';
 import {ClienteEditarComponent} from './cliente-editar.component';
+import {ParteEditarComponent} from '../parte/parte-editar.component';
 import {Cliente} from '../../model/cliente';
 import {ClienteService} from '../../service/cliente.service';
 import {VariosService} from '../../service/varios.service';
@@ -63,6 +64,9 @@ export class ClienteListComponent implements OnInit{
             }        
             );
         
+    }
+    crearParte(clienteid:number){
+        this.navCtrl.push(ParteEditarComponent,{clienteid: clienteid})
     }
     
 }

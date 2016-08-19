@@ -13,7 +13,7 @@ import {FORM_DIRECTIVES,
         AbstractControl} from '@angular/forms';
 
 @Component({
-    templateUrl:'build/pages/clientes/cliente-editar.html',
+    templateUrl:'build/pages/parte/parte-editar.component.html',
     directives:[FORM_DIRECTIVES,REACTIVE_FORM_DIRECTIVES],
     providers:[ParteService],
 })
@@ -27,12 +27,29 @@ export class ParteEditarComponent{
                 private parteService: ParteService, 
                 private  _varios: VariosService){
        let params = _navParams;
-      // let parte: Parte;
-       let parte1 = new Parte(null,null,null);
+       let parte: Parte;
+       parte = new Parte(null,null,null);
 
-       /*if(params.data.length>0){
-           parte = params.data[0];
+       let fechaActual=_varios.getNowDate();
+       let horaActual=_varios.getNowTime();
+       let clienteid:number;
+
+       console.log(fechaActual);
+       console.log(horaActual);
+
+       if(!isNaN(Number(params.get('clienteid')))){ //para checkear que viene un valor numerico en el parametro
+          //este caso siempre se debe dar cuando se trata de un nuevo parte.
+           clienteid =params.get('clienteid');
+           parte.clienteid=clienteid;
+           parte.fecha=fechaActual;
+           parte.horaini=horaActual;
+           parte.horafin=horaActual;
+       } else {
+           //TODO: Si lo que recibo en los parametros es el parte,entonces lo igualo al objeto parte 
+           //para editarlo en el form
        }
+
+       
 
        this.myForm = this.fb.group({
            'id':[parte.id],
@@ -43,7 +60,7 @@ export class ParteEditarComponent{
            'trabajorealizado':[parte.trabajorealizado],
            'personafirma':[parte.personafirma]
        });
-*/
+
     }
     cancelar(){
         this._nav.pop();

@@ -12,7 +12,7 @@
   <ion-list-header>Lista de Clientes</ion-list-header>
   <ion-item><button full (click)='crearCliente()'>Añadir cliente</button></ion-item>
   <ion-item-sliding *ngFor="let cliente of clientes">
-    <button ion-item  (click)="cargaCliente(cliente)">
+    <button ion-item  (click)="crearParte(cliente.id)">
       <h2>{{cliente.nombre}}</h2> 
     </button>
     <ion-item-options>
