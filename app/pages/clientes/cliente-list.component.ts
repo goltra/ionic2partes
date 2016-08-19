@@ -45,6 +45,7 @@ export class ClienteListComponent implements OnInit{
         );
     }
     cargaCliente(cliente:Cliente){
+        console.log('carga cliente');
         this.navCtrl.push(ClienteEditarComponent,[cliente]);
     }
     crearCliente(){

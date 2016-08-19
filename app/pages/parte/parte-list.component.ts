@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {ParteService} from '../../service/parte.service';
 import {VariosService} from '../../service/varios.service';
+import {ParteEditarComponent} from './parte-editar.component';
 
 
 @Component({
@@ -32,5 +33,9 @@ export class ParteListComponent {
         console.log("Error cargando los partes "  +  error.err.message);
       }
     );
+  }
+  crearParte(){
+    console.log('crearParte()');
+    this.navCtrl.push(ParteEditarComponent);
   }
 }

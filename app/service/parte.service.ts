@@ -25,5 +25,9 @@ export class ParteService{
         return this.storage.query(sql);
     }
 
+     actualizaParte(f){
+        console.log(f);
+    }
+
    
 }

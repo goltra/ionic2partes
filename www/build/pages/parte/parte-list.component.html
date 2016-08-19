@@ -10,11 +10,11 @@
 
 <ion-list>
   <ion-list-header>Listado de partes de trabajo</ion-list-header>
-  <ion-item><button full>Añadir parte</button></ion-item>
+ <ion-item> <button full (click)="crearParte()">Añadir parte</button> </ion-item>
   <ion-item-sliding *ngFor="let parte of partes">
-    <ion-item>
+    <button ion-item>
       <h2>{{parte.fecha}}</h2> 
-    </ion-item>
+    </button>
     <ion-item-options>
         <button danger>
           <ion-icon name="trash" ></ion-icon>

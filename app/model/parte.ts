@@ -13,4 +13,5 @@ export class Parte{
         this.fecha=_fecha;
     }
     
+   
 }
