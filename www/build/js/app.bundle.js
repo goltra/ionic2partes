@@ -317,20 +317,20 @@ var ParteEditarComponent = (function () {
         var params = _navParams;
         var parte;
         parte = new parte_1.Parte(null, null, null);
-        var fechaActual = _varios.getNowDate();
-        var horaActual = _varios.getNowTime();
         var clienteid;
-        console.log(fechaActual);
-        console.log(horaActual);
         if (!isNaN(Number(params.get('clienteid')))) {
             //este caso siempre se debe dar cuando se trata de un nuevo parte.
             clienteid = params.get('clienteid');
             parte.clienteid = clienteid;
-            parte.fecha = fechaActual;
-            parte.horaini = horaActual;
-            parte.horafin = horaActual;
+            parte.fecha = _varios.getNowDateIso();
+            console.log(parte.fecha);
+            parte.horaini = parte.fecha;
+            parte.horafin = parte.fecha;
         }
         else {
+            //TODO: Si lo que recibo en los parametros es el parte,entonces lo igualo al objeto parte 
+            //para editarlo en el form
+            console.log("editar");
         }
         this.myForm = this.fb.group({
             'id': [parte.id],
@@ -490,7 +490,13 @@ var ParteService = (function () {
         return this.storage.query(sql);
     };
     ParteService.prototype.actualizaParte = function (f) {
-        console.log(f);
+        var sql;
+        if (f.id == null) {
+            sql = "insert into parte values (?,?, ?,?,?,?,?)";
+        }
+        this.storage.query(sql, [f.id, f.clienteid, f.fecha, f.horaini, f.horafin, f.trabajorealizado, f.personafirma]).then(function (data) {
+            console.log("Insertado parte ");
+        }, function (error) { console.log("error al insertar parte " + error.err.message); });
     };
     ParteService = __decorate([
         core_1.Injectable(), 
@@ -526,25 +532,20 @@ var VariosService = (function () {
         });
         toast.present();
     };
-    /**Funcion que devuelve la fecha actual
+    /**Funcion que devuelve la fecha actual con el formato ISO.
+     * Tras varias pruebas deduzco que el formato ISO no incluye la zona hoario por lo que siempre va a dar
+     * la hora sin incrementar ni decrementar por zonas. Por ese motivo se obtiene a parte el timezoneOffset
+     * y se suma a los minutos para finalmente devolver en formato ISO.
+     * Se usa el formato iso porque hay componentes de formularios de ionic (ion-datatime) que lo necesitan.
      * return string
      */
-    VariosService.prototype.getNowDate = function () {
+    VariosService.prototype.getNowDateIso = function (pattern) {
+        if (pattern === void 0) { pattern = 'dd/MM/yyyy'; }
         var now = new Date();
-        var dia = now.getDate();
-        var mes = now.getMonth() + 1;
-        var anio = now.getFullYear();
-        return dia + '/' + mes + '/' + anio;
-    };
-    /**Funcion que devuelve la hora actual
-      * return string
-      */
-    VariosService.prototype.getNowTime = function () {
-        var now = new Date();
-        var hora = now.getHours();
-        var minutos = now.getMinutes();
-        //TODO: la hora y los minutos tienen que ir con dos digitos cada uno.
-        return hora + ":" + minutos;
+        var timezoneOffset = (now.getTimezoneOffset() * -1);
+        var fechastr = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes() + timezoneOffset);
+        console.log(fechastr);
+        return fechastr.toISOString();
     };
     VariosService = __decorate([
         core_1.Injectable(), 

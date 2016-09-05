@@ -7,9 +7,10 @@
 
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
         <ion-input hidden formControlName="id"></ion-input>
+        <ion-input hidden formControlName="clienteid"></ion-input>
         <ion-item>
             <ion-label floating>Fecha</ion-label>
-            <ion-datetime formControlName="fecha" ></ion-datetime>
+            <ion-datetime formControlName="fecha" displayFormat="DD/MM/YYYY"></ion-datetime>
         </ion-item>
         <ion-item>
             <ion-label floating>Hora de inicio</ion-label>

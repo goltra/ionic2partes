@@ -26,7 +26,17 @@ export class ParteService{
     }
 
      actualizaParte(f){
-        console.log(f);
+         let sql: string;
+
+         if(f.id==null){
+             sql="insert into parte values (?,?, ?,?,?,?,?)";
+         }
+         this.storage.query(sql,[f.id,f.clienteid, f.fecha,f.horaini,f.horafin,f.trabajorealizado,f.personafirma]).then(
+             (data)=>{
+                 console.log("Insertado parte ");
+             },
+             (error)=>{console.log("error al insertar parte "+ error.err.message);}
+         );
     }
 
    

@@ -29,24 +29,22 @@ export class ParteEditarComponent{
        let params = _navParams;
        let parte: Parte;
        parte = new Parte(null,null,null);
-
-       let fechaActual=_varios.getNowDate();
-       let horaActual=_varios.getNowTime();
        let clienteid:number;
-
-       console.log(fechaActual);
-       console.log(horaActual);
 
        if(!isNaN(Number(params.get('clienteid')))){ //para checkear que viene un valor numerico en el parametro
           //este caso siempre se debe dar cuando se trata de un nuevo parte.
            clienteid =params.get('clienteid');
            parte.clienteid=clienteid;
-           parte.fecha=fechaActual;
-           parte.horaini=horaActual;
-           parte.horafin=horaActual;
+           parte.fecha=_varios.getNowDateIso();
+           
+
+           console.log(parte.fecha);
+           parte.horaini=parte.fecha;
+           parte.horafin=parte.fecha;
        } else {
            //TODO: Si lo que recibo en los parametros es el parte,entonces lo igualo al objeto parte 
            //para editarlo en el form
+           console.log("editar");
        }
 
        
@@ -68,7 +66,6 @@ export class ParteEditarComponent{
 
     onSubmit(){
         let f = this.myForm.value;
-
 
         this.parteService.actualizaParte(f);
 
