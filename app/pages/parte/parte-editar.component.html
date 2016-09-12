@@ -28,6 +28,11 @@
             <ion-label floating>Autorizado por:</ion-label>
             <ion-input formControlName="personafirma" ></ion-input>
         </ion-item>
+        <ion-item>
+            <signature-pad [options]="signaturePadOptions" (onEndEvent)="doOnEnd()"></signature-pad>
+        </ion-item>
+
         <button type="submit">Enviar</button>
     </form>
+
     <button (click)="cancelar()">Cancelar</button>

@@ -12,8 +12,8 @@
   <ion-list-header>Listado de partes de trabajo</ion-list-header>
  <ion-item> <button full (click)="crearParte()">Añadir parte</button> </ion-item>
   <ion-item-sliding *ngFor="let parte of partes">
-    <button ion-item (click)="">
-      <h2>{{parte.fecha}}</h2> 
+    <button ion-item (click)="cargaParte(parte)">
+      <h2>{{parte.nombre}} {{parte.fecha}}</h2> 
     </button>
     <ion-item-options>
         <button danger>

@@ -6,6 +6,7 @@ export class Parte{
     public horafin: string;
     public trabajorealizado: string;
     public personafirma: string;
+    public firma: string;
 
     constructor(_id:number, _clienteid:number, _fecha:string){
         this.id=_id;
