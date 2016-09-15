@@ -81,6 +81,13 @@ var Parte = (function () {
         this.clienteid = _clienteid;
         this.fecha = _fecha;
     }
+    Object.defineProperty(Parte.prototype, "fechaformato", {
+        get: function () {
+            return this.fecha + ' aa';
+        },
+        enumerable: true,
+        configurable: true
+    });
     return Parte;
 }());
 exports.Parte = Parte;
@@ -144,7 +151,7 @@ var ClienteEditarComponent = (function () {
         if (params.data.length > 0) {
             cliente = params.data[0];
         }
-        //console.log(_navParams);
+        console.log("editando cliente id " + cliente.id);
         this.myForm = this.fb.group({
             'id': [cliente.id],
             'nombre': [cliente.nombre, forms_1.Validators.required],
@@ -322,33 +329,32 @@ var ParteEditarComponent = (function () {
             'backgroundColor': 'silver'
         };
         var params = _navParams;
-        var parte;
-        parte = new parte_1.Parte(null, null, null);
+        this.parte = new parte_1.Parte(null, null, null);
         var clienteid;
         if (!isNaN(Number(params.get('clienteid')))) {
             //este caso siempre se debe dar cuando se trata de un nuevo parte.
+            this.nuevo = true;
             clienteid = params.get('clienteid');
-            parte.clienteid = clienteid;
-            parte.fecha = _varios.getNowDateIso();
-            parte.horaini = parte.fecha;
-            parte.horafin = parte.fecha;
+            this.parte.clienteid = clienteid;
+            this.parte.fecha = _varios.getNowDateIso();
+            this.parte.horaini = this.parte.fecha;
+            this.parte.horafin = this.parte.fecha;
+            console.log(this.parte.fechaformato);
         }
         else {
-            //TODO: Si lo que recibo en los parametros es el parte,entonces lo igualo al objeto parte 
-            //para editarlo en el form
-            parte = params.data[0];
-            //this.signaturePad.fromDataURL('sssss');
-            console.log("editar");
+            this.nuevo = false;
+            this.parte = params.data[0];
+            console.log("Editando parte con id " + this.parte.id);
         }
         this.myForm = this.fb.group({
-            'id': [parte.id],
-            'clienteid': [parte.clienteid],
-            'fecha': [parte.fecha],
-            'horaini': [parte.horaini],
-            'horafin': [parte.horafin],
-            'trabajorealizado': [parte.trabajorealizado],
-            'personafirma': [parte.personafirma],
-            'firma': [parte.firma],
+            'id': [this.parte.id],
+            'clienteid': [this.parte.clienteid],
+            'fecha': [this.parte.fecha],
+            'horaini': [this.parte.horaini],
+            'horafin': [this.parte.horafin],
+            'trabajorealizado': [this.parte.trabajorealizado],
+            'personafirma': [this.parte.personafirma],
+            'firma': [this.parte.firma],
         });
     }
     ParteEditarComponent.prototype.cancelar = function () {
@@ -364,11 +370,19 @@ var ParteEditarComponent = (function () {
         // this.signaturePad is now available
         this.signaturePad.set('minWidth', 5); // set szimek/signature_pad options at runtime
         this.signaturePad.clear(); // invoke functions from szimek/signature_pad API
+        if (this.parte.firma !== null) {
+            this.signaturePad.fromDataURL(this.parte.firma);
+            this.firmaImg = this.parte.firma;
+            console.log("asignar firma guardada a canvas");
+        }
     };
     ParteEditarComponent.prototype.doOnEnd = function () {
         // will be notified of szimek/signature_pad's onEnd event
         this.firmaImg = this.signaturePad.toDataURL();
         this.myForm.value.firma = this.firmaImg;
+    };
+    ParteEditarComponent.prototype.aceptaFirma = function () {
+        this.doOnEnd();
     };
     __decorate([
         core_1.ViewChild(angular2_signaturepad_1.SignaturePad), 
@@ -513,7 +527,7 @@ var ParteService = (function () {
     }
     ParteService.prototype.listaPartes = function () {
         var sql;
-        sql = 'Select parte.*, cliente.* from parte inner join cliente on clienteid=cliente.id';
+        sql = 'Select parte.*, cliente.nombre, cliente.telefono from parte inner join cliente on clienteid=cliente.id';
         return this.storage.query(sql);
     };
     ParteService.prototype.cargarParte = function (id) {
@@ -529,6 +543,9 @@ var ParteService = (function () {
         var sql;
         if (f.id == null) {
             sql = "insert into parte values (?,?,?,?,?,?,?,?)";
+        }
+        else {
+            sql = "update parte set id=?,clienteid=?,fecha=?,horaini=?,horafin=?,trabajorealizado=?,personafirma=?,firma=? where id=" + f.id;
         }
         this.storage.query(sql, [f.id, f.clienteid, f.fecha, f.horaini, f.horafin, f.trabajorealizado, f.personafirma, f.firma]).then(function (data) {
             console.log("Insertado parte ");

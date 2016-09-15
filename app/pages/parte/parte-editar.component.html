@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>Crear Parte</ion-title>
+        <ion-title>Editar Parte de trabajo</ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content>
@@ -28,11 +28,17 @@
             <ion-label floating>Autorizado por:</ion-label>
             <ion-input formControlName="personafirma" ></ion-input>
         </ion-item>
-        <ion-item>
-            <signature-pad [options]="signaturePadOptions" (onEndEvent)="doOnEnd()"></signature-pad>
+        <ion-item [hidden]="firmaImg!=null && firmaImg!=''">
+            <p><button type="button" (click)="doOnEnd()">Firmar</button></p>
+            <signature-pad [options]="signaturePadOptions" ></signature-pad>            
         </ion-item>
-
-        <button type="submit">Enviar</button>
+        <ion-item>
+            <button type="submit">Enviar</button>
+            <button danger (click)="cancelar()">Cancelar</button>
+        </ion-item>
+        <ion-item>
+            <img src="{{firmaImg}}" alt="firma" [hidden]="(firmaImg==null || firmaImg=='') ">
+        </ion-item>
     </form>
 
-    <button (click)="cancelar()">Cancelar</button>
+    

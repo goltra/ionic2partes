@@ -33,13 +33,13 @@ export class ClienteEditarComponent{
        if(params.data.length>0){
            cliente = params.data[0];
        }
-       //console.log(_navParams);
+       console.log("editando cliente id " + cliente.id);
        this.myForm = this.fb.group({
            'id':[cliente.id],
            'nombre': [cliente.nombre,Validators.required],
            'telefono': [cliente.telefono,Validators.pattern("[0-9]{9}")]
        });
-
+       
     }
     cancelar(){
         this._nav.pop();

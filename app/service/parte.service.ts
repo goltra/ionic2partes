@@ -21,7 +21,7 @@ export class ParteService{
 
     listaPartes(){
         let sql:string;
-        sql = 'Select parte.*, cliente.* from parte inner join cliente on clienteid=cliente.id';
+        sql = 'Select parte.*, cliente.nombre, cliente.telefono from parte inner join cliente on clienteid=cliente.id';
         return this.storage.query(sql);
     }
     cargarParte(id){
@@ -41,6 +41,8 @@ export class ParteService{
 
         if(f.id==null){
             sql="insert into parte values (?,?,?,?,?,?,?,?)";
+        } else {
+            sql="update parte set id=?,clienteid=?,fecha=?,horaini=?,horafin=?,trabajorealizado=?,personafirma=?,firma=? where id=" + f.id;
         }
         this.storage.query(sql,[f.id,f.clienteid, f.fecha,f.horaini,f.horafin,f.trabajorealizado,f.personafirma,f.firma]).then(
             (data)=>{

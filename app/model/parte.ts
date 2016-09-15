@@ -13,6 +13,9 @@ export class Parte{
         this.clienteid=_clienteid;
         this.fecha=_fecha;
     }
+     get fechaformato():string {
+        return this.fecha + ' aa';
+    }
     
    
 }

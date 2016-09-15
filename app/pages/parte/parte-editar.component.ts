@@ -24,6 +24,8 @@ export class ParteEditarComponent{
 
     public myForm: FormGroup;
     public firmaImg: string;
+    private nuevo: boolean;
+    parte: Parte;
     @ViewChild(SignaturePad) signaturePad: SignaturePad
 
     constructor(private _nav: NavController, private _navParams: NavParams,
@@ -31,37 +33,37 @@ export class ParteEditarComponent{
                 private parteService: ParteService, 
                 private  _varios: VariosService){
        let params = _navParams;
-       let parte: Parte;
-       parte = new Parte(null,null,null);
+       
+       this.parte = new Parte(null,null,null);
 
        let clienteid:number;
 
        if(!isNaN(Number(params.get('clienteid')))){ //para checkear que viene un valor numerico en el parametro
           //este caso siempre se debe dar cuando se trata de un nuevo parte.
+           this.nuevo=true;
            clienteid =params.get('clienteid');
-           parte.clienteid=clienteid;
-           parte.fecha=_varios.getNowDateIso();
-           parte.horaini=parte.fecha;
-           parte.horafin=parte.fecha;
+           this.parte.clienteid=clienteid;
+           this.parte.fecha=_varios.getNowDateIso();
+           this.parte.horaini=this.parte.fecha;
+           this.parte.horafin=this.parte.fecha;
+           console.log(this.parte.fechaformato);
        } else {
-           //TODO: Si lo que recibo en los parametros es el parte,entonces lo igualo al objeto parte 
-           //para editarlo en el form
-           parte = params.data[0];
-           //this.signaturePad.fromDataURL('sssss');
-           console.log("editar");
+           this.nuevo=false;
+           this.parte = params.data[0];
+           console.log("Editando parte con id " + this.parte.id);
        }
 
        
 
        this.myForm = this.fb.group({
-           'id':[parte.id],
-           'clienteid':[parte.clienteid],
-           'fecha': [parte.fecha],
-           'horaini': [parte.horaini],
-           'horafin':[parte.horafin],
-           'trabajorealizado':[parte.trabajorealizado],
-           'personafirma':[parte.personafirma],
-           'firma':[parte.firma],
+           'id':[this.parte.id],
+           'clienteid':[this.parte.clienteid],
+           'fecha': [this.parte.fecha],
+           'horaini': [this.parte.horaini],
+           'horafin':[this.parte.horafin],
+           'trabajorealizado':[this.parte.trabajorealizado],
+           'personafirma':[this.parte.personafirma],
+           'firma':[this.parte.firma],
        });
 
     }
@@ -89,6 +91,12 @@ export class ParteEditarComponent{
     // this.signaturePad is now available
     this.signaturePad.set('minWidth', 5); // set szimek/signature_pad options at runtime
     this.signaturePad.clear(); // invoke functions from szimek/signature_pad API
+    if(this.parte.firma!==null){
+        this.signaturePad.fromDataURL(this.parte.firma);
+        this.firmaImg=this.parte.firma;
+        console.log("asignar firma guardada a canvas");
+    }
+
   }
  
   doOnEnd() {
@@ -96,6 +104,8 @@ export class ParteEditarComponent{
     this.firmaImg=this.signaturePad.toDataURL();
     this.myForm.value.firma=this.firmaImg;
     
-    
+  }
+  aceptaFirma(){
+      this.doOnEnd();
   }
 } 

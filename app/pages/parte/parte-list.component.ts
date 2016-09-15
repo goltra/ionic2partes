@@ -12,7 +12,7 @@ import {Parte} from '../../model/Parte';
 })
 export class ParteListComponent {
   
-  public partes;
+  public partes: Parte[];
   
   constructor(private navCtrl: NavController, private parteService: ParteService) {
     this.listadoPartes();
