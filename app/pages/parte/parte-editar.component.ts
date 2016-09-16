@@ -5,7 +5,8 @@ import {FirmaComponent} from '../firma/firma.component';
 import {ParteListComponent} from './parte-list.component';
 import {ParteService} from '../../service/parte.service';
 import {VariosService} from '../../service/varios.service';
-import { SignaturePad } from 'angular2-signaturepad';
+import {SignaturePad } from 'angular2-signaturepad';
+
 
 import {FORM_DIRECTIVES, 
         REACTIVE_FORM_DIRECTIVES,
@@ -25,6 +26,7 @@ export class ParteEditarComponent{
     public myForm: FormGroup;
     public firmaImg: string;
     private nuevo: boolean;
+
     parte: Parte;
     @ViewChild(SignaturePad) signaturePad: SignaturePad
 
@@ -37,6 +39,7 @@ export class ParteEditarComponent{
        this.parte = new Parte(null,null,null);
 
        let clienteid:number;
+
 
        if(!isNaN(Number(params.get('clienteid')))){ //para checkear que viene un valor numerico en el parametro
           //este caso siempre se debe dar cuando se trata de un nuevo parte.
@@ -70,7 +73,12 @@ export class ParteEditarComponent{
     cancelar(){
         this._nav.pop();
     }
-
+    countRows(e){
+       console.log('contando lineas');
+       let numLineas=e.target.value.split("\n").length;
+       e.target.rows = numLineas;
+       console.log(e.target);
+    }
     onSubmit(){
         let f = this.myForm.value;
         console.log(this.myForm.value);

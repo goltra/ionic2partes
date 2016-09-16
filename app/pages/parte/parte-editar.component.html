@@ -22,8 +22,9 @@
         </ion-item>
         <ion-item>
             <ion-label floating>Trabajo realizado</ion-label>
-            <ion-textarea formControlName="trabajorealizado" ></ion-textarea>
+            <ion-textarea (change)="countRows($event)" (keydown)="countRows($event)" formControlName="trabajorealizado" ></ion-textarea>
         </ion-item>
+
         <ion-item>
             <ion-label floating>Autorizado por:</ion-label>
             <ion-input formControlName="personafirma" ></ion-input>

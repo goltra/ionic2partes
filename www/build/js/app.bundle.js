@@ -360,6 +360,12 @@ var ParteEditarComponent = (function () {
     ParteEditarComponent.prototype.cancelar = function () {
         this._nav.pop();
     };
+    ParteEditarComponent.prototype.countRows = function (e) {
+        console.log('contando lineas');
+        var numLineas = e.target.value.split("\n").length;
+        e.target.rows = numLineas;
+        console.log(e.target);
+    };
     ParteEditarComponent.prototype.onSubmit = function () {
         var f = this.myForm.value;
         console.log(this.myForm.value);
