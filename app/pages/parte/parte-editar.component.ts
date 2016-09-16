@@ -6,6 +6,7 @@ import {ParteListComponent} from './parte-list.component';
 import {ParteService} from '../../service/parte.service';
 import {VariosService} from '../../service/varios.service';
 import {SignaturePad } from 'angular2-signaturepad';
+import {TextareaAutosize} from '../../components/textarea-autosize';
 
 
 import {FORM_DIRECTIVES, 
@@ -17,8 +18,9 @@ import {FORM_DIRECTIVES,
 
 @Component({
     templateUrl:'build/pages/parte/parte-editar.component.html',
-    directives:[FORM_DIRECTIVES,REACTIVE_FORM_DIRECTIVES,SignaturePad],
+    directives:[FORM_DIRECTIVES,REACTIVE_FORM_DIRECTIVES,SignaturePad,TextareaAutosize],
     providers:[ParteService],
+
 })
 
 export class ParteEditarComponent{
@@ -76,8 +78,9 @@ export class ParteEditarComponent{
     countRows(e){
        console.log('contando lineas');
        let numLineas=e.target.value.split("\n").length;
-       e.target.rows = numLineas;
-       console.log(e.target);
+       e.target.style.height='auto';
+       e.target.style.height = e.target.scrollHeight + 'px';
+       console.log(e.target.scrollHeight);
     }
     onSubmit(){
         let f = this.myForm.value;
