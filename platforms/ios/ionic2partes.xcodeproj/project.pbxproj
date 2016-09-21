@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00CC3EFF2BB24273A218C386 /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 08F6E59DBE2649F8A242BD03 /* CDVDevice.m */; };
 		0207DA581B56EA530066E2B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0207DA571B56EA530066E2B4 /* Images.xcassets */; };
@@ -22,6 +21,9 @@
 		61A94B571276482C8C23BF65 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B645F801D56438C8FB4D4E4 /* CDVStatusBar.m */; };
 		6C4728FA895F4A97AFC631FD /* IonicKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = F8DEA40D87304581A0208623 /* IonicKeyboard.m */; };
 		AB0E398C1C3C427C86C0F41C /* CDVLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = C602B08D00004C2CADE0E954 /* CDVLogger.m */; };
+		4863850AC27E43E78F238859 /* APPEmailComposer.m in Sources */ = {isa = PBXBuildFile; fileRef = D9715DC22C964816A2B9C394 /* APPEmailComposer.m */; };
+		7B44AFC1D4CB458ABD402E4A /* APPEmailComposerImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = E537D7C1C38C4D65AD9B35FA /* APPEmailComposerImpl.m */; };
+		3D5CC3F52BB443B2B40692CD /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8436C07782BA471698D54606 /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,11 @@
 		ED33DF2A687741AEAF9F8254 /* Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = ionic2partes/config.xml; sourceTree = "<group>"; };
 		F8DEA40D87304581A0208623 /* IonicKeyboard.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = IonicKeyboard.m; path = "ionic-plugin-keyboard/IonicKeyboard.m"; sourceTree = "<group>"; };
+		D9715DC22C964816A2B9C394 /* APPEmailComposer.m */ = {isa = PBXFileReference; name = "APPEmailComposer.m"; path = "cordova-plugin-email-composer/APPEmailComposer.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		E537D7C1C38C4D65AD9B35FA /* APPEmailComposerImpl.m */ = {isa = PBXFileReference; name = "APPEmailComposerImpl.m"; path = "cordova-plugin-email-composer/APPEmailComposerImpl.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		DB1B66DE442843A99D679DC6 /* APPEmailComposer.h */ = {isa = PBXFileReference; name = "APPEmailComposer.h"; path = "cordova-plugin-email-composer/APPEmailComposer.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		1CFDF2CDA37E44FBB95100BF /* APPEmailComposerImpl.h */ = {isa = PBXFileReference; name = "APPEmailComposerImpl.h"; path = "cordova-plugin-email-composer/APPEmailComposerImpl.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
+		8436C07782BA471698D54606 /* MessageUI.framework */ = {isa = PBXFileReference; name = "MessageUI.framework"; path = "System/Library/Frameworks/MessageUI.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +88,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
+				3D5CC3F52BB443B2B40692CD /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,6 +158,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8436C07782BA471698D54606 /* MessageUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -187,6 +196,10 @@
 				0ED5F01D78794A30A1FAFFD2 /* CDVStatusBar.h */,
 				F8DEA40D87304581A0208623 /* IonicKeyboard.m */,
 				2AA565DACCAC41F599F1879C /* IonicKeyboard.h */,
+				D9715DC22C964816A2B9C394 /* APPEmailComposer.m */,
+				E537D7C1C38C4D65AD9B35FA /* APPEmailComposerImpl.m */,
+				DB1B66DE442843A99D679DC6 /* APPEmailComposer.h */,
+				1CFDF2CDA37E44FBB95100BF /* APPEmailComposerImpl.h */,
 			);
 			name = Plugins;
 			path = ionic2partes/Plugins;
@@ -315,6 +328,8 @@
 				2973A76E80A34F47BE165EF1 /* CDVViewController+SplashScreen.m in Sources */,
 				61A94B571276482C8C23BF65 /* CDVStatusBar.m in Sources */,
 				6C4728FA895F4A97AFC631FD /* IonicKeyboard.m in Sources */,
+				4863850AC27E43E78F238859 /* APPEmailComposer.m in Sources */,
+				7B44AFC1D4CB458ABD402E4A /* APPEmailComposerImpl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

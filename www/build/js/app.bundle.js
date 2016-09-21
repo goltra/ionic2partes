@@ -78,15 +78,37 @@ var TextareaAutosize = (function () {
         this.element = element;
         this.render = render;
     }
+    TextareaAutosize.prototype.onInput = function (nativeElement) {
+        nativeElement.style.height = 'auto';
+        nativeElement.style.height = nativeElement.scrollHeight + "px";
+        console.log('textareaautosize.input');
+        console.log(nativeElement);
+    };
+    TextareaAutosize.prototype.onLoad = function (nativeElement) {
+        nativeElement.style.height = 'auto';
+        nativeElement.style.height = nativeElement.scrollHeight + "px";
+        console.log('textareaautosize.input');
+        console.log(nativeElement);
+    };
     TextareaAutosize.prototype.ngAfterViewInit = function () {
-        //this.render.setElementStyle(this.el, 'height', this.height + 'px');
+        // this.el = this.element.nativeElement.querySelector('textarea'); //I have checked without querySelector too
+        // console.log(this.element.nativeElement.style); //this return CSSStyleDeclaration with all empty properties 
+        // console.log(this.el.scrollHeight); //this return always 0
+        // console.log(this.el); //this return the html textarea code
+        // this.render.setElementStyle(this.el, 'height', 100 + 'px'); //this set height to 100px
     };
-    TextareaAutosize.prototype.ngOnInit = function () {
-        this.el = this.element.nativeElement.querySelector('textarea');
-        console.log(this.element.nativeElement.style);
-        console.log(this.el.scrollHeight);
-        console.log(this.el);
-    };
+    __decorate([
+        core_1.HostListener('input', ['$event.target']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], TextareaAutosize.prototype, "onInput", null);
+    __decorate([
+        core_1.HostListener('click', ['$event.target']), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:returntype', void 0)
+    ], TextareaAutosize.prototype, "onLoad", null);
     TextareaAutosize = __decorate([
         core_1.Directive({
             selector: '[textarea-autosize]',
@@ -306,6 +328,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
+var ionic_native_1 = require('ionic-native');
 var cliente_list_component_1 = require('../clientes/cliente-list.component');
 var cliente_editar_component_1 = require('../clientes/cliente-editar.component');
 var about_1 = require('../about/about');
@@ -321,6 +344,13 @@ var HomePage = (function () {
     HomePage.prototype.clienteedit = function () {
         this.navCtrl.push(cliente_editar_component_1.ClienteEditarComponent);
     };
+    HomePage.prototype.a = function () {
+        ionic_native_1.EmailComposer.isAvailable().then(function (available) {
+            console.log("disponible");
+        }, function (error) {
+            console.log("no disponible");
+        });
+    };
     HomePage = __decorate([
         core_1.Component({
             templateUrl: 'build/pages/home/home.html',
@@ -332,7 +362,7 @@ var HomePage = (function () {
 }());
 exports.HomePage = HomePage;
 
-},{"../about/about":5,"../clientes/cliente-editar.component":6,"../clientes/cliente-list.component":7,"@angular/core":161,"ionic-angular":476}],9:[function(require,module,exports){
+},{"../about/about":5,"../clientes/cliente-editar.component":6,"../clientes/cliente-list.component":7,"@angular/core":161,"ionic-angular":476,"ionic-native":503}],9:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -398,11 +428,11 @@ var ParteEditarComponent = (function () {
         this._nav.pop();
     };
     ParteEditarComponent.prototype.countRows = function (e) {
-        console.log('contando lineas');
-        var numLineas = e.target.value.split("\n").length;
-        e.target.style.height = 'auto';
-        e.target.style.height = e.target.scrollHeight + 'px';
-        console.log(e.target.scrollHeight);
+        console.log(e);
+        //    let numLineas=e.target.value.split("\n").length;
+        //    e.target.style.height='auto';
+        //    e.target.style.height = e.target.scrollHeight + 'px';
+        //    console.log(e.target.scrollHeight);
     };
     ParteEditarComponent.prototype.onSubmit = function () {
         var f = this.myForm.value;
@@ -437,6 +467,7 @@ var ParteEditarComponent = (function () {
             templateUrl: 'build/pages/parte/parte-editar.component.html',
             directives: [forms_1.FORM_DIRECTIVES, forms_1.REACTIVE_FORM_DIRECTIVES, angular2_signaturepad_1.SignaturePad, textarea_autosize_1.TextareaAutosize],
             providers: [parte_service_1.ParteService],
+            styleUrls: ['/parte-editar.component.scss']
         }), 
         __metadata('design:paramtypes', [ionic_angular_1.NavController, ionic_angular_1.NavParams, forms_1.FormBuilder, parte_service_1.ParteService, varios_service_1.VariosService])
     ], ParteEditarComponent);

@@ -8,7 +8,6 @@ import {VariosService} from '../../service/varios.service';
 import {SignaturePad } from 'angular2-signaturepad';
 import {TextareaAutosize} from '../../components/textarea-autosize';
 
-
 import {FORM_DIRECTIVES, 
         REACTIVE_FORM_DIRECTIVES,
         FormBuilder,  
@@ -20,6 +19,7 @@ import {FORM_DIRECTIVES,
     templateUrl:'build/pages/parte/parte-editar.component.html',
     directives:[FORM_DIRECTIVES,REACTIVE_FORM_DIRECTIVES,SignaturePad,TextareaAutosize],
     providers:[ParteService],
+    styleUrls:['/parte-editar.component.scss']
 
 })
 
@@ -76,11 +76,11 @@ export class ParteEditarComponent{
         this._nav.pop();
     }
     countRows(e){
-       console.log('contando lineas');
-       let numLineas=e.target.value.split("\n").length;
-       e.target.style.height='auto';
-       e.target.style.height = e.target.scrollHeight + 'px';
-       console.log(e.target.scrollHeight);
+       console.log(e);
+    //    let numLineas=e.target.value.split("\n").length;
+    //    e.target.style.height='auto';
+    //    e.target.style.height = e.target.scrollHeight + 'px';
+    //    console.log(e.target.scrollHeight);
     }
     onSubmit(){
         let f = this.myForm.value;
@@ -107,6 +107,7 @@ export class ParteEditarComponent{
         this.firmaImg=this.parte.firma;
         console.log("asignar firma guardada a canvas");
     }
+    
 
   }
  
