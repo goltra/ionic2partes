@@ -70,6 +70,7 @@ export class ParteEditarComponent{
            'personafirma':[this.parte.personafirma],
            'firma':[this.parte.firma],
        });
+       console.log(this.parte.firma);
 
     }
     cancelar(){

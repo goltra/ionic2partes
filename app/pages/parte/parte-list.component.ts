@@ -27,6 +27,7 @@ export class ParteListComponent {
           for (let i = 0; i < data.res.rows.length; i++) {
                         let item = data.res.rows.item(i);
                         this.partes.push(item);
+                        console.log(item);
                     }
         }
       },

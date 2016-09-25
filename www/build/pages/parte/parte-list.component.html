@@ -13,7 +13,7 @@
  <ion-item> <button full (click)="crearParte()">Añadir parte</button> </ion-item>
   <ion-item-sliding *ngFor="let p of partes">
     <button ion-item (click)="cargaParte(p)">
-      <h2>{{p.id}} - {{p.nombre}}</h2> 
+      <h2>{{p.id}} - {{p.nombre}} - {{p.fechaformato}}</h2> 
     </button>
     <ion-item-options>
         <button danger>
