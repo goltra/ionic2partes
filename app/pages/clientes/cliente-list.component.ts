@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NavController, NavParams, ActionSheetController} from 'ionic-angular';
 import {ClienteEditarComponent} from './cliente-editar.component';
 import {ParteEditarComponent} from '../parte/parte-editar.component';
-import {Cliente} from '../../model/cliente';
+import {Cliente} from '../../model/Cliente';
 import {ClienteService} from '../../service/cliente.service';
 import {VariosService} from '../../service/varios.service';
 
@@ -13,7 +13,7 @@ import {VariosService} from '../../service/varios.service';
 export class ClienteListComponent implements OnInit{
     public clientes: Cliente[];
 
-
+private c: Cliente;
 
     constructor(private navCtrl: NavController, 
                 private navParams: NavParams,   
@@ -21,11 +21,12 @@ export class ClienteListComponent implements OnInit{
                 private _clienteService: ClienteService,
                 private variosService: VariosService){
 
-            
+                    
     }
 
     ngOnInit(){
         this.listaClientes();
+
     }
 
     listaClientes(){
@@ -36,12 +37,12 @@ export class ClienteListComponent implements OnInit{
                     if(data.res.rows.length>0){
                         for (let i = 0; i < data.res.rows.length; i++) {
                             let item = data.res.rows.item(i);
-                            this.clientes.push(item);
+                            this.clientes.push(Cliente.inicializa(item));
                         }
                     }
                 },
                 (error)=>{
-
+                    console.log(error);
                 }
         );
     }

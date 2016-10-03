@@ -43,8 +43,9 @@ export class VariosService{
        let now=new Date();
        let hora= new DatePipe();
        let horastr = hora.transform(now,pattern);
-       //TODO: la hora y los minutos tienen que ir con dos digitos cada uno.
+
        return horastr;
    }
     */  
+
 }

@@ -1,12 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Storage, SqlStorage} from 'ionic-angular';
 import {Parte} from '../model/parte';
+import {VariosService} from './varios.service';
+import {EmailComposer} from 'ionic-native';
 
 @Injectable()
 
 export class ParteService{
     private storage:any;
-    constructor(){
+    constructor(private _varios: VariosService){
         this.storage=new Storage(SqlStorage);
         
         
@@ -46,11 +48,51 @@ export class ParteService{
         }
         this.storage.query(sql,[f.id,f.clienteid, f.fecha,f.horaini,f.horafin,f.trabajorealizado,f.personafirma,f.firma]).then(
             (data)=>{
+                this._varios.showToast("Parte guardado correctamente","top");
                 console.log("Insertado parte ");
             },
             (error)=>{console.log("error al insertar parte "+ error.err.message);}
         );
     }
+    enviaPorEmail(parte:Parte){
+        let msg:String;
 
+        msg = "<h1><strong>Parte de Trabajo número:</strong> " + parte.clienteid +"</h1>";
+        msg+="<h2><strong>Cliente: </strong>" + parte.nombre + '</h2>';
+        msg+="<p><strong>Fecha:</strong> " + parte.fechaformato + '</p>';
+        msg+="<p><strong>Horas:</strong> " + parte.horainiformato + ' a ' + parte.horafinformato + '</p>';
+        msg+="<p>" + parte.trabajorealizado + '</p>';
+        msg+="<hr>";
+        msg+="<p><strong>Firmado: </strong>" +  parte.personafirma + "</p>";
+
+        console.log(msg);
+        EmailComposer.isAvailable().then(
+            (available)=>{
+                console.log("envio de email disponible");
+                EmailComposer.open({
+                    to:      '',
+                    subject: 'Parte de trabajo nº ' + parte.id,
+                    body:    <any>msg,
+                    attachments: <any>parte.firmaBase64,
+                    isHtml: true
+                }).then(
+                    (sended)=>{
+                        console.log("email enviado ");
+                        this._varios.showToast("Email enviado","top");
+                    },
+                    (error)=>{
+                        console.log("error enviando mensaje ");
+                        this._varios.showToast("Se producjo un error al enviar el Email o","top");
+                        console.log(error);
+                    }
+                );
+            },
+            (error)=>{
+                console.log("no disponible");
+            }
+        );
+
+
+  }
    
 }

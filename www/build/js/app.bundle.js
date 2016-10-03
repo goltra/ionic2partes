@@ -122,11 +122,31 @@ exports.TextareaAutosize = TextareaAutosize;
 },{"@angular/core":161}],3:[function(require,module,exports){
 "use strict";
 var Cliente = (function () {
-    function Cliente(_id, _nombre, _telefono) {
-        this.id = _id;
-        this.nombre = _nombre;
-        this.telefono = _telefono;
+    function Cliente() {
     }
+    /**Funcion estatica que inicializa un objecto de tipo parte en base a los
+     * valores de un objeto pasado.
+     */
+    Cliente.inicializa = function (values) {
+        // console.log("parte.inicializa");
+        // console.log(values);
+        try {
+            var cliente = new Cliente();
+            // console.log("parte inicializado a null")
+            // console.log(parte);
+            for (var p in values) {
+                if (Object.getOwnPropertyDescriptor(values, p) != undefined) {
+                    cliente[p] = values[p];
+                }
+            }
+            // console.log("parte despues del for")
+            // console.log(parte);
+            return cliente;
+        }
+        catch (error) {
+            alert("Cliente.inicializa " + error);
+        }
+    };
     return Cliente;
 }());
 exports.Cliente = Cliente;
@@ -134,18 +154,77 @@ exports.Cliente = Cliente;
 },{}],4:[function(require,module,exports){
 "use strict";
 var Parte = (function () {
-    function Parte(_id, _clienteid, _fecha) {
-        this.id = _id;
-        this.clienteid = _clienteid;
-        this.fecha = _fecha;
+    function Parte() {
     }
     Object.defineProperty(Parte.prototype, "fechaformato", {
+        /** Getter para devolver la fecha en un formato legible y no en formato ISO
+         * como se guarda en la base de datos.
+         */
         get: function () {
-            return this.fecha + ' aa';
+            //console.log("fecha");
+            var f = new Date(this.fecha);
+            //console.log(f.toLocaleDateString());
+            return f.toLocaleDateString();
         },
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Parte.prototype, "horainiformato", {
+        get: function () {
+            var hi = new Date(this.horaini);
+            hi.setHours(hi.getHours(), hi.getMinutes() - (hi.getTimezoneOffset() * -1));
+            return hi.toLocaleTimeString();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Parte.prototype, "horafinformato", {
+        get: function () {
+            var hf = new Date(this.horafin);
+            hf.setHours(hf.getHours(), hf.getMinutes() - (hf.getTimezoneOffset() * -1));
+            return hf.toLocaleTimeString();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Parte.prototype, "firmaBase64", {
+        /**Devuelve la firma en base64 (formato concreto que pide el plugin de cordova)
+         * para poder insertarla en el email.
+         * */
+        get: function () {
+            if (this.firma != null) {
+                return this.firma.replace("data:image/png;base64,", "base64:firma.png//");
+            }
+            return '';
+        },
+        enumerable: true,
+        configurable: true
+    });
+    /**Funcion estatica que inicializa un objecto de tipo parte en base a los
+     * valores de un objeto pasado.
+     */
+    Parte.inicializa = function (values) {
+        // console.log("parte.inicializa");
+        // console.log(values);
+        try {
+            var parte = new Parte();
+            // console.log("parte inicializado a null")
+            // console.log(parte);
+            for (var p in values) {
+                // console.log(p);
+                // console.log(Object.getOwnPropertyDescriptor(values, p));
+                if (Object.getOwnPropertyDescriptor(values, p) != undefined) {
+                    parte[p] = values[p];
+                }
+            }
+            // console.log("parte despues del for")
+            // console.log(parte);
+            return parte;
+        }
+        catch (error) {
+            alert("Parte.inicializa " + error);
+        }
+    };
     return Parte;
 }());
 exports.Parte = Parte;
@@ -190,7 +269,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var Cliente_1 = require('../../model/Cliente');
+var Cliente_1 = require('../../model/Cliente'); //si pongo "/cliente" da error , no se pq
 var ionic_angular_1 = require('ionic-angular');
 var cliente_service_1 = require('../../service/cliente.service');
 var cliente_list_component_1 = require('./cliente-list.component');
@@ -205,9 +284,9 @@ var ClienteEditarComponent = (function () {
         this._varios = _varios;
         var params = _navParams;
         var cliente;
-        cliente = new Cliente_1.Cliente(null, '', '');
+        cliente = new Cliente_1.Cliente();
         if (params.data.length > 0) {
-            cliente = params.data[0];
+            cliente = Cliente_1.Cliente.inicializa(params.data[0]);
         }
         console.log("editando cliente id " + cliente.id);
         this.myForm = this.fb.group({
@@ -257,6 +336,7 @@ var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
 var cliente_editar_component_1 = require('./cliente-editar.component');
 var parte_editar_component_1 = require('../parte/parte-editar.component');
+var Cliente_1 = require('../../model/Cliente');
 var cliente_service_1 = require('../../service/cliente.service');
 var varios_service_1 = require('../../service/varios.service');
 var ClienteListComponent = (function () {
@@ -278,10 +358,11 @@ var ClienteListComponent = (function () {
             if (data.res.rows.length > 0) {
                 for (var i = 0; i < data.res.rows.length; i++) {
                     var item = data.res.rows.item(i);
-                    _this.clientes.push(item);
+                    _this.clientes.push(Cliente_1.Cliente.inicializa(item));
                 }
             }
         }, function (error) {
+            console.log(error);
         });
     };
     ClienteListComponent.prototype.cargaCliente = function (cliente) {
@@ -315,7 +396,7 @@ var ClienteListComponent = (function () {
 }());
 exports.ClienteListComponent = ClienteListComponent;
 
-},{"../../service/cliente.service":11,"../../service/varios.service":13,"../parte/parte-editar.component":9,"./cliente-editar.component":6,"@angular/core":161,"ionic-angular":476}],8:[function(require,module,exports){
+},{"../../model/Cliente":3,"../../service/cliente.service":11,"../../service/varios.service":13,"../parte/parte-editar.component":9,"./cliente-editar.component":6,"@angular/core":161,"ionic-angular":476}],8:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -328,7 +409,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
-var ionic_native_1 = require('ionic-native');
 var cliente_list_component_1 = require('../clientes/cliente-list.component');
 var cliente_editar_component_1 = require('../clientes/cliente-editar.component');
 var about_1 = require('../about/about');
@@ -344,24 +424,6 @@ var HomePage = (function () {
     HomePage.prototype.clienteedit = function () {
         this.navCtrl.push(cliente_editar_component_1.ClienteEditarComponent);
     };
-    HomePage.prototype.a = function () {
-        ionic_native_1.EmailComposer.isAvailable().then(function (available) {
-            console.log("disponible");
-            ionic_native_1.EmailComposer.open({
-                to: 'francisco@goltratec.com',
-                subject: 'Greetings',
-                body: 'How are you? Nice greetings from Leipzig',
-                attachments: "base64:firma.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"
-            }).then(function (sended) {
-                console.log("enviado");
-            }, function (error) {
-                console.log("error enviando mensaje ");
-                console.log(error);
-            });
-        }, function (error) {
-            console.log("no disponible");
-        });
-    };
     HomePage = __decorate([
         core_1.Component({
             templateUrl: 'build/pages/home/home.html',
@@ -373,7 +435,7 @@ var HomePage = (function () {
 }());
 exports.HomePage = HomePage;
 
-},{"../about/about":5,"../clientes/cliente-editar.component":6,"../clientes/cliente-list.component":7,"@angular/core":161,"ionic-angular":476,"ionic-native":503}],9:[function(require,module,exports){
+},{"../about/about":5,"../clientes/cliente-editar.component":6,"../clientes/cliente-list.component":7,"@angular/core":161,"ionic-angular":476}],9:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -407,7 +469,7 @@ var ParteEditarComponent = (function () {
             'backgroundColor': 'silver'
         };
         var params = _navParams;
-        this.parte = new parte_1.Parte(null, null, null);
+        this.parte = new parte_1.Parte();
         var clienteid;
         if (!isNaN(Number(params.get('clienteid')))) {
             //este caso siempre se debe dar cuando se trata de un nuevo parte.
@@ -417,11 +479,10 @@ var ParteEditarComponent = (function () {
             this.parte.fecha = _varios.getNowDateIso();
             this.parte.horaini = this.parte.fecha;
             this.parte.horafin = this.parte.fecha;
-            console.log(this.parte.fechaformato);
         }
         else {
             this.nuevo = false;
-            this.parte = params.data[0];
+            this.parte = parte_1.Parte.inicializa(params.data[0]);
             console.log("Editando parte con id " + this.parte.id);
         }
         this.myForm = this.fb.group({
@@ -434,7 +495,6 @@ var ParteEditarComponent = (function () {
             'personafirma': [this.parte.personafirma],
             'firma': [this.parte.firma],
         });
-        console.log(this.parte.firma);
     }
     ParteEditarComponent.prototype.cancelar = function () {
         this._nav.pop();
@@ -503,6 +563,7 @@ var ionic_angular_1 = require('ionic-angular');
 var parte_service_1 = require('../../service/parte.service');
 var varios_service_1 = require('../../service/varios.service');
 var parte_editar_component_1 = require('./parte-editar.component');
+var parte_1 = require('../../model/parte');
 var ParteListComponent = (function () {
     function ParteListComponent(navCtrl, parteService) {
         this.navCtrl = navCtrl;
@@ -517,13 +578,15 @@ var ParteListComponent = (function () {
             if (data.res.rows.length > 0) {
                 for (var i = 0; i < data.res.rows.length; i++) {
                     var item = data.res.rows.item(i);
-                    _this.partes.push(item);
-                    console.log(item);
+                    _this.partes.push(parte_1.Parte.inicializa(item));
                 }
+                return _this.partes;
             }
         }, function (error) {
             console.log("Error cargando los partes " + error.err.message);
-        });
+        }).catch(function (error) {
+            console.log("Error cargando en listadoPartes " + error.err.message);
+        }).then(function (res) { console.log(res); });
     };
     ParteListComponent.prototype.cargaParte = function (parte) {
         this.navCtrl.push(parte_editar_component_1.ParteEditarComponent, [parte]);
@@ -531,6 +594,11 @@ var ParteListComponent = (function () {
     ParteListComponent.prototype.crearParte = function (clienteid) {
         console.log('crearParte()');
         this.navCtrl.push(parte_editar_component_1.ParteEditarComponent);
+    };
+    //TODO: Implementar el elminado de partes.
+    ParteListComponent.prototype.enviarEmail = function (parte) {
+        console.log('envia email');
+        this.parteService.enviaPorEmail(parte);
     };
     ParteListComponent = __decorate([
         core_1.Component({
@@ -543,7 +611,7 @@ var ParteListComponent = (function () {
 }());
 exports.ParteListComponent = ParteListComponent;
 
-},{"../../service/parte.service":12,"../../service/varios.service":13,"./parte-editar.component":9,"@angular/core":161,"ionic-angular":476}],11:[function(require,module,exports){
+},{"../../model/parte":4,"../../service/parte.service":12,"../../service/varios.service":13,"./parte-editar.component":9,"@angular/core":161,"ionic-angular":476}],11:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -607,8 +675,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var ionic_angular_1 = require('ionic-angular');
+var varios_service_1 = require('./varios.service');
+var ionic_native_1 = require('ionic-native');
 var ParteService = (function () {
-    function ParteService() {
+    function ParteService(_varios) {
+        this._varios = _varios;
         this.storage = new ionic_angular_1.Storage(ionic_angular_1.SqlStorage);
         this.storage.query('CREATE TABLE IF NOT EXISTS parte (id INTEGER PRIMARY KEY AUTOINCREMENT, clienteid INTEGER CONSTRAINT fk_clienteid REFERENCES cliente (id) ON DELETE CASCADE ON UPDATE SET DEFAULT, fecha DATE NOT NULL, horaini TIME NOT NULL, horafin TIME NOT NULL, trabajorealizado TEXT, personafirma TEXT, firma TEXT);').then(function (data) {
         }, function (error) { console.log("Error al crear la tabla parte: " + error.err.message); });
@@ -628,6 +699,7 @@ var ParteService = (function () {
         });
     };
     ParteService.prototype.actualizaParte = function (f) {
+        var _this = this;
         var sql;
         if (f.id == null) {
             sql = "insert into parte values (?,?,?,?,?,?,?,?)";
@@ -636,18 +708,50 @@ var ParteService = (function () {
             sql = "update parte set id=?,clienteid=?,fecha=?,horaini=?,horafin=?,trabajorealizado=?,personafirma=?,firma=? where id=" + f.id;
         }
         this.storage.query(sql, [f.id, f.clienteid, f.fecha, f.horaini, f.horafin, f.trabajorealizado, f.personafirma, f.firma]).then(function (data) {
+            _this._varios.showToast("Parte guardado correctamente", "top");
             console.log("Insertado parte ");
         }, function (error) { console.log("error al insertar parte " + error.err.message); });
     };
+    ParteService.prototype.enviaPorEmail = function (parte) {
+        var _this = this;
+        var msg;
+        msg = "<h1><strong>Parte de Trabajo número:</strong> " + parte.clienteid + "</h1>";
+        msg += "<h2><strong>Cliente: </strong>" + parte.nombre + '</h2>';
+        msg += "<p><strong>Fecha:</strong> " + parte.fechaformato + '</p>';
+        msg += "<p><strong>Horas:</strong> " + parte.horainiformato + ' a ' + parte.horafinformato + '</p>';
+        msg += "<p>" + parte.trabajorealizado + '</p>';
+        msg += "<hr>";
+        msg += "<p><strong>Firmado: </strong>" + parte.personafirma + "</p>";
+        console.log(msg);
+        ionic_native_1.EmailComposer.isAvailable().then(function (available) {
+            console.log("envio de email disponible");
+            ionic_native_1.EmailComposer.open({
+                to: '',
+                subject: 'Parte de trabajo nº ' + parte.id,
+                body: msg,
+                attachments: parte.firmaBase64,
+                isHtml: true
+            }).then(function (sended) {
+                console.log("email enviado ");
+                _this._varios.showToast("Email enviado", "top");
+            }, function (error) {
+                console.log("error enviando mensaje ");
+                _this._varios.showToast("Se producjo un error al enviar el Email o", "top");
+                console.log(error);
+            });
+        }, function (error) {
+            console.log("no disponible");
+        });
+    };
     ParteService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [varios_service_1.VariosService])
     ], ParteService);
     return ParteService;
 }());
 exports.ParteService = ParteService;
 
-},{"@angular/core":161,"ionic-angular":476}],13:[function(require,module,exports){
+},{"./varios.service":13,"@angular/core":161,"ionic-angular":476,"ionic-native":503}],13:[function(require,module,exports){
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;

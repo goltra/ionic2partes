@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {Cliente} from '../../model/Cliente';
+import {Cliente} from '../../model/Cliente'; //si pongo "/cliente" da error , no se pq
 import {NavController, NavParams} from 'ionic-angular';
 import {ClienteService} from '../../service/cliente.service';
 import {ClienteListComponent} from './cliente-list.component';
@@ -28,10 +28,10 @@ export class ClienteEditarComponent{
                 private  _varios: VariosService){
        let params = _navParams;
        let cliente: Cliente;
-       cliente = new Cliente(null,'','');
+       cliente = new Cliente();
 
        if(params.data.length>0){
-           cliente = params.data[0];
+           cliente = Cliente.inicializa(params.data[0]);
        }
        console.log("editando cliente id " + cliente.id);
        this.myForm = this.fb.group({

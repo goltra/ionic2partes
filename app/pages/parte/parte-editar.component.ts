@@ -38,7 +38,7 @@ export class ParteEditarComponent{
                 private  _varios: VariosService){
        let params = _navParams;
        
-       this.parte = new Parte(null,null,null);
+       this.parte = new Parte();
 
        let clienteid:number;
 
@@ -51,14 +51,16 @@ export class ParteEditarComponent{
            this.parte.fecha=_varios.getNowDateIso();
            this.parte.horaini=this.parte.fecha;
            this.parte.horafin=this.parte.fecha;
-           console.log(this.parte.fechaformato);
+           //TODO: Horaini y fecha por defcto la del día
+           //Todo: Horafin por defecto la seteada en horaini y no poder poner una inferior
        } else {
            this.nuevo=false;
-           this.parte = params.data[0];
+           this.parte = Parte.inicializa(params.data[0]);
            console.log("Editando parte con id " + this.parte.id);
+
        }
 
-       
+
 
        this.myForm = this.fb.group({
            'id':[this.parte.id],
@@ -70,7 +72,7 @@ export class ParteEditarComponent{
            'personafirma':[this.parte.personafirma],
            'firma':[this.parte.firma],
        });
-       console.log(this.parte.firma);
+
 
     }
     cancelar(){
@@ -97,7 +99,6 @@ export class ParteEditarComponent{
         'canvasHeight': 300,
         'backgroundColor': 'silver'
     };
- 
  
   ngAfterViewInit() {
     // this.signaturePad is now available
