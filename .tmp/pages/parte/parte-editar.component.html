@@ -1,0 +1,47 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Editar Parte de trabajo</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <ion-input hidden formControlName="id"></ion-input>
+        <ion-input hidden formControlName="clienteid"></ion-input>
+        <ion-item>
+            <ion-label floating>Fecha</ion-label>
+            <ion-datetime formControlName="fecha" displayFormat="DD/MM/YYYY"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Hora de inicio</ion-label>
+            <ion-datetime formControlName="horaini" displayFormat="HH:mm" minuteValues="00,10,20,30,40,50"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Hora de fin</ion-label>
+            <ion-datetime formControlName="horafin" displayFormat="HH:mm" minuteValues="00,10,20,30,40,50"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Trabajo realizado</ion-label>
+            <ion-textarea textarea-autosize formControlName="trabajorealizado" ></ion-textarea>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Autorizado por:</ion-label>
+            <ion-input formControlName="personafirma" ></ion-input>
+        </ion-item>
+        <ion-item [hidden]="firmaImg!=null && firmaImg!=''">
+            <p><button ion-button type="button" (click)="doOnEnd()">Firmar</button></p>
+            <signature-pad [options]="signaturePadOptions" ></signature-pad>    
+            <!--<canvas id="signature-pad"></canvas>        -->
+        </ion-item>
+        <ion-item>
+            <button ion-button type="submit">Enviar</button>
+            <button ion-button type="button" color="danger" (click)="cancelar()">Cancelar</button>
+        </ion-item>
+        
+        <ion-item>
+            <img src="{{firmaImg}}" alt="firma" [hidden]="(firmaImg==null || firmaImg=='') ">
+        </ion-item>
+    </form>
+    
+
+    

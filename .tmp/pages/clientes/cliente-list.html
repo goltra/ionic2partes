@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button  menuToggle>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>Clientes</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+<ion-list>
+  <ion-list-header>Lista de Clientes</ion-list-header>
+  <ion-item><button ion-button full (click)='crearCliente()'>Añadir cliente</button></ion-item>
+  <ion-item-sliding *ngFor="let cliente of clientes">
+    <button ion-item  (click)="crearParte(cliente.id)">
+      <h2>{{cliente.id}} - {{cliente.nombre}}</h2> 
+    </button>
+    <ion-item-options>
+        <button ion-button color="danger" (click)="borrarCliente(cliente.id)">
+          <ion-icon name="trash" ></ion-icon>
+            Eliminar
+        </button>
+        <button ion-button light (click)="cargaCliente(cliente)">
+          <ion-icon name="arrow-dropright" ></ion-icon>
+            Editar
+        </button>
+      </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+
+</ion-content>
