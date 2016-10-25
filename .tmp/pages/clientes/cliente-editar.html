@@ -10,16 +10,17 @@
         <ion-item>
             <ion-label floating>Nombre</ion-label>
             <ion-input formControlName="nombre"  ></ion-input>
-            <ion-label *ngIf="!myForm.controls['nombre'].valid">No valido</ion-label>
+            
         </ion-item>
         <ion-item>
             <ion-label floating>Telefono</ion-label>
             <ion-input formControlName="telefono" ></ion-input>
-            <ion-label *ngIf="!myForm.controls['telefono'].valid">No valido</ion-label>
+            
         </ion-item>
         <button ion-button type="submit">Enviar</button>
+        <input  type="button" ion-button color="danger" (click)="cancelar()" value="Cancelar">
     </form>
-    <button ion-button (click)="cancelar()">Cancelar</button>
+    
 
     <!--<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)" class="ui form" >
         <ion-item>

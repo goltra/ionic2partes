@@ -93,7 +93,8 @@ export class ParteEditarComponent{
     }
 
     signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
-        'minWidth': 5,
+        'minWidth': 2,
+        'maxWidth': 3,
         'canvasWidth': 500,
         'canvasHeight': 300,
         'backgroundColor': 'silver'
@@ -102,15 +103,13 @@ export class ParteEditarComponent{
   ngAfterViewInit() {
     
     // this.signaturePad is now available
-    this.signaturePad.set('minWidth', 5); // set szimek/signature_pad options at runtime
+    this.signaturePad.options=this.signaturePadOptions; // set szimek/signature_pad options at runtime
     this.signaturePad.clear(); // invoke functions from szimek/signature_pad API
     if(this.parte.firma!==null){
         this.signaturePad.fromDataURL(this.parte.firma);
         this.firmaImg=this.parte.firma;
         console.log("asignar firma guardada a canvas");
     }
-    
-
   }
  
   doOnEnd() {

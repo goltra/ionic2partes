@@ -16,28 +16,34 @@ import * as import6 from '@angular/core/src/linker/view_type';
 import * as import7 from '@angular/core/src/change_detection/change_detection';
 import * as import8 from 'ionic-angular/navigation/nav-controller';
 import * as import9 from 'ionic-angular/components/menu/menu-controller';
-import * as import10 from '@angular/core/src/metadata/view';
-import * as import11 from '@angular/core/src/linker/component_factory';
-import * as import12 from 'ionic-angular/components/toolbar/toolbar';
-import * as import13 from 'ionic-angular/components/navbar/navbar';
-import * as import14 from 'ionic-angular/components/button/button';
-import * as import15 from 'ionic-angular/components/menu/menu-toggle';
-import * as import16 from 'ionic-angular/components/toolbar/toolbar-item';
-import * as import17 from '@angular/core/src/linker/query_list';
-import * as import18 from 'ionic-angular/components/icon/icon';
-import * as import19 from 'ionic-angular/components/toolbar/toolbar-title';
-import * as import20 from 'ionic-angular/components/content/content';
-import * as import21 from 'ionic-angular/config/config';
-import * as import22 from '@angular/core/src/linker/element_ref';
-import * as import23 from 'ionic-angular/navigation/view-controller';
-import * as import24 from '../../node_modules/ionic-angular/components/navbar/navbar.ngfactory';
-import * as import25 from 'ionic-angular/components/app/app';
-import * as import26 from '../../node_modules/ionic-angular/components/button/button.ngfactory';
-import * as import27 from '../../node_modules/ionic-angular/components/toolbar/toolbar-title.ngfactory';
-import * as import28 from '../../node_modules/ionic-angular/components/content/content.ngfactory';
-import * as import29 from 'ionic-angular/util/keyboard';
-import * as import30 from '@angular/core/src/zone/ng_zone';
-import * as import31 from 'ionic-angular/components/tabs/tabs';
+import * as import10 from '../../service/varios.service';
+import * as import11 from '@angular/core/src/metadata/view';
+import * as import12 from '@angular/core/src/linker/component_factory';
+import * as import13 from 'ionic-angular/components/toolbar/toolbar';
+import * as import14 from 'ionic-angular/components/navbar/navbar';
+import * as import15 from 'ionic-angular/components/button/button';
+import * as import16 from 'ionic-angular/components/menu/menu-toggle';
+import * as import17 from 'ionic-angular/components/toolbar/toolbar-item';
+import * as import18 from '@angular/core/src/linker/query_list';
+import * as import19 from 'ionic-angular/components/icon/icon';
+import * as import20 from 'ionic-angular/components/toolbar/toolbar-title';
+import * as import21 from 'ionic-angular/components/content/content';
+import * as import22 from 'ionic-angular/components/list/list';
+import * as import23 from 'ionic-angular/components/item/item';
+import * as import24 from 'ionic-angular/config/config';
+import * as import25 from '@angular/core/src/linker/element_ref';
+import * as import26 from 'ionic-angular/navigation/view-controller';
+import * as import27 from '../../node_modules/ionic-angular/components/navbar/navbar.ngfactory';
+import * as import28 from 'ionic-angular/components/app/app';
+import * as import29 from '../../node_modules/ionic-angular/components/button/button.ngfactory';
+import * as import30 from '../../node_modules/ionic-angular/components/toolbar/toolbar-title.ngfactory';
+import * as import31 from '../../node_modules/ionic-angular/components/content/content.ngfactory';
+import * as import32 from 'ionic-angular/util/keyboard';
+import * as import33 from '@angular/core/src/zone/ng_zone';
+import * as import34 from 'ionic-angular/components/tabs/tabs';
+import * as import35 from 'ionic-angular/gestures/gesture-controller';
+import * as import36 from '../../node_modules/ionic-angular/components/item/item.ngfactory';
+import * as import37 from 'ionic-angular/util/form';
 var renderType_HomePage_Host = null;
 var _View_HomePage_Host0 = (function (_super) {
     __extends(_View_HomePage_Host0, _super);
@@ -48,7 +54,7 @@ var _View_HomePage_Host0 = (function (_super) {
         this._el_0 = this.selectOrCreateHostElement('ng-component', rootSelector, null);
         this._appEl_0 = new import2.AppElement(0, null, this, this._el_0);
         var compView_0 = viewFactory_HomePage0(this.viewUtils, this.injector(0), this._appEl_0);
-        this._HomePage_0_4 = new import3.HomePage(this.parentInjector.get(import8.NavController), this.parentInjector.get(import9.MenuController));
+        this._HomePage_0_4 = new import3.HomePage(this.parentInjector.get(import8.NavController), this.parentInjector.get(import9.MenuController), this.parentInjector.get(import10.VariosService));
         this._appEl_0.initComponent(this._HomePage_0_4, [], compView_0);
         compView_0.create(this._HomePage_0_4, this.projectableNodes, null);
         this.init([].concat([this._el_0]), [this._el_0], [], []);
@@ -64,11 +70,11 @@ var _View_HomePage_Host0 = (function (_super) {
 }(import1.AppView));
 function viewFactory_HomePage_Host0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_HomePage_Host === null)) {
-        (renderType_HomePage_Host = viewUtils.createRenderComponentType('', 0, import10.ViewEncapsulation.None, [], {}));
+        (renderType_HomePage_Host = viewUtils.createRenderComponentType('', 0, import11.ViewEncapsulation.None, [], {}));
     }
     return new _View_HomePage_Host0(viewUtils, parentInjector, declarationEl);
 }
-export var HomePageNgFactory = new import11.ComponentFactory('ng-component', viewFactory_HomePage_Host0, import3.HomePage);
+export var HomePageNgFactory = new import12.ComponentFactory('ng-component', viewFactory_HomePage_Host0, import3.HomePage);
 var styles_HomePage = [];
 var renderType_HomePage = null;
 var _View_HomePage0 = (function (_super) {
@@ -79,30 +85,30 @@ var _View_HomePage0 = (function (_super) {
     _View_HomePage0.prototype.createInternal = function (rootSelector) {
         var parentRenderNode = this.renderer.createViewRoot(this.declarationAppElement.nativeElement);
         this._el_0 = this.renderer.createElement(parentRenderNode, 'ion-header', null);
-        this._Header_0_3 = new import12.Header(this.parentInjector.get(import21.Config), new import22.ElementRef(this._el_0), this.renderer, this.parentInjector.get(import23.ViewController, null));
+        this._Header_0_3 = new import13.Header(this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_0), this.renderer, this.parentInjector.get(import26.ViewController, null));
         this._text_1 = this.renderer.createText(this._el_0, '\n  ', null);
         this._el_2 = this.renderer.createElement(this._el_0, 'ion-navbar', null);
         this.renderer.setElementAttribute(this._el_2, 'class', 'toolbar');
         this._appEl_2 = new import2.AppElement(2, 0, this, this._el_2);
-        var compView_2 = import24.viewFactory_Navbar0(this.viewUtils, this.injector(2), this._appEl_2);
-        this._Navbar_2_4 = new import13.Navbar(this.parentInjector.get(import25.App), this.parentInjector.get(import23.ViewController, null), this.parentInjector.get(import8.NavController, null), this.parentInjector.get(import21.Config), new import22.ElementRef(this._el_2), this.renderer);
+        var compView_2 = import27.viewFactory_Navbar0(this.viewUtils, this.injector(2), this._appEl_2);
+        this._Navbar_2_4 = new import14.Navbar(this.parentInjector.get(import28.App), this.parentInjector.get(import26.ViewController, null), this.parentInjector.get(import8.NavController, null), this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_2), this.renderer);
         this._appEl_2.initComponent(this._Navbar_2_4, [], compView_2);
         this._text_3 = this.renderer.createText(null, '\n    ', null);
         this._el_4 = this.renderer.createElement(null, 'button', null);
         this.renderer.setElementAttribute(this._el_4, 'ion-button', '');
         this.renderer.setElementAttribute(this._el_4, 'menuToggle', '');
         this._appEl_4 = new import2.AppElement(4, 2, this, this._el_4);
-        var compView_4 = import26.viewFactory_Button0(this.viewUtils, this.injector(4), this._appEl_4);
-        this._Button_4_4 = new import14.Button('', '', this.parentInjector.get(import21.Config), new import22.ElementRef(this._el_4), this.renderer);
-        this._MenuToggle_4_5 = new import15.MenuToggle(this.parentInjector.get(import9.MenuController), new import22.ElementRef(this._el_4), this.parentInjector.get(import23.ViewController, null), this._Navbar_2_4);
-        this._ToolbarItem_4_6 = new import16.ToolbarItem(this.parentInjector.get(import21.Config), new import22.ElementRef(this._el_4), this.renderer, this.parentInjector.get(import12.Toolbar, null), this._Navbar_2_4);
-        this._query_Button_4_0 = new import17.QueryList();
+        var compView_4 = import29.viewFactory_Button0(this.viewUtils, this.injector(4), this._appEl_4);
+        this._Button_4_4 = new import15.Button('', '', this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_4), this.renderer);
+        this._MenuToggle_4_5 = new import16.MenuToggle(this.parentInjector.get(import9.MenuController), new import25.ElementRef(this._el_4), this.parentInjector.get(import26.ViewController, null), this._Navbar_2_4);
+        this._ToolbarItem_4_6 = new import17.ToolbarItem(this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_4), this.renderer, this.parentInjector.get(import13.Toolbar, null), this._Navbar_2_4);
+        this._query_Button_4_0 = new import18.QueryList();
         this._appEl_4.initComponent(this._Button_4_4, [], compView_4);
         this._text_5 = this.renderer.createText(null, '\n      ', null);
         this._el_6 = this.renderer.createElement(null, 'ion-icon', null);
         this.renderer.setElementAttribute(this._el_6, 'name', 'menu');
         this.renderer.setElementAttribute(this._el_6, 'role', 'img');
-        this._Icon_6_3 = new import18.Icon(this.parentInjector.get(import21.Config), new import22.ElementRef(this._el_6), this.renderer);
+        this._Icon_6_3 = new import19.Icon(this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_6), this.renderer);
         this._text_7 = this.renderer.createText(null, '\n    ', null);
         compView_4.create(this._Button_4_4, [[].concat([
                 this._text_5,
@@ -112,8 +118,8 @@ var _View_HomePage0 = (function (_super) {
         this._text_8 = this.renderer.createText(null, '\n    ', null);
         this._el_9 = this.renderer.createElement(null, 'ion-title', null);
         this._appEl_9 = new import2.AppElement(9, 2, this, this._el_9);
-        var compView_9 = import27.viewFactory_ToolbarTitle0(this.viewUtils, this.injector(9), this._appEl_9);
-        this._ToolbarTitle_9_4 = new import19.ToolbarTitle(this.parentInjector.get(import21.Config), new import22.ElementRef(this._el_9), this.renderer, this.parentInjector.get(import12.Toolbar, null), this._Navbar_2_4);
+        var compView_9 = import30.viewFactory_ToolbarTitle0(this.viewUtils, this.injector(9), this._appEl_9);
+        this._ToolbarTitle_9_4 = new import20.ToolbarTitle(this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_9), this.renderer, this.parentInjector.get(import13.Toolbar, null), this._Navbar_2_4);
         this._appEl_9.initComponent(this._ToolbarTitle_9_4, [], compView_9);
         this._text_10 = this.renderer.createText(null, '\n      Partes de Trabajo\n    ', null);
         compView_9.create(this._ToolbarTitle_9_4, [[].concat([this._text_10])], null);
@@ -135,29 +141,102 @@ var _View_HomePage0 = (function (_super) {
         this.renderer.setElementAttribute(this._el_14, 'class', 'home');
         this.renderer.setElementAttribute(this._el_14, 'padding', '');
         this._appEl_14 = new import2.AppElement(14, null, this, this._el_14);
-        var compView_14 = import28.viewFactory_Content0(this.viewUtils, this.injector(14), this._appEl_14);
-        this._Content_14_4 = new import20.Content(this.parentInjector.get(import21.Config), new import22.ElementRef(this._el_14), this.renderer, this.parentInjector.get(import25.App), this.parentInjector.get(import29.Keyboard), this.parentInjector.get(import30.NgZone), this.parentInjector.get(import23.ViewController, null), this.parentInjector.get(import31.Tabs, null));
+        var compView_14 = import31.viewFactory_Content0(this.viewUtils, this.injector(14), this._appEl_14);
+        this._Content_14_4 = new import21.Content(this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_14), this.renderer, this.parentInjector.get(import28.App), this.parentInjector.get(import32.Keyboard), this.parentInjector.get(import33.NgZone), this.parentInjector.get(import26.ViewController, null), this.parentInjector.get(import34.Tabs, null));
         this._appEl_14.initComponent(this._Content_14_4, [], compView_14);
         this._text_15 = this.renderer.createText(null, '\n  ', null);
-        this._el_16 = this.renderer.createElement(null, 'button', null);
-        this.renderer.setElementAttribute(this._el_16, 'ion-button', '');
-        this._appEl_16 = new import2.AppElement(16, 14, this, this._el_16);
-        var compView_16 = import26.viewFactory_Button0(this.viewUtils, this.injector(16), this._appEl_16);
-        this._Button_16_4 = new import14.Button(null, '', this.parentInjector.get(import21.Config), new import22.ElementRef(this._el_16), this.renderer);
-        this._appEl_16.initComponent(this._Button_16_4, [], compView_16);
-        this._text_17 = this.renderer.createText(null, 'Listado de Clientes', null);
-        compView_16.create(this._Button_16_4, [[].concat([this._text_17])], null);
-        this._text_18 = this.renderer.createText(null, '\n', null);
+        this._el_16 = this.renderer.createElement(null, 'h2', null);
+        this.renderer.setElementAttribute(this._el_16, 'style', 'text-align:center');
+        this._text_17 = this.renderer.createText(this._el_16, '', null);
+        this._text_18 = this.renderer.createText(null, '\n  ', null);
+        this._el_19 = this.renderer.createElement(null, 'ion-list', null);
+        this._List_19_3 = new import22.List(this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_19), this.renderer, this.parentInjector.get(import35.GestureController));
+        this._text_20 = this.renderer.createText(this._el_19, '\n\n    ', null);
+        this._el_21 = this.renderer.createElement(this._el_19, 'ion-item', null);
+        this.renderer.setElementAttribute(this._el_21, 'class', 'transparente item item-block');
+        this.renderer.setElementAttribute(this._el_21, 'style', 'text-align:center');
+        this._appEl_21 = new import2.AppElement(21, 19, this, this._el_21);
+        var compView_21 = import36.viewFactory_Item0(this.viewUtils, this.injector(21), this._appEl_21);
+        this._Item_21_4 = new import23.Item(this.parentInjector.get(import37.Form), this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_21), this.renderer);
+        this._ItemContent_21_5 = new import23.ItemContent();
+        this._query_Label_21_0 = new import18.QueryList();
+        this._query_Button_21_1 = new import18.QueryList();
+        this._query_Icon_21_2 = new import18.QueryList();
+        this._appEl_21.initComponent(this._Item_21_4, [], compView_21);
+        this._text_22 = this.renderer.createText(null, '\n      ', null);
+        this._el_23 = this.renderer.createElement(null, 'button', null);
+        this.renderer.setElementAttribute(this._el_23, 'ion-button', '');
+        this.renderer.setElementAttribute(this._el_23, 'style', 'height: 30vh;width:30vh');
+        this._appEl_23 = new import2.AppElement(23, 21, this, this._el_23);
+        var compView_23 = import29.viewFactory_Button0(this.viewUtils, this.injector(23), this._appEl_23);
+        this._Button_23_4 = new import15.Button(null, '', this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_23), this.renderer);
+        this._appEl_23.initComponent(this._Button_23_4, [], compView_23);
+        this._text_24 = this.renderer.createText(null, 'Clientes', null);
+        compView_23.create(this._Button_23_4, [[].concat([this._text_24])], null);
+        this._text_25 = this.renderer.createText(null, '\n    ', null);
+        this._query_Label_21_0.reset([]);
+        this._Item_21_4.contentLabel = this._query_Label_21_0.first;
+        compView_21.create(this._Item_21_4, [
+            [],
+            [],
+            [].concat([
+                this._text_22,
+                this._el_23,
+                this._text_25
+            ]),
+            [],
+            []
+        ], null);
+        this._text_26 = this.renderer.createText(this._el_19, '\n    ', null);
+        this._el_27 = this.renderer.createElement(this._el_19, 'ion-item', null);
+        this.renderer.setElementAttribute(this._el_27, 'class', 'transparente item item-block');
+        this.renderer.setElementAttribute(this._el_27, 'style', 'text-align:center');
+        this._appEl_27 = new import2.AppElement(27, 19, this, this._el_27);
+        var compView_27 = import36.viewFactory_Item0(this.viewUtils, this.injector(27), this._appEl_27);
+        this._Item_27_4 = new import23.Item(this.parentInjector.get(import37.Form), this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_27), this.renderer);
+        this._ItemContent_27_5 = new import23.ItemContent();
+        this._query_Label_27_0 = new import18.QueryList();
+        this._query_Button_27_1 = new import18.QueryList();
+        this._query_Icon_27_2 = new import18.QueryList();
+        this._appEl_27.initComponent(this._Item_27_4, [], compView_27);
+        this._text_28 = this.renderer.createText(null, '\n      ', null);
+        this._el_29 = this.renderer.createElement(null, 'button', null);
+        this.renderer.setElementAttribute(this._el_29, 'ion-button', '');
+        this.renderer.setElementAttribute(this._el_29, 'style', 'height: 30vh;width:30vh');
+        this._appEl_29 = new import2.AppElement(29, 27, this, this._el_29);
+        var compView_29 = import29.viewFactory_Button0(this.viewUtils, this.injector(29), this._appEl_29);
+        this._Button_29_4 = new import15.Button(null, '', this.parentInjector.get(import24.Config), new import25.ElementRef(this._el_29), this.renderer);
+        this._appEl_29.initComponent(this._Button_29_4, [], compView_29);
+        this._text_30 = this.renderer.createText(null, 'Partes', null);
+        compView_29.create(this._Button_29_4, [[].concat([this._text_30])], null);
+        this._text_31 = this.renderer.createText(null, '\n    ', null);
+        this._query_Label_27_0.reset([]);
+        this._Item_27_4.contentLabel = this._query_Label_27_0.first;
+        compView_27.create(this._Item_27_4, [
+            [],
+            [],
+            [].concat([
+                this._text_28,
+                this._el_29,
+                this._text_31
+            ]),
+            [],
+            []
+        ], null);
+        this._text_32 = this.renderer.createText(this._el_19, '\n  ', null);
+        this._text_33 = this.renderer.createText(null, '\n  \n', null);
         compView_14.create(this._Content_14_4, [
             [],
             [].concat([
                 this._text_15,
                 this._el_16,
-                this._text_18
+                this._text_18,
+                this._el_19,
+                this._text_33
             ]),
             []
         ], null);
-        this._text_19 = this.renderer.createText(parentRenderNode, '\n', null);
+        this._text_34 = this.renderer.createText(parentRenderNode, '\n', null);
         this._expr_0 = import7.UNINITIALIZED;
         this._expr_1 = import7.UNINITIALIZED;
         var disposable_0 = this.renderer.listen(this._el_4, 'click', this.eventHandler(this._handle_click_4_0.bind(this)));
@@ -166,7 +245,9 @@ var _View_HomePage0 = (function (_super) {
         this._expr_5 = import7.UNINITIALIZED;
         this._expr_6 = import7.UNINITIALIZED;
         this._expr_7 = import7.UNINITIALIZED;
-        var disposable_1 = this.renderer.listen(this._el_16, 'click', this.eventHandler(this._handle_click_16_0.bind(this)));
+        this._expr_8 = import7.UNINITIALIZED;
+        var disposable_1 = this.renderer.listen(this._el_23, 'click', this.eventHandler(this._handle_click_23_0.bind(this)));
+        var disposable_2 = this.renderer.listen(this._el_29, 'click', this.eventHandler(this._handle_click_29_0.bind(this)));
         this.init([], [
             this._el_0,
             this._text_1,
@@ -187,39 +268,73 @@ var _View_HomePage0 = (function (_super) {
             this._el_16,
             this._text_17,
             this._text_18,
-            this._text_19
+            this._el_19,
+            this._text_20,
+            this._el_21,
+            this._text_22,
+            this._el_23,
+            this._text_24,
+            this._text_25,
+            this._text_26,
+            this._el_27,
+            this._text_28,
+            this._el_29,
+            this._text_30,
+            this._text_31,
+            this._text_32,
+            this._text_33,
+            this._text_34
         ], [
             disposable_0,
-            disposable_1
+            disposable_1,
+            disposable_2
         ], []);
         return null;
     };
     _View_HomePage0.prototype.injectorGetInternal = function (token, requestNodeIndex, notFoundResult) {
-        if (((token === import18.Icon) && (6 === requestNodeIndex))) {
+        if (((token === import19.Icon) && (6 === requestNodeIndex))) {
             return this._Icon_6_3;
         }
-        if (((token === import14.Button) && ((4 <= requestNodeIndex) && (requestNodeIndex <= 7)))) {
+        if (((token === import15.Button) && ((4 <= requestNodeIndex) && (requestNodeIndex <= 7)))) {
             return this._Button_4_4;
         }
-        if (((token === import15.MenuToggle) && ((4 <= requestNodeIndex) && (requestNodeIndex <= 7)))) {
+        if (((token === import16.MenuToggle) && ((4 <= requestNodeIndex) && (requestNodeIndex <= 7)))) {
             return this._MenuToggle_4_5;
         }
-        if (((token === import16.ToolbarItem) && ((4 <= requestNodeIndex) && (requestNodeIndex <= 7)))) {
+        if (((token === import17.ToolbarItem) && ((4 <= requestNodeIndex) && (requestNodeIndex <= 7)))) {
             return this._ToolbarItem_4_6;
         }
-        if (((token === import19.ToolbarTitle) && ((9 <= requestNodeIndex) && (requestNodeIndex <= 10)))) {
+        if (((token === import20.ToolbarTitle) && ((9 <= requestNodeIndex) && (requestNodeIndex <= 10)))) {
             return this._ToolbarTitle_9_4;
         }
-        if (((token === import13.Navbar) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 11)))) {
+        if (((token === import14.Navbar) && ((2 <= requestNodeIndex) && (requestNodeIndex <= 11)))) {
             return this._Navbar_2_4;
         }
-        if (((token === import12.Header) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 12)))) {
+        if (((token === import13.Header) && ((0 <= requestNodeIndex) && (requestNodeIndex <= 12)))) {
             return this._Header_0_3;
         }
-        if (((token === import14.Button) && ((16 <= requestNodeIndex) && (requestNodeIndex <= 17)))) {
-            return this._Button_16_4;
+        if (((token === import15.Button) && ((23 <= requestNodeIndex) && (requestNodeIndex <= 24)))) {
+            return this._Button_23_4;
         }
-        if (((token === import20.Content) && ((14 <= requestNodeIndex) && (requestNodeIndex <= 18)))) {
+        if (((token === import23.Item) && ((21 <= requestNodeIndex) && (requestNodeIndex <= 25)))) {
+            return this._Item_21_4;
+        }
+        if (((token === import23.ItemContent) && ((21 <= requestNodeIndex) && (requestNodeIndex <= 25)))) {
+            return this._ItemContent_21_5;
+        }
+        if (((token === import15.Button) && ((29 <= requestNodeIndex) && (requestNodeIndex <= 30)))) {
+            return this._Button_29_4;
+        }
+        if (((token === import23.Item) && ((27 <= requestNodeIndex) && (requestNodeIndex <= 31)))) {
+            return this._Item_27_4;
+        }
+        if (((token === import23.ItemContent) && ((27 <= requestNodeIndex) && (requestNodeIndex <= 31)))) {
+            return this._ItemContent_27_5;
+        }
+        if (((token === import22.List) && ((19 <= requestNodeIndex) && (requestNodeIndex <= 32)))) {
+            return this._List_19_3;
+        }
+        if (((token === import21.Content) && ((14 <= requestNodeIndex) && (requestNodeIndex <= 33)))) {
             return this._Content_14_4;
         }
         return notFoundResult;
@@ -245,11 +360,40 @@ var _View_HomePage0 = (function (_super) {
                 this._ToolbarItem_4_6._buttons = this._query_Button_4_0;
                 this._query_Button_4_0.notifyOnChanges();
             }
+            if (this._query_Button_21_1.dirty) {
+                this._query_Button_21_1.reset([this._Button_23_4]);
+                this._Item_21_4._buttons = this._query_Button_21_1;
+                this._query_Button_21_1.notifyOnChanges();
+            }
+            if (this._query_Icon_21_2.dirty) {
+                this._query_Icon_21_2.reset([]);
+                this._Item_21_4._icons = this._query_Icon_21_2;
+                this._query_Icon_21_2.notifyOnChanges();
+            }
+            if (this._query_Button_27_1.dirty) {
+                this._query_Button_27_1.reset([this._Button_29_4]);
+                this._Item_27_4._buttons = this._query_Button_27_1;
+                this._query_Button_27_1.notifyOnChanges();
+            }
+            if (this._query_Icon_27_2.dirty) {
+                this._query_Icon_27_2.reset([]);
+                this._Item_27_4._icons = this._query_Icon_27_2;
+                this._query_Icon_27_2.notifyOnChanges();
+            }
             if ((this.numberOfChecks === 0)) {
                 this._Button_4_4.ngAfterContentInit();
             }
             if ((this.numberOfChecks === 0)) {
-                this._Button_16_4.ngAfterContentInit();
+                this._Button_23_4.ngAfterContentInit();
+            }
+            if ((this.numberOfChecks === 0)) {
+                this._Item_21_4.ngAfterContentInit();
+            }
+            if ((this.numberOfChecks === 0)) {
+                this._Button_29_4.ngAfterContentInit();
+            }
+            if ((this.numberOfChecks === 0)) {
+                this._Item_27_4.ngAfterContentInit();
             }
         }
         var currVal_0 = this._Navbar_2_4._hidden;
@@ -277,6 +421,11 @@ var _View_HomePage0 = (function (_super) {
             this.renderer.setElementClass(this._el_14, 'statusbar-padding', currVal_7);
             this._expr_7 = currVal_7;
         }
+        var currVal_8 = import4.interpolate(1, '', this.context.dia, '');
+        if (import4.checkBinding(throwOnChange, this._expr_8, currVal_8)) {
+            this.renderer.setText(this._text_17, currVal_8);
+            this._expr_8 = currVal_8;
+        }
         this.detectViewChildrenChanges(throwOnChange);
         if (!throwOnChange) {
             if ((this.numberOfChecks === 0)) {
@@ -293,16 +442,21 @@ var _View_HomePage0 = (function (_super) {
         var pd_0 = (this._MenuToggle_4_5.toggle() !== false);
         return (true && pd_0);
     };
-    _View_HomePage0.prototype._handle_click_16_0 = function ($event) {
+    _View_HomePage0.prototype._handle_click_23_0 = function ($event) {
         this.markPathToRootAsCheckOnce();
         var pd_0 = (this.context.clientelist() !== false);
+        return (true && pd_0);
+    };
+    _View_HomePage0.prototype._handle_click_29_0 = function ($event) {
+        this.markPathToRootAsCheckOnce();
+        var pd_0 = (this.context.partelist() !== false);
         return (true && pd_0);
     };
     return _View_HomePage0;
 }(import1.AppView));
 export function viewFactory_HomePage0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_HomePage === null)) {
-        (renderType_HomePage = viewUtils.createRenderComponentType('', 0, import10.ViewEncapsulation.None, styles_HomePage, {}));
+        (renderType_HomePage = viewUtils.createRenderComponentType('', 0, import11.ViewEncapsulation.None, styles_HomePage, {}));
     }
     return new _View_HomePage0(viewUtils, parentInjector, declarationEl);
 }

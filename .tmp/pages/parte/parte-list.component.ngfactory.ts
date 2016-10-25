@@ -436,6 +436,7 @@ class _View_ParteListComponent1 extends import1.AppView<any> {
   }
   createInternal(rootSelector:string):import2.AppElement {
     this._el_0 = this.renderer.createElement((null as any),'ion-item-sliding',(null as any));
+    this.renderer.setElementAttribute(this._el_0,'class','transparente');
     this._appEl_0 = new import2.AppElement(0,(null as any),this,this._el_0);
     var compView_0:any = import44.viewFactory_ItemSliding0(this.viewUtils,this.injector(0),this._appEl_0);
     this._ItemSliding_0_4 = new import43.ItemSliding((<_View_ParteListComponent0>this.parent)._List_16_3,this.renderer,new import27.ElementRef(this._el_0),this.parent.parentInjector.get(import36.NgZone));

@@ -48,6 +48,7 @@ export class ClienteEditarComponent{
         let f = this.myForm.value;
 
 
+
         this.clienteService.actualizaCliente(f.id,f.nombre,f.telefono).then(
             (data)=>{
                     this._varios.showToast("Cliente guardado correctamente","top");

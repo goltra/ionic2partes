@@ -10,5 +10,6 @@ export declare class VariosService {
      * Se usa el formato iso porque hay componentes de formularios de ionic (ion-datatime) que lo necesitan.
      * return string
      */
-    getNowDateIso(pattern?: string): string;
+    getNowDateIso(): string;
+    getNowDate(): string;
 }

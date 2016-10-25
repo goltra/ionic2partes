@@ -20,13 +20,16 @@ export var VariosService = (function () {
      * Se usa el formato iso porque hay componentes de formularios de ionic (ion-datatime) que lo necesitan.
      * return string
      */
-    VariosService.prototype.getNowDateIso = function (pattern) {
-        if (pattern === void 0) { pattern = 'dd/MM/yyyy'; }
+    VariosService.prototype.getNowDateIso = function () {
         var now = new Date();
         var timezoneOffset = (now.getTimezoneOffset() * -1);
         var fechastr = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours(), now.getMinutes() + timezoneOffset);
         console.log(fechastr);
         return fechastr.toISOString();
+    };
+    VariosService.prototype.getNowDate = function () {
+        var now = new Date().toLocaleDateString();
+        return now.toString();
     };
     /**DE MOMENTON O SE USA PERO LA DEJO POR SI ACASO
      * Funcion que devuelve la hora actual con el formato parsado en el

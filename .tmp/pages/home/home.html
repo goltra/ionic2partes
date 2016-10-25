@@ -10,5 +10,15 @@
 </ion-header>
 
 <ion-content padding class="home">
-  <button ion-button (click)="clientelist()">Listado de Clientes</button>
+  <h2 style="text-align:center">{{dia}}</h2>
+  <ion-list>
+
+    <ion-item class="transparente" style="text-align:center">
+      <button ion-button style="height: 30vh;width:30vh" (click)="clientelist()">Clientes</button>
+    </ion-item>
+    <ion-item class="transparente" style="text-align:center">
+      <button ion-button style="height: 30vh;width:30vh"  (click)="partelist()">Partes</button>
+    </ion-item>
+  </ion-list>
+  
 </ion-content>
