@@ -67,6 +67,16 @@
     <icon height="29" src="resources/ios/icon/icon-small.png" width="29" />
     <icon height="58" src="resources/ios/icon/icon-small@2x.png" width="58" />
     <icon height="87" src="resources/ios/icon/icon-small@3x.png" width="87" />
+    <splash height="1136" src="resources/ios/splash/Default-568h@2x~iphone.png" width="640" />
+    <splash height="1334" src="resources/ios/splash/Default-667h.png" width="750" />
+    <splash height="2208" src="resources/ios/splash/Default-736h.png" width="1242" />
+    <splash height="1242" src="resources/ios/splash/Default-Landscape-736h.png" width="2208" />
+    <splash height="1536" src="resources/ios/splash/Default-Landscape@2x~ipad.png" width="2048" />
+    <splash height="768" src="resources/ios/splash/Default-Landscape~ipad.png" width="1024" />
+    <splash height="2048" src="resources/ios/splash/Default-Portrait@2x~ipad.png" width="1536" />
+    <splash height="1024" src="resources/ios/splash/Default-Portrait~ipad.png" width="768" />
+    <splash height="960" src="resources/ios/splash/Default@2x~iphone.png" width="640" />
+    <splash height="480" src="resources/ios/splash/Default~iphone.png" width="320" />
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="DisallowOverscroll" value="true" />
@@ -84,9 +94,10 @@
     <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
-    <preference name="android-minSdkVersion" value="16" />
+    <preference name="android-minSdkVersion" value="14" />
     <preference name="SplashScreenDelay" value="0" />
     <preference name="FadeSplashScreen" value="false" />
     <preference name="FadeSplashScreenDuration" value="0" />
     <preference name="SplashScreenBackgroundColor" value="0xFFFFFFFF" />
+    <preference name="SplashScreen" value="screen" />
 </widget>

@@ -62,9 +62,9 @@ class _View_MyApp_Host0 extends import1.AppView<any> {
     this._appEl_0 = new import2.AppElement(0,(null as any),this,this._el_0);
     var compView_0:any = viewFactory_MyApp0(this.viewUtils,this.injector(0),this._appEl_0);
     this._MyApp_0_4 = new import3.MyApp(this.parentInjector.get(import8.Platform),this.parentInjector.get(import9.MenuController),this.parentInjector.get(import10.DatabaseProvider));
-    this._appEl_0.initComponent(this._MyApp_0_4,([] as any[]),compView_0);
+    this._appEl_0.initComponent(this._MyApp_0_4,[],compView_0);
     compView_0.create(this._MyApp_0_4,this.projectableNodes,(null as any));
-    this.init(([] as any[]).concat([this._el_0]),[this._el_0],([] as any[]),([] as any[]));
+    this.init([].concat([this._el_0]),[this._el_0],[],[]);
     return this._appEl_0;
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
@@ -73,11 +73,11 @@ class _View_MyApp_Host0 extends import1.AppView<any> {
   }
 }
 function viewFactory_MyApp_Host0(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<any> {
-  if ((renderType_MyApp_Host === (null as any))) { (renderType_MyApp_Host = viewUtils.createRenderComponentType('',0,import11.ViewEncapsulation.None,([] as any[]),{})); }
+  if ((renderType_MyApp_Host === (null as any))) { (renderType_MyApp_Host = viewUtils.createRenderComponentType('',0,import11.ViewEncapsulation.None,[],{})); }
   return new _View_MyApp_Host0(viewUtils,parentInjector,declarationEl);
 }
 export const MyAppNgFactory:import12.ComponentFactory<import3.MyApp> = new import12.ComponentFactory<import3.MyApp>('ng-component',viewFactory_MyApp_Host0,import3.MyApp);
-const styles_MyApp:any[] = ([] as any[]);
+const styles_MyApp:any[] = [];
 var renderType_MyApp:import0.RenderComponentType = (null as any);
 class _View_MyApp0 extends import1.AppView<import3.MyApp> {
   _viewQuery_Nav_0:import13.QueryList<any>;
@@ -135,7 +135,7 @@ class _View_MyApp0 extends import1.AppView<import3.MyApp> {
     var compView_0:any = import21.viewFactory_Menu0(this.viewUtils,this.injector(0),this._appEl_0);
     this._Menu_0_4 = new import14.Menu(this.parentInjector.get(import9.MenuController),new import22.ElementRef(this._el_0),this.parentInjector.get(import23.Config),this.parentInjector.get(import8.Platform),this.renderer,this.parentInjector.get(import24.Keyboard),this.parentInjector.get(import25.NgZone),this.parentInjector.get(import26.GestureController));
     this._query_Content_0_0 = new import13.QueryList<any>();
-    this._appEl_0.initComponent(this._Menu_0_4,([] as any[]),compView_0);
+    this._appEl_0.initComponent(this._Menu_0_4,[],compView_0);
     this._text_1 = this.renderer.createText((null as any),'\n  ',(null as any));
     this._el_2 = this.renderer.createElement((null as any),'ion-header',(null as any));
     this._Header_2_3 = new import15.Header(this.parentInjector.get(import23.Config),new import22.ElementRef(this._el_2),this.renderer,this.parentInjector.get(import27.ViewController,(null as any)));
@@ -145,21 +145,21 @@ class _View_MyApp0 extends import1.AppView<import3.MyApp> {
     this._appEl_4 = new import2.AppElement(4,2,this,this._el_4);
     var compView_4:any = import28.viewFactory_Toolbar0(this.viewUtils,this.injector(4),this._appEl_4);
     this._Toolbar_4_4 = new import15.Toolbar(this.parentInjector.get(import27.ViewController,(null as any)),this.parentInjector.get(import23.Config),new import22.ElementRef(this._el_4),this.renderer);
-    this._appEl_4.initComponent(this._Toolbar_4_4,([] as any[]),compView_4);
+    this._appEl_4.initComponent(this._Toolbar_4_4,[],compView_4);
     this._text_5 = this.renderer.createText((null as any),'\n      ',(null as any));
     this._el_6 = this.renderer.createElement((null as any),'ion-title',(null as any));
     this._appEl_6 = new import2.AppElement(6,4,this,this._el_6);
     var compView_6:any = import29.viewFactory_ToolbarTitle0(this.viewUtils,this.injector(6),this._appEl_6);
     this._ToolbarTitle_6_4 = new import16.ToolbarTitle(this.parentInjector.get(import23.Config),new import22.ElementRef(this._el_6),this.renderer,this._Toolbar_4_4,this.parentInjector.get(import30.Navbar,(null as any)));
-    this._appEl_6.initComponent(this._ToolbarTitle_6_4,([] as any[]),compView_6);
+    this._appEl_6.initComponent(this._ToolbarTitle_6_4,[],compView_6);
     this._text_7 = this.renderer.createText((null as any),'Menu',(null as any));
-    compView_6.create(this._ToolbarTitle_6_4,[([] as any[]).concat([this._text_7])],(null as any));
+    compView_6.create(this._ToolbarTitle_6_4,[[].concat([this._text_7])],(null as any));
     this._text_8 = this.renderer.createText((null as any),'\n    ',(null as any));
     compView_4.create(this._Toolbar_4_4,[
-      ([] as any[]),
-      ([] as any[]),
-      ([] as any[]),
-      ([] as any[]).concat([
+      [],
+      [],
+      [],
+      [].concat([
         this._text_5,
         this._el_6,
         this._text_8
@@ -173,7 +173,7 @@ class _View_MyApp0 extends import1.AppView<import3.MyApp> {
     this._appEl_11 = new import2.AppElement(11,0,this,this._el_11);
     var compView_11:any = import31.viewFactory_Content0(this.viewUtils,this.injector(11),this._appEl_11);
     this._Content_11_4 = new import17.Content(this.parentInjector.get(import23.Config),new import22.ElementRef(this._el_11),this.renderer,this.parentInjector.get(import32.App),this.parentInjector.get(import24.Keyboard),this.parentInjector.get(import25.NgZone),this.parentInjector.get(import27.ViewController,(null as any)),this.parentInjector.get(import33.Tabs,(null as any)));
-    this._appEl_11.initComponent(this._Content_11_4,([] as any[]),compView_11);
+    this._appEl_11.initComponent(this._Content_11_4,[],compView_11);
     this._text_12 = this.renderer.createText((null as any),'\n    ',(null as any));
     this._el_13 = this.renderer.createElement((null as any),'ion-list',(null as any));
     this._List_13_3 = new import18.List(this.parentInjector.get(import23.Config),new import22.ElementRef(this._el_13),this.renderer,this.parentInjector.get(import26.GestureController));
@@ -185,20 +185,20 @@ class _View_MyApp0 extends import1.AppView<import3.MyApp> {
     this._text_16 = this.renderer.createText(this._el_13,'\n    ',(null as any));
     this._text_17 = this.renderer.createText((null as any),'\n  ',(null as any));
     compView_11.create(this._Content_11_4,[
-      ([] as any[]),
-      ([] as any[]).concat([
+      [],
+      [].concat([
         this._text_12,
         this._el_13,
         this._text_17
       ]
       ),
-      ([] as any[])
+      []
     ]
     ,(null as any));
     this._text_18 = this.renderer.createText((null as any),'\n\n',(null as any));
     this._query_Content_0_0.reset([this._Content_11_4]);
     this._Menu_0_4.menuContent = this._query_Content_0_0.first;
-      compView_0.create(this._Menu_0_4,[([] as any[]).concat([
+      compView_0.create(this._Menu_0_4,[[].concat([
         this._text_1,
         this._el_2,
         this._text_10,
@@ -212,8 +212,8 @@ class _View_MyApp0 extends import1.AppView<import3.MyApp> {
     this._appEl_20 = new import2.AppElement(20,(null as any),this,this._el_20);
     var compView_20:any = import36.viewFactory_Nav0(this.viewUtils,this.injector(20),this._appEl_20);
     this._Nav_20_4 = new import20.Nav(this.parentInjector.get(import27.ViewController,(null as any)),this.parentInjector.get(import37.NavControllerBase,(null as any)),this.parentInjector.get(import32.App),this.parentInjector.get(import23.Config),this.parentInjector.get(import24.Keyboard),new import22.ElementRef(this._el_20),this.parentInjector.get(import25.NgZone),this.renderer,this.parentInjector.get(import38.ComponentFactoryResolver),this.parentInjector.get(import26.GestureController),this.parentInjector.get(import39.TransitionController),this.parentInjector.get(import40.DeepLinker,(null as any)));
-    this._appEl_20.initComponent(this._Nav_20_4,([] as any[]),compView_20);
-    compView_20.create(this._Nav_20_4,([] as any[]),(null as any));
+    this._appEl_20.initComponent(this._Nav_20_4,[],compView_20);
+    compView_20.create(this._Nav_20_4,[],(null as any));
     this._expr_0 = import7.UNINITIALIZED;
     this._expr_1 = import7.UNINITIALIZED;
     this._expr_2 = import7.UNINITIALIZED;
@@ -221,7 +221,7 @@ class _View_MyApp0 extends import1.AppView<import3.MyApp> {
     this._expr_4 = import7.UNINITIALIZED;
     this._viewQuery_Nav_0.reset([this._Nav_20_4]);
     this.context.nav = this._viewQuery_Nav_0.first;
-    this.init(([] as any[]),[
+    this.init([],[
       this._el_0,
       this._text_1,
       this._el_2,
@@ -244,7 +244,7 @@ class _View_MyApp0 extends import1.AppView<import3.MyApp> {
       this._text_19,
       this._el_20
     ]
-    ,([] as any[]),([] as any[]));
+    ,[],[]);
     return (null as any);
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
@@ -307,7 +307,7 @@ class _View_MyApp0 extends import1.AppView<import3.MyApp> {
   }
 }
 export function viewFactory_MyApp0(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<import3.MyApp> {
-  if ((renderType_MyApp === (null as any))) { (renderType_MyApp = viewUtils.createRenderComponentType('',0,import11.ViewEncapsulation.None,styles_MyApp,{})); }
+  if ((renderType_MyApp === (null as any))) { (renderType_MyApp = viewUtils.createRenderComponentType('/Users/franciscogarcia/Documents/angular2/ionic2partes-rc/.tmp/app/app.html',0,import11.ViewEncapsulation.None,styles_MyApp,{})); }
   return new _View_MyApp0(viewUtils,parentInjector,declarationEl);
 }
 class _View_MyApp1 extends import1.AppView<any> {
@@ -338,26 +338,26 @@ class _View_MyApp1 extends import1.AppView<any> {
     this._query_Label_0_0 = new import13.QueryList<any>();
     this._query_Button_0_1 = new import13.QueryList<any>();
     this._query_Icon_0_2 = new import13.QueryList<any>();
-    this._appEl_0.initComponent(this._Item_0_4,([] as any[]),compView_0);
+    this._appEl_0.initComponent(this._Item_0_4,[],compView_0);
     this._text_1 = this.renderer.createText((null as any),'',(null as any));
-    this._query_Label_0_0.reset(([] as any[]));
+    this._query_Label_0_0.reset([]);
     this._Item_0_4.contentLabel = this._query_Label_0_0.first;
     compView_0.create(this._Item_0_4,[
-      ([] as any[]),
-      ([] as any[]),
-      ([] as any[]).concat([this._text_1]),
-      ([] as any[]),
-      ([] as any[])
+      [],
+      [],
+      [].concat([this._text_1]),
+      [],
+      []
     ]
     ,(null as any));
     var disposable_0:Function = this.renderer.listen(this._el_0,'click',this.eventHandler(this._handle_click_0_0.bind(this)));
     this._expr_2 = import7.UNINITIALIZED;
     this._expr_3 = import7.UNINITIALIZED;
-    this.init(([] as any[]).concat([this._el_0]),[
+    this.init([].concat([this._el_0]),[
       this._el_0,
       this._text_1
     ]
-    ,[disposable_0],([] as any[]));
+    ,[disposable_0],[]);
     return (null as any);
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
@@ -375,12 +375,12 @@ class _View_MyApp1 extends import1.AppView<any> {
     this.detectContentChildrenChanges(throwOnChange);
     if (!throwOnChange) {
       if (this._query_Button_0_1.dirty) {
-        this._query_Button_0_1.reset(([] as any[]));
+        this._query_Button_0_1.reset([]);
         this._Item_0_4._buttons = this._query_Button_0_1;
         this._query_Button_0_1.notifyOnChanges();
       }
       if (this._query_Icon_0_2.dirty) {
-        this._query_Icon_0_2.reset(([] as any[]));
+        this._query_Icon_0_2.reset([]);
         this._Item_0_4._icons = this._query_Icon_0_2;
         this._query_Icon_0_2.notifyOnChanges();
       }

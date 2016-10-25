@@ -102,6 +102,7 @@ import * as import91 from '@angular/core/src/change_detection/differs/keyvalue_d
 import * as import92 from '@angular/http/src/interfaces';
 import * as import93 from '@angular/http/src/http';
 import * as import94 from 'ionic-angular/components/app/app-root';
+import * as import95 from '@angular/core/src/i18n/tokens';
 var AppModuleInjector = (function (_super) {
     __extends(AppModuleInjector, _super);
     function AppModuleInjector(parent) {
@@ -127,7 +128,7 @@ var AppModuleInjector = (function (_super) {
     Object.defineProperty(AppModuleInjector.prototype, "_LOCALE_ID_10", {
         get: function () {
             if ((this.__LOCALE_ID_10 == null)) {
-                (this.__LOCALE_ID_10 = 'en-US');
+                (this.__LOCALE_ID_10 = null);
             }
             return this.__LOCALE_ID_10;
         },
@@ -678,6 +679,16 @@ var AppModuleInjector = (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(AppModuleInjector.prototype, "_TRANSLATIONS_FORMAT_81", {
+        get: function () {
+            if ((this.__TRANSLATIONS_FORMAT_81 == null)) {
+                (this.__TRANSLATIONS_FORMAT_81 = null);
+            }
+            return this.__TRANSLATIONS_FORMAT_81;
+        },
+        enumerable: true,
+        configurable: true
+    });
     AppModuleInjector.prototype.createInternal = function () {
         this._CommonModule_0 = new import2.CommonModule();
         this._ApplicationModule_1 = new import3.ApplicationModule();
@@ -955,6 +966,9 @@ var AppModuleInjector = (function (_super) {
         }
         if ((token === import50.SQLite)) {
             return this._SQLite_80;
+        }
+        if ((token === import95.TRANSLATIONS_FORMAT)) {
+            return this._TRANSLATIONS_FORMAT_81;
         }
         return notFoundResult;
     };

@@ -300,7 +300,7 @@ var _View_MyApp0 = (function (_super) {
 }(import1.AppView));
 export function viewFactory_MyApp0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_MyApp === null)) {
-        (renderType_MyApp = viewUtils.createRenderComponentType('', 0, import11.ViewEncapsulation.None, styles_MyApp, {}));
+        (renderType_MyApp = viewUtils.createRenderComponentType('/Users/franciscogarcia/Documents/angular2/ionic2partes-rc/.tmp/app/app.html', 0, import11.ViewEncapsulation.None, styles_MyApp, {}));
     }
     return new _View_MyApp0(viewUtils, parentInjector, declarationEl);
 }

@@ -707,7 +707,7 @@ var _View_ClienteEditarComponent0 = (function (_super) {
     };
     _View_ClienteEditarComponent0.prototype._handle_submit_11_1 = function ($event) {
         this.markPathToRootAsCheckOnce();
-        var pd_0 = (this._FormGroupDirective_11_3.onSubmit($event) !== false);
+        var pd_0 = (this._FormGroupDirective_11_3.onSubmit() !== false);
         return (true && pd_0);
     };
     _View_ClienteEditarComponent0.prototype._handle_reset_11_2 = function ($event) {
@@ -724,7 +724,7 @@ var _View_ClienteEditarComponent0 = (function (_super) {
 }(import1.AppView));
 export function viewFactory_ClienteEditarComponent0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_ClienteEditarComponent === null)) {
-        (renderType_ClienteEditarComponent = viewUtils.createRenderComponentType('', 0, import15.ViewEncapsulation.None, styles_ClienteEditarComponent, {}));
+        (renderType_ClienteEditarComponent = viewUtils.createRenderComponentType('/Users/franciscogarcia/Documents/angular2/ionic2partes-rc/.tmp/pages/clientes/cliente-editar.html', 0, import15.ViewEncapsulation.None, styles_ClienteEditarComponent, {}));
     }
     return new _View_ClienteEditarComponent0(viewUtils, parentInjector, declarationEl);
 }

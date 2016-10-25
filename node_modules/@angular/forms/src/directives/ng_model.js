@@ -74,11 +74,6 @@ var resolvedPromise = Promise.resolve(null);
  *
  * {@example forms/ts/simpleForm/simple_form_example.ts region='Component'}
  *
- * To see `ngModel` examples with different form control types, see:
- *
- * * Radio buttons: {@link RadioControlValueAccessor}
- * * Selects: {@link SelectControlValueAccessor}
- *
  * **npm package**: `@angular/forms`
  *
  * **NgModule**: `FormsModule`
@@ -186,7 +181,7 @@ export var NgModel = (function (_super) {
     NgModel.prototype._updateDisabled = function (changes) {
         var _this = this;
         var disabledValue = changes['isDisabled'].currentValue;
-        var isDisabled = disabledValue === '' || (disabledValue && disabledValue !== 'false');
+        var isDisabled = disabledValue != null && disabledValue != false;
         resolvedPromise.then(function () {
             if (isDisabled && !_this.control.disabled) {
                 _this.control.disable();

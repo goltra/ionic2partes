@@ -462,7 +462,7 @@ var _View_ClienteListComponent0 = (function (_super) {
 }(import1.AppView));
 export function viewFactory_ClienteListComponent0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_ClienteListComponent === null)) {
-        (renderType_ClienteListComponent = viewUtils.createRenderComponentType('', 0, import15.ViewEncapsulation.None, styles_ClienteListComponent, {}));
+        (renderType_ClienteListComponent = viewUtils.createRenderComponentType('/Users/franciscogarcia/Documents/angular2/ionic2partes-rc/.tmp/pages/clientes/cliente-list.html', 0, import15.ViewEncapsulation.None, styles_ClienteListComponent, {}));
     }
     return new _View_ClienteListComponent0(viewUtils, parentInjector, declarationEl);
 }

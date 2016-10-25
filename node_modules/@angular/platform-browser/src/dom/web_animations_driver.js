@@ -6,7 +6,8 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { AUTO_STYLE } from '@angular/core';
-import { isPresent } from '../facade/lang';
+import { StringMapWrapper } from '../facade/collection';
+import { StringWrapper, isNumber, isPresent } from '../facade/lang';
 import { dashCaseToCamelCase } from './util';
 import { WebAnimationsPlayer } from './web_animations_player';
 export var WebAnimationsDriver = (function () {
@@ -51,16 +52,15 @@ export var WebAnimationsDriver = (function () {
 function _populateStyles(element, styles, defaultStyles) {
     var data = {};
     styles.styles.forEach(function (entry) {
-        Object.keys(entry).forEach(function (prop) {
-            var val = entry[prop];
+        StringMapWrapper.forEach(entry, function (val, prop) {
             var formattedProp = dashCaseToCamelCase(prop);
             data[formattedProp] =
                 val == AUTO_STYLE ? val : val.toString() + _resolveStyleUnit(val, prop, formattedProp);
         });
     });
-    Object.keys(defaultStyles).forEach(function (prop) {
+    StringMapWrapper.forEach(defaultStyles, function (value, prop) {
         if (!isPresent(data[prop])) {
-            data[prop] = defaultStyles[prop];
+            data[prop] = value;
         }
     });
     return data;
@@ -68,7 +68,7 @@ function _populateStyles(element, styles, defaultStyles) {
 function _resolveStyleUnit(val, userProvidedProp, formattedProp) {
     var unit = '';
     if (_isPixelDimensionStyle(formattedProp) && val != 0 && val != '0') {
-        if (typeof val === 'number') {
+        if (isNumber(val)) {
             unit = 'px';
         }
         else if (_findDimensionalSuffix(val.toString()).length == 0) {
@@ -82,7 +82,7 @@ var _$9 = 57;
 var _$PERIOD = 46;
 function _findDimensionalSuffix(value) {
     for (var i = 0; i < value.length; i++) {
-        var c = value.charCodeAt(i);
+        var c = StringWrapper.charCodeAt(value, i);
         if ((c >= _$0 && c <= _$9) || c == _$PERIOD)
             continue;
         return value.substring(i, value.length);

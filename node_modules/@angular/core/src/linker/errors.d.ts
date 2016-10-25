@@ -12,10 +12,13 @@ import { DebugContext } from './debug_context';
  * ```typescript
  * @Component({
  *   selector: 'parent',
- *   template: '<child [prop]="parentProp"></child>',
+ *   template: `
+ *     <child [prop]="parentProp"></child>
+ *   `,
+ *   directives: [forwardRef(() => Child)]
  * })
  * class Parent {
- *   parentProp = 'init';
+ *   parentProp = "init";
  * }
  *
  * @Directive({selector: 'child', inputs: ['prop']})
@@ -25,7 +28,7 @@ import { DebugContext } from './debug_context';
  *   set prop(v) {
  *     // this updates the parent property, which is disallowed during change detection
  *     // this will result in ExpressionChangedAfterItHasBeenCheckedError
- *     this.parent.parentProp = 'updated';
+ *     this.parent.parentProp = "updated";
  *   }
  * }
  * ```

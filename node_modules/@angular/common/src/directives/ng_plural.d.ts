@@ -48,9 +48,6 @@ export declare class NgPlural {
     constructor(_localization: NgLocalization);
     ngPlural: number;
     addCase(value: string, switchView: SwitchView): void;
-    private _updateView();
-    private _clearViews();
-    private _activateView(view);
 }
 /**
  * @ngModule CommonModule
@@ -59,12 +56,10 @@ export declare class NgPlural {
  *             given expression matches the plural expression according to CLDR rules.
  *
  * @howToUse
- * ```
- * <some-element [ngPlural]="value">
- *   <ng-container *ngPluralCase="'=0'">...</ng-container>
- *   <ng-container *ngPluralCase="'other'">...</ng-container>
- * </some-element>
- *```
+ *     <some-element [ngPlural]="value">
+ *       <ng-container *ngPluralCase="'=0'">...</ng-container>
+ *       <ng-container *ngPluralCase="'other'">...</ng-container>
+ *     </some-element>
  *
  * See {@link NgPlural} for more details and example.
  *

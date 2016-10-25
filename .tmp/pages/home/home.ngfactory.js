@@ -456,7 +456,7 @@ var _View_HomePage0 = (function (_super) {
 }(import1.AppView));
 export function viewFactory_HomePage0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_HomePage === null)) {
-        (renderType_HomePage = viewUtils.createRenderComponentType('', 0, import11.ViewEncapsulation.None, styles_HomePage, {}));
+        (renderType_HomePage = viewUtils.createRenderComponentType('/Users/franciscogarcia/Documents/angular2/ionic2partes-rc/.tmp/pages/home/home.html', 0, import11.ViewEncapsulation.None, styles_HomePage, {}));
     }
     return new _View_HomePage0(viewUtils, parentInjector, declarationEl);
 }

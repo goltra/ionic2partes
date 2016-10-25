@@ -11,6 +11,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 import { unimplemented } from '../facade/errors';
+import { isBlank } from '../facade/lang';
 import { ViewUtils } from './view_utils';
 /**
  * Represents an instance of a Component created via a {@link ComponentFactory}.
@@ -144,7 +145,7 @@ export var ComponentFactory = (function () {
         if (projectableNodes === void 0) { projectableNodes = null; }
         if (rootSelectorOrNode === void 0) { rootSelectorOrNode = null; }
         var vu = injector.get(ViewUtils);
-        if (!projectableNodes) {
+        if (isBlank(projectableNodes)) {
             projectableNodes = [];
         }
         // Note: Host views don't need a declarationAppElement!

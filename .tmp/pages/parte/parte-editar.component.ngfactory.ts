@@ -68,9 +68,9 @@ class _View_ParteEditarComponent_Host0 extends import1.AppView<any> {
     this._appEl_0 = new import2.AppElement(0,(null as any),this,this._el_0);
     var compView_0:any = viewFactory_ParteEditarComponent0(this.viewUtils,this.injector(0),this._appEl_0);
     this._ParteEditarComponent_0_4 = new import3.ParteEditarComponent(this.parentInjector.get(import8.NavController),this.parentInjector.get(import9.NavParams),this.parentInjector.get(import10.FormBuilder),this.parentInjector.get(import11.ParteService),this.parentInjector.get(import12.VariosService));
-    this._appEl_0.initComponent(this._ParteEditarComponent_0_4,([] as any[]),compView_0);
+    this._appEl_0.initComponent(this._ParteEditarComponent_0_4,[],compView_0);
     compView_0.create(this._ParteEditarComponent_0_4,this.projectableNodes,(null as any));
-    this.init(([] as any[]).concat([this._el_0]),[this._el_0],([] as any[]),([] as any[]));
+    this.init([].concat([this._el_0]),[this._el_0],[],[]);
     return this._appEl_0;
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
@@ -84,11 +84,11 @@ class _View_ParteEditarComponent_Host0 extends import1.AppView<any> {
   }
 }
 function viewFactory_ParteEditarComponent_Host0(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<any> {
-  if ((renderType_ParteEditarComponent_Host === (null as any))) { (renderType_ParteEditarComponent_Host = viewUtils.createRenderComponentType('',0,import13.ViewEncapsulation.None,([] as any[]),{})); }
+  if ((renderType_ParteEditarComponent_Host === (null as any))) { (renderType_ParteEditarComponent_Host = viewUtils.createRenderComponentType('',0,import13.ViewEncapsulation.None,[],{})); }
   return new _View_ParteEditarComponent_Host0(viewUtils,parentInjector,declarationEl);
 }
 export const ParteEditarComponentNgFactory:import14.ComponentFactory<import3.ParteEditarComponent> = new import14.ComponentFactory<import3.ParteEditarComponent>('ng-component',viewFactory_ParteEditarComponent_Host0,import3.ParteEditarComponent);
-const styles_ParteEditarComponent:any[] = ([] as any[]);
+const styles_ParteEditarComponent:any[] = [];
 var renderType_ParteEditarComponent:import0.RenderComponentType = (null as any);
 class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarComponent> {
   _viewQuery_SignaturePad_0:import15.QueryList<any>;
@@ -369,21 +369,21 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._appEl_2 = new import2.AppElement(2,0,this,this._el_2);
     var compView_2:any = import32.viewFactory_Navbar0(this.viewUtils,this.injector(2),this._appEl_2);
     this._Navbar_2_4 = new import17.Navbar(this.parentInjector.get(import33.App),this.parentInjector.get(import31.ViewController,(null as any)),this.parentInjector.get(import8.NavController,(null as any)),this.parentInjector.get(import29.Config),new import30.ElementRef(this._el_2),this.renderer);
-    this._appEl_2.initComponent(this._Navbar_2_4,([] as any[]),compView_2);
+    this._appEl_2.initComponent(this._Navbar_2_4,[],compView_2);
     this._text_3 = this.renderer.createText((null as any),'\n        ',(null as any));
     this._el_4 = this.renderer.createElement((null as any),'ion-title',(null as any));
     this._appEl_4 = new import2.AppElement(4,2,this,this._el_4);
     var compView_4:any = import34.viewFactory_ToolbarTitle0(this.viewUtils,this.injector(4),this._appEl_4);
     this._ToolbarTitle_4_4 = new import18.ToolbarTitle(this.parentInjector.get(import29.Config),new import30.ElementRef(this._el_4),this.renderer,this.parentInjector.get(import16.Toolbar,(null as any)),this._Navbar_2_4);
-    this._appEl_4.initComponent(this._ToolbarTitle_4_4,([] as any[]),compView_4);
+    this._appEl_4.initComponent(this._ToolbarTitle_4_4,[],compView_4);
     this._text_5 = this.renderer.createText((null as any),'Editar Parte de trabajo',(null as any));
-    compView_4.create(this._ToolbarTitle_4_4,[([] as any[]).concat([this._text_5])],(null as any));
+    compView_4.create(this._ToolbarTitle_4_4,[[].concat([this._text_5])],(null as any));
     this._text_6 = this.renderer.createText((null as any),'\n    ',(null as any));
     compView_2.create(this._Navbar_2_4,[
-      ([] as any[]),
-      ([] as any[]),
-      ([] as any[]),
-      ([] as any[]).concat([
+      [],
+      [],
+      [],
+      [].concat([
         this._text_3,
         this._el_4,
         this._text_6
@@ -397,7 +397,7 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._appEl_9 = new import2.AppElement(9,(null as any),this,this._el_9);
     var compView_9:any = import35.viewFactory_Content0(this.viewUtils,this.injector(9),this._appEl_9);
     this._Content_9_4 = new import19.Content(this.parentInjector.get(import29.Config),new import30.ElementRef(this._el_9),this.renderer,this.parentInjector.get(import33.App),this.parentInjector.get(import36.Keyboard),this.parentInjector.get(import37.NgZone),this.parentInjector.get(import31.ViewController,(null as any)),this.parentInjector.get(import38.Tabs,(null as any)));
-    this._appEl_9.initComponent(this._Content_9_4,([] as any[]),compView_9);
+    this._appEl_9.initComponent(this._Content_9_4,[],compView_9);
     this._text_10 = this.renderer.createText((null as any),'\n\n    ',(null as any));
     this._el_11 = this.renderer.createElement((null as any),'form',(null as any));
     this._FormGroupDirective_11_3 = new import20.FormGroupDirective((null as any),(null as any));
@@ -413,8 +413,8 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._NgControl_13_5 = this._FormControlName_13_4;
     this._NgControlStatus_13_6 = new import21.NgControlStatus(this._NgControl_13_5);
     this._TextInput_13_7 = new import23.TextInput(this.parentInjector.get(import29.Config),this.parentInjector.get(import40.Form),this.parentInjector.get(import24.Item,(null as any)),this.parentInjector.get(import33.App),this.parentInjector.get(import41.Platform),new import30.ElementRef(this._el_13),this.renderer,this._Content_9_4,this.parentInjector.get(import8.NavController,(null as any)),this._NgControl_13_5);
-    this._appEl_13.initComponent(this._TextInput_13_7,([] as any[]),compView_13);
-    compView_13.create(this._TextInput_13_7,([] as any[]),(null as any));
+    this._appEl_13.initComponent(this._TextInput_13_7,[],compView_13);
+    compView_13.create(this._TextInput_13_7,[],(null as any));
     this._text_14 = this.renderer.createText(this._el_11,'\n        ',(null as any));
     this._el_15 = this.renderer.createElement(this._el_11,'ion-input',(null as any));
     this.renderer.setElementAttribute(this._el_15,'formControlName','clienteid');
@@ -425,8 +425,8 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._NgControl_15_5 = this._FormControlName_15_4;
     this._NgControlStatus_15_6 = new import21.NgControlStatus(this._NgControl_15_5);
     this._TextInput_15_7 = new import23.TextInput(this.parentInjector.get(import29.Config),this.parentInjector.get(import40.Form),this.parentInjector.get(import24.Item,(null as any)),this.parentInjector.get(import33.App),this.parentInjector.get(import41.Platform),new import30.ElementRef(this._el_15),this.renderer,this._Content_9_4,this.parentInjector.get(import8.NavController,(null as any)),this._NgControl_15_5);
-    this._appEl_15.initComponent(this._TextInput_15_7,([] as any[]),compView_15);
-    compView_15.create(this._TextInput_15_7,([] as any[]),(null as any));
+    this._appEl_15.initComponent(this._TextInput_15_7,[],compView_15);
+    compView_15.create(this._TextInput_15_7,[],(null as any));
     this._text_16 = this.renderer.createText(this._el_11,'\n        ',(null as any));
     this._el_17 = this.renderer.createElement(this._el_11,'ion-item',(null as any));
     this.renderer.setElementAttribute(this._el_17,'class','item item-block');
@@ -437,7 +437,7 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._query_Label_17_0 = new import15.QueryList<any>();
     this._query_Button_17_1 = new import15.QueryList<any>();
     this._query_Icon_17_2 = new import15.QueryList<any>();
-    this._appEl_17.initComponent(this._Item_17_4,([] as any[]),compView_17);
+    this._appEl_17.initComponent(this._Item_17_4,[],compView_17);
     this._text_18 = this.renderer.createText((null as any),'\n            ',(null as any));
     this._el_19 = this.renderer.createElement((null as any),'ion-label',(null as any));
     this.renderer.setElementAttribute(this._el_19,'floating','');
@@ -454,22 +454,22 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._FormControlName_22_6 = new import22.FormControlName(this._ControlContainer_11_4,(null as any),(null as any),this._NG_VALUE_ACCESSOR_22_5);
     this._NgControl_22_7 = this._FormControlName_22_6;
     this._NgControlStatus_22_8 = new import21.NgControlStatus(this._NgControl_22_7);
-    this._appEl_22.initComponent(this._DateTime_22_4,([] as any[]),compView_22);
-    compView_22.create(this._DateTime_22_4,([] as any[]),(null as any));
+    this._appEl_22.initComponent(this._DateTime_22_4,[],compView_22);
+    compView_22.create(this._DateTime_22_4,[],(null as any));
     this._text_23 = this.renderer.createText((null as any),'\n        ',(null as any));
     this._query_Label_17_0.reset([this._Label_19_3]);
     this._Item_17_4.contentLabel = this._query_Label_17_0.first;
     compView_17.create(this._Item_17_4,[
-      ([] as any[]),
-      ([] as any[]).concat([this._el_19]),
-      ([] as any[]).concat([
+      [],
+      [].concat([this._el_19]),
+      [].concat([
         this._text_18,
         this._text_21,
         this._text_23
       ]
       ),
-      ([] as any[]).concat([this._el_22]),
-      ([] as any[])
+      [].concat([this._el_22]),
+      []
     ]
     ,(null as any));
     this._text_24 = this.renderer.createText(this._el_11,'\n        ',(null as any));
@@ -482,7 +482,7 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._query_Label_25_0 = new import15.QueryList<any>();
     this._query_Button_25_1 = new import15.QueryList<any>();
     this._query_Icon_25_2 = new import15.QueryList<any>();
-    this._appEl_25.initComponent(this._Item_25_4,([] as any[]),compView_25);
+    this._appEl_25.initComponent(this._Item_25_4,[],compView_25);
     this._text_26 = this.renderer.createText((null as any),'\n            ',(null as any));
     this._el_27 = this.renderer.createElement((null as any),'ion-label',(null as any));
     this.renderer.setElementAttribute(this._el_27,'floating','');
@@ -500,22 +500,22 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._FormControlName_30_6 = new import22.FormControlName(this._ControlContainer_11_4,(null as any),(null as any),this._NG_VALUE_ACCESSOR_30_5);
     this._NgControl_30_7 = this._FormControlName_30_6;
     this._NgControlStatus_30_8 = new import21.NgControlStatus(this._NgControl_30_7);
-    this._appEl_30.initComponent(this._DateTime_30_4,([] as any[]),compView_30);
-    compView_30.create(this._DateTime_30_4,([] as any[]),(null as any));
+    this._appEl_30.initComponent(this._DateTime_30_4,[],compView_30);
+    compView_30.create(this._DateTime_30_4,[],(null as any));
     this._text_31 = this.renderer.createText((null as any),'\n        ',(null as any));
     this._query_Label_25_0.reset([this._Label_27_3]);
     this._Item_25_4.contentLabel = this._query_Label_25_0.first;
     compView_25.create(this._Item_25_4,[
-      ([] as any[]),
-      ([] as any[]).concat([this._el_27]),
-      ([] as any[]).concat([
+      [],
+      [].concat([this._el_27]),
+      [].concat([
         this._text_26,
         this._text_29,
         this._text_31
       ]
       ),
-      ([] as any[]).concat([this._el_30]),
-      ([] as any[])
+      [].concat([this._el_30]),
+      []
     ]
     ,(null as any));
     this._text_32 = this.renderer.createText(this._el_11,'\n        ',(null as any));
@@ -528,7 +528,7 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._query_Label_33_0 = new import15.QueryList<any>();
     this._query_Button_33_1 = new import15.QueryList<any>();
     this._query_Icon_33_2 = new import15.QueryList<any>();
-    this._appEl_33.initComponent(this._Item_33_4,([] as any[]),compView_33);
+    this._appEl_33.initComponent(this._Item_33_4,[],compView_33);
     this._text_34 = this.renderer.createText((null as any),'\n            ',(null as any));
     this._el_35 = this.renderer.createElement((null as any),'ion-label',(null as any));
     this.renderer.setElementAttribute(this._el_35,'floating','');
@@ -546,22 +546,22 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._FormControlName_38_6 = new import22.FormControlName(this._ControlContainer_11_4,(null as any),(null as any),this._NG_VALUE_ACCESSOR_38_5);
     this._NgControl_38_7 = this._FormControlName_38_6;
     this._NgControlStatus_38_8 = new import21.NgControlStatus(this._NgControl_38_7);
-    this._appEl_38.initComponent(this._DateTime_38_4,([] as any[]),compView_38);
-    compView_38.create(this._DateTime_38_4,([] as any[]),(null as any));
+    this._appEl_38.initComponent(this._DateTime_38_4,[],compView_38);
+    compView_38.create(this._DateTime_38_4,[],(null as any));
     this._text_39 = this.renderer.createText((null as any),'\n        ',(null as any));
     this._query_Label_33_0.reset([this._Label_35_3]);
     this._Item_33_4.contentLabel = this._query_Label_33_0.first;
     compView_33.create(this._Item_33_4,[
-      ([] as any[]),
-      ([] as any[]).concat([this._el_35]),
-      ([] as any[]).concat([
+      [],
+      [].concat([this._el_35]),
+      [].concat([
         this._text_34,
         this._text_37,
         this._text_39
       ]
       ),
-      ([] as any[]).concat([this._el_38]),
-      ([] as any[])
+      [].concat([this._el_38]),
+      []
     ]
     ,(null as any));
     this._text_40 = this.renderer.createText(this._el_11,'\n        ',(null as any));
@@ -574,7 +574,7 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._query_Label_41_0 = new import15.QueryList<any>();
     this._query_Button_41_1 = new import15.QueryList<any>();
     this._query_Icon_41_2 = new import15.QueryList<any>();
-    this._appEl_41.initComponent(this._Item_41_4,([] as any[]),compView_41);
+    this._appEl_41.initComponent(this._Item_41_4,[],compView_41);
     this._text_42 = this.renderer.createText((null as any),'\n            ',(null as any));
     this._el_43 = this.renderer.createElement((null as any),'ion-label',(null as any));
     this.renderer.setElementAttribute(this._el_43,'floating','');
@@ -590,22 +590,22 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._NgControl_46_5 = this._FormControlName_46_4;
     this._NgControlStatus_46_6 = new import21.NgControlStatus(this._NgControl_46_5);
     this._TextArea_46_7 = new import23.TextArea(this.parentInjector.get(import29.Config),this.parentInjector.get(import40.Form),this._Item_41_4,this.parentInjector.get(import33.App),this.parentInjector.get(import41.Platform),new import30.ElementRef(this._el_46),this.renderer,this._Content_9_4,this.parentInjector.get(import8.NavController,(null as any)),this._NgControl_46_5);
-    this._appEl_46.initComponent(this._TextArea_46_7,([] as any[]),compView_46);
-    compView_46.create(this._TextArea_46_7,([] as any[]),(null as any));
+    this._appEl_46.initComponent(this._TextArea_46_7,[],compView_46);
+    compView_46.create(this._TextArea_46_7,[],(null as any));
     this._text_47 = this.renderer.createText((null as any),'\n        ',(null as any));
     this._query_Label_41_0.reset([this._Label_43_3]);
     this._Item_41_4.contentLabel = this._query_Label_41_0.first;
     compView_41.create(this._Item_41_4,[
-      ([] as any[]),
-      ([] as any[]).concat([this._el_43]),
-      ([] as any[]).concat([
+      [],
+      [].concat([this._el_43]),
+      [].concat([
         this._text_42,
         this._text_45,
         this._text_47
       ]
       ),
-      ([] as any[]).concat([this._el_46]),
-      ([] as any[])
+      [].concat([this._el_46]),
+      []
     ]
     ,(null as any));
     this._text_48 = this.renderer.createText(this._el_11,'\n        ',(null as any));
@@ -618,7 +618,7 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._query_Label_49_0 = new import15.QueryList<any>();
     this._query_Button_49_1 = new import15.QueryList<any>();
     this._query_Icon_49_2 = new import15.QueryList<any>();
-    this._appEl_49.initComponent(this._Item_49_4,([] as any[]),compView_49);
+    this._appEl_49.initComponent(this._Item_49_4,[],compView_49);
     this._text_50 = this.renderer.createText((null as any),'\n            ',(null as any));
     this._el_51 = this.renderer.createElement((null as any),'ion-label',(null as any));
     this.renderer.setElementAttribute(this._el_51,'floating','');
@@ -633,22 +633,22 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._NgControl_54_5 = this._FormControlName_54_4;
     this._NgControlStatus_54_6 = new import21.NgControlStatus(this._NgControl_54_5);
     this._TextInput_54_7 = new import23.TextInput(this.parentInjector.get(import29.Config),this.parentInjector.get(import40.Form),this._Item_49_4,this.parentInjector.get(import33.App),this.parentInjector.get(import41.Platform),new import30.ElementRef(this._el_54),this.renderer,this._Content_9_4,this.parentInjector.get(import8.NavController,(null as any)),this._NgControl_54_5);
-    this._appEl_54.initComponent(this._TextInput_54_7,([] as any[]),compView_54);
-    compView_54.create(this._TextInput_54_7,([] as any[]),(null as any));
+    this._appEl_54.initComponent(this._TextInput_54_7,[],compView_54);
+    compView_54.create(this._TextInput_54_7,[],(null as any));
     this._text_55 = this.renderer.createText((null as any),'\n        ',(null as any));
     this._query_Label_49_0.reset([this._Label_51_3]);
     this._Item_49_4.contentLabel = this._query_Label_49_0.first;
     compView_49.create(this._Item_49_4,[
-      ([] as any[]),
-      ([] as any[]).concat([this._el_51]),
-      ([] as any[]).concat([
+      [],
+      [].concat([this._el_51]),
+      [].concat([
         this._text_50,
         this._text_53,
         this._text_55
       ]
       ),
-      ([] as any[]).concat([this._el_54]),
-      ([] as any[])
+      [].concat([this._el_54]),
+      []
     ]
     ,(null as any));
     this._text_56 = this.renderer.createText(this._el_11,'\n        ',(null as any));
@@ -661,7 +661,7 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._query_Label_57_0 = new import15.QueryList<any>();
     this._query_Button_57_1 = new import15.QueryList<any>();
     this._query_Icon_57_2 = new import15.QueryList<any>();
-    this._appEl_57.initComponent(this._Item_57_4,([] as any[]),compView_57);
+    this._appEl_57.initComponent(this._Item_57_4,[],compView_57);
     this._text_58 = this.renderer.createText((null as any),'\n            ',(null as any));
     this._el_59 = this.renderer.createElement((null as any),'p',(null as any));
     this._el_60 = this.renderer.createElement(this._el_59,'button',(null as any));
@@ -670,24 +670,24 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._appEl_60 = new import2.AppElement(60,59,this,this._el_60);
     var compView_60:any = import45.viewFactory_Button0(this.viewUtils,this.injector(60),this._appEl_60);
     this._Button_60_4 = new import27.Button((null as any),'',this.parentInjector.get(import29.Config),new import30.ElementRef(this._el_60),this.renderer);
-    this._appEl_60.initComponent(this._Button_60_4,([] as any[]),compView_60);
+    this._appEl_60.initComponent(this._Button_60_4,[],compView_60);
     this._text_61 = this.renderer.createText((null as any),'Firmar',(null as any));
-    compView_60.create(this._Button_60_4,[([] as any[]).concat([this._text_61])],(null as any));
+    compView_60.create(this._Button_60_4,[[].concat([this._text_61])],(null as any));
     this._text_62 = this.renderer.createText((null as any),'\n            ',(null as any));
     this._el_63 = this.renderer.createElement((null as any),'signature-pad',(null as any));
     this._appEl_63 = new import2.AppElement(63,57,this,this._el_63);
     var compView_63:any = import46.viewFactory_SignaturePad0(this.viewUtils,this.injector(63),this._appEl_63);
     this._SignaturePad_63_4 = new import28.SignaturePad(new import30.ElementRef(this._el_63));
-    this._appEl_63.initComponent(this._SignaturePad_63_4,([] as any[]),compView_63);
-    compView_63.create(this._SignaturePad_63_4,([] as any[]),(null as any));
+    this._appEl_63.initComponent(this._SignaturePad_63_4,[],compView_63);
+    compView_63.create(this._SignaturePad_63_4,[],(null as any));
     this._text_64 = this.renderer.createText((null as any),'    \n            ',(null as any));
     this._text_65 = this.renderer.createText((null as any),'\n        ',(null as any));
-    this._query_Label_57_0.reset(([] as any[]));
+    this._query_Label_57_0.reset([]);
     this._Item_57_4.contentLabel = this._query_Label_57_0.first;
     compView_57.create(this._Item_57_4,[
-      ([] as any[]),
-      ([] as any[]),
-      ([] as any[]).concat([
+      [],
+      [],
+      [].concat([
         this._text_58,
         this._el_59,
         this._text_62,
@@ -696,8 +696,8 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
         this._text_65
       ]
       ),
-      ([] as any[]),
-      ([] as any[])
+      [],
+      []
     ]
     ,(null as any));
     this._text_66 = this.renderer.createText(this._el_11,'\n        ',(null as any));
@@ -710,7 +710,7 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._query_Label_67_0 = new import15.QueryList<any>();
     this._query_Button_67_1 = new import15.QueryList<any>();
     this._query_Icon_67_2 = new import15.QueryList<any>();
-    this._appEl_67.initComponent(this._Item_67_4,([] as any[]),compView_67);
+    this._appEl_67.initComponent(this._Item_67_4,[],compView_67);
     this._text_68 = this.renderer.createText((null as any),'\n            ',(null as any));
     this._el_69 = this.renderer.createElement((null as any),'button',(null as any));
     this.renderer.setElementAttribute(this._el_69,'ion-button','');
@@ -718,9 +718,9 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._appEl_69 = new import2.AppElement(69,67,this,this._el_69);
     var compView_69:any = import45.viewFactory_Button0(this.viewUtils,this.injector(69),this._appEl_69);
     this._Button_69_4 = new import27.Button((null as any),'',this.parentInjector.get(import29.Config),new import30.ElementRef(this._el_69),this.renderer);
-    this._appEl_69.initComponent(this._Button_69_4,([] as any[]),compView_69);
+    this._appEl_69.initComponent(this._Button_69_4,[],compView_69);
     this._text_70 = this.renderer.createText((null as any),'Enviar',(null as any));
-    compView_69.create(this._Button_69_4,[([] as any[]).concat([this._text_70])],(null as any));
+    compView_69.create(this._Button_69_4,[[].concat([this._text_70])],(null as any));
     this._text_71 = this.renderer.createText((null as any),'\n            ',(null as any));
     this._el_72 = this.renderer.createElement((null as any),'button',(null as any));
     this.renderer.setElementAttribute(this._el_72,'color','danger');
@@ -729,16 +729,16 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._appEl_72 = new import2.AppElement(72,67,this,this._el_72);
     var compView_72:any = import45.viewFactory_Button0(this.viewUtils,this.injector(72),this._appEl_72);
     this._Button_72_4 = new import27.Button((null as any),'',this.parentInjector.get(import29.Config),new import30.ElementRef(this._el_72),this.renderer);
-    this._appEl_72.initComponent(this._Button_72_4,([] as any[]),compView_72);
+    this._appEl_72.initComponent(this._Button_72_4,[],compView_72);
     this._text_73 = this.renderer.createText((null as any),'Cancelar',(null as any));
-    compView_72.create(this._Button_72_4,[([] as any[]).concat([this._text_73])],(null as any));
+    compView_72.create(this._Button_72_4,[[].concat([this._text_73])],(null as any));
     this._text_74 = this.renderer.createText((null as any),'\n        ',(null as any));
-    this._query_Label_67_0.reset(([] as any[]));
+    this._query_Label_67_0.reset([]);
     this._Item_67_4.contentLabel = this._query_Label_67_0.first;
     compView_67.create(this._Item_67_4,[
-      ([] as any[]),
-      ([] as any[]),
-      ([] as any[]).concat([
+      [],
+      [],
+      [].concat([
         this._text_68,
         this._el_69,
         this._text_71,
@@ -746,8 +746,8 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
         this._text_74
       ]
       ),
-      ([] as any[]),
-      ([] as any[])
+      [],
+      []
     ]
     ,(null as any));
     this._text_75 = this.renderer.createText(this._el_11,'\n        \n        ',(null as any));
@@ -760,37 +760,37 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._query_Label_76_0 = new import15.QueryList<any>();
     this._query_Button_76_1 = new import15.QueryList<any>();
     this._query_Icon_76_2 = new import15.QueryList<any>();
-    this._appEl_76.initComponent(this._Item_76_4,([] as any[]),compView_76);
+    this._appEl_76.initComponent(this._Item_76_4,[],compView_76);
     this._text_77 = this.renderer.createText((null as any),'\n            ',(null as any));
     this._el_78 = this.renderer.createElement((null as any),'img',(null as any));
     this.renderer.setElementAttribute(this._el_78,'alt','firma');
     this._text_79 = this.renderer.createText((null as any),'\n        ',(null as any));
-    this._query_Label_76_0.reset(([] as any[]));
+    this._query_Label_76_0.reset([]);
     this._Item_76_4.contentLabel = this._query_Label_76_0.first;
     compView_76.create(this._Item_76_4,[
-      ([] as any[]),
-      ([] as any[]),
-      ([] as any[]).concat([
+      [],
+      [],
+      [].concat([
         this._text_77,
         this._el_78,
         this._text_79
       ]
       ),
-      ([] as any[]),
-      ([] as any[])
+      [],
+      []
     ]
     ,(null as any));
     this._text_80 = this.renderer.createText(this._el_11,'\n    ',(null as any));
     this._text_81 = this.renderer.createText((null as any),'\n    \n\n    ',(null as any));
     compView_9.create(this._Content_9_4,[
-      ([] as any[]),
-      ([] as any[]).concat([
+      [],
+      [].concat([
         this._text_10,
         this._el_11,
         this._text_81
       ]
       ),
-      ([] as any[])
+      []
     ]
     ,(null as any));
     this._expr_0 = import7.UNINITIALIZED;
@@ -879,7 +879,7 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this._expr_82 = import7.UNINITIALIZED;
     this._viewQuery_SignaturePad_0.reset([this._SignaturePad_63_4]);
     this.context.signaturePad = this._viewQuery_SignaturePad_0.first;
-    this.init(([] as any[]),[
+    this.init([],[
       this._el_0,
       this._text_1,
       this._el_2,
@@ -1166,52 +1166,52 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
     this.detectContentChildrenChanges(throwOnChange);
     if (!throwOnChange) {
       if (this._query_Button_17_1.dirty) {
-        this._query_Button_17_1.reset(([] as any[]));
+        this._query_Button_17_1.reset([]);
         this._Item_17_4._buttons = this._query_Button_17_1;
         this._query_Button_17_1.notifyOnChanges();
       }
       if (this._query_Icon_17_2.dirty) {
-        this._query_Icon_17_2.reset(([] as any[]));
+        this._query_Icon_17_2.reset([]);
         this._Item_17_4._icons = this._query_Icon_17_2;
         this._query_Icon_17_2.notifyOnChanges();
       }
       if (this._query_Button_25_1.dirty) {
-        this._query_Button_25_1.reset(([] as any[]));
+        this._query_Button_25_1.reset([]);
         this._Item_25_4._buttons = this._query_Button_25_1;
         this._query_Button_25_1.notifyOnChanges();
       }
       if (this._query_Icon_25_2.dirty) {
-        this._query_Icon_25_2.reset(([] as any[]));
+        this._query_Icon_25_2.reset([]);
         this._Item_25_4._icons = this._query_Icon_25_2;
         this._query_Icon_25_2.notifyOnChanges();
       }
       if (this._query_Button_33_1.dirty) {
-        this._query_Button_33_1.reset(([] as any[]));
+        this._query_Button_33_1.reset([]);
         this._Item_33_4._buttons = this._query_Button_33_1;
         this._query_Button_33_1.notifyOnChanges();
       }
       if (this._query_Icon_33_2.dirty) {
-        this._query_Icon_33_2.reset(([] as any[]));
+        this._query_Icon_33_2.reset([]);
         this._Item_33_4._icons = this._query_Icon_33_2;
         this._query_Icon_33_2.notifyOnChanges();
       }
       if (this._query_Button_41_1.dirty) {
-        this._query_Button_41_1.reset(([] as any[]));
+        this._query_Button_41_1.reset([]);
         this._Item_41_4._buttons = this._query_Button_41_1;
         this._query_Button_41_1.notifyOnChanges();
       }
       if (this._query_Icon_41_2.dirty) {
-        this._query_Icon_41_2.reset(([] as any[]));
+        this._query_Icon_41_2.reset([]);
         this._Item_41_4._icons = this._query_Icon_41_2;
         this._query_Icon_41_2.notifyOnChanges();
       }
       if (this._query_Button_49_1.dirty) {
-        this._query_Button_49_1.reset(([] as any[]));
+        this._query_Button_49_1.reset([]);
         this._Item_49_4._buttons = this._query_Button_49_1;
         this._query_Button_49_1.notifyOnChanges();
       }
       if (this._query_Icon_49_2.dirty) {
-        this._query_Icon_49_2.reset(([] as any[]));
+        this._query_Icon_49_2.reset([]);
         this._Item_49_4._icons = this._query_Icon_49_2;
         this._query_Icon_49_2.notifyOnChanges();
       }
@@ -1221,7 +1221,7 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
         this._query_Button_57_1.notifyOnChanges();
       }
       if (this._query_Icon_57_2.dirty) {
-        this._query_Icon_57_2.reset(([] as any[]));
+        this._query_Icon_57_2.reset([]);
         this._Item_57_4._icons = this._query_Icon_57_2;
         this._query_Icon_57_2.notifyOnChanges();
       }
@@ -1235,17 +1235,17 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
         this._query_Button_67_1.notifyOnChanges();
       }
       if (this._query_Icon_67_2.dirty) {
-        this._query_Icon_67_2.reset(([] as any[]));
+        this._query_Icon_67_2.reset([]);
         this._Item_67_4._icons = this._query_Icon_67_2;
         this._query_Icon_67_2.notifyOnChanges();
       }
       if (this._query_Button_76_1.dirty) {
-        this._query_Button_76_1.reset(([] as any[]));
+        this._query_Button_76_1.reset([]);
         this._Item_76_4._buttons = this._query_Button_76_1;
         this._query_Button_76_1.notifyOnChanges();
       }
       if (this._query_Icon_76_2.dirty) {
-        this._query_Icon_76_2.reset(([] as any[]));
+        this._query_Icon_76_2.reset([]);
         this._Item_76_4._icons = this._query_Icon_76_2;
         this._query_Icon_76_2.notifyOnChanges();
       }
@@ -1581,7 +1581,7 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
   }
   private _handle_submit_11_1($event:any):boolean {
     this.markPathToRootAsCheckOnce();
-    const pd_0:any = ((<any>this._FormGroupDirective_11_3.onSubmit($event)) !== false);
+    const pd_0:any = ((<any>this._FormGroupDirective_11_3.onSubmit()) !== false);
     return (true && pd_0);
   }
   private _handle_reset_11_2($event:any):boolean {
@@ -1631,6 +1631,6 @@ class _View_ParteEditarComponent0 extends import1.AppView<import3.ParteEditarCom
   }
 }
 export function viewFactory_ParteEditarComponent0(viewUtils:import4.ViewUtils,parentInjector:import5.Injector,declarationEl:import2.AppElement):import1.AppView<import3.ParteEditarComponent> {
-  if ((renderType_ParteEditarComponent === (null as any))) { (renderType_ParteEditarComponent = viewUtils.createRenderComponentType('',0,import13.ViewEncapsulation.None,styles_ParteEditarComponent,{})); }
+  if ((renderType_ParteEditarComponent === (null as any))) { (renderType_ParteEditarComponent = viewUtils.createRenderComponentType('/Users/franciscogarcia/Documents/angular2/ionic2partes-rc/.tmp/pages/parte/parte-editar.component.html',0,import13.ViewEncapsulation.None,styles_ParteEditarComponent,{})); }
   return new _View_ParteEditarComponent0(viewUtils,parentInjector,declarationEl);
 }

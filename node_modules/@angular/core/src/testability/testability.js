@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { Injectable } from '../di';
-import { MapWrapper } from '../facade/collection';
+import { Map, MapWrapper } from '../facade/collection';
 import { scheduleMicroTask } from '../facade/lang';
 import { NgZone } from '../zone/ng_zone';
 /**
@@ -92,7 +92,6 @@ export var Testability = (function () {
         this._runCallbacksIfReady();
     };
     Testability.prototype.getPendingRequestCount = function () { return this._pendingCount; };
-    /** @deprecated use findProviders */
     Testability.prototype.findBindings = function (using, provider, exactMatch) {
         // TODO(juliemr): implement.
         return [];

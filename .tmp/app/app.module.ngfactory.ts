@@ -99,6 +99,7 @@ import * as import91 from '@angular/core/src/change_detection/differs/keyvalue_d
 import * as import92 from '@angular/http/src/interfaces';
 import * as import93 from '@angular/http/src/http';
 import * as import94 from 'ionic-angular/components/app/app-root';
+import * as import95 from '@angular/core/src/i18n/tokens';
 class AppModuleInjector extends import0.NgModuleInjector<import1.AppModule> {
   _CommonModule_0:import2.CommonModule;
   _ApplicationModule_1:import3.ApplicationModule;
@@ -181,6 +182,7 @@ class AppModuleInjector extends import0.NgModuleInjector<import1.AppModule> {
   __ClienteService_78:import48.ClienteService;
   __ParteService_79:import49.ParteService;
   __SQLite_80:import50.SQLite;
+  __TRANSLATIONS_FORMAT_81:any;
   constructor(parent:import51.Injector) {
     super(parent,[
       import52.ActionSheetCmpNgFactory,
@@ -203,7 +205,7 @@ class AppModuleInjector extends import0.NgModuleInjector<import1.AppModule> {
     ,[import54.IonicAppNgFactory]);
   }
   get _LOCALE_ID_10():any {
-    if ((this.__LOCALE_ID_10 == (null as any))) { (this.__LOCALE_ID_10 = 'en-US'); }
+    if ((this.__LOCALE_ID_10 == (null as any))) { (this.__LOCALE_ID_10 = (null as any)); }
     return this.__LOCALE_ID_10;
   }
   get _NgLocalization_11():import10.NgLocaleLocalization {
@@ -427,6 +429,10 @@ class AppModuleInjector extends import0.NgModuleInjector<import1.AppModule> {
     if ((this.__SQLite_80 == (null as any))) { (this.__SQLite_80 = new import50.SQLite()); }
     return this.__SQLite_80;
   }
+  get _TRANSLATIONS_FORMAT_81():any {
+    if ((this.__TRANSLATIONS_FORMAT_81 == (null as any))) { (this.__TRANSLATIONS_FORMAT_81 = (null as any)); }
+    return this.__TRANSLATIONS_FORMAT_81;
+  }
   createInternal():import1.AppModule {
     this._CommonModule_0 = new import2.CommonModule();
     this._ApplicationModule_1 = new import3.ApplicationModule();
@@ -544,6 +550,7 @@ class AppModuleInjector extends import0.NgModuleInjector<import1.AppModule> {
     if ((token === import48.ClienteService)) { return this._ClienteService_78; }
     if ((token === import49.ParteService)) { return this._ParteService_79; }
     if ((token === import50.SQLite)) { return this._SQLite_80; }
+    if ((token === import95.TRANSLATIONS_FORMAT)) { return this._TRANSLATIONS_FORMAT_81; }
     return notFoundResult;
   }
   destroyInternal():void {

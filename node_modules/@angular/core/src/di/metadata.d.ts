@@ -228,7 +228,8 @@ export declare const SkipSelf: SkipSelfDecorator;
 export interface HostDecorator {
     /**
      * @whatItDoes Specifies that an injector should retrieve a dependency from any injector until
-     * reaching the host element of the current component.
+     * reaching the
+     * host element of the current component.
      * @howToUse
      * ```
      * @Injectable()

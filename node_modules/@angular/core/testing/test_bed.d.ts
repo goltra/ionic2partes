@@ -19,11 +19,11 @@ export declare class TestComponentRenderer {
 /**
  * @experimental
  */
-export declare const ComponentFixtureAutoDetect: OpaqueToken;
+export declare var ComponentFixtureAutoDetect: OpaqueToken;
 /**
  * @experimental
  */
-export declare const ComponentFixtureNoNgZone: OpaqueToken;
+export declare var ComponentFixtureNoNgZone: OpaqueToken;
 /**
  * @experimental
  */
@@ -34,13 +34,7 @@ export declare type TestModuleMetadata = {
     schemas?: Array<SchemaMetadata | any[]>;
 };
 /**
- * @whatItDoes Configures and initializes environment for unit testing and provides methods for
- * creating components and services in unit tests.
- * @description
- *
- * TestBed is the primary api for writing unit tests for Angular applications and libraries.
- *
- * @stable
+ * @experimental
  */
 export declare class TestBed implements Injector {
     /**

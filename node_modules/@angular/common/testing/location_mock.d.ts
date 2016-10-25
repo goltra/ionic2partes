@@ -13,8 +13,6 @@ import { Location } from '@angular/common';
  */
 export declare class SpyLocation implements Location {
     urlChanges: string[];
-    private _history;
-    private _historyIndex;
     setInitialPath(url: string): void;
     setBaseHref(url: string): void;
     path(): string;

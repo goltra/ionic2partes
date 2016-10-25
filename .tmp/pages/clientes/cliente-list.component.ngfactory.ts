@@ -68,9 +68,9 @@ class _View_ClienteListComponent_Host0 extends import1.AppView<any> {
     var compView_0:any = viewFactory_ClienteListComponent0(this.viewUtils,this.injector(0),this._appEl_0);
     this._ClienteService_0_4 = new import3.ClienteService(this.parentInjector.get(import9.Platform),this.parentInjector.get(import10.DatabaseProvider));
     this._ClienteListComponent_0_5 = new import4.ClienteListComponent(this.parentInjector.get(import11.NavController),this.parentInjector.get(import12.NavParams),this.parentInjector.get(import13.ActionSheetController),this._ClienteService_0_4,this.parentInjector.get(import14.VariosService));
-    this._appEl_0.initComponent(this._ClienteListComponent_0_5,([] as any[]),compView_0);
+    this._appEl_0.initComponent(this._ClienteListComponent_0_5,[],compView_0);
     compView_0.create(this._ClienteListComponent_0_5,this.projectableNodes,(null as any));
-    this.init(([] as any[]).concat([this._el_0]),[this._el_0],([] as any[]),([] as any[]));
+    this.init([].concat([this._el_0]),[this._el_0],[],[]);
     return this._appEl_0;
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
@@ -85,11 +85,11 @@ class _View_ClienteListComponent_Host0 extends import1.AppView<any> {
   }
 }
 function viewFactory_ClienteListComponent_Host0(viewUtils:import5.ViewUtils,parentInjector:import6.Injector,declarationEl:import2.AppElement):import1.AppView<any> {
-  if ((renderType_ClienteListComponent_Host === (null as any))) { (renderType_ClienteListComponent_Host = viewUtils.createRenderComponentType('',0,import15.ViewEncapsulation.None,([] as any[]),{})); }
+  if ((renderType_ClienteListComponent_Host === (null as any))) { (renderType_ClienteListComponent_Host = viewUtils.createRenderComponentType('',0,import15.ViewEncapsulation.None,[],{})); }
   return new _View_ClienteListComponent_Host0(viewUtils,parentInjector,declarationEl);
 }
 export const ClienteListComponentNgFactory:import16.ComponentFactory<import4.ClienteListComponent> = new import16.ComponentFactory<import4.ClienteListComponent>('ng-component',viewFactory_ClienteListComponent_Host0,import4.ClienteListComponent);
-const styles_ClienteListComponent:any[] = ([] as any[]);
+const styles_ClienteListComponent:any[] = [];
 var renderType_ClienteListComponent:import0.RenderComponentType = (null as any);
 class _View_ClienteListComponent0 extends import1.AppView<import4.ClienteListComponent> {
   _el_0:any;
@@ -173,7 +173,7 @@ class _View_ClienteListComponent0 extends import1.AppView<import4.ClienteListCom
     this._appEl_2 = new import2.AppElement(2,0,this,this._el_2);
     var compView_2:any = import33.viewFactory_Navbar0(this.viewUtils,this.injector(2),this._appEl_2);
     this._Navbar_2_4 = new import18.Navbar(this.parentInjector.get(import34.App),this.parentInjector.get(import32.ViewController,(null as any)),this.parentInjector.get(import11.NavController,(null as any)),this.parentInjector.get(import30.Config),new import31.ElementRef(this._el_2),this.renderer);
-    this._appEl_2.initComponent(this._Navbar_2_4,([] as any[]),compView_2);
+    this._appEl_2.initComponent(this._Navbar_2_4,[],compView_2);
     this._text_3 = this.renderer.createText((null as any),'\n    ',(null as any));
     this._el_4 = this.renderer.createElement((null as any),'button',(null as any));
     this.renderer.setElementAttribute(this._el_4,'ion-button','');
@@ -184,14 +184,14 @@ class _View_ClienteListComponent0 extends import1.AppView<import4.ClienteListCom
     this._MenuToggle_4_5 = new import20.MenuToggle(this.parentInjector.get(import36.MenuController),new import31.ElementRef(this._el_4),this.parentInjector.get(import32.ViewController,(null as any)),this._Navbar_2_4);
     this._ToolbarItem_4_6 = new import21.ToolbarItem(this.parentInjector.get(import30.Config),new import31.ElementRef(this._el_4),this.renderer,this.parentInjector.get(import17.Toolbar,(null as any)),this._Navbar_2_4);
     this._query_Button_4_0 = new import22.QueryList<any>();
-    this._appEl_4.initComponent(this._Button_4_4,([] as any[]),compView_4);
+    this._appEl_4.initComponent(this._Button_4_4,[],compView_4);
     this._text_5 = this.renderer.createText((null as any),'\n      ',(null as any));
     this._el_6 = this.renderer.createElement((null as any),'ion-icon',(null as any));
     this.renderer.setElementAttribute(this._el_6,'name','menu');
     this.renderer.setElementAttribute(this._el_6,'role','img');
     this._Icon_6_3 = new import23.Icon(this.parentInjector.get(import30.Config),new import31.ElementRef(this._el_6),this.renderer);
     this._text_7 = this.renderer.createText((null as any),'\n    ',(null as any));
-      compView_4.create(this._Button_4_4,[([] as any[]).concat([
+      compView_4.create(this._Button_4_4,[[].concat([
         this._text_5,
         this._el_6,
         this._text_7
@@ -202,15 +202,15 @@ class _View_ClienteListComponent0 extends import1.AppView<import4.ClienteListCom
     this._appEl_9 = new import2.AppElement(9,2,this,this._el_9);
     var compView_9:any = import37.viewFactory_ToolbarTitle0(this.viewUtils,this.injector(9),this._appEl_9);
     this._ToolbarTitle_9_4 = new import24.ToolbarTitle(this.parentInjector.get(import30.Config),new import31.ElementRef(this._el_9),this.renderer,this.parentInjector.get(import17.Toolbar,(null as any)),this._Navbar_2_4);
-    this._appEl_9.initComponent(this._ToolbarTitle_9_4,([] as any[]),compView_9);
+    this._appEl_9.initComponent(this._ToolbarTitle_9_4,[],compView_9);
     this._text_10 = this.renderer.createText((null as any),'Clientes',(null as any));
-    compView_9.create(this._ToolbarTitle_9_4,[([] as any[]).concat([this._text_10])],(null as any));
+    compView_9.create(this._ToolbarTitle_9_4,[[].concat([this._text_10])],(null as any));
     this._text_11 = this.renderer.createText((null as any),'\n  ',(null as any));
     compView_2.create(this._Navbar_2_4,[
-      ([] as any[]).concat([this._el_4]),
-      ([] as any[]),
-      ([] as any[]),
-      ([] as any[]).concat([
+      [].concat([this._el_4]),
+      [],
+      [],
+      [].concat([
         this._text_3,
         this._text_8,
         this._el_9,
@@ -225,7 +225,7 @@ class _View_ClienteListComponent0 extends import1.AppView<import4.ClienteListCom
     this._appEl_14 = new import2.AppElement(14,(null as any),this,this._el_14);
     var compView_14:any = import38.viewFactory_Content0(this.viewUtils,this.injector(14),this._appEl_14);
     this._Content_14_4 = new import25.Content(this.parentInjector.get(import30.Config),new import31.ElementRef(this._el_14),this.renderer,this.parentInjector.get(import34.App),this.parentInjector.get(import39.Keyboard),this.parentInjector.get(import40.NgZone),this.parentInjector.get(import32.ViewController,(null as any)),this.parentInjector.get(import41.Tabs,(null as any)));
-    this._appEl_14.initComponent(this._Content_14_4,([] as any[]),compView_14);
+    this._appEl_14.initComponent(this._Content_14_4,[],compView_14);
     this._text_15 = this.renderer.createText((null as any),'\n\n',(null as any));
     this._el_16 = this.renderer.createElement((null as any),'ion-list',(null as any));
     this._List_16_3 = new import26.List(this.parentInjector.get(import30.Config),new import31.ElementRef(this._el_16),this.renderer,this.parentInjector.get(import42.GestureController));
@@ -239,16 +239,16 @@ class _View_ClienteListComponent0 extends import1.AppView<import4.ClienteListCom
     this._query_Label_18_0 = new import22.QueryList<any>();
     this._query_Button_18_1 = new import22.QueryList<any>();
     this._query_Icon_18_2 = new import22.QueryList<any>();
-    this._appEl_18.initComponent(this._Item_18_4,([] as any[]),compView_18);
+    this._appEl_18.initComponent(this._Item_18_4,[],compView_18);
     this._text_19 = this.renderer.createText((null as any),'Lista de Clientes',(null as any));
-    this._query_Label_18_0.reset(([] as any[]));
+    this._query_Label_18_0.reset([]);
     this._Item_18_4.contentLabel = this._query_Label_18_0.first;
     compView_18.create(this._Item_18_4,[
-      ([] as any[]),
-      ([] as any[]),
-      ([] as any[]).concat([this._text_19]),
-      ([] as any[]),
-      ([] as any[])
+      [],
+      [],
+      [].concat([this._text_19]),
+      [],
+      []
     ]
     ,(null as any));
     this._text_20 = this.renderer.createText(this._el_16,'\n  ',(null as any));
@@ -261,24 +261,24 @@ class _View_ClienteListComponent0 extends import1.AppView<import4.ClienteListCom
     this._query_Label_21_0 = new import22.QueryList<any>();
     this._query_Button_21_1 = new import22.QueryList<any>();
     this._query_Icon_21_2 = new import22.QueryList<any>();
-    this._appEl_21.initComponent(this._Item_21_4,([] as any[]),compView_21);
+    this._appEl_21.initComponent(this._Item_21_4,[],compView_21);
     this._el_22 = this.renderer.createElement((null as any),'button',(null as any));
     this.renderer.setElementAttribute(this._el_22,'full','');
     this.renderer.setElementAttribute(this._el_22,'ion-button','');
     this._appEl_22 = new import2.AppElement(22,21,this,this._el_22);
     var compView_22:any = import35.viewFactory_Button0(this.viewUtils,this.injector(22),this._appEl_22);
     this._Button_22_4 = new import19.Button((null as any),'',this.parentInjector.get(import30.Config),new import31.ElementRef(this._el_22),this.renderer);
-    this._appEl_22.initComponent(this._Button_22_4,([] as any[]),compView_22);
+    this._appEl_22.initComponent(this._Button_22_4,[],compView_22);
     this._text_23 = this.renderer.createText((null as any),'Añadir cliente',(null as any));
-    compView_22.create(this._Button_22_4,[([] as any[]).concat([this._text_23])],(null as any));
-    this._query_Label_21_0.reset(([] as any[]));
+    compView_22.create(this._Button_22_4,[[].concat([this._text_23])],(null as any));
+    this._query_Label_21_0.reset([]);
     this._Item_21_4.contentLabel = this._query_Label_21_0.first;
     compView_21.create(this._Item_21_4,[
-      ([] as any[]),
-      ([] as any[]),
-      ([] as any[]).concat([this._el_22]),
-      ([] as any[]),
-      ([] as any[])
+      [],
+      [],
+      [].concat([this._el_22]),
+      [],
+      []
     ]
     ,(null as any));
     this._text_24 = this.renderer.createText(this._el_16,'\n  ',(null as any));
@@ -289,14 +289,14 @@ class _View_ClienteListComponent0 extends import1.AppView<import4.ClienteListCom
     this._text_26 = this.renderer.createText(this._el_16,'\n',(null as any));
     this._text_27 = this.renderer.createText((null as any),'\n\n',(null as any));
     compView_14.create(this._Content_14_4,[
-      ([] as any[]),
-      ([] as any[]).concat([
+      [],
+      [].concat([
         this._text_15,
         this._el_16,
         this._text_27
       ]
       ),
-      ([] as any[])
+      []
     ]
     ,(null as any));
     this._expr_0 = import8.UNINITIALIZED;
@@ -310,7 +310,7 @@ class _View_ClienteListComponent0 extends import1.AppView<import4.ClienteListCom
     var disposable_1:Function = this.renderer.listen(this._el_22,'click',this.eventHandler(this._handle_click_22_0.bind(this)));
     this._expr_9 = import8.UNINITIALIZED;
     this._expr_10 = import8.UNINITIALIZED;
-    this.init(([] as any[]),[
+    this.init([],[
       this._el_0,
       this._text_1,
       this._el_2,
@@ -344,7 +344,7 @@ class _View_ClienteListComponent0 extends import1.AppView<import4.ClienteListCom
       disposable_0,
       disposable_1
     ]
-    ,([] as any[]));
+    ,[]);
     return (null as any);
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
@@ -406,12 +406,12 @@ class _View_ClienteListComponent0 extends import1.AppView<import4.ClienteListCom
         this._query_Button_4_0.notifyOnChanges();
       }
       if (this._query_Button_18_1.dirty) {
-        this._query_Button_18_1.reset(([] as any[]));
+        this._query_Button_18_1.reset([]);
         this._Item_18_4._buttons = this._query_Button_18_1;
         this._query_Button_18_1.notifyOnChanges();
       }
       if (this._query_Icon_18_2.dirty) {
-        this._query_Icon_18_2.reset(([] as any[]));
+        this._query_Icon_18_2.reset([]);
         this._Item_18_4._icons = this._query_Icon_18_2;
         this._query_Icon_18_2.notifyOnChanges();
       }
@@ -421,7 +421,7 @@ class _View_ClienteListComponent0 extends import1.AppView<import4.ClienteListCom
         this._query_Button_21_1.notifyOnChanges();
       }
       if (this._query_Icon_21_2.dirty) {
-        this._query_Icon_21_2.reset(([] as any[]));
+        this._query_Icon_21_2.reset([]);
         this._Item_21_4._icons = this._query_Icon_21_2;
         this._query_Icon_21_2.notifyOnChanges();
       }
@@ -474,7 +474,7 @@ class _View_ClienteListComponent0 extends import1.AppView<import4.ClienteListCom
   }
 }
 export function viewFactory_ClienteListComponent0(viewUtils:import5.ViewUtils,parentInjector:import6.Injector,declarationEl:import2.AppElement):import1.AppView<import4.ClienteListComponent> {
-  if ((renderType_ClienteListComponent === (null as any))) { (renderType_ClienteListComponent = viewUtils.createRenderComponentType('',0,import15.ViewEncapsulation.None,styles_ClienteListComponent,{})); }
+  if ((renderType_ClienteListComponent === (null as any))) { (renderType_ClienteListComponent = viewUtils.createRenderComponentType('/Users/franciscogarcia/Documents/angular2/ionic2partes-rc/.tmp/pages/clientes/cliente-list.html',0,import15.ViewEncapsulation.None,styles_ClienteListComponent,{})); }
   return new _View_ClienteListComponent0(viewUtils,parentInjector,declarationEl);
 }
 class _View_ClienteListComponent1 extends import1.AppView<any> {
@@ -532,7 +532,7 @@ class _View_ClienteListComponent1 extends import1.AppView<any> {
     this._ItemSliding_0_4 = new import47.ItemSliding((<_View_ClienteListComponent0>this.parent)._List_16_3,this.renderer,new import31.ElementRef(this._el_0),this.parent.parentInjector.get(import40.NgZone));
     this._query_Item_0_0 = new import22.QueryList<any>();
     this._query_ItemOptions_0_1 = new import22.QueryList<any>();
-    this._appEl_0.initComponent(this._ItemSliding_0_4,([] as any[]),compView_0);
+    this._appEl_0.initComponent(this._ItemSliding_0_4,[],compView_0);
     this._text_1 = this.renderer.createText((null as any),'\n    ',(null as any));
     this._el_2 = this.renderer.createElement((null as any),'button',(null as any));
     this.renderer.setElementAttribute(this._el_2,'class','item item-block');
@@ -544,24 +544,24 @@ class _View_ClienteListComponent1 extends import1.AppView<any> {
     this._query_Label_2_0 = new import22.QueryList<any>();
     this._query_Button_2_1 = new import22.QueryList<any>();
     this._query_Icon_2_2 = new import22.QueryList<any>();
-    this._appEl_2.initComponent(this._Item_2_4,([] as any[]),compView_2);
+    this._appEl_2.initComponent(this._Item_2_4,[],compView_2);
     this._text_3 = this.renderer.createText((null as any),'\n      ',(null as any));
     this._el_4 = this.renderer.createElement((null as any),'h2',(null as any));
     this._text_5 = this.renderer.createText(this._el_4,'',(null as any));
     this._text_6 = this.renderer.createText((null as any),' \n    ',(null as any));
-    this._query_Label_2_0.reset(([] as any[]));
+    this._query_Label_2_0.reset([]);
     this._Item_2_4.contentLabel = this._query_Label_2_0.first;
     compView_2.create(this._Item_2_4,[
-      ([] as any[]),
-      ([] as any[]),
-      ([] as any[]).concat([
+      [],
+      [],
+      [].concat([
         this._text_3,
         this._el_4,
         this._text_6
       ]
       ),
-      ([] as any[]),
-      ([] as any[])
+      [],
+      []
     ]
     ,(null as any));
     this._text_7 = this.renderer.createText((null as any),'\n    ',(null as any));
@@ -574,14 +574,14 @@ class _View_ClienteListComponent1 extends import1.AppView<any> {
     this._appEl_10 = new import2.AppElement(10,8,this,this._el_10);
     var compView_10:any = import35.viewFactory_Button0(this.viewUtils,this.injector(10),this._appEl_10);
     this._Button_10_4 = new import19.Button((null as any),'',this.parent.parentInjector.get(import30.Config),new import31.ElementRef(this._el_10),this.renderer);
-    this._appEl_10.initComponent(this._Button_10_4,([] as any[]),compView_10);
+    this._appEl_10.initComponent(this._Button_10_4,[],compView_10);
     this._text_11 = this.renderer.createText((null as any),'\n          ',(null as any));
     this._el_12 = this.renderer.createElement((null as any),'ion-icon',(null as any));
     this.renderer.setElementAttribute(this._el_12,'name','trash');
     this.renderer.setElementAttribute(this._el_12,'role','img');
     this._Icon_12_3 = new import23.Icon(this.parent.parentInjector.get(import30.Config),new import31.ElementRef(this._el_12),this.renderer);
     this._text_13 = this.renderer.createText((null as any),'\n            Eliminar\n        ',(null as any));
-      compView_10.create(this._Button_10_4,[([] as any[]).concat([
+      compView_10.create(this._Button_10_4,[[].concat([
         this._text_11,
         this._el_12,
         this._text_13
@@ -594,14 +594,14 @@ class _View_ClienteListComponent1 extends import1.AppView<any> {
     this._appEl_15 = new import2.AppElement(15,8,this,this._el_15);
     var compView_15:any = import35.viewFactory_Button0(this.viewUtils,this.injector(15),this._appEl_15);
     this._Button_15_4 = new import19.Button((null as any),'',this.parent.parentInjector.get(import30.Config),new import31.ElementRef(this._el_15),this.renderer);
-    this._appEl_15.initComponent(this._Button_15_4,([] as any[]),compView_15);
+    this._appEl_15.initComponent(this._Button_15_4,[],compView_15);
     this._text_16 = this.renderer.createText((null as any),'\n          ',(null as any));
     this._el_17 = this.renderer.createElement((null as any),'ion-icon',(null as any));
     this.renderer.setElementAttribute(this._el_17,'name','arrow-dropright');
     this.renderer.setElementAttribute(this._el_17,'role','img');
     this._Icon_17_3 = new import23.Icon(this.parent.parentInjector.get(import30.Config),new import31.ElementRef(this._el_17),this.renderer);
     this._text_18 = this.renderer.createText((null as any),'\n            Editar\n        ',(null as any));
-      compView_15.create(this._Button_15_4,[([] as any[]).concat([
+      compView_15.create(this._Button_15_4,[[].concat([
         this._text_16,
         this._el_17,
         this._text_18
@@ -612,8 +612,8 @@ class _View_ClienteListComponent1 extends import1.AppView<any> {
     this._query_Item_0_0.reset([this._Item_2_4]);
     this._ItemSliding_0_4.item = this._query_Item_0_0.first;
     compView_0.create(this._ItemSliding_0_4,[
-      ([] as any[]).concat([this._el_2]),
-      ([] as any[]).concat([this._el_8])
+      [].concat([this._el_2]),
+      [].concat([this._el_8])
     ]
     ,(null as any));
     var disposable_0:Function = this.renderer.listen(this._el_2,'click',this.eventHandler(this._handle_click_2_0.bind(this)));
@@ -625,7 +625,7 @@ class _View_ClienteListComponent1 extends import1.AppView<any> {
     var disposable_2:Function = this.renderer.listen(this._el_15,'click',this.eventHandler(this._handle_click_15_0.bind(this)));
     this._expr_7 = import8.UNINITIALIZED;
     this._expr_8 = import8.UNINITIALIZED;
-    this.init(([] as any[]).concat([this._el_0]),[
+    this.init([].concat([this._el_0]),[
       this._el_0,
       this._text_1,
       this._el_2,
@@ -653,7 +653,7 @@ class _View_ClienteListComponent1 extends import1.AppView<any> {
       disposable_1,
       disposable_2
     ]
-    ,([] as any[]));
+    ,[]);
     return (null as any);
   }
   injectorGetInternal(token:any,requestNodeIndex:number,notFoundResult:any):any {
@@ -690,12 +690,12 @@ class _View_ClienteListComponent1 extends import1.AppView<any> {
     this.detectContentChildrenChanges(throwOnChange);
     if (!throwOnChange) {
       if (this._query_Button_2_1.dirty) {
-        this._query_Button_2_1.reset(([] as any[]));
+        this._query_Button_2_1.reset([]);
         this._Item_2_4._buttons = this._query_Button_2_1;
         this._query_Button_2_1.notifyOnChanges();
       }
       if (this._query_Icon_2_2.dirty) {
-        this._query_Icon_2_2.reset(([] as any[]));
+        this._query_Icon_2_2.reset([]);
         this._Item_2_4._icons = this._query_Icon_2_2;
         this._query_Icon_2_2.notifyOnChanges();
       }

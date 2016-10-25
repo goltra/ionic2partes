@@ -5,7 +5,7 @@
  * The only known difference between this `Headers` implementation and the spec is the
  * lack of an `entries` method.
  *
- * ### Example
+ * ### Example ([live demo](http://plnkr.co/edit/MTdwT6?p=preview))
  *
  * ```
  * import {Headers} from '@angular/http';
@@ -28,7 +28,7 @@
  */
 export declare class Headers {
     constructor(headers?: Headers | {
-        [name: string]: any;
+        [key: string]: any;
     });
     /**
      * Returns a new Headers instance from the given DOMString of Response Headers
@@ -46,19 +46,19 @@ export declare class Headers {
     /**
      * Returns first header that matches given name.
      */
-    get(name: string): string;
+    get(header: string): string;
     /**
-     * Checks for existence of header by given name.
+     * Check for existence of header by given name.
      */
-    has(name: string): boolean;
+    has(header: string): boolean;
     /**
-     * Returns the names of the headers
+     * Provides names of set headers
      */
     keys(): string[];
     /**
      * Sets or overrides header value for given name.
      */
-    set(name: string, value: string | string[]): void;
+    set(header: string, value: string | string[]): void;
     /**
      * Returns values of all headers.
      */
@@ -67,15 +67,14 @@ export declare class Headers {
      * Returns string of all headers.
      */
     toJSON(): {
-        [name: string]: any;
+        [key: string]: any;
     };
     /**
      * Returns list of header values for a given name.
      */
-    getAll(name: string): string[];
+    getAll(header: string): string[];
     /**
      * This method is not implemented.
      */
     entries(): void;
-    private mayBeSetNormalizedName(name);
 }

@@ -370,7 +370,7 @@ var _View_ParteListComponent0 = (function (_super) {
 }(import1.AppView));
 export function viewFactory_ParteListComponent0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_ParteListComponent === null)) {
-        (renderType_ParteListComponent = viewUtils.createRenderComponentType('', 0, import11.ViewEncapsulation.None, styles_ParteListComponent, {}));
+        (renderType_ParteListComponent = viewUtils.createRenderComponentType('/Users/franciscogarcia/Documents/angular2/ionic2partes-rc/.tmp/pages/parte/parte-list.component.html', 0, import11.ViewEncapsulation.None, styles_ParteListComponent, {}));
     }
     return new _View_ParteListComponent0(viewUtils, parentInjector, declarationEl);
 }

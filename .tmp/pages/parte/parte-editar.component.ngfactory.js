@@ -1508,7 +1508,7 @@ var _View_ParteEditarComponent0 = (function (_super) {
     };
     _View_ParteEditarComponent0.prototype._handle_submit_11_1 = function ($event) {
         this.markPathToRootAsCheckOnce();
-        var pd_0 = (this._FormGroupDirective_11_3.onSubmit($event) !== false);
+        var pd_0 = (this._FormGroupDirective_11_3.onSubmit() !== false);
         return (true && pd_0);
     };
     _View_ParteEditarComponent0.prototype._handle_reset_11_2 = function ($event) {
@@ -1560,7 +1560,7 @@ var _View_ParteEditarComponent0 = (function (_super) {
 }(import1.AppView));
 export function viewFactory_ParteEditarComponent0(viewUtils, parentInjector, declarationEl) {
     if ((renderType_ParteEditarComponent === null)) {
-        (renderType_ParteEditarComponent = viewUtils.createRenderComponentType('', 0, import13.ViewEncapsulation.None, styles_ParteEditarComponent, {}));
+        (renderType_ParteEditarComponent = viewUtils.createRenderComponentType('/Users/franciscogarcia/Documents/angular2/ionic2partes-rc/.tmp/pages/parte/parte-editar.component.html', 0, import13.ViewEncapsulation.None, styles_ParteEditarComponent, {}));
     }
     return new _View_ParteEditarComponent0(viewUtils, parentInjector, declarationEl);
 }

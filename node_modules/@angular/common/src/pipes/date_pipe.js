@@ -6,8 +6,9 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { Inject, LOCALE_ID, Pipe } from '@angular/core';
+import { StringMapWrapper } from '../facade/collection';
 import { DateFormatter } from '../facade/intl';
-import { NumberWrapper, isBlank, isDate } from '../facade/lang';
+import { DateWrapper, NumberWrapper, isBlank, isDate, isString } from '../facade/lang';
 import { InvalidPipeArgumentError } from './invalid_pipe_argument_error';
 /**
  * @ngModule CommonModule
@@ -87,13 +88,24 @@ export var DatePipe = (function () {
             throw new InvalidPipeArgumentError(DatePipe, value);
         }
         if (NumberWrapper.isNumeric(value)) {
-            value = parseFloat(value);
+            value = DateWrapper.fromMillis(parseFloat(value));
         }
-        return DateFormatter.format(new Date(value), this._locale, DatePipe._ALIASES[pattern] || pattern);
+        else if (isString(value)) {
+            value = DateWrapper.fromISOString(value);
+        }
+        if (StringMapWrapper.contains(DatePipe._ALIASES, pattern)) {
+            pattern = StringMapWrapper.get(DatePipe._ALIASES, pattern);
+        }
+        return DateFormatter.format(value, this._locale, pattern);
     };
     DatePipe.prototype.supports = function (obj) {
-        return isDate(obj) || NumberWrapper.isNumeric(obj) ||
-            (typeof obj === 'string' && isDate(new Date(obj)));
+        if (isDate(obj) || NumberWrapper.isNumeric(obj)) {
+            return true;
+        }
+        if (isString(obj) && isDate(DateWrapper.fromISOString(obj))) {
+            return true;
+        }
+        return false;
     };
     /** @internal */
     DatePipe._ALIASES = {

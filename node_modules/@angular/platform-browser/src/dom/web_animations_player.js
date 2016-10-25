@@ -6,6 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { AUTO_STYLE } from '@angular/core';
+import { StringMapWrapper } from '../facade/collection';
 import { isPresent } from '../facade/lang';
 import { getDOM } from './dom_adapter';
 export var WebAnimationsPlayer = (function () {
@@ -38,8 +39,7 @@ export var WebAnimationsPlayer = (function () {
         this._initialized = true;
         var keyframes = this.keyframes.map(function (styles) {
             var formattedKeyframe = {};
-            Object.keys(styles).forEach(function (prop) {
-                var value = styles[prop];
+            StringMapWrapper.forEach(styles, function (value, prop) {
                 formattedKeyframe[prop] = value == AUTO_STYLE ? _computeStyle(_this.element, prop) : value;
             });
             return formattedKeyframe;
