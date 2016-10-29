@@ -1,0 +1,10 @@
+# OS X
+.DS_Store
+
+.tmp
+bin/*
+bower_components/*
+node_modules/*
+platforms/*
+www/*
+.sass-cache/*

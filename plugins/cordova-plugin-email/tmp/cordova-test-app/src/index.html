@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>ngCordovaDemoApp</title>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+        <meta name="format-detection" content="telephone=no" />
+
+        <!-- build:css(.tmp) styles/bootstrap.css -->
+        <link rel="stylesheet" href="styles/bootstrap.css">
+        <!-- endbuild -->
+        
+        <!-- build:css(./)  styles/base.css -->
+        <link rel="stylesheet" href="/bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-base.css">
+        <link rel="stylesheet" href="/bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-desktop.css">
+        <link rel="stylesheet" href="/bower_components/angular-block-ui/dist/angular-block-ui.css" />
+        <!-- endbuild -->
+
+        <!-- build:css(.tmp) styles/app.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+    </head>
+    <body ng-app="ngCordovaDemoApp" ng-controller="MainController" ui-prevent-touchmove-defaults>
+
+        <!-- Sidebars -->
+        <div ng-include="'views/navbarView.html'" 
+            class="sidebar sidebar-left"></div>
+            
+       <div class="app"
+            ui-swipe-right='Ui.turnOn("uiSidebarLeft")'
+            ui-swipe-left='Ui.turnOff("uiSidebarLeft")' >
+
+            <div class="navbar navbar-app navbar-absolute-top">
+                <div class="navbar-brand navbar-brand-center" ui-yield-to="title">
+                    <span>ngCordovaDemoApp</span>
+                </div>
+                <div class="btn-group pull-left" ui-yield-to="navMenu">
+                    <div ui-toggle="uiSidebarLeft" class="btn sidebar-toggle">
+                        <i class="fa fa-bars"></i> Menu
+                    </div>
+                </div>
+                <div class="btn-group pull-right" ui-yield-to="sectionMenu">
+                </div>
+            </div>   
+
+            <!-- App Body -->
+            <div class="app-body" ng-class="{loading: loading}">
+                <div ng-show="loading" class="app-content-loading">
+                  <i class="fa fa-spinner fa-spin loading-spinner"></i>
+                </div>
+                <div class="app-content">
+                  <ng-view></ng-view>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Modals and Overlays -->
+        <div ui-yield-to="modals"></div>
+
+
+        <!-- Cordova stuff -->
+        <script src="cordova.js"></script>
+        <script src="cordova_plugins.js"></script>
+
+        <!-- build:js(./) scripts/plugins.js -->
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/angular-route/angular-route.js"></script>
+        <script src="/bower_components/angular-touch/angular-touch.js"></script>
+        <script src="/bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+        <script src="/bower_components/angular-block-ui/dist/angular-block-ui.js"></script>
+        <script src="/bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js(./) scripts/modules.js -->
+        <script src="/bower_components/pouchdb/dist/pouchdb.js"></script>
+        <script src="/bower_components/pouchdb-quick-search/dist/pouchdb.quick-search.js"></script>
+        <!-- endbuild -->
+
+        <!-- build:js({.tmp,src}) scripts/app.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/controllers.js"></script>
+        <script src="scripts/modules/services.js"></script>
+        <!-- endbuild -->
+    </body>
+</html>
