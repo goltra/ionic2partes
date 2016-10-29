@@ -12,7 +12,7 @@ import { DatabaseProvider } from '../provider/database.provider';
   templateUrl: 'app.html'
 })
 export class MyApp {
- 
+
 
    rootPage: any;
    pages: any[];
@@ -33,13 +33,14 @@ export class MyApp {
             component: ParteListComponent
           },
         ];
-    
+
     platform.ready().then(() => {
+      console.log(platform.platforms());
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       //inicializa la bd creando el fichero de bd pero no la estructura.
-      this.db.dbname = "partes";
+      this.db.dbname = "partes1";
       this.db.init();
     });
   }

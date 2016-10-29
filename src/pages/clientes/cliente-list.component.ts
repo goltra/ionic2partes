@@ -15,13 +15,13 @@ export class ClienteListComponent implements OnInit{
 
     private c: Cliente;
 
-    constructor(private navCtrl: NavController, 
-                private navParams: NavParams,   
+    constructor(private navCtrl: NavController,
+                private navParams: NavParams,
                 private actionSheetController: ActionSheetController,
                 private _clienteService: ClienteService,
                 private variosService: VariosService){
 
-                    
+
     }
 
     ngOnInit(){
@@ -54,7 +54,8 @@ export class ClienteListComponent implements OnInit{
         this.navCtrl.push(ClienteEditarComponent,[cliente]);
     }
     crearCliente(){
-        this.navCtrl.push(ClienteEditarComponent); 
+        console.log('crea cliente');
+        this.navCtrl.push(ClienteEditarComponent);
     }
     borrarCliente(id: number){
         this._clienteService.borrarCliente(id).then(
@@ -62,15 +63,15 @@ export class ClienteListComponent implements OnInit{
                 console.log(data.res);
                 this.variosService.showToast("Cliente eliminado","top");
                 this.listaClientes();
-            },  
+            },
             (error)=>{
                 console.log(error);
-            }        
+            }
             );
-        
+
     }
     crearParte(clienteid:number){
         this.navCtrl.push(ParteEditarComponent,{clienteid: clienteid})
     }
-    
+
 }

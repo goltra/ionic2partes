@@ -13,8 +13,8 @@ export class ClienteService{
 
     constructor(private platform:Platform,_db:DatabaseProvider){
        this.db = _db;
-       
-      
+       console.log(this.db);
+
         // this.db.openDatabase({
         // name: 'data.db',
         // location: 'default' // the location field is required
@@ -30,12 +30,11 @@ export class ClienteService{
         this.db.query('CREATE TABLE IF NOT EXISTS cliente (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, telefono TEXT);').then(
                     (data)=>{
                         console.log("Crear tabla cliente")
-
                     },
                     (error)=>{console.log("Error al crear la tabla cliente: " + error.err.message)}
                 );
 
-       
+
     }
 
 
@@ -53,7 +52,7 @@ export class ClienteService{
          return this.db.query(sql,[id]);
         // return this.storage.query(sql,[id]);
     }
-  
+
     actualizaCliente(id:number=null, nombre: string, telefono:string) {
         let sql: string;
         if(id==null){
@@ -66,5 +65,5 @@ export class ClienteService{
         }
     }
 
-   
+
 }

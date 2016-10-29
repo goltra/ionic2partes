@@ -9,11 +9,12 @@ export class DatabaseProvider {
 	public dbname: string = 'YourDBName.db';
 
 	constructor() { }
-
 	/**
 	 * Init - init database etc. PS! Have to wait for Platform.ready
 	 */
+
 	init(): Promise<any> {
+		console.log("Init DatabaseProvider, a cotinuación tipo de dispositivo.");
 		return new Promise(resolve => {
 			if (typeof window.sqlitePlugin !== 'undefined') {
 				this.db = window.sqlitePlugin.openDatabase({ name: this.dbname, location: 'default' });
@@ -29,6 +30,7 @@ export class DatabaseProvider {
 	 * query - executes sql
 	 */
 	query(q: string, params?: any): Promise<any> {
+		console.log("DatabaseProvider: ejecutando query()");
 		return new Promise((resolve, reject) => {
 			params = params || [];
 			this.db.transaction((tx) => {
