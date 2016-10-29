@@ -27,6 +27,9 @@
         },
         "cordova-sqlite-storage": {
             "PACKAGE_NAME": "io.ionic.starter"
+        },
+        "cordova-plugin-email": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     },
     "dependent_plugins": {}

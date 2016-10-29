@@ -73,7 +73,8 @@ export class ParteService{
         msg+="<hr>";
         msg+="<p><strong>Firmado: </strong>" +  parte.personafirma + "</p>";
 
-        console.log(msg);
+        console.log("Se va a enviar el siguiente mensaje: " + msg);
+        console.log("Compruebo si el componente EmailComposer está disponible.");
         EmailComposer.isAvailable().then(
             (available)=>{
                 console.log("envio de email disponible");
@@ -96,7 +97,9 @@ export class ParteService{
                 );
             },
             (error)=>{
-                console.log("no disponible");
+                console.log("Error usando EmailComposer");
+                console.log("EmailComposer: ");
+                console.log(EmailComposer);
             }
         );
 
