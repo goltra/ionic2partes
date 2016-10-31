@@ -29,17 +29,17 @@
             <ion-input formControlName="personafirma" ></ion-input>
         </ion-item>
         <ion-item [hidden]="firmaImg!=null && firmaImg!=''">
-            <p><button ion-button type="button" (click)="doOnEnd()">Firmar</button></p>
+            <p><button ion-button type="button" (click)="doOnEnd()">Firmar</button><button ion-button type="button" color="danger" (click)="limpiarFirma()">Limpiar</button></p>
             <signature-pad (onBeginEvent)="drawStart()" [options]="signaturePadOptions" ></signature-pad>
-            <!--<canvas id="signature-pad"></canvas>        -->
+            <!-- <canvas id="signature-pad"></canvas>        -->
         </ion-item>
-        <button ion-button type="button" (click)="borrarFirma()">Borrar firma</button>
         <ion-item>
-            <button ion-button type="submit">Enviar</button>
+            <button ion-button type="submit">Guardar</button>
             <button ion-button type="button" color="danger" (click)="cancelar()">Cancelar</button>
         </ion-item>
-
-        <ion-item>
-            <img src="{{firmaImg}}" alt="firma" [hidden]="(firmaImg==null || firmaImg=='') ">
+        <ion-item [hidden]="(firmaImg==null || firmaImg=='') ">
+          <p> <button ion-button type="button" color="danger" (click)="borrarFirma()">Borrar firma</button></p>
+           <img src="{{firmaImg}}" alt="firma" >
         </ion-item>
+
     </form>

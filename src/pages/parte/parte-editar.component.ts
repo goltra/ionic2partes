@@ -122,6 +122,9 @@ export class ParteEditarComponent{
     this.firmaImg=this.signaturePad.toDataURL();
     this.myForm.value.firma=this.firmaImg;
   }
+  limpiarFirma(){
+    this.signaturePad.clear();
+  }
   borrarFirma(){
     console.log("borrar firma");
     this.myForm.value.firma=null;
