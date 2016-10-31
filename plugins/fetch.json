@@ -58,7 +58,7 @@
     "cordova-plugin-email": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-email"
+            "id": "cordova-plugin-email@~1.1.1"
         },
         "is_top_level": true,
         "variables": {}

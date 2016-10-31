@@ -12,6 +12,24 @@
         },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-email": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     },
     "dependent_plugins": {}

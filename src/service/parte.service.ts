@@ -64,6 +64,7 @@ export class ParteService{
     }
     enviaPorEmail(parte:Parte){
         let msg:String;
+        let email;
 
         msg = "<h1><strong>Parte de Trabajo número:</strong> " + parte.id +"</h1>";
         msg+="<h2><strong>Cliente: </strong>" + parte.nombre + '</h2>';
@@ -72,25 +73,34 @@ export class ParteService{
         msg+="<p>" + parte.trabajorealizado + '</p>';
         msg+="<hr>";
         msg+="<p><strong>Firmado: </strong>" +  parte.personafirma + "</p>";
+
+        //preparamos el email según lleve o no adjunto (firma)
         if(parte.firma!==null){
-          console.log("El parte tiene firma y lo agrego al mensaje como img embed")
-          console.log(parte.firma);
-          msg+="<img alt='firma' src='" + parte.firma + "' />";
+          console.log("El parte tiene firma y lo agrego como adjunto")
+          email = {
+            to:      '',
+            subject: 'Parte de trabajo nº ' + parte.id,
+            body:    <any>msg,
+            isHtml: true,
+            attachments: [parte.firmaBase64]
+          };
         } else {
-          console.log("El parte no tiene firma");
+          console.log("el parte no tiene firma de modo que no lleva adjunto");
+          email = {
+            to:      '',
+            subject: 'Parte de trabajo nº ' + parte.id,
+            body:    <any>msg,
+            isHtml: true
+          };
         }
         console.log("Se va a enviar el siguiente mensaje: " + msg);
         console.log("Compruebo si el componente EmailComposer está disponible.");
 
+
         EmailComposer.isAvailable().then(
             (available)=>{
                 console.log("envio de email disponible");
-                EmailComposer.open({
-                    to:      '',
-                    subject: 'Parte de trabajo nº ' + parte.id,
-                    body:    <any>msg,
-                    isHtml: true
-                }).then(
+                EmailComposer.open(email).then(
                     (sended)=>{
                         console.log("email enviado ");
                         this._varios.showToast("Email enviado","top");
