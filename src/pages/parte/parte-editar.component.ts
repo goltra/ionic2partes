@@ -1,16 +1,17 @@
 import {Component, ViewChild} from '@angular/core';
 import {Parte} from '../../model/parte';
 import {NavController, NavParams} from 'ionic-angular';
-import {FormsModule, 
+import {FormsModule,
         ReactiveFormsModule,
-        FormBuilder,  
+        FormBuilder,
         FormGroup,
-        Validators, 
+        Validators,
         AbstractControl} from '@angular/forms';
 import {ParteService} from '../../service/parte.service';
 import {VariosService} from '../../service/varios.service';
 import {ParteListComponent} from './parte-list.component';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
+import {Keyboard} from 'ionic-native';
 
 
 @Component({
@@ -27,11 +28,11 @@ export class ParteEditarComponent{
     @ViewChild(SignaturePad) signaturePad: SignaturePad;
 
     constructor(private _nav: NavController, private _navParams: NavParams,
-                private fb: FormBuilder, 
-                private parteService: ParteService, 
+                private fb: FormBuilder,
+                private parteService: ParteService,
                 private  _varios: VariosService){
        let params = _navParams;
-       
+
        this.parte = new Parte();
 
        let clienteid:number;
@@ -93,15 +94,19 @@ export class ParteEditarComponent{
     }
 
     signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
-        'minWidth': 2,
-        'maxWidth': 3,
+        'minWidth': 0.5,
+        'maxWidth': 2,
         'canvasWidth': 500,
         'canvasHeight': 300,
-        'backgroundColor': 'silver'
+        'backgroundColor': '#FAFAFA',
+
     };
- 
+  drawStart(){
+    console.log("comieza a firmar y oculto teclado");
+    Keyboard.close();
+  }
   ngAfterViewInit() {
-    
+
     // this.signaturePad is now available
     this.signaturePad.options=this.signaturePadOptions; // set szimek/signature_pad options at runtime
     this.signaturePad.clear(); // invoke functions from szimek/signature_pad API
@@ -111,14 +116,24 @@ export class ParteEditarComponent{
         console.log("asignar firma guardada a canvas");
     }
   }
- 
+
   doOnEnd() {
     // will be notified of szimek/signature_pad's onEnd event
     this.firmaImg=this.signaturePad.toDataURL();
     this.myForm.value.firma=this.firmaImg;
-    
+  }
+  borrarFirma(){
+    console.log("borrar firma");
+    this.myForm.value.firma=null;
+    this.firmaImg=null;
+    //inicializo de nuevo el signaturPad, no se porqu tras estar oculto
+    //y ponerlo visible el canvas pierde el height y el width
+    this.signaturePad.options=this.signaturePadOptions;
+    this.signaturePad.clear();
+
+
   }
   aceptaFirma(){
       this.doOnEnd();
   }
-} 
+}

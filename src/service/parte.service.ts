@@ -11,16 +11,16 @@ export class ParteService{
     private storage:any;
     private db;
     constructor(private _varios: VariosService, _db:DatabaseProvider){
-        
+
         this.db = _db
-        
+
         this.db.query('CREATE TABLE IF NOT EXISTS parte (id INTEGER PRIMARY KEY AUTOINCREMENT, clienteid INTEGER CONSTRAINT fk_clienteid REFERENCES cliente (id) ON DELETE CASCADE ON UPDATE SET DEFAULT, fecha DATE NOT NULL, horaini TIME NOT NULL, horafin TIME NOT NULL, trabajorealizado TEXT, personafirma TEXT, firma TEXT);').then(
                     (data)=>{
 
                     },
                     (error)=>{console.log("Error al crear la tabla parte: " + error.err.message)}
                 );
-      
+
     }
 
     listaPartes(){
@@ -44,7 +44,7 @@ export class ParteService{
             (error)=>{
                 console.log("error al cargar el parte con el id " + id  + " - " + error.err.message);
             }
-        ); 
+        );
     }
     actualizaParte(f){
         let sql: string;
@@ -72,9 +72,16 @@ export class ParteService{
         msg+="<p>" + parte.trabajorealizado + '</p>';
         msg+="<hr>";
         msg+="<p><strong>Firmado: </strong>" +  parte.personafirma + "</p>";
-
+        if(parte.firma!==null){
+          console.log("El parte tiene firma y lo agrego al mensaje como img embed")
+          console.log(parte.firma);
+          msg+="<img alt='firma' src='" + parte.firma + "' />";
+        } else {
+          console.log("El parte no tiene firma");
+        }
         console.log("Se va a enviar el siguiente mensaje: " + msg);
         console.log("Compruebo si el componente EmailComposer está disponible.");
+
         EmailComposer.isAvailable().then(
             (available)=>{
                 console.log("envio de email disponible");
@@ -82,7 +89,6 @@ export class ParteService{
                     to:      '',
                     subject: 'Parte de trabajo nº ' + parte.id,
                     body:    <any>msg,
-                    attachments: <any>parte.firmaBase64,
                     isHtml: true
                 }).then(
                     (sended)=>{
@@ -105,5 +111,5 @@ export class ParteService{
 
 
   }
-   
+
 }
