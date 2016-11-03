@@ -13,8 +13,9 @@
   <ion-item><button ion-button full (click)='crearCliente()'>Añadir cliente</button></ion-item>
   <ion-item-sliding *ngFor="let cliente of clientes">
     <button ion-item  (click)="crearParte(cliente.id)">
-      <h2>{{cliente.id}} - {{cliente.nombre}}</h2> 
+      <h2>{{cliente.id}} - {{cliente.nombre}}</h2>
     </button>
+
     <ion-item-options>
         <button ion-button color="danger" (click)="borrarCliente(cliente.id)">
           <ion-icon name="trash" ></ion-icon>
