@@ -12,7 +12,6 @@
 <ion-content padding class="home">
   <h2 style="text-align:center">{{dia}}</h2>
   <ion-list>
-
     <ion-item class="transparente" style="text-align:center">
       <button ion-button style="height: 30vh;width:30vh" (click)="clientelist()">Clientes</button>
     </ion-item>
@@ -20,5 +19,7 @@
       <button ion-button style="height: 30vh;width:30vh"  (click)="partelist()">Partes</button>
     </ion-item>
   </ion-list>
-  
+<button ion-button (click)="setSetting()">guardar settings</button>
+<button ion-button (click)="getSetting()">mostrar settings</button>
+<button ion-button (click)="showSettings()">ir settings</button>
 </ion-content>

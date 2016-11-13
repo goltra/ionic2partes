@@ -5,6 +5,7 @@ import { HomePage } from '../pages/home/home';
 import { ClienteListComponent } from '../pages/clientes/cliente-list.component';
 import { ClienteEditarComponent } from '../pages/clientes/cliente-editar.component';
 import { ParteListComponent } from '../pages/parte/parte-list.component';
+
 import { ParteEditarComponent } from '../pages/parte/parte-editar.component';
 import { DatabaseProvider } from '../provider/database.provider';
 

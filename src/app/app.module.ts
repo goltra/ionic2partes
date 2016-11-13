@@ -9,19 +9,14 @@ import { ParteEditarComponent } from '../pages/parte/parte-editar.component';
 import { VariosService } from '../service/varios.service';
 import { ParteService } from '../service/parte.service';
 import { ClienteService } from '../service/cliente.service';
+import { SettingsService } from '../service/settings.service';
+import { SettingsComponent } from '../pages/settings-component/settings-component';
 import {SignaturePadModule} from 'angular2-signaturepad';
 import {FormBuilder} from '@angular/forms';
 import { SQLite } from 'ionic-native';
+import {Storage} from '@ionic/storage';
 import { DatabaseProvider } from '../provider/database.provider';
-// import {TextareaAutosize} from '../components/textarea-autosize';
-// import {FormsModule, 
-//         FormControl,
-//         ReactiveFormsModule,
-//         FormBuilder,  
-//         FormGroup,
-//         Validators, 
-//         AbstractControl} from '@angular/forms';
-// import {FirmaComponent} from '../pages/firma/firma.component';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +26,7 @@ import { DatabaseProvider } from '../provider/database.provider';
     ClienteListComponent,
     ClienteEditarComponent,
     ParteEditarComponent,
+    SettingsComponent,
   ],
   imports: [
     IonicModule.forRoot(MyApp),SignaturePadModule
@@ -43,11 +39,12 @@ import { DatabaseProvider } from '../provider/database.provider';
     ClienteEditarComponent,
     ParteListComponent,
     ParteEditarComponent,
+    SettingsComponent
   ],
-  providers: [VariosService,ClienteService,ParteService,SQLite,DatabaseProvider]
+  providers: [VariosService,ClienteService,ParteService,SQLite,DatabaseProvider,SettingsService,Storage]
 })
 export class AppModule {
   constructor(){
-    
+
       }
 }
