@@ -10,8 +10,8 @@ import {Settings} from '../../model/settings';
 import {File} from 'ionic-native';
 
 declare var AdMob: any;
-declare let jsPDF;
-declare var cordova: any;
+// declare var cordova: any;
+//const fs:string = cordova.file.dataDirectory;
 
 
 
@@ -98,34 +98,7 @@ export class HomePage {
   //   });
   //
   // }
-  public pdf() {
 
-        var doc = new jsPDF();
-        doc.text(20, 20, 'Hello world!');
-        doc.text(20, 30, 'This is client-side Javascript, pumping out a PDF.');
-        doc.addPage();
-        doc.text(20, 20, 'Do you like that?');
-
-        // Save the PDF
-        let pdfOutput = doc.output('blob');
-        console.log(pdfOutput);
-        File.checkDir(cordova.file.dataDirectory,'partes').then(
-          ()=>{
-            console.log("directorio existe. " + cordova.file.dataDirectory + 'partes');
-            File.writeFile(cordova.file.dataDirectory + 'partes','tmpPdf.pdf',pdfOutput,true).then(
-              (ok)=>{
-                console.log("fichero guardado");
-                console.log(ok);
-              },
-              (err)=>{
-                console.log("error al guardar el fichero");
-                console.log(err);
-              }
-            );
-          }
-        );
-        //ahora con el plugin file tocaría guardarlo
-    }
   showSettings(){
     this.navCtrl.push(SettingsComponent);
   }
