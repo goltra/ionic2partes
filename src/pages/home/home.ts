@@ -7,8 +7,11 @@ import {SettingsComponent} from '../settings-component/settings-component';
 import {VariosService} from '../../service/varios.service';
 import {SettingsService} from '../../service/settings.service';
 import {Settings} from '../../model/settings';
+import {File} from 'ionic-native';
 
 declare var AdMob: any;
+declare let jsPDF;
+declare var cordova: any;
 
 
 
@@ -70,31 +73,59 @@ export class HomePage {
   clienteedit(){
     this.navCtrl.push(ClienteEditarComponent);
   }
-  setSetting(){
-    let set: Settings
-    set = new Settings();
-    console.log("seteo setting")
-    set.serie="AA";
-    set.empresa="Empresa servicios";
-    set.direccion="C/ la que sea";
-    set.localidad="Catral";
-    set.provincia="Alicante";
-    set.cp="03158";
-    set.cif="B00000000";
-    console.log(set);
-    console.log('guardo settings')
-    this.settings.save(set);
-  }
-  getSetting(){
-    console.log("recupero settings");
-    let set: Settings;
+  // setSetting(){
+  //   let set: Settings
+  //   set = new Settings();
+  //   console.log("seteo setting")
+  //   set.serie="AA";
+  //   set.empresa="Empresa servicios";
+  //   set.direccion="C/ la que sea";
+  //   set.localidad="Catral";
+  //   set.provincia="Alicante";
+  //   set.cp="03158";
+  //   set.cif="B00000000";
+  //   console.log(set);
+  //   console.log('guardo settings')
+  //   this.settings.save(set);
+  // }
+  // getSetting(){
+  //   console.log("recupero settings");
+  //   let set: Settings;
+  //
+  //   this.settings.getData().then((res)=>{
+  //     set = JSON.parse(res);
+  //     console.log(Settings.inicializa(set));
+  //   });
+  //
+  // }
+  public pdf() {
 
-    this.settings.getData().then((res)=>{
-      set = JSON.parse(res);
-      console.log(Settings.inicializa(set));
-    });
+        var doc = new jsPDF();
+        doc.text(20, 20, 'Hello world!');
+        doc.text(20, 30, 'This is client-side Javascript, pumping out a PDF.');
+        doc.addPage();
+        doc.text(20, 20, 'Do you like that?');
 
-  }
+        // Save the PDF
+        let pdfOutput = doc.output('blob');
+        console.log(pdfOutput);
+        File.checkDir(cordova.file.dataDirectory,'partes').then(
+          ()=>{
+            console.log("directorio existe. " + cordova.file.dataDirectory + 'partes');
+            File.writeFile(cordova.file.dataDirectory + 'partes','tmpPdf.pdf',pdfOutput,true).then(
+              (ok)=>{
+                console.log("fichero guardado");
+                console.log(ok);
+              },
+              (err)=>{
+                console.log("error al guardar el fichero");
+                console.log(err);
+              }
+            );
+          }
+        );
+        //ahora con el plugin file tocaría guardarlo
+    }
   showSettings(){
     this.navCtrl.push(SettingsComponent);
   }

@@ -6,6 +6,11 @@
     <ion-title>
       Partes de Trabajo
     </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="showSettings()">
+        <ion-icon name="ios-settings"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -19,7 +24,9 @@
       <button ion-button style="height: 30vh;width:30vh"  (click)="partelist()">Partes</button>
     </ion-item>
   </ion-list>
-<button ion-button (click)="setSetting()">guardar settings</button>
-<button ion-button (click)="getSetting()">mostrar settings</button>
-<button ion-button (click)="showSettings()">ir settings</button>
+<ion-item>
+  <button ion-button (click)="pdf()">pdf</button>
+</ion-item>
+  <!-- <button ion-button (click)="getSetting()">mostrar settings</button>
+  <button ion-button (click)="showSettings()">ir settings</button>  -->
 </ion-content>

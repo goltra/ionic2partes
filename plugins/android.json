@@ -33,10 +33,16 @@
         },
         "cordova-plugin-admobpro": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-extension": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-compat": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     }
