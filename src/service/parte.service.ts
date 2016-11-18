@@ -2,7 +2,9 @@ import {Injectable} from '@angular/core';
 import {Platform} from 'ionic-angular';
 import { SQLite } from 'ionic-native';
 import {Parte} from '../model/parte';
+import {Settings} from '../model/settings';
 import {VariosService} from './varios.service';
+import {SettingsService} from './settings.service';
 import {EmailComposer, File} from 'ionic-native';
 import { DatabaseProvider } from '../provider/database.provider';
 declare let jsPDF;
@@ -13,8 +15,9 @@ declare var cordova: any;
 export class ParteService{
     private storage:any;
     private db;
+    private settings: Settings;
 
-    constructor(private _varios: VariosService, _db:DatabaseProvider, private platform: Platform){
+    constructor(private _varios: VariosService, _db:DatabaseProvider, private platform: Platform, s: SettingsService){
 
         this.db = _db
 
@@ -24,12 +27,17 @@ export class ParteService{
                     },
                     (error)=>{console.log("Error al crear la tabla parte: " + error.err.message)}
                 );
-
+        s.getData().then((data)=>{
+          let tmp = JSON.parse(data);
+          this.settings = Settings.inicializa(tmp);
+          console.log("constructor parteservice");
+          console.log(this.settings);
+        });
     }
 
     listaPartes(){
         let sql:string;
-        sql = 'Select parte.*, cliente.nombre, cliente.telefono from parte inner join cliente on clienteid=cliente.id';
+        sql = 'Select parte.*, cliente.nombre, cliente.telefono from parte inner join cliente on clienteid=cliente.id order by parte.id desc';
         return this.db.query(sql);
     }
     elimina(parteid:number){
@@ -67,49 +75,82 @@ export class ParteService{
         );
     }
     enviaPorEmail(parte:Parte){
-        let msg:String;
+        //let msg:String;
         let email;
         var doc = new jsPDF();
-
-        msg = "<h1><strong>Parte de Trabajo número:</strong> " + parte.id +"</h1>";
-        msg+="<h2><strong>Cliente: </strong>" + parte.nombre + '</h2>';
-        msg+="<p><strong>Fecha:</strong> " + parte.fechaformato + '</p>';
-        msg+="<p><strong>Horas:</strong> " + parte.horainiformato + ' a ' + parte.horafinformato + '</p>';
-        msg+="<p>" + parte.trabajorealizado + '</p>';
-        msg+="<hr>";
-        msg+="<p><strong>Firmado: </strong>" +  parte.personafirma + "</p>";
-        console.log("Se va a enviar el siguiente mensaje: " + msg);
+        let serieId: string;
         console.log("Compruebo si el componente EmailComposer está disponible.");
-
-
         EmailComposer.isAvailable().then(
             (available)=>{
+
               console.log("Email composer disponible");
 
               console.log("Texto que voy a incluir en pdf");
-              doc.text(20,20, "Parte de Trabajo Número " + parte.id);
+
+              if(this.settings.serie.length>0){
+                serieId=this.settings.serie + "/" + String(parte.id);
+              } else {
+                serieId=String(parte.id);
+              }
+
+              doc.setFontStyle('bold');
+              doc.text(20,20, "Parte de Trabajo Número " + serieId);
               doc.text(20,30, "Cliente: " + parte.nombre);
               doc.text(20,40, "Fecha: " + parte.fechaformato);
               doc.text(20,50, "Horas: " + parte.horainiformato + ' a ' +parte.horafinformato);
-              doc.text(20,60, "Trabajo Realizado");
-              doc.text(20,70, doc.splitTextToSize(parte.trabajorealizado,180));
+              if(this.settings.tecnico!==null)
+                doc.text(20,60, "Le atendió: " + this.settings.tecnico);
+              doc.text(20,70, "Trabajo Realizado");
+              doc.setFontStyle('normal');
+              doc.text(20,80, doc.splitTextToSize(parte.trabajorealizado,180));
 
               console.log("compruebo si hay firma");
               if(parte.firma!==null){
-                doc.text(20,220, "Firmado por: ");
-                doc.text(20,230,parte.personafirma);
+                doc.setFontStyle('bold');
+                doc.text(20,200, "Firmado por: ");
+                doc.setFontStyle('normal');
+                if(parte.personafirma!==null)
+                  doc.text(20,210,parte.personafirma);
                 console.log("añado la firma al pdf");
-                doc.addImage(parte.firma,'PNG',20,240,50,50);
+                doc.addImage(parte.firma,'PNG',20,220,50,50);
               }
+              doc.setFontSize(8);
+              let tmpText: string;
+              if(this.settings.empresa!==null)
+                tmpText = this.settings.empresa + "  ";
+              if(this.settings.cif!==null)
+                tmpText = tmpText + this.settings.cif + "  ";
+              if(tmpText!="")
+                doc.text(20,275,"Empresa proveedora de servicios: "+ tmpText);
+
               console.log("guardo el contenido del pdf (blob) en una variable");
               let pdfOutput = doc.output('blob');
 
               //preparamos el email según lleve o no adjunto (firma)
               if(this.platform.is("cordova")){
                 console.log('Creo el pdf');
-                File.writeFile(cordova.file.dataDirectory,'tmpPdf.pdf',pdfOutput,true).then(
+                File.writeFile(cordova.file.dataDirectory,'paretTrabajoPdf.pdf',pdfOutput,true).then(
                   (ok)=>{
                     console.log("fichero guardado");
+                    email = {
+                      to:      '',
+                      subject: 'Parte de trabajo nº ' + serieId,
+                      body:    <any>"Adjuntamos su parte de trabajo",
+                      isHtml: true,
+                      attachments: [cordova.file.dataDirectory+"paretTrabajoPdf.pdf"]
+                    };
+
+                    EmailComposer.open(email).then(
+                        (sended)=>{
+                            console.log("email enviado ");
+                            this._varios.showToast("Email enviado","top");
+                        },
+                        (error)=>{
+                            console.log("error enviando mensaje ");
+                            this._varios.showToast("Se produjo un error al enviar el Email","top");
+                            console.log(error);
+                        }
+                    );
                   },
                   (err)=>{
                     console.log("error al guardar el fichero");
@@ -121,38 +162,6 @@ export class ParteService{
               } else {
                 console.log("pdf(): cordova no disponible");
               }
-
-              if(parte.firma!==null){
-                console.log("El parte tiene firma y lo agrego como adjunto")
-                email = {
-                  to:      '',
-                  subject: 'Parte de trabajo nº ' + parte.id,
-                  body:    <any>msg,
-                  isHtml: true,
-                  attachments: [parte.firmaBase64, cordova.file.dataDirectory+"tmpPdf.pdf"]
-                };
-              } else {
-                console.log("el parte no tiene firma de modo que no lleva adjunto");
-                email = {
-                  to:      '',
-                  subject: 'Parte de trabajo nº ' + parte.id,
-                  body:    <any>msg,
-                  isHtml: true
-                };
-              }
-
-              console.log("envio de email disponible");
-              EmailComposer.open(email).then(
-                  (sended)=>{
-                      console.log("email enviado ");
-                      this._varios.showToast("Email enviado","top");
-                  },
-                  (error)=>{
-                      console.log("error enviando mensaje ");
-                      this._varios.showToast("Se producjo un error al enviar el Email o","top");
-                      console.log(error);
-                  }
-              );
             },
             (error)=>{
                 console.log("Error usando EmailComposer");
@@ -160,7 +169,6 @@ export class ParteService{
                 console.log(EmailComposer);
             }
         );
-
 
   }
 
@@ -181,7 +189,7 @@ export class ParteService{
         if(this.platform.is("cordova")){
           console.log('cordova está');
 
-          File.writeFile(cordova.file.dataDirectory,'tmpPdf.pdf',pdfOutput,true).then(
+          File.writeFile(cordova.file.dataDirectory,'paretTrabajoPdf.pdf',pdfOutput,true).then(
             (ok)=>{
               console.log("fichero guardado");
 
@@ -200,7 +208,7 @@ export class ParteService{
   recuperarPdf(){
     let email;
 
-    File.checkFile(cordova.file.dataDirectory,"tmpPdf.pdf").then(
+    File.checkFile(cordova.file.dataDirectory,"paretTrabajoPdf.pdf").then(
       (ok)=>{
         console.log("fichero encontrado");
         email = {
@@ -208,7 +216,7 @@ export class ParteService{
           subject: 'Parte de trabajo nº ',
           body:    "prueba envio con pdf adjunto",
           isHtml: true,
-          attachments: cordova.file.dataDirectory + "tmpPdf.pdf"
+          attachments: cordova.file.dataDirectory + "paretTrabajoPdf.pdf"
         }
 
 

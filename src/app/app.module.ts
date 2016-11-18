@@ -29,7 +29,9 @@ import { DatabaseProvider } from '../provider/database.provider';
     SettingsComponent,
   ],
   imports: [
-    IonicModule.forRoot(MyApp),SignaturePadModule
+    IonicModule.forRoot(MyApp,{
+      backButtonText: "Atras",
+    }),SignaturePadModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
