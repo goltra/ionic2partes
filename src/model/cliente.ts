@@ -3,7 +3,8 @@ export class Cliente{
     public nombre: string;
     public telefono: string;
     constructor(){
-
+      this.nombre="";
+      this.telefono="";
     }
     /**Funcion estatica que inicializa un objecto de tipo parte en base a los
      * valores de un objeto pasado.

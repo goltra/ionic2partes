@@ -9,6 +9,7 @@ import {SettingsService} from '../../service/settings.service';
 import {Settings} from '../../model/settings';
 import {File} from 'ionic-native';
 
+
 declare var AdMob: any;
 // declare var cordova: any;
 //const fs:string = cordova.file.dataDirectory;
@@ -42,6 +43,7 @@ export class HomePage {
 
   }
   createBanner() {
+
         console.log('crea banner');
         this.platform.ready().then(() => {
             if(AdMob) {
@@ -56,6 +58,8 @@ export class HomePage {
     }
   ngAfterViewInit() {
       console.log('ngAfterViewInit');
+
+      //this.l.store();
         if(/(ipod|iphone|ipad|android)/i.test(navigator.userAgent)){
             this.platform.ready().then(()=>{
                 console.log('platform ready');

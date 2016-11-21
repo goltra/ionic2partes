@@ -43,7 +43,12 @@ import { DatabaseProvider } from '../provider/database.provider';
     ParteEditarComponent,
     SettingsComponent
   ],
-  providers: [VariosService,ClienteService,ParteService,SQLite,DatabaseProvider,SettingsService,Storage]
+  providers: [VariosService,
+    ClienteService,
+    ParteService,
+    SQLite,DatabaseProvider,
+    SettingsService,
+    Storage]
 })
 export class AppModule {
   constructor(){

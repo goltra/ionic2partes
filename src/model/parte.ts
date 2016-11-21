@@ -10,7 +10,8 @@ export class Parte{
     public nombre: string;
 
     constructor(){
-        
+      this.trabajorealizado="";
+      this.personafirma="";
     }
     /** Getter para devolver la fecha en un formato legible y no en formato ISO
      * como se guarda en la base de datos.
@@ -18,7 +19,7 @@ export class Parte{
     get fechaformato():string {
          //console.log("fecha");
          let f = new Date(this.fecha);
-        
+
          //console.log(f.toLocaleDateString());
         return f.toLocaleDateString();
     }
@@ -33,8 +34,8 @@ export class Parte{
          return hf.toLocaleTimeString();
     }
 
-    /**Devuelve la firma en base64 (formato concreto que pide el plugin de cordova) 
-     * para poder insertarla en el email. 
+    /**Devuelve la firma en base64 (formato concreto que pide el plugin de cordova)
+     * para poder insertarla en el email.
      * */
     get firmaBase64():string{
         if(this.firma!=null){
@@ -58,7 +59,7 @@ export class Parte{
                 // console.log(Object.getOwnPropertyDescriptor(values, p));
                 if(Object.getOwnPropertyDescriptor(values, p)!=undefined ){
                    parte[p] = values[p];
-                }     
+                }
             }
             // console.log("parte despues del for")
             // console.log(parte);
@@ -67,6 +68,6 @@ export class Parte{
             alert ("Parte.inicializa " + error);
         }
     }
-    
-    
+
+
 }

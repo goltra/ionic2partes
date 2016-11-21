@@ -10,13 +10,17 @@
 
 <ion-list class="margin-list">
   <ion-list-header>Lista de Clientes</ion-list-header>
-  <ion-item><button ion-button full (click)='crearCliente()'>Añadir cliente</button></ion-item>
-  <ion-item-sliding *ngFor="let cliente of clientes">
-    <button ion-item  (click)="crearParte(cliente.id)">
+  <ion-item>
+    <button ion-button full (click)='crearCliente()'>Añadir cliente</button>
+  </ion-item>
+  <ion-item *ngFor="let cliente of clientes">
       <h2>{{cliente.id}} - {{cliente.nombre}}</h2>
-    </button>
-
-    <ion-item-options>
+    <div>
+    <!-- <ion-item-options> -->
+      <button ion-button  outline (click)="crearParte(cliente.id)">
+        <ion-icon name="md-document" ></ion-icon>
+          Crear Parte
+      </button>
         <button ion-button color="danger" (click)="borrarCliente(cliente.id)">
           <ion-icon name="trash" ></ion-icon>
             Eliminar
@@ -25,8 +29,9 @@
           <ion-icon name="arrow-dropright" ></ion-icon>
             Editar
         </button>
-      </ion-item-options>
-  </ion-item-sliding>
+      <!-- </ion-item-options> -->
+      </div>
+  </ion-item>
 </ion-list>
 
 </ion-content>

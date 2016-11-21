@@ -16,28 +16,41 @@ export class ParteService{
     private storage:any;
     private db;
     private settings: Settings;
+    private dirFiles: string;
 
-    constructor(private _varios: VariosService, _db:DatabaseProvider, private platform: Platform, s: SettingsService){
+    constructor(private _varios: VariosService, _db:DatabaseProvider, private platform: Platform, private s: SettingsService){
 
         this.db = _db
-
+        console.log("constructor ParteService");
         this.db.query('CREATE TABLE IF NOT EXISTS parte (id INTEGER PRIMARY KEY AUTOINCREMENT, clienteid INTEGER CONSTRAINT fk_clienteid REFERENCES cliente (id) ON DELETE CASCADE ON UPDATE SET DEFAULT, fecha DATE NOT NULL, horaini TIME NOT NULL, horafin TIME NOT NULL, trabajorealizado TEXT, personafirma TEXT, firma TEXT);').then(
                     (data)=>{
 
                     },
                     (error)=>{console.log("Error al crear la tabla parte: " + error.err.message)}
                 );
-        s.getData().then((data)=>{
-          let tmp = JSON.parse(data);
-          this.settings = Settings.inicializa(tmp);
-          console.log("constructor parteservice");
-          console.log(this.settings);
-        });
+
+        this.dirFiles = cordova.file.dataDirectory;
+
+        if(this.platform.is("android")){
+          this.dirFiles = cordova.file.externalDataDirectory;
+          console.log("Al ser android el dirFiles es " + this.dirFiles);
+        }
+
     }
 
     listaPartes(){
         let sql:string;
         sql = 'Select parte.*, cliente.nombre, cliente.telefono from parte inner join cliente on clienteid=cliente.id order by parte.id desc';
+        //ademas de listar los partes, aquí cargamos los settings. Si están en el constructor solo se cargan
+        //una vez de modo que si se modifican mientras la aplicación está abierto no refrescan los valores a
+        //la hora de usarlos.
+        this.s.getData().then((data)=>{
+          let tmp = JSON.parse(data);
+          console.log("cargo valores settings");
+          this.settings = Settings.inicializa(tmp);
+          console.log(this.settings);
+        });
+
         return this.db.query(sql);
     }
     elimina(parteid:number){
@@ -82,46 +95,56 @@ export class ParteService{
         console.log("Compruebo si el componente EmailComposer está disponible.");
         EmailComposer.isAvailable().then(
             (available)=>{
-
               console.log("Email composer disponible");
-
               console.log("Texto que voy a incluir en pdf");
+              console.log(this.settings);
+              if(this.settings!=undefined){
+                console.log('settings no es undefined');
+                console.log(this.settings.serie);
 
-              if(this.settings.serie.length>0){
-                serieId=this.settings.serie + "/" + String(parte.id);
-              } else {
-                serieId=String(parte.id);
-              }
+                if(this.settings.serie!=null){
+                  serieId=(this.settings.serie.length>0 ? (this.settings.serie + "/" + String(parte.id)) : String(parte.id));
+                } else {
+                  serieId=String(parte.id);
+                }
 
+              console.log("Seteo texto a negrita");
               doc.setFontStyle('bold');
               doc.text(20,20, "Parte de Trabajo Número " + serieId);
               doc.text(20,30, "Cliente: " + parte.nombre);
               doc.text(20,40, "Fecha: " + parte.fechaformato);
               doc.text(20,50, "Horas: " + parte.horainiformato + ' a ' +parte.horafinformato);
-              if(this.settings.tecnico!==null)
+              if(this.settings.tecnico!=null)
                 doc.text(20,60, "Le atendió: " + this.settings.tecnico);
               doc.text(20,70, "Trabajo Realizado");
+              console.log("seteo fuente a normal");
               doc.setFontStyle('normal');
-              doc.text(20,80, doc.splitTextToSize(parte.trabajorealizado,180));
+              console.log("parte.trabajorealizado -> " + (parte.trabajorealizado==null ? "":parte.trabajorealizado));
+              doc.text(20,80, doc.splitTextToSize((parte.trabajorealizado==null ? "":parte.trabajorealizado),180));
+              console.log("parto el texto trabajorealizado en lineas ");
 
               console.log("compruebo si hay firma");
-              if(parte.firma!==null){
+              if(parte.firma!=null){
                 doc.setFontStyle('bold');
                 doc.text(20,200, "Firmado por: ");
                 doc.setFontStyle('normal');
-                if(parte.personafirma!==null)
+                if(parte.personafirma!=null)
                   doc.text(20,210,parte.personafirma);
                 console.log("añado la firma al pdf");
                 doc.addImage(parte.firma,'PNG',20,220,50,50);
               }
               doc.setFontSize(8);
               let tmpText: string;
-              if(this.settings.empresa!==null)
-                tmpText = this.settings.empresa + "  ";
-              if(this.settings.cif!==null)
-                tmpText = tmpText + this.settings.cif + "  ";
-              if(tmpText!="")
-                doc.text(20,275,"Empresa proveedora de servicios: "+ tmpText);
+              tmpText = "";
+
+              if(this.settings!=undefined){
+                if(this.settings.empresa!=null)
+                  tmpText =  this.settings.empresa + "  ";
+                if(this.settings.cif!=null)
+                  tmpText = tmpText + this.settings.cif + "  ";
+                if(tmpText!="")
+                  doc.text(20,275,"Empresa proveedora de servicios: "+ tmpText);
+              }
 
               console.log("guardo el contenido del pdf (blob) en una variable");
               let pdfOutput = doc.output('blob');
@@ -129,20 +152,22 @@ export class ParteService{
               //preparamos el email según lleve o no adjunto (firma)
               if(this.platform.is("cordova")){
                 console.log('Creo el pdf');
-                File.writeFile(cordova.file.dataDirectory,'paretTrabajoPdf.pdf',pdfOutput,true).then(
+                File.writeFile(this.dirFiles,'partesTrabajoPdf.pdf',pdfOutput,true).then(
                   (ok)=>{
-                    console.log("fichero guardado");
+                    console.log("fichero guardado en " + this.dirFiles);
+                    console.log(ok);
                     email = {
                       to:      '',
                       subject: 'Parte de trabajo nº ' + serieId,
                       body:    <any>"Adjuntamos su parte de trabajo",
                       isHtml: true,
-                      attachments: [cordova.file.dataDirectory+"paretTrabajoPdf.pdf"]
+                      attachments: [this.dirFiles+"partesTrabajoPdf.pdf"]
                     };
 
                     EmailComposer.open(email).then(
                         (sended)=>{
                             console.log("email enviado ");
+                            console.log(sended);
                             this._varios.showToast("Email enviado","top");
                         },
                         (error)=>{
@@ -157,95 +182,17 @@ export class ParteService{
                     console.log(err);
                   }
                 );
-
-                //ahora con el plugin file tocaría guardarlo
               } else {
                 console.log("pdf(): cordova no disponible");
               }
-            },
+            }
+          },
             (error)=>{
-                console.log("Error usando EmailComposer");
+                console.log("EmailComposer no está disponible");
                 console.log("EmailComposer: ");
-                console.log(EmailComposer);
+                console.log(error);
             }
         );
 
-  }
-
-
-  public pdf() {
-        var doc = new jsPDF();
-        doc.text(20, 20, 'Hello world!');
-        doc.text(20, 30, 'This is client-side Javascript, pumping out a PDF.');
-        doc.addPage();
-        doc.text(20, 20, 'Do you like that?');
-
-        // Save the PDF
-        let pdfOutput = doc.output('blob');
-        console.log(pdfOutput);
-
-
-
-        if(this.platform.is("cordova")){
-          console.log('cordova está');
-
-          File.writeFile(cordova.file.dataDirectory,'paretTrabajoPdf.pdf',pdfOutput,true).then(
-            (ok)=>{
-              console.log("fichero guardado");
-
-            },
-            (err)=>{
-              console.log("error al guardar el fichero");
-              console.log(err);
-            }
-          );
-
-          //ahora con el plugin file tocaría guardarlo
-        } else {
-          console.log("pdf(): cordova no disponible");
-        }
-  }
-  recuperarPdf(){
-    let email;
-
-    File.checkFile(cordova.file.dataDirectory,"paretTrabajoPdf.pdf").then(
-      (ok)=>{
-        console.log("fichero encontrado");
-        email = {
-          to:      '',
-          subject: 'Parte de trabajo nº ',
-          body:    "prueba envio con pdf adjunto",
-          isHtml: true,
-          attachments: cordova.file.dataDirectory + "paretTrabajoPdf.pdf"
-        }
-
-
-        EmailComposer.isAvailable().then(
-            (available)=>{
-                console.log("envio de email disponible");
-                EmailComposer.open(email).then(
-                    (sended)=>{
-                        console.log("email enviado ");
-
-                    },
-                    (error)=>{
-                        console.log("error enviando mensaje ");
-
-                        console.log(error);
-                    }
-                );
-            },
-            (error)=>{
-                console.log("Error usando EmailComposer");
-                console.log("EmailComposer: ");
-                console.log(EmailComposer);
-            }
-        );
-      },
-      (err)=>{
-        console.log("fichero no encontrado");
-        console.log(err);
-      }
-    );
   }
 }

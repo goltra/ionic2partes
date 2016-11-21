@@ -7,15 +7,16 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
+  
 
 <ion-list class="margin-list">
   <ion-list-header>Listado de partes de trabajo</ion-list-header>
- <!--<ion-item> <button full (click)="crearParte()">Añadir parte</button> </ion-item>-->
-  <ion-item-sliding *ngFor="let p of partes"  class="transparente" >
+
+  <ion-item *ngFor="let p of partes"  class="transparente" >
     <button ion-item (click)="cargaParte(p)">
       <h2>{{p.id}} - {{p.nombre}} - {{p.fechaformato}} - {{p.horainiformato}}</h2>
     </button>
-    <ion-item-options>
+    <div>
         <button ion-button color="danger" (click)="eliminaParte(p.id)">
           <ion-icon name="trash"></ion-icon>
             Eliminar
@@ -24,7 +25,7 @@
           <ion-icon name="mail"></ion-icon>
             Enviar
           </button>
-      </ion-item-options>
-  </ion-item-sliding>
+    </div>
+  </ion-item>
 </ion-list>
 </ion-content>
