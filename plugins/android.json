@@ -7,10 +7,19 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-admobpro": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
         "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-email": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-file": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
         "cordova-plugin-splashscreen": {
@@ -28,13 +37,7 @@
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
-        "cordova-plugin-email": {
-            "PACKAGE_NAME": "com.goltratec.partestrabajo"
-        },
-        "cordova-plugin-admobpro": {
-            "PACKAGE_NAME": "com.goltratec.partestrabajo"
-        },
-        "cordova-plugin-file": {
+        "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     },

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { IonicApp, IonicModule} from 'ionic-angular';
+import { NgModule,ErrorHandler } from '@angular/core';
+import { IonicApp, IonicModule,IonicErrorHandler} from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ClienteListComponent } from '../pages/clientes/cliente-list.component';
@@ -48,7 +48,8 @@ import { DatabaseProvider } from '../provider/database.provider';
     ParteService,
     SQLite,DatabaseProvider,
     SettingsService,
-    Storage]
+    Storage,
+    {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {
   constructor(){

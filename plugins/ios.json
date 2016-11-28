@@ -36,6 +36,9 @@
         },
         "cordova-plugin-file": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     },
     "dependent_plugins": {

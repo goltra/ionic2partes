@@ -1,2 +1,19 @@
-.home {
+.home{
 }
+.online{
+    background: green;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 25px;
+    vertical-align: -webkit-baseline-middle;
+}
+.offline{
+    background: red;
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    border-radius: 25px;
+    vertical-align: -webkit-baseline-middle;
+}
+

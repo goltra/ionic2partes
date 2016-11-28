@@ -10,8 +10,9 @@
       <button ion-button (click)="showSettings()">
         <ion-icon name="ios-settings"> Ajustes</ion-icon>
       </button>
+      <!-- <span [class.online]="online==true" [class.offline]="online==false"></span> -->
     </ion-buttons>
-  </ion-navbar>
+  </ion-navbar> 
 </ion-header>
 
 <ion-content padding class="home">
@@ -23,14 +24,5 @@
     <ion-item class="transparente" style="text-align:center">
       <button ion-button style="height: 30vh;width:30vh"  (click)="partelist()">Partes</button>
     </ion-item>
-    <!-- <ion-item>
-      <button ion-button (click)="pdf()">pdf</button>
-    </ion-item>
-    <ion-item>
-      <button ion-button (click)="recuperarPdf()">recupera pdf</button>
-    </ion-item> -->
   </ion-list>
-
-  <!-- <button ion-button (click)="getSetting()">mostrar settings</button>
-  <button ion-button (click)="showSettings()">ir settings</button>  -->
 </ion-content>
