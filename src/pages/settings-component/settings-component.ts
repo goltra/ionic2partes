@@ -19,6 +19,7 @@ export class SettingsComponent {
   constructor(public navCtrl: NavController, private s: SettingsService, private v: VariosService) {}
   settings: Settings;
   serie:string;
+  logo: string;
   ionViewDidLoad() {
 
   }
@@ -40,7 +41,9 @@ export class SettingsComponent {
     this.s.save(this.settings);
     this.v.showToast("Configuración Guardada","top");
     this.navCtrl.pop();
-
+  }
+  guardaLogo(){
+    console.log("guarda logo");
   }
 
 }

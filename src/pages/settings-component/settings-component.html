@@ -52,6 +52,9 @@
               <button ion-button type="submit" name="Guardar" >Guardar</button>
         </ion-item>
       </ion-list>
-
+  </form>
+  <form (ngsubmit)="guardaLogo()">
+      <ion-input [(ngModel)]="logo">url imagen</ion-input>
+      <button ion-button type="submit">Guarda foto</button>
   </form>
 </ion-content>
