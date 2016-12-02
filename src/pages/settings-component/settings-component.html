@@ -48,13 +48,25 @@
               <ion-label floating>Email</ion-label>
               <ion-input type="text" [(ngModel)]="settings.email" name="email" ></ion-input>
         </ion-item>
+       
         <ion-item>
               <button ion-button type="submit" name="Guardar" >Guardar</button>
         </ion-item>
       </ion-list>
   </form>
-  <form (ngsubmit)="guardaLogo()">
-      <ion-input [(ngModel)]="logo">url imagen</ion-input>
-      <button ion-button type="submit">Guarda foto</button>
-  </form>
+  <ion-grid>
+      <ion-row>
+            <ion-col>   
+                  <img *ngIf="logo!=''" [src]="logo" alt="" />
+            </ion-col> 
+      </ion-row>
+      <ion-row>
+            <ion-col>
+                  <button ion-button (click)="getCamera()">Cargar Logotipo</button>
+            </ion-col>
+            <ion-col>
+                  <button ion-button (click)="removeImage()" color="danger">Eliminar Logotipo</button>
+            </ion-col>
+      </ion-row>
+  </ion-grid>
 </ion-content>

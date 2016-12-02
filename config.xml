@@ -95,4 +95,8 @@
     <allow-navigation href="http://192.168.1.7:8000" />
     <allow-navigation href="http://192.168.56.1:8000" />
     <plugin name="cordova-plugin-admobpro" spec="~2.20.1" />
+    <plugin name="cordova-plugin-camera" spec="~2.3.0">
+        <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
+        <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value=" " />
+    </plugin>
 </widget>

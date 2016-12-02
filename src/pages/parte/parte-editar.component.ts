@@ -133,9 +133,8 @@ export class ParteEditarComponent{
     //y ponerlo visible el canvas pierde el height y el width
     this.signaturePad.options=this.signaturePadOptions;
     this.signaturePad.clear();
-
-
   }
+  
   aceptaFirma(){
       this.doOnEnd();
   }

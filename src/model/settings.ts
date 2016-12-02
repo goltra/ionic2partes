@@ -9,6 +9,7 @@ export class Settings{
   public cif: string;
   public email: string;
   public tecnico: string;
+  public imagen: string;
 
   contructor(){
 
