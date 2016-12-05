@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,Platform } from 'ionic-angular';
 import { SettingsService } from '../../service/settings.service';
 import { Settings } from '../../model/settings';
 import { VariosService } from '../../service/varios.service';
-import { Camera} from 'ionic-native';
-
+import { Camera,Transfer} from 'ionic-native';
+var f: any;
+declare var cordova: any;
 /*
   Generated class for the SettingsComponent page.
 
@@ -16,15 +17,33 @@ import { Camera} from 'ionic-native';
   templateUrl: 'settings-component.html'
 })
 export class SettingsComponent {
-  
-
-  constructor(public navCtrl: NavController, private s: SettingsService, private v: VariosService) {}
   settings: Settings;
   serie:string;
   logo: string;
+  path: string;
+
+  constructor(public navCtrl: NavController, private s: SettingsService, private v: VariosService,private platform: Platform) {
+    this.logo = "";
+  }
+  
 
   ionViewDidLoad() {
-
+    this.platform.ready().then(
+      (ok)=>{
+          console.log("inicializo FileTransfer");
+          f = new Transfer()
+      },
+      (err)=>{
+          console.log("Error al inicalizar FileTransfer");
+      }
+    );
+    if(this.platform.is('android')){
+      this.path = cordova.file.externalDataDirectory;
+    }
+    if(this.platform.is('ios')){ 
+      this.path = cordova.file.dataDirectory;
+    }
+    this.path = this.path +  'logo' + (Math.random()*10).toString() + '.jpg';
   }
   ionViewCanEnter(){
     //Aunque el método estatico inicializa devuelve un objeto de tipo Settigs,
@@ -52,15 +71,26 @@ export class SettingsComponent {
   }
   getCamera(){
     let options= {
-      sourceType: Camera.PictureSourceType.SAVEDPHOTOALBUM,
+      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
       destinationType: Camera.DestinationType.FILE_URI
     }
     Camera.getPicture(options).then(
       (imageData) => {
           console.log('obteniendo imagen');
-          let base64Image = 'data:image/jpeg;base64,' + imageData;
-          console.log(base64Image);
-          this.logo = imageData;
+          //let base64Image = 'data:image/jpeg;base64,' + imageData;
+          console.log(imageData);
+          f.download(imageData,this.path).then(
+            (ok)=>{
+              console.log("copio fichero a directorio app");
+              this.logo = this.path
+              
+            },
+            (err)=>{
+              console.log("error al copiar fichero a directorio app");
+            }
+          );
+          ;
+
         }, 
         (err) => {
           console.log("Error al capturar imagen");

@@ -54,19 +54,22 @@
         </ion-item>
       </ion-list>
   </form>
+  <h2 class="text-center">Carga el logo de tu empresa</h2>
   <ion-grid>
       <ion-row>
-            <ion-col>   
+            <ion-col class="text-center">   
                   <img *ngIf="logo!=''" [src]="logo" alt="" />
             </ion-col> 
       </ion-row>
       <ion-row>
-            <ion-col>
+            <ion-col class="text-center">
                   <button ion-button (click)="getCamera()">Cargar Logotipo</button>
             </ion-col>
-            <ion-col>
+      </ion-row>
+      <ion-row>  
+            <ion-col class="text-center">
                   <button ion-button (click)="removeImage()" color="danger">Eliminar Logotipo</button>
-            </ion-col>
+            </ion-col>      
       </ion-row>
   </ion-grid>
 </ion-content>

@@ -40,10 +40,10 @@
         "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
-        "cordova-plugin-file-transfer": {
+        "cordova-plugin-camera": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
-        "cordova-plugin-camera": {
+        "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     },
