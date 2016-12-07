@@ -39,10 +39,11 @@ export class ParteEditarComponent{
 
        console.log(this.signaturePad);
 
-       if(!isNaN(Number(params.get('clienteid')))){ //para checkear que viene un valor numerico en el parametro
+       if(!isNaN(Number(params.get('clienteid'))) && params.get('nombre')){ //para checkear que viene un valor numerico en el parametro
           //este caso siempre se debe dar cuando se trata de un nuevo parte.
            this.nuevo=true;
            clienteid =params.get('clienteid');
+           this.parte.nombre = params.get('nombre');
            this.parte.clienteid=clienteid;
            this.parte.fecha=_varios.getNowDateIso();
            this.parte.horaini=this.parte.fecha;
@@ -55,7 +56,7 @@ export class ParteEditarComponent{
            console.log("Editando parte con id " + this.parte.id);
 
        }
-
+       console.log(this.parte);
 
 
        this.myForm = this.fb.group({
@@ -98,7 +99,7 @@ export class ParteEditarComponent{
         'maxWidth': 2,
         'canvasWidth': 500,
         'canvasHeight': 300,
-        'backgroundColor': '#FAFAFA',
+        'backgroundColor': '#67c7dc',
 
     };
   drawStart(){

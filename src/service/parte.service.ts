@@ -95,6 +95,7 @@ export class ParteService{
         let email;
         var doc = new jsPDF();
         let serieId: string;
+        let logo: string;
         console.log("Compruebo si el componente EmailComposer está disponible.");
         EmailComposer.isAvailable().then(
             (available)=>{
@@ -110,10 +111,13 @@ export class ParteService{
                 } else {
                   serieId=String(parte.id);
                 }
-
+              if(this.settings.imagen!==null && this.settings.imagen.length>0){
+                
+              }
               console.log("Seteo texto a negrita");
               doc.setFontStyle('bold');
               doc.text(20,20, "Parte de Trabajo Número " + serieId);
+              doc.addImage(logo,"JPEG",15,40,180,180);
               doc.text(20,30, "Cliente: " + parte.nombre);
               doc.text(20,40, "Fecha: " + parte.fechaformato);
               doc.text(20,50, "Horas: " + parte.horainiformato + ' a ' +parte.horafinformato);

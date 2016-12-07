@@ -170,7 +170,14 @@ export class HomePage {
   //   });
   //
   // }
-
+  test(){
+	 let s =new Settings();
+    this.settings.getData().then((data)=>{
+      let tmp = JSON.parse(data);
+      s=Settings.inicializa(tmp);
+      console.log(s);
+    });
+  }
   showSettings(){
 	 this.navCtrl.push(SettingsComponent);
   }

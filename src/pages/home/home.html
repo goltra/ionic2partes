@@ -17,12 +17,17 @@
 
 <ion-content padding class="home">
   <h2 style="text-align:center">{{dia}}</h2>
-  <ion-list>
-    <ion-item class="transparente" style="text-align:center">
-      <button ion-button style="height: 30vh;width:30vh" (click)="clientelist()">Clientes</button>
-    </ion-item>
-    <ion-item class="transparente" style="text-align:center">
-      <button ion-button style="height: 30vh;width:30vh"  (click)="partelist()">Partes</button>
-    </ion-item>
-  </ion-list>
+  
+      <button ion-button icon-left block  (click)="clientelist()">
+        <ion-icon name="contact"></ion-icon>
+        Clientes
+      </button>
+      
+      <br>
+  
+      <button ion-button icon-left block  (click)="partelist()">
+        <ion-icon name="create"> </ion-icon> 
+        Partes
+      </button>
+      <button (click)="test()">aaaa</button>
 </ion-content>

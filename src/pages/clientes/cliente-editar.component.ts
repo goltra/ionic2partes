@@ -12,6 +12,7 @@ import {FormsModule,
         Validators, 
         AbstractControl} from '@angular/forms';
 
+declare var window;
 @Component({
     templateUrl:'cliente-editar.html',
     providers:[ClienteService],
@@ -20,25 +21,33 @@ import {FormsModule,
 export class ClienteEditarComponent{
 
     public myForm: FormGroup;
-
+    cliente: Cliente;
+    
     constructor(private _nav: NavController, private _navParams: NavParams,
                 private fb: FormBuilder, 
                 private clienteService: ClienteService, 
                 private  _varios: VariosService){
        let params = _navParams;
-       let cliente: Cliente;
-       cliente = new Cliente();
+        this.cliente = new Cliente();   
 
        if(params.data.length>0){
-           cliente = Cliente.inicializa(params.data[0]);
+           this.cliente = Cliente.inicializa(params.data[0]);
        }
-       console.log("editando cliente id " + cliente.id);
+       console.log("editando cliente id " + this.cliente.id);
        this.myForm = this.fb.group({
-           'id':[cliente.id],
-           'nombre': [cliente.nombre,Validators.required],
-           'telefono': [cliente.telefono,Validators.pattern("[0-9]{9}")]
+           'id':[this.cliente.id],
+           'nombre': [this.cliente.nombre,Validators.required],
+           'telefono': [this.cliente.telefono,Validators.pattern("[0-9]{9}")]
        });
        
+    }
+    llama(){
+        if(this.cliente.telefono!==null && this.cliente.telefono.length>0){
+            console.log("Llamando al " + this.cliente.telefono);
+            window.location="tel:" + this.cliente.telefono;
+        } else {
+            console.log("No es un teléfono válido para llamar");
+        }
     }
     cancelar(){
         this._nav.pop();

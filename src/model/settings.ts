@@ -12,7 +12,7 @@ export class Settings{
   public imagen: string;
 
   contructor(){
-
+      this.imagen = "";
   }
   /** Devuelve el objeto del tipo Settings recibiendo un objeto generico */
   static inicializa(values:Object): Settings {
@@ -35,7 +35,11 @@ export class Settings{
           return null;
       }
   }
-  get nombreCompleto(){
+  get nombreCompleto(): string{
     return this.empresa + ' - ' + this.cif;
+  }
+  get base64Imagen(): string{
+      return btoa(this.imagen);
+   
   }
 }

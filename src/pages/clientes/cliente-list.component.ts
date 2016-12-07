@@ -70,8 +70,8 @@ export class ClienteListComponent implements OnInit{
             );
 
     }
-    crearParte(clienteid:number){
-        this.navCtrl.push(ParteEditarComponent,{clienteid: clienteid})
+    crearParte(clienteid:number,nombre:string){
+        this.navCtrl.push(ParteEditarComponent,{clienteid: clienteid,nombre: nombre })
     }
 
 }
