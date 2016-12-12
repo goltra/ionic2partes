@@ -25,9 +25,10 @@ export class HomePage {
   // public online: boolean;
   private admobId: any;
   private platform: Platform;
+
   
 
-  constructor(private navCtrl: NavController,private menu: MenuController, v: VariosService,
+  constructor(private navCtrl: NavController,private menu: MenuController, private v: VariosService,
 	 platform: Platform, private settings: SettingsService) {
 	 
 	//inicialización de variables
@@ -48,7 +49,7 @@ export class HomePage {
 				  banner: 'ca-app-pub-2437670687236295/1732838274',
 			 };
 		}
-
+	
   }
   createBanner() {
 		  // console.log("Connection " + this.online.toString() + ". No creo el banner"); 
@@ -145,39 +146,24 @@ export class HomePage {
   clienteedit(){
 	 this.navCtrl.push(ClienteEditarComponent);
   }
-  // setSetting(){
-  //   let set: Settings
-  //   set = new Settings();
-  //   console.log("seteo setting")
-  //   set.serie="AA";
-  //   set.empresa="Empresa servicios";
-  //   set.direccion="C/ la que sea";
-  //   set.localidad="Catral";
-  //   set.provincia="Alicante";
-  //   set.cp="03158";
-  //   set.cif="B00000000";
-  //   console.log(set);
-  //   console.log('guardo settings')
-  //   this.settings.save(set);
-  // }
-  // getSetting(){
-  //   console.log("recupero settings");
-  //   let set: Settings;
-  //
-  //   this.settings.getData().then((res)=>{
-  //     set = JSON.parse(res);
-  //     console.log(Settings.inicializa(set));
-  //   });
-  //
-  // }
+  
   test(){
-	 let s =new Settings();
+	let s:Settings =new Settings();
+	let res:string;
+	//let file: File = new File(["http://www.todoperros.com/wp-content/uploads/2016/08/perro.jpg"],"a.jpg");
+	//let file: string = "http://mascotafiel.com/wp-content/uploads/2014/03/cuidar-perro-a-domicilio.jpg";
+	// this.img.src = file;
+	//this.f.readAsArrayBuffer(file);
+	console.log('test');
     this.settings.getData().then((data)=>{
-      let tmp = JSON.parse(data);
-      s=Settings.inicializa(tmp);
-      console.log(s);
+		let tmp = JSON.parse(data);
+		let b64img: string;
+		s=Settings.inicializa(tmp);
+		console.log(s);
     });
   }
+
+  
   showSettings(){
 	 this.navCtrl.push(SettingsComponent);
   }

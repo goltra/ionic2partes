@@ -117,7 +117,11 @@ export class ParteService{
               console.log("Seteo texto a negrita");
               doc.setFontStyle('bold');
               doc.text(20,20, "Parte de Trabajo Número " + serieId);
-              doc.addImage(logo,"JPEG",15,40,180,180);
+
+              
+              doc.addImage(this.settings.imagenBase64,"JPEG",20,20,50,50);
+            
+
               doc.text(20,30, "Cliente: " + parte.nombre);
               doc.text(20,40, "Fecha: " + parte.fechaformato);
               doc.text(20,50, "Horas: " + parte.horainiformato + ' a ' +parte.horafinformato);
@@ -155,7 +159,7 @@ export class ParteService{
 
               console.log("guardo el contenido del pdf (blob) en una variable");
               let pdfOutput = doc.output('blob');
-
+              
               //preparamos el email según lleve o no adjunto (firma)
               if(this.platform.is("cordova")){
                 console.log('Creo el pdf');

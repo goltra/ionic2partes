@@ -31,7 +31,10 @@ export class SettingsComponent {
     this.platform.ready().then(
       (ok)=>{
           console.log("inicializo FileTransfer");
-          f = new Transfer()
+          if(this.platform.is('cordova')){
+            console.log('cordova');
+            f = new Transfer()
+          }
       },
       (err)=>{
           console.log("Error al inicalizar FileTransfer");

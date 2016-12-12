@@ -5,9 +5,10 @@ import {ToastController} from 'ionic-angular';
 @Injectable()
 
 export class VariosService{
-
+    
+    
     constructor(private toastCtrl: ToastController){
-
+       
     }
     showToast(mensaje: string, posicion: string) {
         let toast = this.toastCtrl.create({
@@ -18,7 +19,37 @@ export class VariosService{
         });
         toast.present();
    }
-  
+   imgToBase64(url: string,callback,outputformat='image/jpeg'){
+        //Declaración del  evento cuando seteamos la url del objeto Image 
+        console.log('imgToBase64');
+        let img = new Image();
+        let base64img:string;
+        img.crossOrigin = 'anonymous';
+        img.onload=function(){
+            console.log('img.onload');
+            console.log(outputformat);
+            var canvas = <HTMLCanvasElement>document.createElement('CANVAS');
+            var ctx = canvas.getContext('2d');
+            var dataUrl: string;
+
+            canvas.height=this.height;
+            canvas.width=this.width;
+            ctx.drawImage(this,0,0);
+            dataUrl = canvas.toDataURL(outputformat);
+            base64img=dataUrl;
+            //base64img =  dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
+            callback(base64img);
+        }
+        /////////////////////////////////////////////////////////////////////
+        img.src = url;
+        // if (!img.complete || img.complete === undefined) {
+        //     img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+        //     img.src = url;
+        // }
+       
+       
+
+   }
     /**Funcion que devuelve la fecha actual con el formato ISO.
      * Tras varias pruebas deduzco que el formato ISO no incluye la zona hoario por lo que siempre va a dar
      * la hora sin incrementar ni decrementar por zonas. Por ese motivo se obtiene a parte el timezoneOffset

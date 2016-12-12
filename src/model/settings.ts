@@ -1,3 +1,4 @@
+import {VariosService} from '../service/varios.service';
 export class Settings{
 
   public serie: string;
@@ -10,9 +11,11 @@ export class Settings{
   public email: string;
   public tecnico: string;
   public imagen: string;
+  public imagenBase64: string;
 
   contructor(){
       this.imagen = "";
+      this.imagenBase64 = "";
   }
   /** Devuelve el objeto del tipo Settings recibiendo un objeto generico */
   static inicializa(values:Object): Settings {
@@ -38,8 +41,5 @@ export class Settings{
   get nombreCompleto(): string{
     return this.empresa + ' - ' + this.cif;
   }
-  get base64Imagen(): string{
-      return btoa(this.imagen);
-   
-  }
+  
 }

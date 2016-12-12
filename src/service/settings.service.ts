@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {Settings} from '../model/settings';
+import {VariosService} from '../service/varios.service';
 
 declare var cordova: any;
 declare var platform: any;
@@ -9,20 +10,49 @@ declare var platform: any;
 @Injectable()
 
 export class SettingsService{
-  constructor(public storage: Storage){
+  constructor(public storage: Storage, private v: VariosService){
 
   }
   getData(){
     console.log("recupera settings")
     let setting: Settings;
-    let tmp;
     return this.storage.get('settings');
   }
 
   save(data){
-    let newData = JSON.stringify(data);
-    console.log("Guardar settings");
-    console.log(data);
+      let newData; 
+      let self = this;
+      newData= JSON.stringify(data);
+      console.log("Guardar settings");
+      //data.imagen = "https://images-na.ssl-images-amazon.com/images/G/01/img15/pet-products/small-tiles/23695_pets_vertical_store_dogs_small_tile_8._CB312176604_.jpg";
+      console.log(data);
+      
+     if(data.imagen!="" && data.imagen!=undefined){
+        //si imagen entonces lo convierto a Base64
+        this.v.imgToBase64(data.imagen,function(res){
+              console.log('convierto logo a base64 y guardo en settings.imagenBase64');
+              data.imagenBase64 = res;
+              newData= JSON.stringify(data);
+              console.log("Guardar settings con b64");
+              console.log(newData);
+              self.guardar(newData);
+            },'image/jpeg'
+        );
+        //////////////////////////////
+      } else {
+
+        newData= JSON.stringify(data);
+        console.log("Guardar settings sin b64");
+        console.log(newData);
+        this.guardar(newData);
+      }
+
+
+      
+   
+  }
+  private guardar(newData){
+    console.log('Settings.service. guardar(newData)');
     this.storage.set('settings',newData);
   }
   // saveLogo(urlToDownload: string){
