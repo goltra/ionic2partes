@@ -91,7 +91,7 @@ export class ParteService{
         );
     }
     enviaPorEmail(parte:Parte){
-        //let msg:String;
+        //let msg:String; 
         let email;
         var doc = new jsPDF();
         let serieId: string;
@@ -111,17 +111,12 @@ export class ParteService{
                 } else {
                   serieId=String(parte.id);
                 }
-              if(this.settings.imagen!==null && this.settings.imagen.length>0){
-                
+              if(this.settings.imagenBase64!==null && this.settings.imagenBase64.length>0){
+                  doc.addImage(this.settings.imagenBase64,"JPEG",120,20);
               }
               console.log("Seteo texto a negrita");
               doc.setFontStyle('bold');
               doc.text(20,20, "Parte de Trabajo Número " + serieId);
-
-              
-              doc.addImage(this.settings.imagenBase64,"JPEG",20,20,50,50);
-            
-
               doc.text(20,30, "Cliente: " + parte.nombre);
               doc.text(20,40, "Fecha: " + parte.fechaformato);
               doc.text(20,50, "Horas: " + parte.horainiformato + ' a ' +parte.horafinformato);

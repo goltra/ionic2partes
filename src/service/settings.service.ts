@@ -27,25 +27,25 @@ export class SettingsService{
       //data.imagen = "https://images-na.ssl-images-amazon.com/images/G/01/img15/pet-products/small-tiles/23695_pets_vertical_store_dogs_small_tile_8._CB312176604_.jpg";
       console.log(data);
       
-     if(data.imagen!="" && data.imagen!=undefined){
-        //si imagen entonces lo convierto a Base64
-        this.v.imgToBase64(data.imagen,function(res){
-              console.log('convierto logo a base64 y guardo en settings.imagenBase64');
-              data.imagenBase64 = res;
-              newData= JSON.stringify(data);
-              console.log("Guardar settings con b64");
-              console.log(newData);
-              self.guardar(newData);
-            },'image/jpeg'
-        );
-        //////////////////////////////
-      } else {
+    //  if(data.imagen!="" && data.imagen!=undefined){
+    //     //si imagen entonces lo convierto a Base64
+    //     this.v.imgToBase64(data.imagen,function(res){
+    //           console.log('convierto logo a base64 y guardo en settings.imagenBase64');
+    //           data.imagenBase64 = res;
+    //           newData= JSON.stringify(data);
+    //           console.log("Guardar settings con b64");
+    //           console.log(newData);
+    //           self.guardar(newData);
+    //         },'image/jpeg',100
+    //     );
+    //     //////////////////////////////
+    //   } else {
 
         newData= JSON.stringify(data);
         console.log("Guardar settings sin b64");
         console.log(newData);
         this.guardar(newData);
-      }
+    // }
 
 
       

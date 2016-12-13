@@ -57,13 +57,14 @@ export class SettingsComponent {
       let tmp = JSON.parse(data);
       this.settings=Settings.inicializa(tmp);
       this.serie = this.settings.serie;
-      this.logo = this.settings.imagen;
+      this.logo = this.settings.imagenBase64;
       console.log(this.settings);
     });
   }
   submitForm(){
     console.log("Guardando settings");
     this.settings.imagen=this.logo;
+    this.settings.imagenBase64=this.logo;
     console.log(this.settings);
     this.s.save(this.settings);
     this.v.showToast("Configuración Guardada","top");
@@ -73,6 +74,12 @@ export class SettingsComponent {
     this.logo = "";
   }
   getCamera(){
+    // let imageData: string = "https://images-na.ssl-images-amazon.com/images/G/01/img15/pet-products/small-tiles/23695_pets_vertical_store_dogs_small_tile_8._CB312176604_.jpg";
+    // let self = this;
+    // this.v.imgToBase64(imageData,function(res){
+    //         self.logo = res;
+    //       },'image/jpeg',100);
+
     let options= {
       sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
       destinationType: Camera.DestinationType.FILE_URI
@@ -80,20 +87,11 @@ export class SettingsComponent {
     Camera.getPicture(options).then(
       (imageData) => {
           console.log('obteniendo imagen');
-          //let base64Image = 'data:image/jpeg;base64,' + imageData;
           console.log(imageData);
-          f.download(imageData,this.path).then(
-            (ok)=>{
-              console.log("copio fichero a directorio app");
-              this.logo = this.path
-              
-            },
-            (err)=>{
-              console.log("error al copiar fichero a directorio app");
-            }
-          );
-          ;
-
+          let self  = this;
+          this.v.imgToBase64(imageData,function(res){
+            self.logo = res;
+          },'image/jpeg',80);
         }, 
         (err) => {
           console.log("Error al capturar imagen");

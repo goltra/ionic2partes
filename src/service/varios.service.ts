@@ -19,21 +19,37 @@ export class VariosService{
         });
         toast.present();
    }
-   imgToBase64(url: string,callback,outputformat='image/jpeg'){
+   imgToBase64(url: string,callback,outputformat='image/jpeg',maxImgWidth: number=0){
         //Declaración del  evento cuando seteamos la url del objeto Image 
         console.log('imgToBase64');
         let img = new Image();
         let base64img:string;
+
         img.crossOrigin = 'anonymous';
         img.onload=function(){
             console.log('img.onload');
             console.log(outputformat);
+            var factor:number = 1;
             var canvas = <HTMLCanvasElement>document.createElement('CANVAS');
             var ctx = canvas.getContext('2d');
             var dataUrl: string;
-
             canvas.height=this.height;
             canvas.width=this.width;
+            //si maxImgWidth <> 0 entonces calculo un factor de redimensión.
+            if(maxImgWidth>0){
+                console.log('redimensiono el canvas con maxImgWidth recibido');
+                factor = canvas.width/maxImgWidth;
+                console.log("factor " + factor);
+                console.log('dimensiones antes de resize altura: ' +  this.height + ' - anchura: ' + this.width);
+                // this.height = this.height/factor;
+                // this.width = this.width/factor;
+                canvas.height=this.height;
+                canvas.width=this.width;
+                console.log('dimensiones despues de resize altura: ' +  Math.round(this.height/factor) + ' - anchura: ' + Math.round(this.width/factor)); 
+            }
+
+            //ctx.drawImage(this,0,0,Math.round(this.width/factor),Math.round(this.height/factor));
+            //ctx.scale(0.2,0.2);
             ctx.drawImage(this,0,0);
             dataUrl = canvas.toDataURL(outputformat);
             base64img=dataUrl;
@@ -42,12 +58,6 @@ export class VariosService{
         }
         /////////////////////////////////////////////////////////////////////
         img.src = url;
-        // if (!img.complete || img.complete === undefined) {
-        //     img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
-        //     img.src = url;
-        // }
-       
-       
 
    }
     /**Funcion que devuelve la fecha actual con el formato ISO.
