@@ -112,7 +112,7 @@ export class ParteService{
                   serieId=String(parte.id);
                 }
               if(this.settings.imagenBase64!==null && this.settings.imagenBase64.length>0){
-                  doc.addImage(this.settings.imagenBase64,"JPEG",120,20);
+                  doc.addImage(this.settings.imagenBase64,"JPEG",140,20);
               }
               console.log("Seteo texto a negrita");
               doc.setFontStyle('bold');
@@ -120,15 +120,17 @@ export class ParteService{
               doc.text(20,30, "Cliente: " + parte.nombre);
               doc.text(20,40, "Fecha: " + parte.fechaformato);
               doc.text(20,50, "Horas: " + parte.horainiformato + ' a ' +parte.horafinformato);
+
               if(this.settings.tecnico!=null)
                 doc.text(20,60, "Le atendió: " + this.settings.tecnico);
+
               doc.text(20,70, "Trabajo Realizado");
               console.log("seteo fuente a normal");
               doc.setFontStyle('normal');
               console.log("parte.trabajorealizado -> " + (parte.trabajorealizado==null ? "":parte.trabajorealizado));
-              doc.text(20,80, doc.splitTextToSize((parte.trabajorealizado==null ? "":parte.trabajorealizado),180));
               console.log("parto el texto trabajorealizado en lineas ");
-
+              doc.text(20,80, doc.splitTextToSize((parte.trabajorealizado==null ? "":parte.trabajorealizado),180));
+              
               console.log("compruebo si hay firma");
               if(parte.firma!=null){
                 doc.setFontStyle('bold');

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {DatePipe} from '@angular/common/src/pipes';
 import {ToastController} from 'ionic-angular';
+declare let EXIF;
 
 @Injectable()
 
@@ -33,32 +34,64 @@ export class VariosService{
             var canvas = <HTMLCanvasElement>document.createElement('CANVAS');
             var ctx = canvas.getContext('2d');
             var dataUrl: string;
-            canvas.height=this.height;
-            canvas.width=this.width;
+            var widthImg;
+            var heightImg;
+            var rotar: boolean = false;
+
             //si maxImgWidth <> 0 entonces calculo un factor de redimensión.
             if(maxImgWidth>0){
+                console.log("tamaño de la imagen: ancho "  + this.width + " alto " + this.height);
                 console.log('redimensiono el canvas con maxImgWidth recibido');
-                factor = canvas.width/maxImgWidth;
+                factor = this.width/maxImgWidth;
                 console.log("factor " + factor);
-                console.log('dimensiones antes de resize altura: ' +  this.height + ' - anchura: ' + this.width);
-                // this.height = this.height/factor;
-                // this.width = this.width/factor;
-                canvas.height=this.height;
-                canvas.width=this.width;
-                console.log('dimensiones despues de resize altura: ' +  Math.round(this.height/factor) + ' - anchura: ' + Math.round(this.width/factor)); 
+                console.log('dimensiones despues de resize ancho: ' +  this.width/factor + ' - anchura: ' + this.height/factor); 
             }
+            widthImg = this.width/factor;
+            heightImg = this.height/factor;
+            canvas.height=heightImg;
+            canvas.width=widthImg;
 
-            //ctx.drawImage(this,0,0,Math.round(this.width/factor),Math.round(this.height/factor));
-            //ctx.scale(0.2,0.2);
-            ctx.drawImage(this,0,0);
-            dataUrl = canvas.toDataURL(outputformat);
-            base64img=dataUrl;
-            //base64img =  dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
-            callback(base64img);
+            EXIF.getData(this,function(){
+                var orientation = EXIF.getTag(this,"Orientation");
+                console.log("la orientación de la foto es : " + orientation);
+                switch(orientation){
+                    case 8:
+                        console.log('rotar');
+                        rotar = true;
+                        ctx.translate(canvas.width/2,canvas.height/2);
+                        ctx.rotate(90*Math.PI/180);
+                        break;
+                    case 3:
+                        console.log('rotar');
+                        rotar = true;
+                        ctx.translate(canvas.width/2,canvas.height/2);
+                        ctx.rotate(180*Math.PI/180);
+                        break;
+                    case 6:
+                            console.log('rotar');
+                        rotar = true;
+                        ctx.translate(canvas.width/2,canvas.height/2);
+                        ctx.rotate(-90*Math.PI/180);
+                        break;
+                }
+                if(rotar){
+                    ctx.drawImage(img, -widthImg/2,-heightImg/2,widthImg,heightImg);
+                    dataUrl = canvas.toDataURL(outputformat);
+                    base64img=dataUrl;
+                    //base64img =  dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
+                    callback(base64img);  
+                }
+            });
+            if(!rotar){
+                ctx.drawImage(img, 0,0,widthImg,heightImg);   
+                dataUrl = canvas.toDataURL(outputformat);
+                base64img=dataUrl;
+                //base64img =  dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
+                callback(base64img);
+            }
         }
         /////////////////////////////////////////////////////////////////////
         img.src = url;
-
    }
     /**Funcion que devuelve la fecha actual con el formato ISO.
      * Tras varias pruebas deduzco que el formato ISO no incluye la zona hoario por lo que siempre va a dar
