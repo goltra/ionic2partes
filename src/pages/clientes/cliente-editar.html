@@ -16,13 +16,13 @@
             <ion-label floating>Telefono</ion-label>
             <ion-input formControlName="telefono" (click)="llama()"></ion-input>   
         </ion-item>
-
-        <button ion-button type="submit">Enviar</button>
-        <input  type="button" ion-button color="danger" (click)="cancelar()" value="Cancelar">
-        <span ion-button icon-only (click)="llama()">
-            <ion-icon color="secondary" name="call" ></ion-icon>
-        </span>
-
+        <ion-item>
+            <button ion-button type="submit">Enviar</button>
+            <input  type="button" ion-button color="danger" (click)="cancelar()" value="Cancelar">
+            <span ion-button icon-only (click)="llama()">
+                <ion-icon color="secondary" name="call" ></ion-icon>
+            </span>
+        </ion-item>
     </form>
     
 

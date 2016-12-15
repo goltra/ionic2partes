@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget android-versionCode="3" id="com.goltratec.partestrabajo" ios-CFBundleVersion="3" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="4" id="com.goltratec.partestrabajo" ios-CFBundleVersion="4" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Partes de trabajo</name>
   <description>Parte de trabajo para tus clientes.</description>
   <author email="info@goltratec.com" href="http://goltratec.com/">GOLTRATEC S.L.</author>
@@ -88,8 +88,8 @@
   <plugin name="cordova-plugin-network-information" spec="~1.3.0"/>
   <plugin name="cordova-plugin-admobpro" spec="~2.20.1"/>
   <plugin name="cordova-plugin-camera" spec="~2.3.0">
-    <variable name="CAMERA_USAGE_DESCRIPTION" value=" "/>
-    <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value=" "/>
+    <variable name="CAMERA_USAGE_DESCRIPTION" value="Permitir para capturar de la cámara"/>
+    <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="Permitir para seleccionar imagen"/>
   </plugin>
   <plugin name="cordova-plugin-file-transfer" spec="~1.6.0"/>
   <icon src="resources/android/icon/drawable-xhdpi-icon.png"/>

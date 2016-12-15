@@ -9,7 +9,7 @@
 <ion-content>
   
 <h3 class="text-center">Listado de partes de trabajo</h3>
-<ion-list class="margin-list">
+<ion-list>
   <ion-item *ngFor="let p of partes"  class="transparente" >
     <button ion-item icon-left (click)="cargaParte(p)">  
       <ion-icon class="verde" *ngIf="p.firmaBase64!=''" name="checkmark-circle-outline"></ion-icon>

@@ -95,10 +95,8 @@ export class ParteEditarComponent{
     signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
         'minWidth': 0.5,
         'maxWidth': 2,
-        'canvasWidth': 500,
+        'canvasWidth': 380,
         'canvasHeight': 300,
-        'backgroundColor': '#67c7dc',
-
     };
   drawStart(){
     console.log("comieza a firmar y oculto teclado");

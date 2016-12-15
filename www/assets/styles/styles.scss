@@ -3,9 +3,7 @@ $colorverde: #11b566;
 .margin-list{
   margin-left: 30px;
 }
-ion-content{
-    background-image: url('../assets/img/notebook-bg-big.png');
-}
+
 .transparente{
     border-color: rgba(0, 0, 0, 0);
 	background-color: rgba(0, 0, 0, 0);
@@ -18,7 +16,6 @@ signature-pad canvas {
     margin-right: auto;
     display: block;
     border:1px solid;
-    width: 100%;
 }
 
 textarea.text-input{
@@ -31,7 +28,7 @@ textarea.text-input{
     color: $colorverde;
 }
 .margin-inferior{
-    margin-bottom: 20px;
+    margin-bottom: 60px;
 }
 .full-width{
     width:100%;

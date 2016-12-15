@@ -21,9 +21,7 @@ export class VariosService{
         });
         toast.present();
    }
-   /** Función que lista las bd. Solo probado con android.
-    * Guardo esta función por si hace falta en el futuro.
-    */
+   /** Función que lista las bd. Solo probado con android. */
    pathDatabasesSqlite(){
 	  console.log('ubicación de las bases de datos SQLITE. Solo probado con Android');
 	  File.listDir(cordova.file.applicationStorageDirectory,'databases').then(

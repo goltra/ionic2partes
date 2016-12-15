@@ -5,6 +5,7 @@ import {ParteEditarComponent} from '../parte/parte-editar.component';
 import {Cliente} from '../../model/Cliente';
 import {ClienteService} from '../../service/cliente.service';
 import {VariosService} from '../../service/varios.service';
+declare var window;
 
 @Component({
     templateUrl: 'cliente-list.html',
@@ -92,6 +93,9 @@ export class ClienteListComponent implements OnInit{
     }
     crearParte(clienteid:number,nombre:string){
         this.navCtrl.push(ParteEditarComponent,{clienteid: clienteid,nombre: nombre })
+    }
+    llamar(telefono: string){
+        window.location="tel:" + telefono;
     }
 
 }

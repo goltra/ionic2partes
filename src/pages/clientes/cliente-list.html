@@ -8,13 +8,16 @@
 </ion-header>
 <ion-content>
 
-<ion-list class="margin-list">
+<ion-list>
   <ion-list-header>Lista de Clientes</ion-list-header>
   <ion-item>
     <button ion-button full (click)='crearCliente()'>Añadir cliente</button>
   </ion-item>
-  <ion-item *ngFor="let cliente of clientes">
-      <h2>{{cliente.id}} - {{cliente.nombre}}</h2>
+  <ion-item *ngFor="let cliente of clientes" icon-right>
+      {{cliente.id}} - {{cliente.nombre}}
+       <button ion-button color="dark" *ngIf="cliente.telefono.length>0" (click)="llamar(cliente.telefono);">
+          <ion-icon color="secondary" name="call" ></ion-icon>
+        </button>
     <div>
     <!-- <ion-item-options> -->
       <button ion-button  outline (click)="crearParte(cliente.id,cliente.nombre)">
@@ -25,7 +28,7 @@
           <ion-icon name="trash" ></ion-icon>
             Eliminar
         </button>
-        <button ion-button light (click)="cargaCliente(cliente)">
+        <button ion-button color="default" (click)="cargaCliente(cliente)">
           <ion-icon name="arrow-dropright" ></ion-icon>
             Editar
         </button>
