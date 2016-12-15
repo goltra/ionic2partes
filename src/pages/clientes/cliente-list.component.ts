@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NavController, NavParams, ActionSheetController} from 'ionic-angular';
+import {NavController, NavParams,AlertController} from 'ionic-angular';
 import {ClienteEditarComponent} from './cliente-editar.component';
 import {ParteEditarComponent} from '../parte/parte-editar.component';
 import {Cliente} from '../../model/Cliente';
@@ -17,8 +17,8 @@ export class ClienteListComponent implements OnInit{
 
     constructor(private navCtrl: NavController,
                 private navParams: NavParams,
-                private actionSheetController: ActionSheetController,
                 private _clienteService: ClienteService,
+                private alertCtrl: AlertController,
                 private variosService: VariosService){
 
 
@@ -58,16 +58,36 @@ export class ClienteListComponent implements OnInit{
         this.navCtrl.push(ClienteEditarComponent);
     }
     borrarCliente(id: number){
-        this._clienteService.borrarCliente(id).then(
-            (data)=>{
-                console.log(data.res);
-                this.variosService.showToast("Cliente eliminado","top");
-                this.listaClientes();
-            },
-            (error)=>{
-                console.log(error);
-            }
+        let confirm = this.alertCtrl.create({
+      title: 'Borrar Cliente',
+      message: 'Va a borrar un cliente. Esta acción no puede deshacerse. ¿Deesea continuar?',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {
+            console.log('borrar NO');
+          }
+        },
+        {
+          text: 'Si',
+          handler: () => {
+            console.log('borrar SI');
+            this._clienteService.borrarCliente(id).then(
+                (data)=>{
+                    console.log(data.res);
+                    this.variosService.showToast("Cliente eliminado","top");
+                    this.listaClientes();
+                },
+                (error)=>{
+                    console.log(error);
+                }
             );
+          }
+        }
+      ]
+    });
+    confirm.present();
+        
 
     }
     crearParte(clienteid:number,nombre:string){

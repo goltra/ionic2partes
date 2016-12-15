@@ -40,6 +40,7 @@ export class ClienteService{
 
     listaClientes(){
          let sql = 'Select * from cliente';
+         console.log(this.db);
          return this.db.query(sql);
          //return this.db.executeSql(sql,[]);
         // return this.storage.query(sql);

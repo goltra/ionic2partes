@@ -9,12 +9,14 @@ import {SettingsService} from '../../service/settings.service';
 import {Settings} from '../../model/settings';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
- import {Network} from 'ionic-native';
+import {Network,File} from 'ionic-native';
 
 
 declare var AdMob: any;
 declare var navigator: any;
 declare var Connection: any;
+declare var cordova: any;
+
 
 @Component({
   templateUrl: 'home.html',
@@ -148,19 +150,18 @@ export class HomePage {
   }
   
   test(){
-	let s:Settings =new Settings();
-	let res:string;
-	//let file: File = new File(["http://www.todoperros.com/wp-content/uploads/2016/08/perro.jpg"],"a.jpg");
-	//let file: string = "http://mascotafiel.com/wp-content/uploads/2014/03/cuidar-perro-a-domicilio.jpg";
-	// this.img.src = file;
-	//this.f.readAsArrayBuffer(file);
-	console.log('test');
-    this.settings.getData().then((data)=>{
-		let tmp = JSON.parse(data);
-		let b64img: string;
-		s=Settings.inicializa(tmp);
-		console.log(s);
-    });
+	  console.log('test');
+	  File.listDir(cordova.file.applicationStorageDirectory,'databases').then(
+			(files)=>{
+				console.log('applicationStorageDirectory');
+				console.log(files);
+			},
+			(error)=>{
+				console.log('error');
+				console.log(error);
+			}
+	  );
+
   }
 
   

@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {DatePipe} from '@angular/common/src/pipes';
 import {ToastController} from 'ionic-angular';
+import {Network,File} from 'ionic-native';
 declare let EXIF;
-
+declare var cordova: any;
 @Injectable()
 
 export class VariosService{
@@ -20,6 +21,29 @@ export class VariosService{
         });
         toast.present();
    }
+   /** Función que lista las bd. Solo probado con android.
+    * Guardo esta función por si hace falta en el futuro.
+    */
+   pathDatabasesSqlite(){
+	  console.log('ubicación de las bases de datos SQLITE. Solo probado con Android');
+	  File.listDir(cordova.file.applicationStorageDirectory,'databases').then(
+			(files)=>{
+				console.log('applicationStorageDirectory');
+				console.log(files);
+			},
+			(error)=>{
+				console.log('error');
+				console.log(error);
+			}
+	  );
+
+  }
+   /** Función que recibe la url de una imagen, un función a la que hacer el callback
+    * el tipo de imagen y el ancho máximo que debe tener esta.
+    * Si es necesario, la función rota la imagen.
+    * La función develve al callback la imagen en base64 para poder embeberla donde 
+    * sea necesario.
+    */
    imgToBase64(url: string,callback,outputformat='image/jpeg',maxImgWidth: number=0){
         //Declaración del  evento cuando seteamos la url del objeto Image 
         console.log('imgToBase64');

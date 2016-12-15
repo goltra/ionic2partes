@@ -73,10 +73,7 @@ export class ParteEditarComponent{
 
     }
 
-    // ionViewDidEnter() {
-    //     let canvas        = document.getElementById('signature-pad');
-    //     this.signaturePad = new SignaturePad(canvas);
-    // }
+    
     cancelar(){
         this._nav.pop();
     }
@@ -89,6 +86,7 @@ export class ParteEditarComponent{
     }
     onSubmit(){
         let f = this.myForm.value;
+        console.log("onSubmit");
         console.log(this.myForm.value);
         this.parteService.actualizaParte(f);
         this._nav.setRoot(ParteListComponent);
@@ -107,7 +105,6 @@ export class ParteEditarComponent{
     Keyboard.close();
   }
   ngAfterViewInit() {
-
     // this.signaturePad is now available
     this.signaturePad.options=this.signaturePadOptions; // set szimek/signature_pad options at runtime
     this.signaturePad.clear(); // invoke functions from szimek/signature_pad API
@@ -122,6 +119,7 @@ export class ParteEditarComponent{
     // will be notified of szimek/signature_pad's onEnd event
     this.firmaImg=this.signaturePad.toDataURL();
     this.myForm.value.firma=this.firmaImg;
+    this.onSubmit();
   }
   limpiarFirma(){
     this.signaturePad.clear();
@@ -134,9 +132,5 @@ export class ParteEditarComponent{
     //y ponerlo visible el canvas pierde el height y el width
     this.signaturePad.options=this.signaturePadOptions;
     this.signaturePad.clear();
-  }
-  
-  aceptaFirma(){
-      this.doOnEnd();
   }
 }

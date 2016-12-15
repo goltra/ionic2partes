@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController,AlertController } from 'ionic-angular';
 import {ParteService} from '../../service/parte.service';
 import {VariosService} from '../../service/varios.service';
 import {ParteEditarComponent} from './parte-editar.component';
@@ -14,7 +14,8 @@ export class ParteListComponent {
   
   public partes:any[];
   
-  constructor(private navCtrl: NavController, private parteService: ParteService,private varios: VariosService) {
+  constructor(private navCtrl: NavController, private parteService: ParteService,
+  private varios: VariosService, private alertCtrl: AlertController) {
     this.listadoPartes();
 
 
@@ -52,10 +53,30 @@ export class ParteListComponent {
   }
 
   eliminaParte(parteid: number){
-    this.parteService.elimina(parteid).then((data)=>{
-      this.varios.showToast("Parte Eliminado","top");
-      this.listadoPartes();
+
+     let confirm = this.alertCtrl.create({
+      title: 'Borrar Parte',
+      message: 'Va a borrar el parte de trabajo. Esta acción no puede deshacerse. ¿Deesea continuar?',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {
+            console.log('borrar NO');
+          }
+        },
+        {
+          text: 'Si',
+          handler: () => {
+            console.log('borrar SI');
+            this.parteService.elimina(parteid).then((data)=>{
+              this.varios.showToast("Parte Eliminado","top");
+              this.listadoPartes();
+            });
+          }
+        }
+      ]
     });
+    confirm.present();
   }
   enviarEmail(parte: Parte){
     console.log('envia email');
