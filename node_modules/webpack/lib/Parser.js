@@ -2,7 +2,7 @@
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
 */
-var acorn = require("acorn");
+var acorn = require("acorn-dynamic-import").default;
 var Tapable = require("tapable");
 var BasicEvaluatedExpression = require("./BasicEvaluatedExpression");
 
@@ -296,6 +296,46 @@ Parser.prototype.initializeEvaluating = function() {
 					return;
 			}
 			return new BasicEvaluatedExpression().setString(result).setRange(expr.range);
+		});
+
+		/**
+		 * @param {string} kind "cooked" | "raw"
+		 * @param {any[]} quasis quasis
+		 * @param {any[]} expressions expressions
+		 * @return {BasicEvaluatedExpression[]} Simplified template
+		 */
+		function getSimplifiedTemplateResult(kind, quasis, expressions) {
+			var i = 0;
+			var parts = [];
+
+			for(i = 0; i < quasis.length; i++) {
+				parts.push(new BasicEvaluatedExpression().setString(quasis[i].value[kind]).setRange(quasis[i].range));
+
+				if(i > 0) {
+					var prevExpr = parts[parts.length - 2],
+						lastExpr = parts[parts.length - 1];
+					var expr = this.evaluateExpression(expressions[i - 1]);
+					if(!(expr.isString() || expr.isNumber())) continue;
+
+					prevExpr.setString(prevExpr.string + (expr.isString() ? expr.string : expr.number) + lastExpr.string)
+					prevExpr.setRange([prevExpr.range[0], lastExpr.range[1]]);
+					parts.pop();
+				}
+			}
+			return parts;
+		}
+
+		this.plugin("evaluate TemplateLiteral", function(node) {
+			var parts = getSimplifiedTemplateResult.call(this, 'cooked', node.quasis, node.expressions);
+			if(parts.length == 1) {
+				return parts[0].setRange(node.range);
+			}
+			return new BasicEvaluatedExpression().setTemplateString(parts).setRange(node.range);
+		});
+		this.plugin("evaluate TaggedTemplateExpression", function(node) {
+			if(this.evaluateExpression(node.tag).identifier !== 'String.raw') return;
+			var parts = getSimplifiedTemplateResult.call(this, 'raw', node.quasi.quasis, node.quasi.expressions);
+			return new BasicEvaluatedExpression().setTemplateString(parts).setRange(node.range);
 		});
 	}, this);
 	this.plugin("evaluate CallExpression .split", function(expr, param) {
@@ -800,6 +840,8 @@ Parser.prototype.walkClassExpression = function walkClassExpression(expression) 
 };
 
 Parser.prototype.walkCallExpression = function walkCallExpression(expression) {
+	var result;
+
 	function walkIIFE(functionExpression, args) {
 		var params = functionExpression.params;
 		args = args.map(function(arg) {
@@ -837,11 +879,18 @@ Parser.prototype.walkCallExpression = function walkCallExpression(expression) {
 	} else if(expression.callee.type === "FunctionExpression" && expression.arguments) {
 		// (function(...) { }(...))
 		walkIIFE.call(this, expression.callee, expression.arguments);
+	} else if(expression.callee.type === "Import") {
+		result = this.applyPluginsBailResult1("import-call", expression);
+		if(result === true)
+			return;
+
+		if(expression.arguments)
+			this.walkExpressions(expression.arguments);
 	} else {
 
 		var callee = this.evaluateExpression(expression.callee);
 		if(callee.isIdentifier()) {
-			var result = this.applyPluginsBailResult("call " + callee.identifier, expression);
+			result = this.applyPluginsBailResult("call " + callee.identifier, expression);
 			if(result === true)
 				return;
 		}
@@ -1039,12 +1088,18 @@ var POSSIBLE_AST_OPTIONS = [{
 	ranges: true,
 	locations: true,
 	ecmaVersion: 2017,
-	sourceType: "module"
+	sourceType: "module",
+	plugins: {
+		dynamicImport: true
+	}
 }, {
 	ranges: true,
 	locations: true,
 	ecmaVersion: 2017,
-	sourceType: "script"
+	sourceType: "script",
+	plugins: {
+		dynamicImport: true
+	}
 }]
 
 Parser.prototype.parse = function parse(source, initialState) {
@@ -1067,6 +1122,9 @@ Parser.prototype.parse = function parse(source, initialState) {
 			locations: true,
 			ecmaVersion: 2017,
 			sourceType: "module",
+			plugins: {
+				dynamicImport: true
+			},
 			onComment: comments
 		});
 	}
@@ -1092,7 +1150,10 @@ Parser.prototype.evaluate = function evaluate(source) {
 		ranges: true,
 		locations: true,
 		ecmaVersion: 2017,
-		sourceType: "module"
+		sourceType: "module",
+		plugins: {
+			dynamicImport: true
+		}
 	});
 	if(!ast || typeof ast !== "object" || ast.type !== "Program")
 		throw new Error("evaluate: Source couldn't be parsed");

@@ -118,6 +118,17 @@ function NormalModuleFactory(context, resolvers, options) {
 				var loaders = results[0];
 				resource = results[1];
 
+				// translate option idents
+				try {
+					loaders.forEach(function(item) {
+						if(typeof item.options === "string" && /^\?/.test(item.options)) {
+							item.options = _this.ruleSet.findOptionsByIdent(item.options.substr(1));
+						}
+					})
+				} catch(e) {
+					return callback(e);
+				}
+
 				if(resource === false)
 					return callback(null,
 						new RawModule("/* (ignored) */",
@@ -127,12 +138,16 @@ function NormalModuleFactory(context, resolvers, options) {
 				var userRequest = loaders.map(loaderToIdent).concat([resource]).join("!");
 
 				var resourcePath = resource;
+				var resourceQuery = "";
 				var queryIndex = resourcePath.indexOf("?");
-				if(queryIndex >= 0)
+				if(queryIndex >= 0) {
+					resourceQuery = resourcePath.substr(queryIndex);
 					resourcePath = resourcePath.substr(0, queryIndex);
+				}
 
 				var result = _this.ruleSet.exec({
 					resource: resourcePath,
+					resourceQuery: resourceQuery,
 					issuer: contextInfo.issuer
 				});
 				var settings = {};
@@ -217,7 +232,7 @@ NormalModuleFactory.prototype.resolveRequestArray = function resolveRequestArray
 				return resolver.resolve(contextInfo, context, item.loader + "-loader", function(err2) {
 					if(!err2) {
 						err.message = err.message + "\n" +
-							"BREAKING CHANGE: It's no longer allowed to omit the '-loader' prefix when using loaders.\n" +
+							"BREAKING CHANGE: It's no longer allowed to omit the '-loader' suffix when using loaders.\n" +
 							"                 You need to specify '" + item.loader + "-loader' instead of '" + item.loader + "'.";
 					}
 					callback(err);

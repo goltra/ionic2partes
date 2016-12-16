@@ -6,7 +6,6 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { Directive, ElementRef, Injectable, Injector, Input, Renderer, forwardRef } from '@angular/core';
-import { ListWrapper } from '../facade/collection';
 import { NG_VALUE_ACCESSOR } from './control_value_accessor';
 import { NgControl } from './ng_control';
 export var RADIO_VALUE_ACCESSOR = {
@@ -25,13 +24,12 @@ export var RadioControlRegistry = (function () {
         this._accessors.push([control, accessor]);
     };
     RadioControlRegistry.prototype.remove = function (accessor) {
-        var indexToRemove = -1;
-        for (var i = 0; i < this._accessors.length; ++i) {
+        for (var i = this._accessors.length - 1; i >= 0; --i) {
             if (this._accessors[i][1] === accessor) {
-                indexToRemove = i;
+                this._accessors.splice(i, 1);
+                return;
             }
         }
-        ListWrapper.removeAt(this._accessors, indexToRemove);
     };
     RadioControlRegistry.prototype.select = function (accessor) {
         var _this = this;
