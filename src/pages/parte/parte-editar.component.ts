@@ -1,8 +1,7 @@
 import {Component, ViewChild} from '@angular/core';
 import {Parte} from '../../model/parte';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams,AlertController} from 'ionic-angular';
 import {FormsModule,
-        ReactiveFormsModule,
         FormBuilder,
         FormGroup,
         Validators,
@@ -11,13 +10,11 @@ import {ParteService} from '../../service/parte.service';
 import {VariosService} from '../../service/varios.service';
 import {ParteListComponent} from './parte-list.component';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
-import {Keyboard} from 'ionic-native';
-
+import {Keyboard,Camera} from 'ionic-native';
 
 @Component({
     templateUrl:'parte-editar.component.html',
 })
-
 
 
 export class ParteEditarComponent{
@@ -25,12 +22,14 @@ export class ParteEditarComponent{
     public firmaImg: string;
     private nuevo: boolean;
     parte: Parte;
+    public fotos: Array<{id:number,base64:string,nombre:string}>;
     @ViewChild(SignaturePad) signaturePad: SignaturePad;
 
     constructor(private _nav: NavController, private _navParams: NavParams,
                 private fb: FormBuilder,
                 private parteService: ParteService,
-                private  _varios: VariosService){
+                private  _varios: VariosService,
+                public alertCtrl: AlertController){
        let params = _navParams;
 
        this.parte = new Parte();
@@ -77,13 +76,7 @@ export class ParteEditarComponent{
     cancelar(){
         this._nav.pop();
     }
-    countRows(e){
-       console.log(e);
-    //    let numLineas=e.target.value.split("\n").length;
-    //    e.target.style.height='auto';
-    //    e.target.style.height = e.target.scrollHeight + 'px';
-    //    console.log(e.target.scrollHeight);
-    }
+  
     onSubmit(){
         let f = this.myForm.value;
         console.log("onSubmit");
@@ -130,5 +123,45 @@ export class ParteEditarComponent{
     //y ponerlo visible el canvas pierde el height y el width
     this.signaturePad.options=this.signaturePadOptions;
     this.signaturePad.clear();
+  }
+
+  hacerFoto(){
+      let options = {
+          quality: 50,
+          destinationType: Camera.DestinationType.DATA_URL,
+          sourceType: Camera.PictureSourceType.CAMERA,
+          encodingType: Camera.EncodingType.JPEG,
+          correctOrientation: true
+      }
+      Camera.getPicture(options).then(success=>{
+          console.log('foto');
+          console.log(success);
+          let nomFichero:string='';
+          let alert =this.alertCtrl.create({
+              title: 'Indique un nombre para el fichero',
+              inputs:[{
+                  name: 'Nombre',
+                  placeholder: 'foto'
+              }],
+              buttons:[{
+                  text:'Aceptar',
+                  handler: data=>{
+                      nomFichero = data;
+                  }
+              }]
+
+          });
+          alert.present().then(data=>{
+            console.log('alert aceptado');
+            console.log(data);
+            /*this.fotos.push({id:1,base64:success,nombre:nomFichero});*/
+            /*console.log(this.fotos);*/
+          });
+          
+      },
+      error=>{
+          console.log('error');
+          console.log(error);
+      });
   }
 }

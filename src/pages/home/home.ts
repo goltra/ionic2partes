@@ -37,8 +37,6 @@ export class HomePage {
 	 this.menu.enable(true);
 	 this.dia  = v.getNowDate();
 	 this.platform=platform;
-	 // this.online=false;
-
 	
 	 //seteo ids para anuncios según plataforma
 	 if(/(android)/i.test(navigator.userAgent)) {
@@ -67,78 +65,20 @@ export class HomePage {
 				}
 		  });
 	 }
-  // displayAd(status: boolean): boolean{
-	 // try{
-		//   console.log('checkConnection ' + this.online.toString());
-		//   if(AdMob!=null){
-		// 	 if((this.online!=status) && status==false){
-		// 	 	console.log('oculto banner');
-		// 		AdMob.hideBanner();
-		// 	 }
-		// 	 if((this.online!=status) && status==true){
-		// 	 	console.log('muestro banner');
-		// 	 	console.log(AdMob);
-		// 	 	this.createBanner();
-		// 	 }
-		//   } else {
-		// 	 console.log('checkConnection. AdMob es null');
-		//   }
-	 // } catch(ex) {
-		//   console.log("error checkConnection");
-		//   console.log(ex);
-		//   return false;
-	 // }
-  // }
+  
   ionViewDidLoad() {
 		  console.log('ionViewDidLoad');
 
 		  if(/(ipod|iphone|ipad|android)/i.test(navigator.userAgent)){
 				this.platform.ready().then(()=>{
-					 // let net = Network.onDisconnect().subscribe(() => {
-					 // 	this.displayAd(false);
-						// console.log('seteo this.online a false');
-						// this.online=false;
-						// console.log('network was disconnected :-(');
-					 // });
-
-					 // net = Network.onConnect().subscribe(() => {
-					 // 	this.displayAd(true);
-					 // 	console.log('seteo this.online a false');
-						// this.online=true;
-						// console.log('network connected!'); 
-					 //  });
-					 // console.log('Estado de la red ' + this.online.toString());
 					 console.log('Platform ready');
 					 console.log(this.platform);
 					 this.createBanner();
-					 });
+					 }
+				);
 		  }
 	 }
-	// ionViewWillEnter(){
-	// 	console.log('ionViewWillEnter');
-
-	// 	 if(/(ipod|iphone|ipad|android)/i.test(navigator.userAgent)){
-	// 			this.platform.ready().then(()=>{
-	// 				 let net = Network.onDisconnect().subscribe(() => {
-	// 				 	this.displayAd(false);
-	// 					console.log('seteo this.online a false');
-	// 					this.online=false;
-	// 					console.log('network was disconnected :-(');
-	// 				 });
-
-	// 				 net = Network.onConnect().subscribe(() => {
-	// 				 	this.displayAd(true);
-	// 				 	console.log('seteo this.online a true');
-	// 					this.online=true;
-	// 					console.log('network connected!'); 
-	// 				  });
-	// 				 console.log('Estado de la red ' + this.online.toString());
-	// 				 console.log('Platform ready');
-	// 				 console.log(this.platform);
-	// 				 this.createBanner();
-	// 				 });
-	// 	  }
-	// }
+	
   clientelist(){
 	 this.navCtrl.push(ClienteListComponent);
   }

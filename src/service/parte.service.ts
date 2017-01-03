@@ -24,12 +24,28 @@ export class ParteService{
         this.dirFiles = "";
         console.log("constructor ParteService");
         this.db.query('CREATE TABLE IF NOT EXISTS parte (id INTEGER PRIMARY KEY AUTOINCREMENT, clienteid INTEGER CONSTRAINT fk_clienteid REFERENCES cliente (id) ON DELETE CASCADE ON UPDATE SET DEFAULT, fecha DATE NOT NULL, horaini TIME NOT NULL, horafin TIME NOT NULL, trabajorealizado TEXT, personafirma TEXT, firma TEXT);').then(
-                    (data)=>{
-
+                    (success)=>{
+                      console.log('no existe tabla parte y la creo');
+                      console.log(success);
                     },
-                    (error)=>{console.log("Error al crear la tabla parte: " + error.err.message)}
-                );
-      
+                    (error)=>{
+                      console.log("Error al crear la tabla parte: " + error);
+                    }
+        );
+
+        let sql: string;
+        sql = "CREATE TABLE IF NOT EXISTS fotos (id INTEGER PRIMARY KEY AUTOINCREMENT, parteid INTEGER CONSTRAINT fk_parteid REFERENCES parte (id) ON DELETE CASCADE ON UPDATE SET DEFAULT, base64 TEXT, nombre TEXT)";
+        this.db.query(sql).then(
+          success=>{
+              console.log('no existe tabla foto y la creo');
+              console.log(success);
+          },
+          error=>{
+              console.log('error al crear tabla fotos');
+              console.log(error);
+          }
+         );
+
         if(this.platform.is("ios"))
           this.dirFiles = cordova.file.dataDirectory;
 
@@ -64,7 +80,7 @@ export class ParteService{
     }
     cargarParte(id){
         let sql:string;
-        sql = 'Select parte.*, cliente.* from parte inner join cliente on clienteid=cliente.id where parte.id=?';
+        sql = 'Select parte.*, cliente.*,fotos.* from parte inner join cliente on clienteid=cliente.id join fotos on fotos.parteid = id where parte.id=?';
         return this.db.query(sql,[id]).then(
             (data)=>{
                 console.log("cargando parte con id " + id);
