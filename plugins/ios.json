@@ -21,9 +21,6 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
-        "cordova-plugin-email": {
-            "PACKAGE_NAME": "com.goltratec.partestrabajo"
-        },
         "cordova-plugin-file": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
@@ -46,6 +43,9 @@
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
         "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-email": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     },
