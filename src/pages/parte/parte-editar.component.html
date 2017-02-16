@@ -22,29 +22,31 @@
         </ion-item>
         <ion-item>
             <ion-label floating>Trabajo realizado</ion-label>
-            <ion-textarea textarea-autosize formControlName="trabajorealizado" ></ion-textarea>
+            <ion-textarea textarea-autosize formControlName="trabajorealizado"></ion-textarea>
         </ion-item>
         <ion-item>
             <ion-label floating>Autorizado por:</ion-label>
-            <ion-input formControlName="personafirma" ></ion-input>
+            <ion-input formControlName="personafirma"></ion-input>
         </ion-item>
-       <button ion-button (click)="hacerFoto()">FOTO</button>
+        <ion-item> 
+            <button ion-button type="button" (click)="hacerFoto()">FOTO</button> 
+            <button ion-button type="button" (click)="verFotos()">VER FOTOS</button> 
+        </ion-item>
         <ion-item>
             <button ion-button type="submit">Guardar</button>
             <button ion-button type="button" color="danger" (click)="cancelar()">Cancelar</button>
         </ion-item>
         <ion-item *ngIf="firmaImg==null || firmaImg==''" text-wrap>Firma en el recuadro inferior y pulsa el botón "Aceptar firma".</ion-item>
         <ion-item [hidden]="firmaImg!=null && firmaImg!=''">
-            
-           <div>
-            <signature-pad (onBeginEvent)="drawStart()" [options]="signaturePadOptions" ></signature-pad>
-            <!-- <canvas id="signature-pad"></canvas>        -->
+            <div>
+                <signature-pad (onBeginEvent)="drawStart()" [options]="signaturePadOptions"></signature-pad>
+                <!-- <canvas id="signature-pad"></canvas>        -->
             </div>
-             <p><button ion-button type="button" (click)="doOnEnd()">Aceptar firma</button>
-            <button ion-button type="button" color="danger" (click)="limpiarFirma()">Borrar firma</button></p>
+            <p><button ion-button type="button" (click)="doOnEnd()">Aceptar firma</button>
+                <button ion-button type="button" color="danger" (click)="limpiarFirma()">Borrar firma</button></p>
         </ion-item>
         <ion-item [hidden]="(firmaImg==null || firmaImg=='') ">
-          <p> <button ion-button type="button" color="danger" (click)="borrarFirma()">Borrar firma</button></p>
-           <img src="{{firmaImg}}" alt="firma" >
+            <p> <button ion-button type="button" color="danger" (click)="borrarFirma()">Borrar firma</button></p>
+            <img src="{{firmaImg}}" alt="firma">
         </ion-item>
     </form>

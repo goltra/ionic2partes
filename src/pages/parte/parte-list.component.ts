@@ -17,8 +17,6 @@ export class ParteListComponent {
   constructor(private navCtrl: NavController, private parteService: ParteService,
   private varios: VariosService, private alertCtrl: AlertController) {
     this.listadoPartes();
-
-
   }
  
   listadoPartes(){

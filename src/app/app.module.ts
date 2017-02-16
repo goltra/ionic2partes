@@ -6,6 +6,7 @@ import { ClienteListComponent } from '../pages/clientes/cliente-list.component';
 import { ClienteEditarComponent } from '../pages/clientes/cliente-editar.component';
 import { ParteListComponent } from '../pages/parte/parte-list.component';
 import { ParteEditarComponent } from '../pages/parte/parte-editar.component';
+import { ParteFotosPage } from '../pages/parte/parte-fotos';
 import { VariosService } from '../service/varios.service';
 import { ParteService } from '../service/parte.service';
 import { ClienteService } from '../service/cliente.service';
@@ -23,6 +24,7 @@ import { DatabaseProvider } from '../provider/database.provider';
     MyApp,
     HomePage,
     ParteListComponent,
+    ParteFotosPage,
     ClienteListComponent,
     ClienteEditarComponent,
     ParteEditarComponent,
@@ -40,6 +42,7 @@ import { DatabaseProvider } from '../provider/database.provider';
     ClienteListComponent,
     ClienteEditarComponent,
     ParteListComponent,
+    ParteFotosPage,
     ParteEditarComponent,
     SettingsComponent
   ],
