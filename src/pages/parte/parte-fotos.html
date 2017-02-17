@@ -15,6 +15,11 @@
 
 <ion-content padding>
   <ion-grid>
-
+    <ion-row *ngFor="let f in fotos">
+      <ion-col width-50 *ngFor="let i in f">
+        <img [src]="i.base64">
+        {{i.nombre}}
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>

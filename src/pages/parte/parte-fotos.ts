@@ -15,7 +15,7 @@ import { ParteService } from '../../service/parte.service';
 export class ParteFotosPage {
   parteid: number;
   rows: Array<number>;
-  fotos: Array<any>;
+  fotos: Array<Array<any>>;
   constructor(public navCtrl: NavController, public navParams: NavParams, public parteService: ParteService) {
     this.parteid = navParams.get('parteid');
   }
@@ -29,14 +29,19 @@ export class ParteFotosPage {
     this.fotos = [];
     this.parteService.cargaFotosParte(this.parteid).then((data) => {
       if (data.rows.length > 0) {
-        let filas: number = Math.round(data.rows.length/2);
+        let filas: number = 0;
         //numero de filas que hay que pintar.
         /*this.rows = Array(filas).fill().map((x,i)=>i);
         Array(5).fill().map((x,i)=>i);*/
 
-        for (let i = 0; i < data.rows.length; i++) {
-          let item = data.rows.item(i)
-          this.fotos.push(item);
+        for (let i = 0; i < data.rows.length; i+=2) {
+          if(data.rows.item(i))
+            this.fotos[filas][0] = data.rows.item(i);
+          
+          if(data.rows.item(i+1))
+            this.fotos[filas][1]=data.rows.item(i+1);
+
+          filas++;
         }
       }
     });
