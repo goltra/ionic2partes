@@ -75,10 +75,12 @@ export class ParteEditarComponent {
         this._nav.push(ParteFotosPage,{parteid: this.parte.id});
     }
 
-    onSubmit() {
+    onSubmit(goList: boolean = true) {
         let f = this.myForm.value;
         this.parteService.actualizaParte(f, this.fotos);
-        this._nav.setRoot(ParteListComponent);
+        if(goList)
+            this._nav.setRoot(ParteListComponent);
+
     }
 
     signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
@@ -144,9 +146,10 @@ export class ParteEditarComponent {
                         console.log('aceptado');
                         if (nomFichero.length > 0) {
                             //el id 0 indica que es una foto nueva
+                            imgB64="data:image/jpeg;base64," + imgB64;
                             this.fotos.push({ id: 0, base64: imgB64, nombre: nomFichero });
+                            this.onSubmit(false);
                         }
-                        console.log(this.fotos);
                     }
                 },
                 {

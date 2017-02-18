@@ -35,15 +35,18 @@ export class ParteFotosPage {
         Array(5).fill().map((x,i)=>i);*/
 
         for (let i = 0; i < data.rows.length; i+=2) {
+          this.fotos[filas]=[];
           if(data.rows.item(i))
             this.fotos[filas][0] = data.rows.item(i);
           
           if(data.rows.item(i+1))
             this.fotos[filas][1]=data.rows.item(i+1);
-
+          
           filas++;
         }
       }
+    }).catch((error)=>{
+      console.log('error cargando la fotos para mostrarlas');
     });
   }
 
