@@ -1,0 +1,58 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-admobpro": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-email": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-extension": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        }
+    }
+}

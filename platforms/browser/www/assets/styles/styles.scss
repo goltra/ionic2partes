@@ -1,0 +1,36 @@
+$colorverde: #11b566;
+
+.margin-list{
+  margin-left: 30px;
+}
+
+.transparente{
+    border-color: rgba(0, 0, 0, 0);
+	background-color: rgba(0, 0, 0, 0);
+	color: white;
+}
+signature-pad canvas {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border:1px solid;
+}
+
+textarea.text-input{
+    min-height: 100px;
+}
+.text-center{
+    text-align: center;
+}
+.verde{
+    color: $colorverde;
+}
+.margin-inferior{
+    margin-bottom: 60px;
+}
+.full-width{
+    width:100%;
+}
+

@@ -33,4 +33,13 @@ textarea.text-input{
 .full-width{
     width:100%;
 }
+.gridfotos{
+    display:flex;
+    display: -webkit-flex; 
+    flex-flow: column wrap;
+    -webkit-flex-direction: column;  
+    img{
+        max-width: 100px;
+    }
+}
 

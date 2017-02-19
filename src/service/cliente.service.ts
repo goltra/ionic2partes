@@ -31,7 +31,11 @@ export class ClienteService{
                     (data)=>{
                         console.log("Crear tabla cliente")
                     },
-                    (error)=>{console.log("Error al crear la tabla cliente: " + error.err.message)}
+                    (error)=>{
+                        console.log("Error al crear la tabla cliente: ");
+                        console.log(error);
+                    }
+
                 );
 
 

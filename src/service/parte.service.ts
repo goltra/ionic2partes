@@ -151,6 +151,15 @@ export class ParteService {
 
     console.log(datosGuardados)
   }
+  borraFoto(index:number){
+    let sql:string = "delete from fotos where id=?";
+    this.db.query(sql,[index]).then((success)=>{
+      this._varios.showToast('Foto eliminada correctamente','top');
+    }).catch(error=>{
+      this._varios.showToast('Hubo un problema eliminado la foto','top','toastError',200000);
+    });
+    
+  }
   enviaPorEmail(parte: Parte) {
     //let msg:String; 
     let email;

@@ -49,5 +49,8 @@ export class ParteFotosPage {
       console.log('error cargando la fotos para mostrarlas');
     });
   }
-
+  borrarFoto(index: number){
+    this.parteService.borraFoto(index);
+    this.getFotos();
+  }
 }

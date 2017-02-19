@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="4" id="com.goltratec.partestrabajo" ios-CFBundleVersion="4" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="Camera">
+        <param name="browser-package" value="Camera" />
+    </feature>
+    <feature name="Device">
+        <param name="browser-package" value="Device" />
+    </feature>
+    <name>Partes de trabajo</name>
+    <description>Parte de trabajo para tus clientes.</description>
+    <author email="info@goltratec.com" href="http://goltratec.com/">GOLTRATEC S.L.</author>
+    <content original-src="index.html" src="http://192.168.1.7:8100" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
+    <allow-navigation href="http://192.168.1.167:8100" />
+    <allow-navigation href="http://192.168.56.1:8100" />
+    <allow-navigation href="http://192.168.1.104:8100" />
+    <allow-navigation href="http://192.168.1.7:8100" />
+    <allow-navigation href="http://192.168.1.7:8101" />
+    <allow-navigation href="http://192.168.1.7:8000" />
+    <allow-navigation href="http://192.168.56.1:8000" />
+    <allow-navigation href="http://192.168.1.28:8000" />
+    <allow-navigation href="http://192.168.1.28:8100" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="UIWebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="android-minSdkVersion" value="19" />
+    <preference name="BackupWebStorage" value="none" />
+    <preference name="SplashScreenDelay" value="0" />
+    <preference name="FadeSplashScreen" value="false" />
+    <preference name="FadeSplashScreenDuration" value="0" />
+    <preference name="SplashScreenBackgroundColor" value="0xFFFFFFFF" />
+    <preference name="SplashScreen" value="screen" />
+</widget>

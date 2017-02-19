@@ -14,12 +14,20 @@
 
 
 <ion-content padding>
-  <ion-grid>
+  <ion-card *ngFor="let f of fotos" class="gridfotos">
+      <img [src]="i.base64">
+      <ion-card-content>
+        <ion-card-title>{{i.nombre}}</ion-card-title>
+        <button ion-button type="button" (click)="borrarFoto()">Eliminar</button>
+      </ion-card-content>
+  </ion-card>
+  <!--<ion-grid>
     <ion-row *ngFor="let f of fotos">
       <ion-col width-50 *ngFor="let i of f">
         <img [src]="i.base64">
         <p class="text-center">{{i.nombre}}</p>
+        <button ion-button type="button" (click)="borrarFoto()">Eliminar</button>
       </ion-col>
     </ion-row>
-  </ion-grid>
+  </ion-grid>-->
 </ion-content>
