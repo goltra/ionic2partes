@@ -29,27 +29,27 @@ export class ParteFotosPage {
     this.fotos = [];
     this.parteService.cargaFotosParte(this.parteid).then((data) => {
       if (data.rows.length > 0) {
-        let filas: number = 0;
-        //numero de filas que hay que pintar.
-        /*this.rows = Array(filas).fill().map((x,i)=>i);
-        Array(5).fill().map((x,i)=>i);*/
+        // let filas: number = 0;
 
-        for (let i = 0; i < data.rows.length; i+=2) {
-          this.fotos[filas]=[];
-          if(data.rows.item(i))
-            this.fotos[filas][0] = data.rows.item(i);
-          
-          if(data.rows.item(i+1))
-            this.fotos[filas][1]=data.rows.item(i+1);
-          
-          filas++;
+        for (let i = 0; i < data.rows.length; i++) {
+          this.fotos[i] = data.rows.item(i);
         }
+        // for (let i = 0; i < data.rows.length; i+=2) {
+        //   this.fotos[filas]=[];
+        //   if(data.rows.item(i))
+        //     this.fotos[filas][0] = data.rows.item(i);
+
+        //   if(data.rows.item(i+1))
+        //     this.fotos[filas][1]=data.rows.item(i+1);
+
+        //   filas++;
+        // }
       }
-    }).catch((error)=>{
+    }).catch((error) => {
       console.log('error cargando la fotos para mostrarlas');
     });
   }
-  borrarFoto(index: number){
+  borrarFoto(index: number) {
     this.parteService.borraFoto(index);
     this.getFotos();
   }

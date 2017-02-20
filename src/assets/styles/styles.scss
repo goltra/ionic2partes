@@ -37,9 +37,12 @@ textarea.text-input{
     display:flex;
     display: -webkit-flex; 
     flex-flow: column wrap;
-    -webkit-flex-direction: column;  
+    -webkit-flex-direction: row;  
     img{
         max-width: 100px;
+    }
+    div{
+        width: 50%;
     }
 }
 
