@@ -8,7 +8,7 @@
 
   <ion-navbar>
     <ion-title>
-      <!--Fotos del parte nº {{parteid}}-->
+      Fotos del parte nº {{parteid}}
     </ion-title>
   </ion-navbar>
 
@@ -16,20 +16,16 @@
 
 
 <ion-content padding>
+  <div class="fullImage hide" id="visor">
+    <img [src]="imagen" >
+  </div>
   <div class="gridfotos">
-    <div *ngFor="let f of fotos">
-      <img [src]="f.base64">
-      <p>{{f.nombre}}</p>
-      <button ion-button type="button" (click)="borrarFoto()">Eliminar</button>
+    <div *ngFor="let f of fotos" id="{{f.id}}" class="foto">
+      <img [src]="f.base64" (click)="verImagen(f.id)">
+      <p class="text-center">{{f.nombre}}</p>
+      <button ion-button (click)="borrarFoto(f.id)" full>Eliminar</button>
     </div>
   </div>
-  <!--<ion-grid>
-    <in-row *ngFor="let f of fotos">
-      <ion-col width-50 *ngFor="let i of f">
-        <img [src]="i.base64">
-        <p class="text-center">{{i.nombre}}</p>
-        <button ion-button type="button" (click)="borrarFoto()">Eliminar</button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>-->
+
+  
 </ion-content>

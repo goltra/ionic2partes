@@ -35,14 +35,28 @@ textarea.text-input{
 }
 .gridfotos{
     display:flex;
-    display: -webkit-flex; 
-    flex-flow: column wrap;
-    -webkit-flex-direction: row;  
-    img{
-        max-width: 100px;
-    }
-    div{
+    flex-flow: row wrap;
+
+    .foto{
         width: 50%;
+        /*display: flex;
+        flex-direction: column;*/
+        
+        img{
+            width:100%;
+            padding:10px;
+        }
+        button{
+            padding:10px;
+        }
+        
     }
 }
-
+.hide{
+    visibility: hidden;
+}
+.fullImage{
+    background: black;
+    width:100%;
+    height: 100%;
+}

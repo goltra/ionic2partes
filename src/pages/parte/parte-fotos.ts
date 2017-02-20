@@ -16,6 +16,8 @@ export class ParteFotosPage {
   parteid: number;
   rows: Array<number>;
   fotos: Array<Array<any>>;
+  imagen: string; //imagen seleccionada para verla en grande
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public parteService: ParteService) {
     this.parteid = navParams.get('parteid');
   }
@@ -29,28 +31,33 @@ export class ParteFotosPage {
     this.fotos = [];
     this.parteService.cargaFotosParte(this.parteid).then((data) => {
       if (data.rows.length > 0) {
-        // let filas: number = 0;
 
         for (let i = 0; i < data.rows.length; i++) {
           this.fotos[i] = data.rows.item(i);
         }
-        // for (let i = 0; i < data.rows.length; i+=2) {
-        //   this.fotos[filas]=[];
-        //   if(data.rows.item(i))
-        //     this.fotos[filas][0] = data.rows.item(i);
-
-        //   if(data.rows.item(i+1))
-        //     this.fotos[filas][1]=data.rows.item(i+1);
-
-        //   filas++;
-        // }
+       
       }
     }).catch((error) => {
       console.log('error cargando la fotos para mostrarlas');
     });
   }
-  borrarFoto(index: number) {
+  borrarFoto(index: any) {
     this.parteService.borraFoto(index);
     this.getFotos();
+    let el = document.getElementById(index);
+    el.parentNode.removeChild(el);
+  }
+  verImagen(index:any){
+    let el: HTMLElement = document.getElementById('visor');
+    let f: any = this.fotos.find((data:any) => data.id=index);
+    
+    if (f){
+      this.imagen = f.base64;
+      el.style.visibility = "visible"
+    } else{
+      console.log('no se puedo cargar la imagen para mostrarla');
+    }
+    
+    
   }
 }

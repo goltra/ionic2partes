@@ -78,6 +78,7 @@ export class ParteEditarComponent {
     onSubmit(goList: boolean = true) {
         let f = this.myForm.value;
         this.parteService.actualizaParte(f, this.fotos);
+        this.fotos = [];
         if(goList)
             this._nav.setRoot(ParteListComponent);
 
@@ -124,6 +125,7 @@ export class ParteEditarComponent {
     hacerFoto() {
         let options = {
             quality: 50,
+            targetWidth: 1000,
             destinationType: Camera.DestinationType.DATA_URL,
             sourceType: Camera.PictureSourceType.CAMERA,
             encodingType: Camera.EncodingType.JPEG,
@@ -142,7 +144,7 @@ export class ParteEditarComponent {
                 buttons: [{
                     text: 'Aceptar',
                     handler: data => {
-                        nomFichero = data.nombre;
+                        nomFichero = (data.nombre.length>0) ? data.nombre : 'Foto' ;
                         console.log('aceptado');
                         if (nomFichero.length > 0) {
                             //el id 0 indica que es una foto nueva
