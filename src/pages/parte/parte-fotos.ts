@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ParteService } from '../../service/parte.service';
+import { Photo } from '../../model/photo';
 
 /*
   Generated class for the ParteFotos page.
@@ -15,7 +16,7 @@ import { ParteService } from '../../service/parte.service';
 export class ParteFotosPage {
   parteid: number;
   rows: Array<number>;
-  fotos: Array<Array<any>>;
+  fotos: Array<Photo>;
   imagen: string; //imagen seleccionada para verla en grande
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public parteService: ParteService) {
@@ -31,11 +32,10 @@ export class ParteFotosPage {
     this.fotos = [];
     this.parteService.cargaFotosParte(this.parteid).then((data) => {
       if (data.rows.length > 0) {
-
         for (let i = 0; i < data.rows.length; i++) {
-          this.fotos[i] = data.rows.item(i);
+          this.fotos[i] = Photo.inicializa(data.rows.item(i));
         }
-       
+        console.log(this.fotos);
       }
     }).catch((error) => {
       console.log('error cargando la fotos para mostrarlas');
@@ -47,17 +47,8 @@ export class ParteFotosPage {
     let el = document.getElementById(index);
     el.parentNode.removeChild(el);
   }
-  verImagen(index:any){
-    let el: HTMLElement = document.getElementById('visor');
-    let f: any = this.fotos.find((data:any) => data.id=index);
-    
-    if (f){
-      this.imagen = f.base64;
-      el.style.visibility = "visible"
-    } else{
-      console.log('no se puedo cargar la imagen para mostrarla');
-    }
-    
-    
+  comparte() {
+    if (this.fotos && this.fotos.length > 0)
+      this.parteService.sharePhoto(this.fotos, this.parteid, "");
   }
 }

@@ -124,8 +124,8 @@ export class ParteEditarComponent {
 
     hacerFoto() {
         let options = {
-            quality: 50,
-            targetWidth: 1000,
+            quality: 70,
+            targetWidth: 1024,
             destinationType: Camera.DestinationType.DATA_URL,
             sourceType: Camera.PictureSourceType.CAMERA,
             encodingType: Camera.EncodingType.JPEG,

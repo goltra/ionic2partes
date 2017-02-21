@@ -16,16 +16,13 @@
 
 
 <ion-content padding>
-  <div class="fullImage hide" id="visor">
-    <img [src]="imagen" >
-  </div>
+
   <div class="gridfotos">
     <div *ngFor="let f of fotos" id="{{f.id}}" class="foto">
-      <img [src]="f.base64" (click)="verImagen(f.id)">
+      <img [src]="f.base64" >
       <p class="text-center">{{f.nombre}}</p>
       <button ion-button (click)="borrarFoto(f.id)" full>Eliminar</button>
+      <button ion-button (click)="comparte(f)" full>Enviar</button>
     </div>
-  </div>
-
-  
+  </div>  
 </ion-content>

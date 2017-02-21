@@ -7,6 +7,9 @@ import { VariosService } from './varios.service';
 import { SettingsService } from './settings.service';
 import { EmailComposer, File } from 'ionic-native';
 import { DatabaseProvider } from '../provider/database.provider';
+import { SocialSharing } from 'ionic-native';
+import { Photo } from '../model/photo';
+
 declare let jsPDF;
 declare var cordova: any;
 
@@ -46,6 +49,7 @@ export class ParteService {
       }
     );
 
+    //seteo directorio para guardar ficheros.
     if (this.platform.is("ios"))
       this.dirFiles = cordova.file.dataDirectory;
 
@@ -82,19 +86,7 @@ export class ParteService {
     sql = 'delete from parte where id=?'
     return this.db.query(sql, [parteid]);
   }
-  /*cargarParte(id) {
-    let sql: string;
-    sql = 'Select parte.*, cliente.*,fotos.* from parte inner join cliente on clienteid=cliente.id join fotos on fotos.parteid = id where parte.id=?';
-    return this.db.query(sql, [id]).then(
-      (data) => {
-        console.log("cargando parte con id " + id);
-      },
-      (error) => {
-        console.log("error al cargar el parte con el id " + id );
-        console.log(error);
-      }
-    );
-  }*/
+
   actualizaParte(f, photos) {
     let sql: string;
     let datosGuardados: boolean = false;
@@ -148,17 +140,16 @@ export class ParteService {
         console.log(error);
       }
       );
-
     console.log(datosGuardados)
   }
-  borraFoto(index:number){
-    let sql:string = "delete from fotos where id=?";
-    this.db.query(sql,[index]).then((success)=>{
-      this._varios.showToast('Foto eliminada correctamente','top');
-    }).catch(error=>{
-      this._varios.showToast('Hubo un problema eliminado la foto','top','toastError',200000);
+  borraFoto(index: number) {
+    let sql: string = "delete from fotos where id=?";
+    this.db.query(sql, [index]).then((success) => {
+      this._varios.showToast('Foto eliminada correctamente', 'top');
+    }).catch(error => {
+      this._varios.showToast('Hubo un problema eliminado la foto', 'top', 'toastError', 200000);
     });
-    
+
   }
   enviaPorEmail(parte: Parte) {
     //let msg:String; 
@@ -273,4 +264,86 @@ export class ParteService {
     );
 
   }
+
+  sharePhoto(photos: Array<Photo>, idParte: number, nomcliente: string) {
+
+    let body = "Cliente: " + nomcliente;
+    let subject = "Foto del parte: " + idParte;
+    let imgRay: Array<string> = [];
+    body += " - Parte nº " + idParte;
+
+    console.log("fotos recibida");
+    for (let photo of photos) {
+      //añado cada foto a un array
+      let tmpB64 = photo.base64.split(",");
+      imgRay.push(tmpB64[1]);
+    }
+
+    SocialSharing.share(body, subject, imgRay).then(
+      res => {
+        console.log('Comparto');
+        console.log(res);
+      }
+    ).catch(error => {
+      console.log('error compartiendo');
+      console.log(error);
+    });
+
+  }
+
 }
+
+
+
+  // sharePhoto(photo: any, idParte: number, nomcliente: string, destinatario: Array<string>) {
+  //   SocialSharing.canShareViaEmail().then(
+  //     data => {
+  //       console.log(data);
+  //       let body = "Cliente: " + nomcliente;
+  //       let subject = "Foto del parte: " + idParte;
+  //       body += " - Parte nº " + idParte;
+
+  //       console.log("foto recibida");
+  //       console.log(photo);
+  //       //recibo foto
+  //       if (photo) {
+  //         //convierto a blob el string base64
+  //         let tmpB64 = photo.base64.split(",");
+  //         let blob = this._varios.base64toBlob(tmpB64[1], 'image\jpeg');
+
+  //         //seteo nombre y path del fichero
+  //         let tmpNomFichero = Math.random().toString().replace('.', '');
+  //         tmpNomFichero = tmpNomFichero + photo.nombre + ".jpg";
+
+  //         let ficheroPath = this.dirFiles + "/" + tmpNomFichero;
+
+  //         //guardo el fichero en el directorio
+  //         File.writeFile(this.dirFiles, tmpNomFichero, blob, true).then(res => {
+  //           console.log('Guardo fichero')
+  //           console.log(res);
+  //           //envio fichero
+  //           console.log('Fichero a enviar');
+  //           console.log(ficheroPath);
+  //           SocialSharing.shareViaEmail(body, subject, destinatario, null, null, ficheroPath).then(
+  //             res => {
+  //               console.log('Envio email');
+  //               console.log(res);
+  //             }
+  //           ).catch(error => {
+  //             console.log('error enviando email');
+  //             console.log(error);
+  //           });
+  //         }).catch(error => {
+  //           console.log("Error Guardando fichero");
+  //           console.log(error);
+  //         });
+  //       }
+  //     }
+  //   ).catch(
+  //     error => {
+  //       console.log("Error comprobando posibilidad envio por email");
+  //       console.log(error);
+  //     }
+  //     );
+  // }
+

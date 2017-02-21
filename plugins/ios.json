@@ -47,6 +47,9 @@
         },
         "cordova-plugin-email": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     },
     "dependent_plugins": {
