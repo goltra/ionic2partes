@@ -17,6 +17,7 @@ import {FormBuilder} from '@angular/forms';
 import { SQLite } from 'ionic-native';
 import {Storage} from '@ionic/storage';
 import { DatabaseProvider } from '../provider/database.provider';
+import { ElasticModule } from 'angular2-elastic';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { DatabaseProvider } from '../provider/database.provider';
   imports: [
     IonicModule.forRoot(MyApp,{
       backButtonText: "Atras",
-    }),SignaturePadModule
+    }),SignaturePadModule, ElasticModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

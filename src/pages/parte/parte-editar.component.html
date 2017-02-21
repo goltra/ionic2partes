@@ -22,19 +22,19 @@
         </ion-item>
         <ion-item>
             <ion-label floating>Trabajo realizado</ion-label>
-            <ion-textarea formControlName="trabajorealizado"></ion-textarea>
+            <ion-textarea fz-elastic formControlName="trabajorealizado"></ion-textarea>
         </ion-item>
         <ion-item>
             <ion-label floating>Autorizado por:</ion-label>
-            <ion-input formControlName="personafirma"></ion-input>
+            <ion-textarea formControlName="personafirma"></ion-textarea>
         </ion-item>
         <ion-item>
             <ion-row>
                 <ion-col>
-                    <button ion-button full type="button" (click)="hacerFoto()">FOTO</button>
+                    <button ion-button full type="button" icon-left block (click)="hacerFoto()"><ion-icon name="ios-camera"></ion-icon>FOTO</button>
                 </ion-col>
                 <ion-col>
-                    <button ion-button full type="button" (click)="verFotos()">VER FOTOS</button>
+                    <button ion-button full type="button" icon-left block  (click)="verFotos()"><ion-icon name="ios-image"></ion-icon> FOTOS</button>
                 </ion-col>
             </ion-row>
         </ion-item>
@@ -48,17 +48,30 @@
                 </ion-col>
             </ion-row>
         </ion-item>
+        
+        <ion-row [hidden]="firmaImg!=null && firmaImg!=''">
+            <ion-col>
+                <button ion-button full type="button" (click)="doOnEnd()">Aceptar firma</button>
+            </ion-col>
+            <ion-col>
+                <button ion-button full type="button" color="danger" (click)="limpiarFirma()">Borrar firma</button>
+            </ion-col>
+        </ion-row>
+        <ion-row [hidden]="(firmaImg==null || firmaImg=='') ">
+            <ion-col>
+                <button ion-button full type="button" color="danger" (click)="borrarFirma()">Borrar firma</button>
+            </ion-col>
+        </ion-row>
+        <ion-row [hidden]="(firmaImg==null || firmaImg=='') ">
+            <ion-col>
+                <img src="{{firmaImg}}" alt="firma">
+            </ion-col>
+        </ion-row>
         <ion-item *ngIf="firmaImg==null || firmaImg==''" text-wrap>Firma en el recuadro inferior y pulsa el botón "Aceptar firma".</ion-item>
-        <ion-item [hidden]="firmaImg!=null && firmaImg!=''">
-            <div>
+        <ion-row [hidden]="firmaImg!=null && firmaImg!=''">
+            <ion-col>
                 <signature-pad (onBeginEvent)="drawStart()" [options]="signaturePadOptions"></signature-pad>
                 <!-- <canvas id="signature-pad"></canvas>        -->
-            </div>
-            <p><button ion-button type="button" (click)="doOnEnd()">Aceptar firma</button>
-                <button ion-button type="button" color="danger" (click)="limpiarFirma()">Borrar firma</button></p>
-        </ion-item>
-        <ion-item [hidden]="(firmaImg==null || firmaImg=='') ">
-            <p> <button ion-button type="button" color="danger" (click)="borrarFirma()">Borrar firma</button></p>
-            <img src="{{firmaImg}}" alt="firma">
-        </ion-item>
+            </ion-col>
+        </ion-row>
     </form>
