@@ -22,19 +22,31 @@
         </ion-item>
         <ion-item>
             <ion-label floating>Trabajo realizado</ion-label>
-            <ion-textarea textarea-autosize formControlName="trabajorealizado"></ion-textarea>
+            <ion-textarea formControlName="trabajorealizado"></ion-textarea>
         </ion-item>
         <ion-item>
             <ion-label floating>Autorizado por:</ion-label>
             <ion-input formControlName="personafirma"></ion-input>
         </ion-item>
-        <ion-item> 
-            <button ion-button type="button" (click)="hacerFoto()">FOTO</button> 
-            <button ion-button type="button" (click)="verFotos()">VER FOTOS</button> 
+        <ion-item>
+            <ion-row>
+                <ion-col>
+                    <button ion-button full type="button" (click)="hacerFoto()">FOTO</button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button full type="button" (click)="verFotos()">VER FOTOS</button>
+                </ion-col>
+            </ion-row>
         </ion-item>
         <ion-item>
-            <button ion-button type="submit">Guardar</button>
-            <button ion-button type="button" color="danger" (click)="cancelar()">Cancelar</button>
+            <ion-row>
+                <ion-col>
+                    <button ion-button full type="submit">Guardar</button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button full type="button" color="danger" (click)="cancelar()">Cancelar</button>
+                </ion-col>
+            </ion-row>
         </ion-item>
         <ion-item *ngIf="firmaImg==null || firmaImg==''" text-wrap>Firma en el recuadro inferior y pulsa el botón "Aceptar firma".</ion-item>
         <ion-item [hidden]="firmaImg!=null && firmaImg!=''">

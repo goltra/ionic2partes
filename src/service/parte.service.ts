@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { SQLite } from 'ionic-native';
@@ -269,81 +270,61 @@ export class ParteService {
 
     let body = "Cliente: " + nomcliente;
     let subject = "Foto del parte: " + idParte;
-    let imgRay: Array<string> = [];
+    let imgB64Ray: Array<any> = [];
+    var imgRay: Array<string> = [];
     body += " - Parte nº " + idParte;
 
     console.log("fotos recibida");
     for (let photo of photos) {
       //añado cada foto a un array
       let tmpB64 = photo.base64.split(",");
-      imgRay.push(tmpB64[1]);
+      imgB64Ray.push({ 'nombre': photo.nombre, 'base64': tmpB64[1] });
     }
 
-    SocialSharing.share(body, subject, imgRay).then(
-      res => {
-        console.log('Comparto');
-        console.log(res);
-      }
-    ).catch(error => {
-      console.log('error compartiendo');
+    //guardo las imagenes en un directorio para enviarlas luego
+    this.imgToArrayAndSave(imgB64Ray).then((data) => {
+      console.log('Procedo a compartir');
+      return(data);
+    }).then((data)=>{
+      console.log(data);
+      SocialSharing.share(body, subject, data).then(
+        res => {
+          console.log('Comparto');
+          console.log(res);
+        }
+      ).catch(error => {
+        console.log('error compartiendo');
+        console.log(error);
+      });
+    }).catch(error=>{
+      console.log('Error');
       console.log(error);
     });
-
   }
 
+  private imgToArrayAndSave(imgB64Ray): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let imgRay: Array<string>;
+      imgRay = [];
+
+      for (let img of imgB64Ray) {
+        let obj = this._varios.base64toBlob(img.base64, 'image\jpg');
+        let preNombre = Math.random().toString().replace('.', '');
+        let nomTmp: string = preNombre + img.nombre + '.jpg';
+        imgRay.push(this.dirFiles + "/" + nomTmp);
+
+        File.writeFile(this.dirFiles, nomTmp, obj, true).then(success => {
+          console.log('fichero guardado');
+          console.log(success);
+        }).catch(error => {
+          console.log('error al guardar el fichero');
+          reject(error);
+          console.log(error);
+        });
+      }
+      resolve(imgRay);
+      console.log('fin for');
+    });
+  }
 }
-
-
-
-  // sharePhoto(photo: any, idParte: number, nomcliente: string, destinatario: Array<string>) {
-  //   SocialSharing.canShareViaEmail().then(
-  //     data => {
-  //       console.log(data);
-  //       let body = "Cliente: " + nomcliente;
-  //       let subject = "Foto del parte: " + idParte;
-  //       body += " - Parte nº " + idParte;
-
-  //       console.log("foto recibida");
-  //       console.log(photo);
-  //       //recibo foto
-  //       if (photo) {
-  //         //convierto a blob el string base64
-  //         let tmpB64 = photo.base64.split(",");
-  //         let blob = this._varios.base64toBlob(tmpB64[1], 'image\jpeg');
-
-  //         //seteo nombre y path del fichero
-  //         let tmpNomFichero = Math.random().toString().replace('.', '');
-  //         tmpNomFichero = tmpNomFichero + photo.nombre + ".jpg";
-
-  //         let ficheroPath = this.dirFiles + "/" + tmpNomFichero;
-
-  //         //guardo el fichero en el directorio
-  //         File.writeFile(this.dirFiles, tmpNomFichero, blob, true).then(res => {
-  //           console.log('Guardo fichero')
-  //           console.log(res);
-  //           //envio fichero
-  //           console.log('Fichero a enviar');
-  //           console.log(ficheroPath);
-  //           SocialSharing.shareViaEmail(body, subject, destinatario, null, null, ficheroPath).then(
-  //             res => {
-  //               console.log('Envio email');
-  //               console.log(res);
-  //             }
-  //           ).catch(error => {
-  //             console.log('error enviando email');
-  //             console.log(error);
-  //           });
-  //         }).catch(error => {
-  //           console.log("Error Guardando fichero");
-  //           console.log(error);
-  //         });
-  //       }
-  //     }
-  //   ).catch(
-  //     error => {
-  //       console.log("Error comprobando posibilidad envio por email");
-  //       console.log(error);
-  //     }
-  //     );
-  // }
 

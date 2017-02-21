@@ -35,7 +35,6 @@ export class ParteFotosPage {
         for (let i = 0; i < data.rows.length; i++) {
           this.fotos[i] = Photo.inicializa(data.rows.item(i));
         }
-        console.log(this.fotos);
       }
     }).catch((error) => {
       console.log('error cargando la fotos para mostrarlas');
