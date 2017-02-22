@@ -139,6 +139,7 @@ export class ParteService {
       (error) => {
         console.log("error al insertar parte ");
         console.log(error);
+         this._varios.showToast("Ocurrio un error guardando los datos", "top","toastError");
       }
       );
     console.log(datosGuardados)
