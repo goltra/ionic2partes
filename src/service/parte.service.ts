@@ -1,7 +1,6 @@
 
 import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
-import { SQLite } from 'ionic-native';
 import { Parte } from '../model/parte';
 import { Settings } from '../model/settings';
 import { VariosService } from './varios.service';
@@ -17,7 +16,6 @@ declare var cordova: any;
 @Injectable()
 
 export class ParteService {
-  private storage: any;
   private db;
   private settings: Settings;
   private dirFiles: string;
@@ -139,7 +137,7 @@ export class ParteService {
       (error) => {
         console.log("error al insertar parte ");
         console.log(error);
-         this._varios.showToast("Ocurrio un error guardando los datos", "top","toastError");
+        this._varios.showToast("Ocurrio un error guardando los datos", "top", "toastError");
       }
       );
     console.log(datosGuardados)
@@ -158,7 +156,6 @@ export class ParteService {
     let email;
     var doc = new jsPDF();
     let serieId: string;
-    let logo: string;
     console.log("Compruebo si el componente EmailComposer está disponible.");
     EmailComposer.isAvailable().then(
       (available) => {
@@ -272,7 +269,6 @@ export class ParteService {
     let body = "Cliente: " + nomcliente;
     let subject = "Foto del parte: " + idParte;
     let imgB64Ray: Array<any> = [];
-    var imgRay: Array<string> = [];
     body += " - Parte nº " + idParte;
 
     console.log("fotos recibida");
@@ -285,8 +281,8 @@ export class ParteService {
     //guardo las imagenes en un directorio para enviarlas luego
     this.imgToArrayAndSave(imgB64Ray).then((data) => {
       console.log('Procedo a compartir');
-      return(data);
-    }).then((data)=>{
+      return (data);
+    }).then((data) => {
       console.log(data);
       SocialSharing.share(body, subject, data).then(
         res => {
@@ -297,7 +293,7 @@ export class ParteService {
         console.log('error compartiendo');
         console.log(error);
       });
-    }).catch(error=>{
+    }).catch(error => {
       console.log('Error');
       console.log(error);
     });
