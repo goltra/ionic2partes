@@ -1,12 +1,9 @@
-import { Component,ViewChild } from '@angular/core';
-import { Platform,NavController, MenuController, Nav } from 'ionic-angular';
-import { StatusBar, File } from 'ionic-native';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, MenuController, Nav } from 'ionic-angular';
+import { StatusBar } from 'ionic-native';
 import { HomePage } from '../pages/home/home';
 import { ClienteListComponent } from '../pages/clientes/cliente-list.component';
-import { ClienteEditarComponent } from '../pages/clientes/cliente-editar.component';
 import { ParteListComponent } from '../pages/parte/parte-list.component';
-
-import { ParteEditarComponent } from '../pages/parte/parte-editar.component';
 import { DatabaseProvider } from '../provider/database.provider';
 
 declare var cordova: any;
@@ -17,8 +14,8 @@ declare var cordova: any;
 export class MyApp {
 
 
-   rootPage: any;
-   pages: any[];
+  rootPage: any;
+  pages: any[];
 
 
   @ViewChild(Nav) nav: Nav;
@@ -26,20 +23,20 @@ export class MyApp {
     //Seteo pagina inicial
     this.rootPage = HomePage;
     //Seteo rutas para usar en sidemenu
-    this.pages=[
-        {
-            title: "Inicio",
-            component: HomePage
-          },
-          {
-            title: "Listado de clientes",
-            component: ClienteListComponent
-          },
-          {
-            title: "Listado de partes",
-            component: ParteListComponent
-          },
-        ];
+    this.pages = [
+      {
+        title: "Inicio",
+        component: HomePage
+      },
+      {
+        title: "Listado de clientes",
+        component: ClienteListComponent
+      },
+      {
+        title: "Listado de partes",
+        component: ParteListComponent
+      },
+    ];
 
     platform.ready().then(() => {
       console.log(platform.platforms());
@@ -62,7 +59,7 @@ export class MyApp {
       // );
     });
   }
-  openPage(p){
+  openPage(p) {
     this.menu.close();
     console.log(p);
     this.nav.setRoot(p.component);

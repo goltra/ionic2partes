@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { DatePipe } from '@angular/common/src/pipes';
 import { ToastController } from 'ionic-angular';
-import { Network, File } from 'ionic-native';
+import { File } from 'ionic-native';
 declare let EXIF;
 declare var cordova: any;
 @Injectable()

@@ -21,9 +21,6 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "com.goltratec.partestrabajo"
-        },
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
@@ -49,6 +46,12 @@
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
         "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     },

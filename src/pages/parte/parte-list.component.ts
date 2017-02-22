@@ -54,7 +54,7 @@ export class ParteListComponent {
 
      let confirm = this.alertCtrl.create({
       title: 'Borrar Parte',
-      message: 'Va a borrar el parte de trabajo. Esta acción no puede deshacerse. ¿Deesea continuar?',
+      message: 'Va a borrar el parte de trabajo. Esta acción no puede deshacerse. ¿Desea continuar?',
       buttons: [
         {
           text: 'No',

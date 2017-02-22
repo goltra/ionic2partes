@@ -6,6 +6,7 @@ import {Cliente} from '../../model/Cliente';
 import {ClienteService} from '../../service/cliente.service';
 import {VariosService} from '../../service/varios.service';
 declare var window;
+declare var cordova;
 
 @Component({
     templateUrl: 'cliente-list.html',
@@ -14,7 +15,7 @@ declare var window;
 export class ClienteListComponent implements OnInit{
     public clientes: Cliente[];
 
-    private c: Cliente;
+
 
     constructor(private navCtrl: NavController,
                 private navParams: NavParams,
@@ -31,7 +32,6 @@ export class ClienteListComponent implements OnInit{
     }
 
     listaClientes(){
-        let result: any;
         console.log("Listado de clientes");
         //console.log(this._clienteService.listaClientes());
          this._clienteService.listaClientes().then(
@@ -95,7 +95,7 @@ export class ClienteListComponent implements OnInit{
         this.navCtrl.push(ParteEditarComponent,{clienteid: clienteid,nombre: nombre })
     }
     llamar(telefono: string){
-        window.location="tel:" + telefono;
+        cordova.InAppBrowser.open("tel:" + telefono, "_system", "location=true");
     }
 
 }

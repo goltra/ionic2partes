@@ -1,7 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Storage} from '@ionic/storage';
-import {Cliente} from '../model/cliente';
-import { SQLite } from 'ionic-native';
 import {Platform} from 'ionic-angular';
 import { DatabaseProvider } from '../provider/database.provider';
 

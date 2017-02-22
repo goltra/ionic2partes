@@ -7,23 +7,30 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  
-<h3 class="text-center">Listado de partes de trabajo</h3>
-<ion-list>
-  <ion-item *ngFor="let p of partes"  class="transparente" >
-    <button class="" ion-item icon-left (click)="cargaParte(p)">  
-      <ion-icon class="verde" *ngIf="p.firmaBase64!=''" name="checkmark-circle-outline"></ion-icon>
-      {{p.id}} - {{p.nombre}} - {{p.fechaformato}} - {{p.horainiformato}}
-    </button>
-    <button class="fiftypercent" ion-button color="danger" (click)="eliminaParte(p.id)">
-      <ion-icon name="trash"></ion-icon>
-        Eliminar
-    </button>
-    <button class="fiftypercent" ion-button (click)="enviarEmail(p)">
-      <ion-icon name="mail"></ion-icon>
-        Enviar
-    </button>
 
-  </ion-item>
-</ion-list>
+  <h3 class="text-center">Listado de partes de trabajo</h3>
+
+  <ion-row *ngFor="let p of partes" class="transparente">
+    <ion-col>
+      <button class="" ion-item icon-left (click)="cargaParte(p)">  
+        <ion-icon class="verde" *ngIf="p.firmaBase64!=''" name="checkmark-circle-outline"></ion-icon>
+        {{p.id}} - {{p.nombre}} - {{p.fechaformato}} - {{p.horainiformato}}
+      </button>
+      <ion-row>
+        <ion-col>
+          <button full ion-button color="danger" (click)="eliminaParte(p.id)">
+            <ion-icon name="trash"></ion-icon>
+              Eliminar
+          </button>
+        </ion-col>
+        <ion-col>
+          <button full ion-button (click)="enviarEmail(p)">
+            <ion-icon name="mail"></ion-icon>
+              Enviar
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+
 </ion-content>

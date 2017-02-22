@@ -13,7 +13,6 @@ import { ClienteService } from '../service/cliente.service';
 import { SettingsService } from '../service/settings.service';
 import { SettingsComponent } from '../pages/settings-component/settings-component';
 import {SignaturePadModule} from 'angular2-signaturepad';
-import {FormBuilder} from '@angular/forms';
 import { SQLite } from 'ionic-native';
 import {Storage} from '@ionic/storage';
 import { DatabaseProvider } from '../provider/database.provider';

@@ -49,15 +49,16 @@ export class ParteService {
     );
 
     //seteo directorio para guardar ficheros.
-    if (this.platform.is("ios"))
-      this.dirFiles = cordova.file.dataDirectory;
-
-    if (this.platform.is("android")) {
-      console.log("Entro en android para setear dirFiles");
-      this.dirFiles = cordova.file.externalDataDirectory;
-      console.log("Al ser android el dirFiles es " + this.dirFiles);
+    if (this.platform.is("ios")) {
+      console.log('Directorio para ios');
+      this.dirFiles = cordova.file.tempDirectory;
     }
 
+    if (this.platform.is("android")) {
+      console.log("Directorio para android");
+      this.dirFiles = cordova.file.externalDataDirectory;
+    }
+    console.log(this.dirFiles);
   }
 
   listaPartes() {
@@ -86,62 +87,65 @@ export class ParteService {
     return this.db.query(sql, [parteid]);
   }
 
-  actualizaParte(f, photos) {
-    let sql: string;
-    let datosGuardados: boolean = false;
-    console.log('actualizaParte()');
+  actualizaParte(f, photos): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let sql: string;
+      console.log('actualizaParte()');
 
-    //datos
-    if (f.id == null) {
-      sql = "insert into parte values (?,?,?,?,?,?,?,?)";
-    } else {
-      sql = "update parte set id=?,clienteid=?,fecha=?,horaini=?,horafin=?,trabajorealizado=?,personafirma=?,firma=? where id=" + f.id;
-    }
+      //datos
+      if (f.id == null) {
+        sql = "insert into parte values (?,?,?,?,?,?,?,?)";
+      } else {
+        sql = "update parte set id=?,clienteid=?,fecha=?,horaini=?,horafin=?,trabajorealizado=?,personafirma=?,firma=? where id=" + f.id;
+      }
 
-    //insert / update datos
-    this.db.query(sql, [f.id, f.clienteid, f.fecha, f.horaini, f.horafin, f.trabajorealizado, f.personafirma, f.firma]).then(
-      (data) => {
-        this._varios.showToast("Parte guardado correctamente", "top");
-        console.log("Insertado parte ");
-      },
-    ).then( //fotos
-      (data) => {
-        if (photos.length == 0) {
-          console.log('photos length 0');
-          throw new Error('No hay fotos para guardar');
-        }
-        let photosql: string = "";
-        console.log('vamos a guardar las fotos');
-        for (let p in photos) {
-          let obj = photos[p];
-          //id=0 indica que es una foto para insertar
-          if (obj.id == 0) {
-            photosql = "insert into fotos values (?,?,?,?)";
-          } else {
-            photosql = "update fotos set id=?,parteid=?,base64=?,nombre=? where parteid=" + f.id + " and id=" + obj.id;
+      //insert / update datos
+      this.db.query(sql, [f.id, f.clienteid, f.fecha, f.horaini, f.horafin, f.trabajorealizado, f.personafirma, f.firma]).then(
+        (data) => {
+          this._varios.showToast("Parte guardado correctamente", "top");
+          console.log("Insertado parte ");
+          console.log(sql);
+          console.log(data);
+          if (f.id==null && data)
+            f.id = data.insertId
+
+        },
+      ).then( //fotos
+        (fotosData) => {
+          resolve(f.id);
+          if (photos.length == 0) {
+            console.log('photos length 0, no hay fotos para guardar');
+            return false;
           }
-          //insert / update fotos
-          console.log('f.id' + f.id);
-          console.log(photosql);
-          this.db.query(photosql, [null, f.id, obj.base64, obj.nombre]).then(
-            (success) => {
-              console.log('Fotos guardadas correctamente');
-            },
-            (error) => {
-              console.log('Error guardando las fotos');
-              console.log(error);
-            });
-        }
-      }
-      ).catch(
-      (error) => {
-        console.log("error al insertar parte ");
-        console.log(error);
-        this._varios.showToast("Ocurrio un error guardando los datos", "top", "toastError");
-      }
-      );
-    console.log(datosGuardados)
+          let photosql: string = "";
+          console.log('vamos a guardar las fotos');
+          for (let p in photos) {
+            let obj = photos[p];
+            //id=0 indica que es una foto para insertar
+            if (obj.id == 0) {
+              photosql = "insert into fotos values (?,?,?,?)";
+            } else {
+              photosql = "update fotos set id=?,parteid=?,base64=?,nombre=? where parteid=" + f.id + " and id=" + obj.id;
+            }
+            //insert / update fotos
+            console.log('f.id: ' + f.id);
+            console.log(photosql);
+            this.db.query(photosql, [null, f.id, obj.base64, obj.nombre]).then(
+              (success) => {
+                console.log('Fotos guardadas correctamente');
+              },
+              (error) => {
+                console.log('Error guardando las fotos');
+                console.log(error);
+              });
+          }
+        }).catch(error => {
+          console.log(error);
+          reject("Error guardando el parte y las fotos");
+        });
+    });
   }
+
   borraFoto(index: number) {
     let sql: string = "delete from fotos where id=?";
     this.db.query(sql, [index]).then((success) => {
@@ -220,7 +224,11 @@ export class ParteService {
           //preparamos el email según lleve o no adjunto (firma)
           if (this.platform.is("cordova")) {
             console.log('Creo el pdf');
-            File.writeFile(this.dirFiles, 'partesTrabajoPdf.pdf', pdfOutput, true).then(
+            let tmpNom: string = Math.random().toString().replace('.', '');
+            tmpNom = tmpNom + 'partesTrabajoPdf.pdf';
+
+            tmpNom = 'partesTrabajoPdf.pdf';
+            File.writeFile(this.dirFiles, tmpNom, pdfOutput, { replace: true }).then(
               (ok) => {
                 console.log("fichero guardado en " + this.dirFiles);
                 console.log(ok);
@@ -229,7 +237,7 @@ export class ParteService {
                   subject: 'Parte de trabajo nº ' + serieId,
                   body: <any>"Adjuntamos su parte de trabajo",
                   isHtml: true,
-                  attachments: [this.dirFiles + "partesTrabajoPdf.pdf"]
+                  attachments: [this.dirFiles + tmpNom]
                 };
 
                 EmailComposer.open(email).then(
@@ -310,7 +318,7 @@ export class ParteService {
         let nomTmp: string = preNombre + img.nombre + '.jpg';
         imgRay.push(this.dirFiles + "/" + nomTmp);
 
-        File.writeFile(this.dirFiles, nomTmp, obj, true).then(success => {
+        File.writeFile(this.dirFiles, nomTmp, obj, { replace: true }).then(success => {
           console.log('fichero guardado');
           console.log(success);
         }).catch(error => {

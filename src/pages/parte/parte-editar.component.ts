@@ -2,11 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { Parte } from '../../model/parte';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import {
-    FormsModule,
     FormBuilder,
     FormGroup,
-    Validators,
-    AbstractControl
 } from '@angular/forms';
 import { ParteService } from '../../service/parte.service';
 import { VariosService } from '../../service/varios.service';
@@ -40,6 +37,7 @@ export class ParteEditarComponent {
 
         if (!isNaN(Number(params.get('clienteid'))) && params.get('nombre')) { //para checkear que viene un valor numerico en el parametro
             //este caso siempre se debe dar cuando se trata de un nuevo parte.
+            console.log('Nuevo parte');
             this.nuevo = true;
             clienteid = params.get('clienteid');
             this.parte.nombre = params.get('nombre');
@@ -47,12 +45,10 @@ export class ParteEditarComponent {
             this.parte.fecha = _varios.getNowDateIso();
             this.parte.horaini = this.parte.fecha;
             this.parte.horafin = this.parte.fecha;
-            //TODO: Horaini y fecha por defcto la del día
-            //Todo: Horafin por defecto la seteada en horaini y no poder poner una inferior
         } else {
+            console.log('Parte existente');
             this.nuevo = false;
             this.parte = Parte.inicializa(params.data[0]);
-           
         }
 
         this.myForm = this.fb.group({
@@ -76,8 +72,13 @@ export class ParteEditarComponent {
     }
 
     onSubmit(goList: boolean = true) {
+        console.log('submit');
         let f = this.myForm.value;
-        this.parteService.actualizaParte(f, this.fotos);
+        this.parteService.actualizaParte(f, this.fotos).then((parteid)=>{
+            console.log('Guardado, el parte id es ');
+            console.log(parteid);
+            this.parte.id=parteid;
+        });
         this.fotos = [];
         if(goList)
             this._nav.setRoot(ParteListComponent);

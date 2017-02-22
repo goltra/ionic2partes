@@ -1,4 +1,4 @@
-import {VariosService} from '../service/varios.service';
+
 export class Settings{
 
   public serie: string;

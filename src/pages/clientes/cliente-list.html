@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button  menuToggle>
+    <button ion-button menuToggle>
       <ion-icon name='menu'></ion-icon>
     </button>
     <ion-title>Clientes</ion-title>
@@ -8,33 +8,43 @@
 </ion-header>
 <ion-content>
 
-<ion-list>
-  <ion-list-header>Lista de Clientes</ion-list-header>
-  <ion-item>
-    <button ion-button full (click)='crearCliente()'>Añadir cliente</button>
-  </ion-item>
-  <ion-item *ngFor="let cliente of clientes" icon-right>
-      {{cliente.id}} - {{cliente.nombre}}
-       <button ion-button color="dark" *ngIf="cliente.telefono.length>0" (click)="llamar(cliente.telefono);">
+
+  <ion-row>
+    <ion-col>
+      <button ion-button full (click)='crearCliente()'>Añadir cliente</button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngFor="let cliente of clientes">
+    <ion-col>
+      <p style="line-height: 30px">
+        <strong>{{cliente.id}} - {{cliente.nombre}}</strong>
+        <button ion-button color="dark" *ngIf="cliente.telefono.length>0" (click)="llamar(cliente.telefono);" style="float:right">
           <ion-icon color="secondary" name="call" ></ion-icon>
-        </button>
-    <div>
-    <!-- <ion-item-options> -->
-      <button ion-button  outline (click)="crearParte(cliente.id,cliente.nombre)">
-        <ion-icon name="md-document" ></ion-icon>
-          Crear Parte
-      </button>
-        <button ion-button color="danger" (click)="borrarCliente(cliente.id)">
-          <ion-icon name="trash" ></ion-icon>
-            Eliminar
-        </button>
-        <button ion-button color="default" (click)="cargaCliente(cliente)">
-          <ion-icon name="arrow-dropright" ></ion-icon>
-            Editar
-        </button>
-      <!-- </ion-item-options> -->
-      </div>
-  </ion-item>
-</ion-list>
+       </button>
+      </p>
+      <ion-row>
+        <ion-col>
+          <button full ion-button outline (click)="crearParte(cliente.id,cliente.nombre)">
+              <ion-icon name="md-document" ></ion-icon>
+                Crear Parte
+            </button>
+        </ion-col>
+        <ion-col>
+          <button full ion-button color="danger" (click)="borrarCliente(cliente.id)">
+              <ion-icon name="trash" ></ion-icon>
+                Eliminar
+            </button>
+        </ion-col>
+        <ion-col>
+          <button full ion-button color="default" (click)="cargaCliente(cliente)">
+              <ion-icon name="arrow-dropright" ></ion-icon>
+                Editar
+            </button>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+
 
 </ion-content>

@@ -46,7 +46,7 @@
     "ios",
     {
       "platform": "ios",
-      "version": "",
+      "version": "4.3.0",
       "locator": "ios"
     }
   ],

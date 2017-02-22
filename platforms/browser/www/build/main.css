@@ -24477,6 +24477,7 @@ signature-pad canvas {
 }
 
 textarea.text-input {
+  resize: both;
   min-height: 100px;
 }
 
@@ -24516,4 +24517,13 @@ textarea.text-input {
 
 .gridfotos .foto button {
   padding: 10px;
+}
+
+.fiftypercent {
+  width: 50%;
+}
+
+.toastError .toast-wrapper {
+  background: red;
+  text-align: center;
 }
