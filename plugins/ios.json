@@ -10,11 +10,6 @@
         "cordova-plugin-admobpro": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
-        "cordova-plugin-camera": {
-            "CAMERA_USAGE_DESCRIPTION": " ",
-            "PHOTOLIBRARY_USAGE_DESCRIPTION": " ",
-            "PACKAGE_NAME": "com.goltratec.partestrabajo"
-        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
@@ -52,6 +47,11 @@
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
         "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-camera": {
+            "CAMERA_USAGE_DESCRIPTION": "Adjunta foto al parte",
+            "PHOTOLIBRARY_USAGE_DESCRIPTION": "Adjunta foto al parte",
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     },
