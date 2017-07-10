@@ -1,3 +1,4 @@
+import { EstadisticasPage } from './../pages/estadisticas/estadisticas';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
@@ -36,6 +37,10 @@ export class MyApp {
         title: "Listado de partes",
         component: ParteListComponent
       },
+      {
+        title: "Estadisticas",
+        component: EstadisticasPage
+      },
     ];
 
     platform.ready().then(() => {
@@ -46,10 +51,7 @@ export class MyApp {
       //inicializa la bd creando el fichero de bd pero no la estructura.
       this.db.dbname = "partes1";
       this.db.init();
-      /************* PRUEBAS ************/
-      
-      //let sqlcrearclientes: string;
-      //let sqlcrearpartes: string;
+     
       let sqlcrearfotos: string;
 
 
@@ -90,19 +92,6 @@ export class MyApp {
     );
 
 
-
-      /**************FIN PRUEBAS ****** */
-
-      //comprobamos si existe el directorio para guardar ficheros necesarios (pdf, imagenes)
-      // File.createDir(cordova.file.dataDirectory,"com.goltratec.partestrabajo",false).then(
-      //   (ok)=>{
-      //     console.log("crear directorio en " + cordova.file.dataDirectory + "com.goltratec.partestrabajo");
-      //   },
-      //   (err)=>{
-      //     console.log("El directorio ya existe");
-      //     console.log(err);
-      //   }
-      // );
     });
   }
   openPage(p) {

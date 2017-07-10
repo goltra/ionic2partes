@@ -1,3 +1,4 @@
+import { EstadisticasPage } from './../estadisticas/estadisticas';
 import { EstadisticasProvider } from './../../provider/estadisticas.provider';
 import { Component } from '@angular/core';
 import { NavController, MenuController, Platform } from 'ionic-angular';
@@ -103,6 +104,9 @@ export class HomePage {
 	}
 	clienteedit() {
 		this.navCtrl.push(ClienteEditarComponent);
+	}
+	estadisticasmostrar() {
+		this.navCtrl.push(EstadisticasPage);
 	}
 
 	test() {

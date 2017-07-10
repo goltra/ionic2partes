@@ -1,3 +1,4 @@
+import { EstadisticasPage } from './../pages/estadisticas/estadisticas';
 import { EstadisticasProvider } from './../provider/estadisticas.provider';
 import { NgModule,ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule,IonicErrorHandler} from 'ionic-angular';
@@ -30,6 +31,7 @@ import { ElasticModule } from 'angular2-elastic';
     ClienteEditarComponent,
     ParteEditarComponent,
     SettingsComponent,
+    EstadisticasPage,
   ],
   imports: [
     IonicModule.forRoot(MyApp,{
@@ -45,6 +47,7 @@ import { ElasticModule } from 'angular2-elastic';
     ParteListComponent,
     ParteFotosPage,
     ParteEditarComponent,
+    EstadisticasPage,
     SettingsComponent
   ],
   providers: [VariosService,
