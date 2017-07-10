@@ -25,7 +25,7 @@ export class ParteService {
     this.db = _db
     this.dirFiles = "";
     console.log("constructor ParteService");
-    this.db.query('CREATE TABLE IF NOT EXISTS parte (id INTEGER PRIMARY KEY AUTOINCREMENT, clienteid INTEGER CONSTRAINT fk_clienteid REFERENCES cliente (id) ON DELETE CASCADE ON UPDATE SET DEFAULT, fecha DATE NOT NULL, horaini TIME NOT NULL, horafin TIME NOT NULL, trabajorealizado TEXT, personafirma TEXT, firma TEXT);').then(
+   /* this.db.query('CREATE TABLE IF NOT EXISTS parte (id INTEGER PRIMARY KEY AUTOINCREMENT, clienteid INTEGER CONSTRAINT fk_clienteid REFERENCES cliente (id) ON DELETE CASCADE ON UPDATE SET DEFAULT, fecha DATE NOT NULL, horaini TIME NOT NULL, horafin TIME NOT NULL, trabajorealizado TEXT, personafirma TEXT, firma TEXT);').then(
       (success) => {
         console.log('no existe tabla parte y la creo');
         console.log(success);
@@ -46,7 +46,7 @@ export class ParteService {
         console.log('error al crear tabla fotos');
         console.log(error);
       }
-    );
+    );*/
 
     //seteo directorio para guardar ficheros.
     if (this.platform.is("ios")) {

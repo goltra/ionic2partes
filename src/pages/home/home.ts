@@ -1,3 +1,4 @@
+import { EstadisticasProvider } from './../../provider/estadisticas.provider';
 import { Component } from '@angular/core';
 import { NavController, MenuController, Platform } from 'ionic-angular';
 import { ClienteListComponent } from '../clientes/cliente-list.component';
@@ -8,6 +9,7 @@ import { VariosService } from '../../service/varios.service';
 import { SettingsService } from '../../service/settings.service';
 import 'rxjs/Rx';
 import { File } from 'ionic-native';
+import {ParteService} from '../../service/parte.service';
 
 
 declare var AdMob: any;
@@ -25,16 +27,24 @@ export class HomePage {
 	// public online: boolean;
 	private admobId: any;
 	private platform: Platform;
+	public numpartes: any;
+	private estadistica: EstadisticasProvider;
 
 
 
 	constructor(private navCtrl: NavController, private menu: MenuController, private v: VariosService,
-		platform: Platform, private settings: SettingsService) {
+		platform: Platform, private settings: SettingsService, _estadistica: EstadisticasProvider, private parteService: ParteService) {
 
 		//inicialización de variables
 		this.menu.enable(true);
 		this.dia = v.getNowDate();
 		this.platform = platform;
+
+		this.estadistica = _estadistica;
+		this.estadistica.numeropartes().then(data => {
+			this.numpartes = data;
+			});
+	
 
 		//seteo ids para anuncios según plataforma
 		if (/(android)/i.test(navigator.userAgent)) {
@@ -76,6 +86,14 @@ export class HomePage {
 			);
 		}
 	}
+
+	ionViewDidEnter() {
+         console.log('Estoy en pagina inicial.');
+		 // Cada vez que muestre la página inicial setea el num de partes por si ha cambiado
+		 	this.estadistica.numeropartes().then(data => {
+			this.numpartes = data;
+			});
+    }
 
 	clientelist() {
 		this.navCtrl.push(ClienteListComponent);

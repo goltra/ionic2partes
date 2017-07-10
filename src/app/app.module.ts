@@ -1,3 +1,4 @@
+import { EstadisticasProvider } from './../provider/estadisticas.provider';
 import { NgModule,ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule,IonicErrorHandler} from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -49,6 +50,7 @@ import { ElasticModule } from 'angular2-elastic';
   providers: [VariosService,
     ClienteService,
     ParteService,
+    EstadisticasProvider,
     SQLite,DatabaseProvider,
     SettingsService,
     Storage,
