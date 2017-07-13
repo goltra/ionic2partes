@@ -119,7 +119,8 @@ export class EstadisticasPage {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero:true
+                    beginAtZero:true,
+                    fixedStepSize: 1
                 }
             }]
         }
