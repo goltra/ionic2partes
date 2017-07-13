@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { DatabaseProvider } from '../provider/database.provider';
+<<<<<<< HEAD
 import * as moment from 'moment';
 import 'moment/locale/es';
 
 declare let Chart;
+=======
+
+>>>>>>> 035a84ccb26e35284bf28874a6350ef574104e5d
 declare var window: any;
 
 @Injectable()
@@ -17,6 +21,7 @@ export class EstadisticasProvider {
 
 	 }
 	
+<<<<<<< HEAD
 	numeropartesdeldia(fechadia): Promise<any> {
 		console.log("Obtencion de numero de partes del dia "+fechadia);
 		return new Promise((resolve) => {
@@ -115,6 +120,10 @@ export class EstadisticasProvider {
 		console.log("Obtencion de numero total de partes actuales");
 		let now = moment().format('LLLL');
 		console.log("Hora actual -> "+now);
+=======
+	numeropartes(): Promise<any> {
+		console.log("Obtencion de numero total de partes actuales");
+>>>>>>> 035a84ccb26e35284bf28874a6350ef574104e5d
 		return new Promise((resolve) => {
 			let sql: string;
    		    sql = 'Select count(parte.id) as n from parte';

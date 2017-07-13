@@ -20,7 +20,6 @@ import {Storage} from '@ionic/storage';
 import { DatabaseProvider } from '../provider/database.provider';
 import { ElasticModule } from 'angular2-elastic';
 
-
 @NgModule({
   declarations: [
     MyApp,

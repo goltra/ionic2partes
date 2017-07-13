@@ -2,8 +2,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { EstadisticasProvider } from './../../provider/estadisticas.provider';
+<<<<<<< HEAD
 import * as moment from 'moment';
 import 'moment/locale/es';
+=======
+>>>>>>> 035a84ccb26e35284bf28874a6350ef574104e5d
 
 declare let Chart;
 
@@ -19,15 +22,21 @@ declare let Chart;
 })
 export class EstadisticasPage {
   public numpartes: any;
+<<<<<<< HEAD
   public numpartesdias: any;
   barChart: any;
   private estadistica: EstadisticasProvider;
   public dias;
+=======
+  barChart: any;
+	private estadistica: EstadisticasProvider;
+>>>>>>> 035a84ccb26e35284bf28874a6350ef574104e5d
   @ViewChild('barCanvas') barCanvas;
  
   
 
   constructor(public navCtrl: NavController, public _estadistica: EstadisticasProvider, public navParams: NavParams) {
+<<<<<<< HEAD
     
     this.dias = 7; // Días a mostar en las estadisticas
     this.estadistica = _estadistica;
@@ -117,4 +126,66 @@ export class EstadisticasPage {
         });
 
    }
+=======
+
+    this.estadistica = _estadistica;
+		this.estadistica.numeropartes().then(data => {
+			this.numpartes = data;
+			});
+
+  }
+
+  ionViewDidLoad() {
+
+    
+   this.barChart = new Chart(this.barCanvas.nativeElement, {
+ 
+            type: 'bar',
+            data: {
+                labels: ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"],
+                datasets: [{
+                    label: 'Número de partes',
+                    data: [5, 3, 9, 7, 0, 1, 11],
+                    backgroundColor: [
+                        'rgba(102, 178, 255, 0.5)',
+                        'rgba(102, 178, 255, 0.5)',
+                        'rgba(102, 178, 255, 0.5)',
+                        'rgba(102, 178, 255, 0.5)',
+                        'rgba(102, 178, 255, 0.5)',
+                        'rgba(102, 178, 255, 0.5)',
+                        'rgba(102, 178, 255, 0.5)',
+                        'rgba(102, 178, 255, 0.5)',
+                        'rgba(102, 178, 255, 0.5)',
+                        'rgba(102, 178, 255, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgba(0,128,255,1)',
+                        'rgba(0,128,255,1)',
+                        'rgba(0,128,255,1)',
+                        'rgba(0,128,255,1)',
+                        'rgba(0,128,255,1)',
+                        'rgba(0,128,255,1)',
+                        'rgba(0,128,255,1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+ 
+        });
+
+
+
+    console.log('ionViewDidLoad EstadisticasPage');
+  }
+
+>>>>>>> 035a84ccb26e35284bf28874a6350ef574104e5d
 }
