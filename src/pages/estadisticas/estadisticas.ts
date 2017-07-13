@@ -19,7 +19,10 @@ declare let Chart;
 })
 export class EstadisticasPage {
   public numpartes: any;
-  public numpartesdias: any;
+  //public numpartesdias: any;
+  public numparteshoy: any;
+  public numpartesdelasemana: any;
+  public numpartesmes: any;
   barChart: any;
   private estadistica: EstadisticasProvider;
   public dias;
@@ -34,10 +37,18 @@ export class EstadisticasPage {
 	this.estadistica.numeropartes().then(data => {
 			this.numpartes = data;
             });
-    this.estadistica.numeropartesdias(1).then(data => {
+    /*this.estadistica.numeropartesdias(1).then(data => {
 			this.numpartesdias = data;
+            });*/
+    this.estadistica.numeropartesdeldia(moment()).then(data => {
+			this.numparteshoy = data;
             });
-    
+    this.estadistica.numeropartesdelasemana(moment()).then(data => {
+			this.numpartesdelasemana = data;
+            });
+    this.estadistica.numeropartesdelmes(moment()).then(data => {
+			this.numpartesmes = data;
+            });
   }
 
   ionViewDidLoad() {
