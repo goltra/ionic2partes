@@ -77,7 +77,7 @@ export class EstadisticasPage {
 
    this.estadisticasdia(this.dias);
 
-    //    console.log('ionViewDidLoad EstadisticasPage');
+   
   }
 
   estadisticasdia(dias): Promise<any> {
@@ -187,6 +187,7 @@ export class EstadisticasPage {
         console.log("ENTRO A PINTAR LA GRAFICA");
         this.barChart = new Chart(this.barCanvas.nativeElement, {
                    type: 'bar',
+                   responsive: true,
             data: {
                 labels: this.etiquetas,
                 datasets: [{
@@ -199,13 +200,26 @@ export class EstadisticasPage {
                 }]
             },
             options: {
+                maintainAspectRatio: false,
+                responsive: true,
                 scales: {
                     yAxes: [{
                         ticks: {
+                            fontSize: 10,
                             beginAtZero:true,
                             fixedStepSize: 1
-                        }
+                        },
+                    }],
+                    xAxes: [{
+                        ticks: {
+                            fontSize: 10,
+                            beginAtZero:true,
+                            fixedStepSize: 1
+                        },
                     }]
+                },
+                legend: {
+                    fontSize: 10
                 }
             }
  

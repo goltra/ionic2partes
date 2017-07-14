@@ -17,12 +17,12 @@
 
 
 <ion-content padding>
-  <h3 style="text-align:center">Número de partes totales actuales: {{numpartes}}</h3>
-  <h4 style="text-align:center">Hoy: {{numparteshoy}} | Esta semana: {{numpartesdelasemana}} | Este mes: {{numpartesmes}}</h4>   
+  <h2 style="text-align:center">Total de partes: {{numpartes}}</h2>
+  <h3 style="text-align:center">Hoy: {{numparteshoy}} | Esta semana: {{numpartesdelasemana}} | Este mes: {{numpartesmes}}</h3>   
 
 <ion-card>
       <ion-card-header>
-        Número de partes de los últimos {{dias}} días.
+       <h3> Número de partes de los últimos {{dias}} días</h3> 
       </ion-card-header>
       <ion-card-content>
         <canvas #barCanvas></canvas>
