@@ -26,13 +26,35 @@ export class EstadisticasPage {
   barChart: any;
   private estadistica: EstadisticasProvider;
   public dias;
+
+  public datospromesa: Array<Array<any>>;
+  public termina;        
+  public etiquetas: Array<string>;
+  public datos: Array<string>;
+  public colorfondo: Array<string>;
+  public colorborde: Array<string>;
+  
+//   this.etiquetas = [];
+//   datos = [];
+//   colorfondo = [];
+//   colorborde = [];
+  
+   
+
+
+
+
   @ViewChild('barCanvas') barCanvas;
  
   
 
   constructor(public navCtrl: NavController, public _estadistica: EstadisticasProvider, public navParams: NavParams) {
-    
-    this.dias = 7; // Días a mostar en las estadisticas
+    this.datospromesa = [this.etiquetas,this.datos,this.colorfondo,this.colorborde];
+     this.etiquetas = [];
+     this.datos = [];
+     this.colorfondo = [];
+     this.colorborde = [];
+    this.dias = 5; // Días a mostar en las estadisticas
     this.estadistica = _estadistica;
 	this.estadistica.numeropartes().then(data => {
 			this.numpartes = data;
@@ -58,75 +80,169 @@ export class EstadisticasPage {
     //    console.log('ionViewDidLoad EstadisticasPage');
   }
 
-  estadisticasdia(dias){ 
+  estadisticasdia(dias): Promise<any> {
+		return new Promise((resolve) => { 
     
-    let etiquetas: Array<string>;
-    let datos: Array<string>;
-    let colorfondo: Array<string>;
-    let colorborde: Array<string>;
+           // this.datospromesa = [this.etiquetas,this.datos,this.colorfondo,this.colorborde];
+            let colorresto = 'rgba(102,178,255,0.5)';
+            let colorhoy = 'rgba(200,50,78,0.5)';
+            let colorborderesto = 'rgba(0,128,255,1)';
+            let colorbordehoy = 'rgba(150,13,78,1)';
+            dias--;
+            console.log("DIA - "+dias);
+                        if(dias>=0){
+                        let fechadia = moment().subtract(dias, 'days');
+                        this._estadistica.numeropartesdeldia(fechadia).then(data => {  
+
+                            console.log("ESPERANDO RECIBIR DATO");
+                            this.datos.push(data);
+                           // console.log("Datos["+dias+"] -> "+this.datos[dias]);
+                            let diasemana = fechadia.format("ddd, D, MMM");
+                            this.etiquetas.push(diasemana);
+                             if(fechadia.isSame(moment(),'day')){
+                            console.log("La fecha es hoy");
+                            this.colorfondo.push(colorhoy);
+                            this.colorborde.push(colorbordehoy);
+                            } else {
+                                //console.log("Las fechas no coinciden");
+                                this.colorfondo.push(colorresto);
+                                this.colorborde.push(colorborderesto);
+                                }
+                        this.estadisticasdia((dias));
+                        });
+                                
+                        } else{
+                            this.pintagrafica();
+                        }
+                        
+               
+                resolve(this.datospromesa);
+                
+             });
+  }
+
+
+//   estadisticasdia(dias): Promise<any> {
+// 		return new Promise((resolve) => { 
     
-    etiquetas = [];
-    datos = [];
-    colorfondo = [];
-    colorborde = [];
-
-
-    let colorresto = 'rgba(102,178,255,0.5)';
-    let colorhoy = 'rgba(200,50,78,0.5)';
-  
-
-    let colorborderesto = 'rgba(0,128,255,1)';
-    let colorbordehoy = 'rgba(150,13,78,1)';
-
-    for (let i = 0; i < dias; i++) {
-                //console.log("Resto "+i+ "dias");
-                let fechadia = moment().subtract(i, 'days');
-                let diasemana = fechadia.format("ddd, D, MMM");
-                etiquetas.push(diasemana);
-                this._estadistica.numeropartesdeldia(fechadia).then(data => {
-                    console.log("Data -> "+data);
-                    datos.push(data);
-                    console.log("Datos["+i+"] -> "+datos[i]);
-                });
-                if(i==0){
-                    //console.log("La fecha es hoy");
-                    colorfondo.push(colorhoy);
-                    colorborde.push(colorbordehoy);
-                } else {
-    
-                        //console.log("Las fechas no coinciden");
-                        colorfondo.push(colorresto);
-                        colorborde.push(colorborderesto);
+//             let datospromesa: Array<Array<any>>;
+//             let termina;        
+//             let etiquetas: Array<string>;
+//             let datos: Array<string>;
+//             let colorfondo: Array<string>;
+//             let colorborde: Array<string>;
+            
+//             etiquetas = [];
+//             datos = [];
+//             colorfondo = [];
+//             colorborde = [];
+            
+        
+//             datospromesa = [etiquetas,datos,colorfondo,colorborde];
+        
+        
+//             let colorresto = 'rgba(102,178,255,0.5)';
+//             let colorhoy = 'rgba(200,50,78,0.5)';
+          
+        
+//             let colorborderesto = 'rgba(0,128,255,1)';
+//             let colorbordehoy = 'rgba(150,13,78,1)';
+        
+//             for (let i = 0; i < dias; i++) {
+//                         //console.log("Resto "+i+ "dias");
+//                         let fechadia = moment().subtract(i, 'days');
+//                         let diasemana = fechadia.format("ddd, D, MMM");
+//                         etiquetas.push(diasemana);
+//                         this._estadistica.numeropartesdeldia(fechadia).then(data => {
+                            
+//                             console.log("ESPERANDO RECIBIR DATO");
+                            
+//                             //console.log("Data -> "+data);
+//                             datos.push(data);
+//                             console.log("Datos["+i+"] -> "+datos[i]);
+//                         });
+//                         if(i==0){
+//                             //console.log("La fecha es hoy");
+//                             colorfondo.push(colorhoy);
+//                             colorborde.push(colorbordehoy);
+//                         } else {
+            
+//                                 //console.log("Las fechas no coinciden");
+//                                 colorfondo.push(colorresto);
+//                                 colorborde.push(colorborderesto);
+//                         }
+                        
+                      
+//                         }
+               
+//                 resolve(datospromesa);
+                
+//              });
+//   }
+    pintagrafica(){ // num -> numero de dias a pintar
+        
+       // this.estadisticasdia(num).then(data => {
+       
+        
+        console.log("ENTRO A PINTAR LA GRAFICA");
+        this.barChart = new Chart(this.barCanvas.nativeElement, {
+                   type: 'bar',
+            data: {
+                labels: this.etiquetas,
+                datasets: [{
+                    label: 'Número de partes',
+                    data: this.datos,
+                    backgroundColor: 
+                       this.colorfondo,
+                    borderColor: this.colorborde,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true,
+                            fixedStepSize: 1
+                        }
+                    }]
                 }
-              
-                }
-
-    this.barChart = new Chart(this.barCanvas.nativeElement, {
-     
-           type: 'bar',
-    data: {
-        labels: etiquetas,
-        datasets: [{
-            label: 'Número de partes',
-            data: datos,
-            backgroundColor: 
-                colorfondo,
-            borderColor: colorborde,
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true,
-                    fixedStepSize: 1
-                }
-            }]
-        }
-    }
+            }
  
-        });
-
-   }
+            });
+        
+        // });
+    }
+   
 }
+
+
+
+    // this.barChart = new Chart(this.barCanvas.nativeElement, {
+     
+    //        type: 'bar',
+    // data: {
+    //     labels: etiquetas,
+    //     datasets: [{
+    //         label: 'Número de partes',
+    //         data: datos,
+    //         backgroundColor: 
+    //             colorfondo,
+    //         borderColor: colorborde,
+    //         borderWidth: 1
+    //     }]
+    // },
+    // options: {
+    //     scales: {
+    //         yAxes: [{
+    //             ticks: {
+    //                 beginAtZero:true,
+    //                 fixedStepSize: 1
+    //             }
+    //         }]
+    //     }
+    // }
+ 
+    //     });
+
+  

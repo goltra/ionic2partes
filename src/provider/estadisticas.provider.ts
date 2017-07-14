@@ -52,7 +52,7 @@ export class EstadisticasProvider {
 	}
 
 	numeropartesdelasemana(fechadia): Promise<any> {
-		console.log("Obtencion de numero de partes de la semana "+fechadia);
+		//console.log("Obtencion de numero de partes de la semana "+fechadia);
 		return new Promise((resolve) => {
 			let sql: string;
    		    sql = 'Select parte.fecha as n from parte';
@@ -65,16 +65,16 @@ export class EstadisticasProvider {
 
        				   for (let i = 0; i < data.rows.length; i++) {
 								let item = data.rows.item(i).n;
-								console.log("Semana fecha que paso -> "+fechadia.format('WW'));
-								console.log("Semana del parte -> "+this.fechatomoment(item).format('WW'));
+							//	console.log("Semana fecha que paso -> "+fechadia.format('WW'));
+							//	console.log("Semana del parte -> "+this.fechatomoment(item).format('WW'));
 								if((fechadia.format('WW'))==(this.fechatomoment(item).format("WW"))) {
 								//if(fechadia.isSame(this.fechatomoment(item), 'week')){
-									 console.log("LAS SEMANAS COINCIDEN");	 
+								//	 console.log("LAS SEMANAS COINCIDEN");	 
 									nump++;
 								 }
 						  }
 
-       		    	console.log('Encontrados '+nump+' partes');
+       		    	//console.log('Encontrados '+nump+' partes');
 					resolve(nump);
 					} else{
 						resolve(0);	
@@ -130,12 +130,12 @@ export class EstadisticasProvider {
 			this.db.query(sql).then(
 				(data) => {
 					if(data.rows.length>0){
-        			console.log('cargando partes');
+        			//console.log('cargando partes');
 					let nump: number = 0;
 
        				   for (let i = 0; i < data.rows.length; i++) {
 								let item = data.rows.item(i).n;
-								console.log("Item -> "+item);
+								//console.log("Item -> "+item);
 								 if(this.entrefechas(this.fechatomoment(item), dias)){
 									nump++;
 								 }
