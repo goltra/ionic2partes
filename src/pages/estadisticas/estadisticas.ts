@@ -221,18 +221,34 @@ export class EstadisticasPage {
                 },
                 legend: {
                     fontSize: 10
+                },
+                animation: {
+                     onComplete: function(){
+                        console.log("TERMINO LA ANIMCAION DE LA GRAFICA");
+                        //this.sacoImagenGrafica();
+                    }
                 }
             }
+
+           
  
             });
-        console.log("CONVIERTO GRAFICA A IMG 64");
-        this.imgChartBase64 = this.barChart.toBase64Image();
+        // console.log("CONVIERTO GRAFICA A IMG 64");
+        // this.imgChartBase64 = this.barChart.toBase64Image();
+        // console.log(this.imgChartBase64);
+        
+       // this.barChart.onAnimationComplete(this.imgChartBase64 = this.barChart.toBase64Image());
+        
         
         // });
     }
 
     enviarEmail(){
     console.log('envia email');
+
+    console.log("CONVIERTO GRAFICA A IMG 64");
+        this.imgChartBase64 = this.barChart.toBase64Image();
+        console.log(this.imgChartBase64);
     
     this.estadisticasServ.cargoSettings().then(data => {
             this.settings = data;
@@ -242,7 +258,9 @@ export class EstadisticasPage {
             this.estadisticasServ.enviaPorEmail(this.settings,this.imgChartBase64,this.numpartes,this.numparteshoy,this.numpartesdelasemana,this.numpartesmes);
         });
   }
-   
+
+
+  
 }
 
 

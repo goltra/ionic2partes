@@ -65,7 +65,7 @@ export class EstadisticasService {
   enviaPorEmail(settings: any, barChart: String, partesTotal: number, partesHoy: number, partesSemana: number, partesMes: number) {
     //let msg:String; 
     let email;
-    var doc = new jsPDF();
+    var doc = new jsPDF('landscape');
     let asuntoEmail: String = "";
 
     this.settings = settings;
@@ -87,8 +87,7 @@ export class EstadisticasService {
           doc.text(20, 50, "Número de partes esta semana: " +partesSemana);
           doc.text(20, 60, "Número de partes este mes " +partesMes);
           console.log(this.settings.tecnico);
-          if (this.settings.tecnico != undefined){
-            console.log("ENTRO EN JKLADSFLJKDFSALJK");
+          if (this.settings.tecnico != undefined || this.settings.tecnico != ""){
             doc.text(20, 70, "Trabajador: " + this.settings.tecnico);
             asuntoEmail = " de "+this.settings.tecnico; // Esto es para luego rellenar el asunto del email
           } 
@@ -98,7 +97,7 @@ export class EstadisticasService {
           doc.setFontStyle('normal');
          if (barChart != undefined) {
            console.log("La grafica está defininda, procedemos a pintarla");
-            doc.addImage(barChart, "PNG", 140, 20);
+            doc.addImage(barChart, "PNG", 4, 100, 150, 90); // izq, arriba, ancho, alto
           }
          // doc.text(20, 90, "Número de partes este mes " +partesMes);
 
