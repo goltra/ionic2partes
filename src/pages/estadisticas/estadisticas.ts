@@ -1,3 +1,5 @@
+import { Settings } from './../../model/settings';
+import { EstadisticasService } from './../../service/estadisticas.service';
 // import { Chart } from 'chart.js';
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
@@ -33,11 +35,9 @@ export class EstadisticasPage {
   public datos: Array<string>;
   public colorfondo: Array<string>;
   public colorborde: Array<string>;
-  
-//   this.etiquetas = [];
-//   datos = [];
-//   colorfondo = [];
-//   colorborde = [];
+  public imgChartBase64: String;
+  private settings: Settings;
+
   
    
 
@@ -48,12 +48,13 @@ export class EstadisticasPage {
  
   
 
-  constructor(public navCtrl: NavController, public _estadistica: EstadisticasProvider, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public _estadistica: EstadisticasProvider, public navParams: NavParams, public estadisticasServ: EstadisticasService) {
     this.datospromesa = [this.etiquetas,this.datos,this.colorfondo,this.colorborde];
      this.etiquetas = [];
      this.datos = [];
      this.colorfondo = [];
      this.colorborde = [];
+
     this.dias = 5; // Días a mostar en las estadisticas
     this.estadistica = _estadistica;
 	this.estadistica.numeropartes().then(data => {
@@ -224,9 +225,23 @@ export class EstadisticasPage {
             }
  
             });
+        console.log("CONVIERTO GRAFICA A IMG 64");
+        this.imgChartBase64 = this.barChart.toBase64Image();
         
         // });
     }
+
+    enviarEmail(){
+    console.log('envia email');
+    
+    this.estadisticasServ.cargoSettings().then(data => {
+            this.settings = data;
+            //console.log(data);
+            console.log("Tecnico -> "+this.settings.tecnico);
+            console.log("IMG BASE 64 GRAFICA -> "+this.imgChartBase64); 
+            this.estadisticasServ.enviaPorEmail(this.settings,this.imgChartBase64,this.numpartes,this.numparteshoy,this.numpartesdelasemana,this.numpartesmes);
+        });
+  }
    
 }
 

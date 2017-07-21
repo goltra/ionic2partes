@@ -1,3 +1,4 @@
+import { EstadisticasService } from './../service/estadisticas.service';
 import { EstadisticasPage } from './../pages/estadisticas/estadisticas';
 import { EstadisticasProvider } from './../provider/estadisticas.provider';
 import { NgModule,ErrorHandler } from '@angular/core';
@@ -53,6 +54,7 @@ import { ElasticModule } from 'angular2-elastic';
   providers: [VariosService,
     ClienteService,
     ParteService,
+    EstadisticasService,
     EstadisticasProvider,
     SQLite,DatabaseProvider,
     SettingsService,
