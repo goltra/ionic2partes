@@ -24527,3 +24527,11 @@ textarea.text-input {
   background: red;
   text-align: center;
 }
+
+page-estadisticas h2 {
+  font-size: 18px;
+}
+
+page-estadisticas h3 {
+  font-size: 15px;
+}

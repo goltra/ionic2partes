@@ -61,6 +61,8 @@ export class EstadisticasService {
   
 
   
+
+  
   
   enviaPorEmail(settings: any, barChart: String, partesTotal: number, partesHoy: number, partesSemana: number, partesMes: number) {
     //let msg:String; 

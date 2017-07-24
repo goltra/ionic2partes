@@ -20,6 +20,7 @@ import { SQLite } from 'ionic-native';
 import {Storage} from '@ionic/storage';
 import { DatabaseProvider } from '../provider/database.provider';
 import { ElasticModule } from 'angular2-elastic';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { ElasticModule } from 'angular2-elastic';
     ClienteService,
     ParteService,
     EstadisticasService,
+    ScreenOrientation,
     EstadisticasProvider,
     SQLite,DatabaseProvider,
     SettingsService,

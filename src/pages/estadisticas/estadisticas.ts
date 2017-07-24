@@ -1,11 +1,12 @@
 import { Settings } from './../../model/settings';
 import { EstadisticasService } from './../../service/estadisticas.service';
 // import { Chart } from 'chart.js';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnChanges } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { EstadisticasProvider } from './../../provider/estadisticas.provider';
 import * as moment from 'moment';
 import 'moment/locale/es';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 declare let Chart;
 
@@ -48,7 +49,7 @@ export class EstadisticasPage {
  
   
 
-  constructor(public navCtrl: NavController, public _estadistica: EstadisticasProvider, public navParams: NavParams, public estadisticasServ: EstadisticasService) {
+  constructor(public navCtrl: NavController, public _estadistica: EstadisticasProvider, private screenOrientation: ScreenOrientation, public navParams: NavParams, public estadisticasServ: EstadisticasService) {
     this.datospromesa = [this.etiquetas,this.datos,this.colorfondo,this.colorborde];
      this.etiquetas = [];
      this.datos = [];
@@ -78,8 +79,19 @@ export class EstadisticasPage {
 
    this.estadisticasdia(this.dias);
 
+   // detect orientation changes
+    this.screenOrientation.OnChange().subscribe(
+       () => {
+           console.log("Orientation Changed");
+       }
+    );
+
    
   }
+
+  
+
+ 
 
   estadisticasdia(dias): Promise<any> {
 		return new Promise((resolve) => { 

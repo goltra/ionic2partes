@@ -53,6 +53,9 @@
             "CAMERA_USAGE_DESCRIPTION": "Adjunta foto al parte",
             "PHOTOLIBRARY_USAGE_DESCRIPTION": "Adjunta foto al parte",
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     },
     "dependent_plugins": {
