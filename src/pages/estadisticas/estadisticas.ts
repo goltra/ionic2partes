@@ -80,7 +80,7 @@ export class EstadisticasPage {
    this.estadisticasdia(this.dias);
 
    // detect orientation changes
-    this.screenOrientation.OnChange().subscribe(
+    this.screenOrientation.onChange().subscribe(
        () => {
            console.log("Orientation Changed");
        }

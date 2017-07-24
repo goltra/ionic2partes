@@ -82,16 +82,18 @@ export class SettingsComponent {
 
     let options= {
       sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: Camera.DestinationType.FILE_URI
+      destinationType: Camera.DestinationType.DATA_URL,
+      correctOrientation: true,
+      targetWidth: 100
     }
     Camera.getPicture(options).then(
       (imageData) => {
           console.log('obteniendo imagen');
           console.log(imageData);
           let self  = this;
-          this.v.imgToBase64(imageData,function(res){
-            self.logo = res;
-          },'image/jpeg',100);
+          // this.v.imgToBase64(imageData,function(res){
+          //   self.logo = res;
+          // },'image/jpeg',100);
         }, 
         (err) => {
           console.log("Error al capturar imagen");
@@ -99,5 +101,6 @@ export class SettingsComponent {
         }
     );
   }
+
 
 }
