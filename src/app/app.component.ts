@@ -1,7 +1,7 @@
 import { EstadisticasPage } from './../pages/estadisticas/estadisticas';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
-import { StatusBar } from 'ionic-native';
+import { StatusBar } from '@ionic-native/status-bar';
 import { HomePage } from '../pages/home/home';
 import { ClienteListComponent } from '../pages/clientes/cliente-list.component';
 import { ParteListComponent } from '../pages/parte/parte-list.component';
@@ -20,7 +20,7 @@ export class MyApp {
 
 
   @ViewChild(Nav) nav: Nav;
-  constructor(platform: Platform, private menu: MenuController, private db: DatabaseProvider) {
+  constructor(platform: Platform, private menu: MenuController, private db: DatabaseProvider, private statusBar: StatusBar) {
     //Seteo pagina inicial
     this.rootPage = HomePage;
     //Seteo rutas para usar en sidemenu
@@ -47,7 +47,7 @@ export class MyApp {
       console.log(platform.platforms());
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      StatusBar.styleDefault();
+      this.statusBar.styleDefault();
       //inicializa la bd creando el fichero de bd pero no la estructura.
       this.db.dbname = "partes1";
       this.db.init();

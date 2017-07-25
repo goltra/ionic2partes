@@ -7,7 +7,7 @@ import { SettingsComponent } from '../settings-component/settings-component';
 import { VariosService } from '../../service/varios.service';
 import { SettingsService } from '../../service/settings.service';
 import 'rxjs/Rx';
-import { File } from 'ionic-native';
+import { File } from '@ionic-native/file';
 import { EstadisticasPage } from './../estadisticas/estadisticas';
 
 
@@ -30,7 +30,7 @@ export class HomePage {
 
 
 	constructor(private navCtrl: NavController, private menu: MenuController, private v: VariosService,
-		platform: Platform, private settings: SettingsService) {
+		platform: Platform, private settings: SettingsService, private file: File) {
 
 		//inicialización de variables
 		this.menu.enable(true);
@@ -93,7 +93,7 @@ export class HomePage {
 
 	test() {
 		console.log('test');
-		File.listDir(cordova.file.applicationStorageDirectory, 'databases').then(
+		this.file.listDir(cordova.file.applicationStorageDirectory, 'databases').then(
 			(files) => {
 				console.log('applicationStorageDirectory');
 				console.log(files);

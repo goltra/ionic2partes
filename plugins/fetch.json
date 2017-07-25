@@ -26,7 +26,7 @@
     "cordova-plugin-splashscreen": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-splashscreen@4.0.0"
+            "id": "cordova-plugin-splashscreen@^4.0.3"
         },
         "is_top_level": true,
         "variables": {}
@@ -42,7 +42,7 @@
     "ionic-plugin-keyboard": {
         "source": {
             "type": "registry",
-            "id": "ionic-plugin-keyboard"
+            "id": "ionic-plugin-keyboard@^2.2.1"
         },
         "is_top_level": true,
         "variables": {}
@@ -50,7 +50,7 @@
     "cordova-sqlite-storage": {
         "source": {
             "type": "registry",
-            "id": "cordova-sqlite-storage"
+            "id": "cordova-sqlite-storage@~1.4.7"
         },
         "is_top_level": true,
         "variables": {}
@@ -90,7 +90,7 @@
     "cordova-plugin-file-transfer": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-file-transfer"
+            "id": "cordova-plugin-file-transfer@^1.6.3"
         },
         "is_top_level": true,
         "variables": {}
@@ -106,7 +106,7 @@
     "cordova-plugin-x-socialsharing": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-x-socialsharing"
+            "id": "cordova-plugin-x-socialsharing@^5.1.8"
         },
         "is_top_level": true,
         "variables": {}
@@ -114,7 +114,7 @@
     "cordova-plugin-file": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-file"
+            "id": "cordova-plugin-file@^4.3.3"
         },
         "is_top_level": true,
         "variables": {}
@@ -133,15 +133,28 @@
             "id": "cordova-plugin-camera@~2.3.0"
         },
         "is_top_level": true,
-        "variables": {
-            "CAMERA_USAGE_DESCRIPTION": "Adjunta foto al parte",
-            "PHOTOLIBRARY_USAGE_DESCRIPTION": "Adjunta foto al parte"
-        }
+        "variables": {}
     },
     "cordova-plugin-screen-orientation": {
         "source": {
             "type": "registry",
             "id": "cordova-plugin-screen-orientation"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-email-composer": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-email-composer"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-nativestorage": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-nativestorage"
         },
         "is_top_level": true,
         "variables": {}

@@ -5,9 +5,10 @@ import { Parte } from '../model/parte';
 import { Settings } from '../model/settings';
 import { VariosService } from './varios.service';
 import { SettingsService } from './settings.service';
-import { EmailComposer, File } from 'ionic-native';
+import { EmailComposer } from '@ionic-native/email-composer';
 import { DatabaseProvider } from '../provider/database.provider';
-import { SocialSharing } from 'ionic-native';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { File } from '@ionic-native/file';
 import { Photo } from '../model/photo';
 import * as moment from 'moment';
 import 'moment/locale/es';
@@ -23,7 +24,7 @@ export class EstadisticasService {
   private dirFiles: string;
   private db;
 
-  constructor(private _varios: VariosService, _db: DatabaseProvider, private platform: Platform, private s: SettingsService) {
+  constructor(private _varios: VariosService, _db: DatabaseProvider, private platform: Platform, private s: SettingsService, private emailComposer: EmailComposer, private socialSharing: SocialSharing, private file: File) {
     this.db = _db;
     this.dirFiles = "";
     
@@ -74,7 +75,7 @@ export class EstadisticasService {
   
     console.log("Compruebo si el componente EmailComposer está disponible.");
     console.log("Tec -> "+this.settings.tecnico);
-    EmailComposer.isAvailable().then(
+    this.emailComposer.isAvailable().then(
       (available) => {
         console.log("Email composer disponible");
         console.log("Texto que voy a incluir en pdf");
@@ -128,7 +129,7 @@ export class EstadisticasService {
             tmpNom = tmpNom + 'partesTrabajoPdf.pdf';
 
             tmpNom = 'estadisticasTrabajoPdf.pdf';
-            File.writeFile(this.dirFiles, tmpNom, pdfOutput, { replace: true }).then(
+            this.file.writeFile(this.dirFiles, tmpNom, pdfOutput, { replace: true }).then(
               (ok) => {
                 console.log("fichero guardado en " + this.dirFiles);
                 console.log(ok);
@@ -143,7 +144,7 @@ export class EstadisticasService {
                   attachments: [this.dirFiles + tmpNom]
                 };
 
-                EmailComposer.open(email).then(
+                this.emailComposer.open(email).then(
                   (sended) => {
                     console.log("email enviado ");
                     console.log(sended);

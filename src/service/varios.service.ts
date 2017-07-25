@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastController } from 'ionic-angular';
-import { File } from 'ionic-native';
+import { File } from '@ionic-native/file';
 declare let EXIF;
 declare var cordova: any;
 @Injectable()
@@ -8,7 +8,7 @@ declare var cordova: any;
 export class VariosService {
 
 
-    constructor(private toastCtrl: ToastController) {
+    constructor(private toastCtrl: ToastController, private file: File) {
 
     }
     showToast(mensaje: string, posicion: string, cssClass: string = "toastMessage", duration: number = 2000) {
@@ -23,7 +23,7 @@ export class VariosService {
     /** Función que lista las bd. Solo probado con android. */
     pathDatabasesSqlite() {
         console.log('ubicación de las bases de datos SQLITE. Solo probado con Android');
-        File.listDir(cordova.file.applicationStorageDirectory, 'databases').then(
+        this.file.listDir(cordova.file.applicationStorageDirectory, 'databases').then(
             (files) => {
                 console.log('applicationStorageDirectory');
                 console.log(files);

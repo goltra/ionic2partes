@@ -1,3 +1,9 @@
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { EmailComposer } from '@ionic-native/email-composer';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { Keyboard } from '@ionic-native/keyboard';
+import { StatusBar } from '@ionic-native/status-bar';
+import { Camera } from '@ionic-native/camera';
 import { EstadisticasService } from './../service/estadisticas.service';
 import { EstadisticasPage } from './../pages/estadisticas/estadisticas';
 import { EstadisticasProvider } from './../provider/estadisticas.provider';
@@ -16,11 +22,16 @@ import { ClienteService } from '../service/cliente.service';
 import { SettingsService } from '../service/settings.service';
 import { SettingsComponent } from '../pages/settings-component/settings-component';
 import {SignaturePadModule} from 'angular2-signaturepad';
-import { SQLite } from 'ionic-native';
-import {Storage} from '@ionic/storage';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { DatabaseProvider } from '../provider/database.provider';
 import { ElasticModule } from 'angular2-elastic';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { NativeStorage } from '@ionic-native/native-storage';
+import { IonicStorageModule } from '@ionic/storage';
+import { File } from '@ionic-native/file';
 
 
 @NgModule({
@@ -36,6 +47,9 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     EstadisticasPage,
   ],
   imports: [
+    BrowserModule,
+    HttpModule,
+    IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp,{
       backButtonText: "Atras",
     }),SignaturePadModule, ElasticModule
@@ -58,9 +72,20 @@ import { ScreenOrientation } from '@ionic-native/screen-orientation';
     EstadisticasService,
     ScreenOrientation,
     EstadisticasProvider,
-    SQLite,DatabaseProvider,
+    SQLite,
+    FileTransfer,
+    File,
+    DatabaseProvider,
     SettingsService,
-    Storage,
+    FileTransferObject,
+    SocialSharing,
+    EmailComposer,
+    SplashScreen,
+    Camera,
+    StatusBar,
+    Keyboard,
+    NativeStorage,
+    IonicStorageModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {

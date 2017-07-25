@@ -15,6 +15,10 @@
                         {
                             "xml": "<feature name=\"Camera\"><param name=\"browser-package\" value=\"Camera\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"NativeStorage\"><param name=\"browser-package\" value=\"NativeStorage\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -24,6 +28,10 @@
                     "/*": [
                         {
                             "xml": "<feature name=\"EmailComposer\"><param name=\"browser-package\" value=\"de.martinreinhardt.cordova.plugins.email.EmailComposer\" /></feature>",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"EmailComposer\"><param name=\"browser-package\" value=\"de.appplant.cordova.emailcomposer.EmailComposer\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -84,6 +92,12 @@
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
         "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-email-composer": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-nativestorage": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     },
@@ -459,6 +473,39 @@
             "clobbers": [
                 "cordova.plugins.screenorientation"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-email-composer/www/email_composer.js",
+            "id": "cordova-plugin-email-composer.EmailComposer",
+            "pluginId": "cordova-plugin-email-composer",
+            "clobbers": [
+                "cordova.plugins.email",
+                "plugin.email"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-email-composer/src/browser/EmailComposerProxy.js",
+            "id": "cordova-plugin-email-composer.EmailComposerProxy",
+            "pluginId": "cordova-plugin-email-composer",
+            "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-nativestorage/www/mainHandle.js",
+            "id": "cordova-plugin-nativestorage.mainHandle",
+            "pluginId": "cordova-plugin-nativestorage",
+            "clobbers": [
+                "NativeStorage"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-nativestorage/www/LocalStorageHandle.js",
+            "id": "cordova-plugin-nativestorage.LocalStorageHandle",
+            "pluginId": "cordova-plugin-nativestorage"
+        },
+        {
+            "file": "plugins/cordova-plugin-nativestorage/www/NativeStorageError.js",
+            "id": "cordova-plugin-nativestorage.NativeStorageError",
+            "pluginId": "cordova-plugin-nativestorage"
         }
     ],
     "plugin_metadata": {
@@ -479,6 +526,8 @@
         "cordova-plugin-file": "4.3.1",
         "cordova-plugin-inappbrowser": "1.6.1",
         "cordova-plugin-camera": "2.3.1",
-        "cordova-plugin-screen-orientation": "2.0.1"
+        "cordova-plugin-screen-orientation": "2.0.1",
+        "cordova-plugin-email-composer": "0.8.7",
+        "cordova-plugin-nativestorage": "2.2.2"
     }
 }

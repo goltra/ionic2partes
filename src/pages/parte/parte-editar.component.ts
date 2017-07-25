@@ -10,7 +10,8 @@ import { VariosService } from '../../service/varios.service';
 import { ParteListComponent } from './parte-list.component';
 import { ParteFotosPage } from './parte-fotos';
 import { SignaturePad } from 'angular2-signaturepad/signature-pad';
-import { Keyboard, Camera } from 'ionic-native';
+import { Keyboard } from '@ionic-native/keyboard';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 
 @Component({
     templateUrl: 'parte-editar.component.html',
@@ -27,6 +28,8 @@ export class ParteEditarComponent {
 
     constructor(private _nav: NavController, private _navParams: NavParams,
         private fb: FormBuilder,
+        private camera: Camera,
+        private Keyboard: Keyboard,
         private parteService: ParteService,
         private _varios: VariosService,
         public alertCtrl: AlertController) {
@@ -93,7 +96,7 @@ export class ParteEditarComponent {
     };
     drawStart() {
         console.log("comieza a firmar y oculto teclado");
-        Keyboard.close();
+        this.Keyboard.close();
     }
     ngAfterViewInit() {
         // this.signaturePad is now available
@@ -127,13 +130,13 @@ export class ParteEditarComponent {
         let options = {
             quality: 70,
             targetWidth: 1024,
-            destinationType: Camera.DestinationType.DATA_URL,
-            sourceType: Camera.PictureSourceType.CAMERA,
-            encodingType: Camera.EncodingType.JPEG,
+            destinationType: this.camera.DestinationType.DATA_URL,
+            sourceType: this.camera.PictureSourceType.CAMERA,
+            encodingType: this.camera.EncodingType.JPEG,
             correctOrientation: true
         }
         console.log('hacerFoto()');
-        Camera.getPicture(options).then(imgB64 => {
+        this.camera.getPicture(options).then(imgB64 => {
             console.log('foto');
             let nomFichero: string = '';
             let alert = this.alertCtrl.create({
