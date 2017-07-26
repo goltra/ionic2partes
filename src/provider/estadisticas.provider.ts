@@ -121,6 +121,40 @@ export class EstadisticasProvider {
 		});
 	}
 
+	numeropartesdelanio(fechadia): Promise<any> {
+		console.log("Obtencion de numero de partes del año "+fechadia);
+		return new Promise((resolve) => {
+			let sql: string;
+   		    sql = 'Select parte.fecha as n from parte';
+			
+			this.db.query(sql).then(
+				(data) => {
+					if(data.rows.length>0){
+        			//console.log('cargando partes');
+					let nump: number = 0;
+
+       				   for (let i = 0; i < data.rows.length; i++) {
+								let item = data.rows.item(i).n;
+								//console.log("Item -> "+item);
+								 if(fechadia.isSame(this.fechatomoment(item), 'year')){
+									 //console.log("LAS FECHAS COINCIDEN");	 
+									nump++;
+								 }
+						  }
+
+       		    	console.log('Encontrados '+nump+' partes');
+					resolve(nump);
+					} else{
+						resolve(0);	
+					}
+				}
+			).catch(error => {
+		  console.log("ERROR No se ha creado la base de datos!!");
+          resolve(0);
+        });
+		});
+	}
+
 	numeropartesdias(dias): Promise<any>{
 		console.log("Obtencion de numero de partes de los últimos "+dias+ "días.");
 		return new Promise((resolve) => {

@@ -26,6 +26,7 @@ export class EstadisticasPage {
   public numparteshoy: any;
   public numpartesdelasemana: any;
   public numpartesmes: any;
+  public numpartesanio: any;
   barChart: any;
   private estadistica: EstadisticasProvider;
   public dias;
@@ -72,6 +73,9 @@ export class EstadisticasPage {
             });
     this.estadistica.numeropartesdelmes(moment()).then(data => {
 			this.numpartesmes = data;
+            });
+    this.estadistica.numeropartesdelanio(moment()).then(data => {
+			this.numpartesanio = data;
             });
   }
 
@@ -267,7 +271,7 @@ export class EstadisticasPage {
             //console.log(data);
             console.log("Tecnico -> "+this.settings.tecnico);
             console.log("IMG BASE 64 GRAFICA -> "+this.imgChartBase64); 
-            this.estadisticasServ.enviaPorEmail(this.settings,this.imgChartBase64,this.numpartes,this.numparteshoy,this.numpartesdelasemana,this.numpartesmes);
+            this.estadisticasServ.enviaPorEmail(this.settings,this.imgChartBase64,this.numpartesanio,this.numparteshoy,this.numpartesdelasemana,this.numpartesmes);
         });
   }
 

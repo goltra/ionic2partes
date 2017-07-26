@@ -10,16 +10,39 @@
         "cordova-plugin-admobpro": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
+        "cordova-plugin-camera": {
+            "CAMERA_USAGE_DESCRIPTION": " ",
+            "PHOTOLIBRARY_USAGE_DESCRIPTION": " ",
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
         "cordova-plugin-device": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
+        "cordova-plugin-email": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-email-composer": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
         "cordova-plugin-file-transfer": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-nativestorage": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
         "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-screen-orientation": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
         "cordova-plugin-splashscreen": {
@@ -31,36 +54,13 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
         "cordova-sqlite-storage": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
         "ionic-plugin-keyboard": {
-            "PACKAGE_NAME": "com.goltratec.partestrabajo"
-        },
-        "cordova-plugin-email": {
-            "PACKAGE_NAME": "com.goltratec.partestrabajo"
-        },
-        "cordova-plugin-x-socialsharing": {
-            "PACKAGE_NAME": "com.goltratec.partestrabajo"
-        },
-        "cordova-plugin-file": {
-            "PACKAGE_NAME": "com.goltratec.partestrabajo"
-        },
-        "cordova-plugin-inappbrowser": {
-            "PACKAGE_NAME": "com.goltratec.partestrabajo"
-        },
-        "cordova-plugin-camera": {
-            "CAMERA_USAGE_DESCRIPTION": "Adjunta foto al parte",
-            "PHOTOLIBRARY_USAGE_DESCRIPTION": "Adjunta foto al parte",
-            "PACKAGE_NAME": "com.goltratec.partestrabajo"
-        },
-        "cordova-plugin-screen-orientation": {
-            "PACKAGE_NAME": "com.goltratec.partestrabajo"
-        },
-        "cordova-plugin-email-composer": {
-            "PACKAGE_NAME": "com.goltratec.partestrabajo"
-        },
-        "cordova-plugin-nativestorage": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     },

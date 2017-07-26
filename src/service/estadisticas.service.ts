@@ -65,7 +65,7 @@ export class EstadisticasService {
 
   
   
-  enviaPorEmail(settings: any, barChart: String, partesTotal: number, partesHoy: number, partesSemana: number, partesMes: number) {
+  enviaPorEmail(settings: any, barChart: String, partesAnio: number, partesHoy: number, partesSemana: number, partesMes: number) {
     //let msg:String; 
     let email;
     var doc = new jsPDF('landscape');
@@ -85,10 +85,10 @@ export class EstadisticasService {
           console.log("Seteo texto a negrita");
           doc.setFontStyle('bold');
           doc.text(20, 20, "Fecha: " +moment().format('DD MMMM YYYY'));
-          doc.text(20, 30, "Número de partes total: " +partesTotal);
-          doc.text(20, 40, "Número de partes hoy : " +partesHoy);
-          doc.text(20, 50, "Número de partes esta semana: " +partesSemana);
-          doc.text(20, 60, "Número de partes este mes " +partesMes);
+          doc.text(20, 30, "Número de partes hoy : " +partesHoy);
+          doc.text(20, 40, "Número de partes esta semana: " +partesSemana);
+          doc.text(20, 50, "Número de partes este mes " +partesMes);
+          doc.text(20, 60, "Número de partes este año: " +partesAnio);
           console.log(this.settings.tecnico);
           if (this.settings.tecnico != undefined || this.settings.tecnico != ""){
             doc.text(20, 70, "Trabajador: " + this.settings.tecnico);
@@ -100,7 +100,7 @@ export class EstadisticasService {
           doc.setFontStyle('normal');
          if (barChart != undefined) {
            console.log("La grafica está defininda, procedemos a pintarla");
-            doc.addImage(barChart, "PNG", 4, 100, 150, 90); // izq, arriba, ancho, alto
+            doc.addImage(barChart, "PNG", 4, 100); // izq, arriba, ancho, alto
           }
          // doc.text(20, 90, "Número de partes este mes " +partesMes);
 
