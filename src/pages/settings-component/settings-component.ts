@@ -3,7 +3,9 @@ import { NavController,Platform } from 'ionic-angular';
 import { SettingsService } from '../../service/settings.service';
 import { Settings } from '../../model/settings';
 import { VariosService } from '../../service/varios.service';
-import { Camera,Transfer} from 'ionic-native';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
 var f: any;
 declare var cordova: any;
 /*
@@ -22,7 +24,7 @@ export class SettingsComponent {
   logo: string;
   path: string;
 
-  constructor(public navCtrl: NavController, private s: SettingsService, private v: VariosService,private platform: Platform) {
+  constructor(public navCtrl: NavController, private s: SettingsService, private v: VariosService,private platform: Platform, private camera: Camera, private transfer: FileTransfer, private file: File) {
     this.logo = "";
   }
   
@@ -33,7 +35,7 @@ export class SettingsComponent {
           console.log("inicializo FileTransfer");
           if(this.platform.is('cordova')){
             console.log('cordova');
-            f = new Transfer()
+            f = this.transfer.create();
           }
       },
       (err)=>{
@@ -81,17 +83,19 @@ export class SettingsComponent {
     //       },'image/jpeg',100);
 
     let options= {
-      sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-      destinationType: Camera.DestinationType.FILE_URI
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      correctOrientation: true,
+      targetWidth: 100
     }
-    Camera.getPicture(options).then(
+    this.camera.getPicture(options).then(
       (imageData) => {
           console.log('obteniendo imagen');
           console.log(imageData);
           let self  = this;
-          this.v.imgToBase64(imageData,function(res){
-            self.logo = res;
-          },'image/jpeg',100);
+          // this.v.imgToBase64(imageData,function(res){
+          //   self.logo = res;
+          // },'image/jpeg',100);
         }, 
         (err) => {
           console.log("Error al capturar imagen");
@@ -99,5 +103,6 @@ export class SettingsComponent {
         }
     );
   }
+
 
 }

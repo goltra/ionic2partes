@@ -23,6 +23,7 @@ export class ParteListComponent {
     this.parteService.listaPartes().then(
       (data)=>{
         console.log('cargando partes');
+       // console.log('Encontrados '+data.rows.length+' partes');
         this.partes=[];
 
         if(data.rows.length>0){

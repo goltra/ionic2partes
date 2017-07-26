@@ -5,9 +5,10 @@ import { Parte } from '../model/parte';
 import { Settings } from '../model/settings';
 import { VariosService } from './varios.service';
 import { SettingsService } from './settings.service';
-import { EmailComposer, File } from 'ionic-native';
+import { EmailComposer } from '@ionic-native/email-composer';
+import { File } from '@ionic-native/file';
 import { DatabaseProvider } from '../provider/database.provider';
-import { SocialSharing } from 'ionic-native';
+import { SocialSharing } from '@ionic-native/social-sharing';
 import { Photo } from '../model/photo';
 
 declare let jsPDF;
@@ -20,12 +21,12 @@ export class ParteService {
   private settings: Settings;
   private dirFiles: string;
 
-  constructor(private _varios: VariosService, _db: DatabaseProvider, private platform: Platform, private s: SettingsService) {
+  constructor(private _varios: VariosService, _db: DatabaseProvider, private platform: Platform, private s: SettingsService, private emailComposer: EmailComposer, private socialSharing: SocialSharing, private file: File) {
 
     this.db = _db
     this.dirFiles = "";
     console.log("constructor ParteService");
-    this.db.query('CREATE TABLE IF NOT EXISTS parte (id INTEGER PRIMARY KEY AUTOINCREMENT, clienteid INTEGER CONSTRAINT fk_clienteid REFERENCES cliente (id) ON DELETE CASCADE ON UPDATE SET DEFAULT, fecha DATE NOT NULL, horaini TIME NOT NULL, horafin TIME NOT NULL, trabajorealizado TEXT, personafirma TEXT, firma TEXT);').then(
+   /* this.db.query('CREATE TABLE IF NOT EXISTS parte (id INTEGER PRIMARY KEY AUTOINCREMENT, clienteid INTEGER CONSTRAINT fk_clienteid REFERENCES cliente (id) ON DELETE CASCADE ON UPDATE SET DEFAULT, fecha DATE NOT NULL, horaini TIME NOT NULL, horafin TIME NOT NULL, trabajorealizado TEXT, personafirma TEXT, firma TEXT);').then(
       (success) => {
         console.log('no existe tabla parte y la creo');
         console.log(success);
@@ -46,7 +47,7 @@ export class ParteService {
         console.log('error al crear tabla fotos');
         console.log(error);
       }
-    );
+    );*/
 
     //seteo directorio para guardar ficheros.
     if (this.platform.is("ios")) {
@@ -161,7 +162,7 @@ export class ParteService {
     var doc = new jsPDF();
     let serieId: string;
     console.log("Compruebo si el componente EmailComposer está disponible.");
-    EmailComposer.isAvailable().then(
+    this.emailComposer.isAvailable().then(
       (available) => {
         console.log("Email composer disponible");
         console.log("Texto que voy a incluir en pdf");
@@ -228,7 +229,7 @@ export class ParteService {
             tmpNom = tmpNom + 'partesTrabajoPdf.pdf';
 
             tmpNom = 'partesTrabajoPdf.pdf';
-            File.writeFile(this.dirFiles, tmpNom, pdfOutput, { replace: true }).then(
+            this.file.writeFile(this.dirFiles, tmpNom, pdfOutput, { replace: true }).then(
               (ok) => {
                 console.log("fichero guardado en " + this.dirFiles);
                 console.log(ok);
@@ -240,7 +241,7 @@ export class ParteService {
                   attachments: [this.dirFiles + tmpNom]
                 };
 
-                EmailComposer.open(email).then(
+                this.emailComposer.open(email).then(
                   (sended) => {
                     console.log("email enviado ");
                     console.log(sended);
@@ -292,7 +293,7 @@ export class ParteService {
       return (data);
     }).then((data) => {
       console.log(data);
-      SocialSharing.share(body, subject, data).then(
+      this.socialSharing.share(body, subject, data).then(
         res => {
           console.log('Comparto');
           console.log(res);
@@ -318,7 +319,7 @@ export class ParteService {
         let nomTmp: string = preNombre + img.nombre + '.jpg';
         imgRay.push(this.dirFiles + "/" + nomTmp);
 
-        File.writeFile(this.dirFiles, nomTmp, obj, { replace: true }).then(success => {
+        this.file.writeFile(this.dirFiles, nomTmp, obj, { replace: true }).then(success => {
           console.log('fichero guardado');
           console.log(success);
         }).catch(error => {

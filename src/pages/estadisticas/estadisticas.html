@@ -1,0 +1,37 @@
+<!--
+  Generated template for the Estadisticas page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+     <button ion-button menuToggle>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>Estadísticas</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h2 style="text-align:center">Total de partes hoy: {{numparteshoy}}</h2>
+  <h3 style="text-align:center">Esta semana: {{numpartesdelasemana}} | Este mes {{numpartesmes}} | Este año: {{numpartesanio}}</h3>   
+
+<ion-card>
+      <ion-card-header>
+       <h3> Número de partes de los últimos {{dias}} días</h3> 
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #barCanvas></canvas>
+      
+      <button full ion-button (click)="enviarEmail()">
+            <ion-icon name="mail"></ion-icon>
+              Enviar
+          </button>
+            </ion-card-content>
+    </ion-card>
+    
+</ion-content>

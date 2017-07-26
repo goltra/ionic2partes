@@ -24,7 +24,7 @@ export class ClienteService{
         // }, (err) => {
         // console.error('Unable to open database: ', err);
         // });
-        this.db.query('CREATE TABLE IF NOT EXISTS cliente (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, telefono TEXT);').then(
+        /*this.db.query('CREATE TABLE IF NOT EXISTS cliente (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, telefono TEXT);').then(
                     (data)=>{
                         console.log("Crear tabla cliente")
                     },
@@ -33,9 +33,7 @@ export class ClienteService{
                         console.log(error);
                     }
 
-                );
-
-
+        );*/
     }
 
 

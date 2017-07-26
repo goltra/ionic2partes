@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastController } from 'ionic-angular';
-import { File } from 'ionic-native';
+import { File } from '@ionic-native/file';
 declare let EXIF;
 declare var cordova: any;
 @Injectable()
@@ -8,7 +8,7 @@ declare var cordova: any;
 export class VariosService {
 
 
-    constructor(private toastCtrl: ToastController) {
+    constructor(private toastCtrl: ToastController, private file: File) {
 
     }
     showToast(mensaje: string, posicion: string, cssClass: string = "toastMessage", duration: number = 2000) {
@@ -23,7 +23,7 @@ export class VariosService {
     /** Función que lista las bd. Solo probado con android. */
     pathDatabasesSqlite() {
         console.log('ubicación de las bases de datos SQLITE. Solo probado con Android');
-        File.listDir(cordova.file.applicationStorageDirectory, 'databases').then(
+        this.file.listDir(cordova.file.applicationStorageDirectory, 'databases').then(
             (files) => {
                 console.log('applicationStorageDirectory');
                 console.log(files);
@@ -41,79 +41,79 @@ export class VariosService {
      * La función develve al callback la imagen en base64 para poder embeberla donde 
      * sea necesario.
      */
-    imgToBase64(url: string, callback, outputformat = 'image/jpeg', maxImgWidth: number = 0) {
-        //Declaración del  evento cuando seteamos la url del objeto Image 
-        console.log('imgToBase64');
-        let img = new Image();
-        let base64img: string;
+    // imgToBase64(url: string, callback, outputformat = 'image/jpeg', maxImgWidth: number = 0) {
+    //     //Declaración del  evento cuando seteamos la url del objeto Image 
+    //     console.log('imgToBase64');
+    //     let img = new Image();
+    //     let base64img: string;
 
-        img.crossOrigin = 'anonymous';
-        img.onload = function () {
-            console.log('img.onload');
-            console.log(outputformat);
-            var factor: number = 1;
-            var canvas = <HTMLCanvasElement>document.createElement('CANVAS');
-            var ctx = canvas.getContext('2d');
-            var dataUrl: string;
-            var widthImg;
-            var heightImg;
-            var rotar: boolean = false;
+    //     img.crossOrigin = 'anonymous';
+    //     img.onload = function () {
+    //         console.log('img.onload');
+    //         console.log(outputformat);
+    //         var factor: number = 1;
+    //         var canvas = <HTMLCanvasElement>document.createElement('CANVAS');
+    //         var ctx = canvas.getContext('2d');
+    //         var dataUrl: string;
+    //         var widthImg;
+    //         var heightImg;
+    //         var rotar: boolean = false;
 
-            //si maxImgWidth <> 0 entonces calculo un factor de redimensión.
-            if (maxImgWidth > 0) {
-                console.log("tamaño de la imagen: ancho " + this.width + " alto " + this.height);
-                console.log('redimensiono el canvas con maxImgWidth recibido');
-                factor = this.width / maxImgWidth;
-                console.log("factor " + factor);
-                console.log('dimensiones despues de resize ancho: ' + this.width / factor + ' - anchura: ' + this.height / factor);
-            }
-            widthImg = this.width / factor;
-            heightImg = this.height / factor;
-            canvas.height = heightImg;
-            canvas.width = widthImg;
+    //         //si maxImgWidth <> 0 entonces calculo un factor de redimensión.
+    //         if (maxImgWidth > 0) {
+    //             console.log("tamaño de la imagen: ancho " + this.width + " alto " + this.height);
+    //             console.log('redimensiono el canvas con maxImgWidth recibido');
+    //             factor = this.width / maxImgWidth;
+    //             console.log("factor " + factor);
+    //             console.log('dimensiones despues de resize ancho: ' + this.width / factor + ' - anchura: ' + this.height / factor);
+    //         }
+    //         widthImg = this.width / factor;
+    //         heightImg = this.height / factor;
+    //         canvas.height = heightImg;
+    //         canvas.width = widthImg;
 
-            EXIF.getData(this, function () {
-                var orientation = EXIF.getTag(this, "Orientation");
-                console.log("la orientación de la foto es : " + orientation);
-                switch (orientation) {
-                    case 8:
-                        console.log('rotar');
-                        rotar = true;
-                        ctx.translate(canvas.width / 2, canvas.height / 2);
-                        ctx.rotate(90 * Math.PI / 180);
-                        break;
-                    case 3:
-                        console.log('rotar');
-                        rotar = true;
-                        ctx.translate(canvas.width / 2, canvas.height / 2);
-                        ctx.rotate(180 * Math.PI / 180);
-                        break;
-                    case 6:
-                        console.log('rotar');
-                        rotar = true;
-                        ctx.translate(canvas.width / 2, canvas.height / 2);
-                        ctx.rotate(-90 * Math.PI / 180);
-                        break;
-                }
-                if (rotar) {
-                    ctx.drawImage(img, -widthImg / 2, -heightImg / 2, widthImg, heightImg);
-                    dataUrl = canvas.toDataURL(outputformat);
-                    base64img = dataUrl;
-                    //base64img =  dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
-                    callback(base64img);
-                }
-            });
-            if (!rotar) {
-                ctx.drawImage(img, 0, 0, widthImg, heightImg);
-                dataUrl = canvas.toDataURL(outputformat);
-                base64img = dataUrl;
-                //base64img =  dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
-                callback(base64img);
-            }
-        }
-        /////////////////////////////////////////////////////////////////////
-        img.src = url;
-    }
+    //         EXIF.getData(this, function () {
+    //             var orientation = EXIF.getTag(this, "Orientation");
+    //             console.log("la orientación de la foto es : " + orientation);
+    //             switch (orientation) {
+    //                 case 8:
+    //                     console.log('rotar');
+    //                     rotar = true;
+    //                     ctx.translate(canvas.width / 2, canvas.height / 2);
+    //                     ctx.rotate(90 * Math.PI / 180);
+    //                     break;
+    //                 case 3:
+    //                     console.log('rotar');
+    //                     rotar = true;
+    //                     ctx.translate(canvas.width / 2, canvas.height / 2);
+    //                     ctx.rotate(180 * Math.PI / 180);
+    //                     break;
+    //                 case 6:
+    //                     console.log('rotar');
+    //                     rotar = true;
+    //                     ctx.translate(canvas.width / 2, canvas.height / 2);
+    //                     ctx.rotate(-90 * Math.PI / 180);
+    //                     break;
+    //             }
+    //             if (rotar) {
+    //                 ctx.drawImage(img, -widthImg / 2, -heightImg / 2, widthImg, heightImg);
+    //                 dataUrl = canvas.toDataURL(outputformat);
+    //                 base64img = dataUrl;
+    //                 //base64img =  dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
+    //                 callback(base64img);
+    //             }
+    //         });
+    //         if (!rotar) {
+    //             ctx.drawImage(img, 0, 0, widthImg, heightImg);
+    //             dataUrl = canvas.toDataURL(outputformat);
+    //             base64img = dataUrl;
+    //             //base64img =  dataUrl.replace(/^data:image\/(png|jpg);base64,/, "");
+    //             callback(base64img);
+    //         }
+    //     }
+    //     /////////////////////////////////////////////////////////////////////
+    //     img.src = url;
+    // }
     /**Funcion que devuelve la fecha actual con el formato ISO.
      * Tras varias pruebas deduzco que el formato ISO no incluye la zona hoario por lo que siempre va a dar
      * la hora sin incrementar ni decrementar por zonas. Por ese motivo se obtiene a parte el timezoneOffset

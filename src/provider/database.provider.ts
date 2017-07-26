@@ -30,7 +30,7 @@ export class DatabaseProvider {
 	 * query - executes sql
 	 */
 	query(q: string, params?: any): Promise<any> {
-		console.log("DatabaseProvider: ejecutando query()");
+		console.log("DatabaseProvider: ejecutando query() -> "+q);
 		return new Promise((resolve, reject) => {
 			params = params || [];
 			this.db.transaction((tx) => {

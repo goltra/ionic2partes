@@ -362,6 +362,47 @@ module.exports = [
         "id": "cordova-plugin-camera.CameraProxy",
         "pluginId": "cordova-plugin-camera",
         "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-screen-orientation/www/screenorientation.js",
+        "id": "cordova-plugin-screen-orientation.screenorientation",
+        "pluginId": "cordova-plugin-screen-orientation",
+        "clobbers": [
+            "cordova.plugins.screenorientation"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-email-composer/www/email_composer.js",
+        "id": "cordova-plugin-email-composer.EmailComposer",
+        "pluginId": "cordova-plugin-email-composer",
+        "clobbers": [
+            "cordova.plugins.email",
+            "plugin.email"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-email-composer/src/browser/EmailComposerProxy.js",
+        "id": "cordova-plugin-email-composer.EmailComposerProxy",
+        "pluginId": "cordova-plugin-email-composer",
+        "runs": true
+    },
+    {
+        "file": "plugins/cordova-plugin-nativestorage/www/mainHandle.js",
+        "id": "cordova-plugin-nativestorage.mainHandle",
+        "pluginId": "cordova-plugin-nativestorage",
+        "clobbers": [
+            "NativeStorage"
+        ]
+    },
+    {
+        "file": "plugins/cordova-plugin-nativestorage/www/LocalStorageHandle.js",
+        "id": "cordova-plugin-nativestorage.LocalStorageHandle",
+        "pluginId": "cordova-plugin-nativestorage"
+    },
+    {
+        "file": "plugins/cordova-plugin-nativestorage/www/NativeStorageError.js",
+        "id": "cordova-plugin-nativestorage.NativeStorageError",
+        "pluginId": "cordova-plugin-nativestorage"
     }
 ];
 module.exports.metadata = 
@@ -383,7 +424,10 @@ module.exports.metadata =
     "cordova-plugin-x-socialsharing": "5.1.6",
     "cordova-plugin-file": "4.3.1",
     "cordova-plugin-inappbrowser": "1.6.1",
-    "cordova-plugin-camera": "2.3.1"
+    "cordova-plugin-camera": "2.3.1",
+    "cordova-plugin-screen-orientation": "2.0.1",
+    "cordova-plugin-email-composer": "0.8.7",
+    "cordova-plugin-nativestorage": "2.2.2"
 }
 // BOTTOM OF METADATA
 });
