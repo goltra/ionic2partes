@@ -5,4 +5,6 @@
 platforms/ios/
 platforms/android/
 signed_releases/
+_node_modules/
+node_modules/
 
