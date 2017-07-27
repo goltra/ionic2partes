@@ -2,9 +2,9 @@
 .vscode/
 .DS_Store
 /www
-platforms/
+/platforms/
 signed_releases/
-node_modules/
-plugins/
+/node_modules/
+/plugins/
 
 
