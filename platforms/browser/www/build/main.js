@@ -114,6 +114,9 @@ var EstadisticasPage = (function () {
         this.estadistica.numeropartesdelmes(__WEBPACK_IMPORTED_MODULE_4_moment__()).then(function (data) {
             _this.numpartesmes = data;
         });
+        this.estadistica.numeropartesdelanio(__WEBPACK_IMPORTED_MODULE_4_moment__()).then(function (data) {
+            _this.numpartesanio = data;
+        });
     }
     EstadisticasPage.prototype.ionViewDidLoad = function () {
         this.estadisticasdia(this.dias);
@@ -263,7 +266,7 @@ var EstadisticasPage = (function () {
             //console.log(data);
             console.log("Tecnico -> " + _this.settings.tecnico);
             console.log("IMG BASE 64 GRAFICA -> " + _this.imgChartBase64);
-            _this.estadisticasServ.enviaPorEmail(_this.settings, _this.imgChartBase64, _this.numpartes, _this.numparteshoy, _this.numpartesdelasemana, _this.numpartesmes);
+            _this.estadisticasServ.enviaPorEmail(_this.settings, _this.imgChartBase64, _this.numpartesanio, _this.numparteshoy, _this.numpartesdelasemana, _this.numpartesmes);
         });
     };
     return EstadisticasPage;
@@ -274,7 +277,7 @@ __decorate([
 ], EstadisticasPage.prototype, "barCanvas", void 0);
 EstadisticasPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Component"])({
-        selector: 'page-estadisticas',template:/*ion-inline-start:"/Users/Joaquin/ionic2partes/src/pages/estadisticas/estadisticas.html"*/'<!--\n  Generated template for the Estadisticas page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n     <button ion-button menuToggle>\n      <ion-icon name=\'menu\'></ion-icon>\n    </button>\n    <ion-title>Estadísticas</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <h2 style="text-align:center">Total de partes: {{numpartes}}</h2>\n  <h3 style="text-align:center">Hoy: {{numparteshoy}} | Esta semana: {{numpartesdelasemana}} | Este mes: {{numpartesmes}}</h3>   \n\n<ion-card>\n      <ion-card-header>\n       <h3> Número de partes de los últimos {{dias}} días</h3> \n      </ion-card-header>\n      <ion-card-content>\n        <canvas #barCanvas></canvas>\n      </ion-card-content>\n      <button full ion-button (click)="enviarEmail()">\n            <ion-icon name="mail"></ion-icon>\n              Enviar\n          </button>\n    </ion-card>\n    \n</ion-content>\n'/*ion-inline-end:"/Users/Joaquin/ionic2partes/src/pages/estadisticas/estadisticas.html"*/
+        selector: 'page-estadisticas',template:/*ion-inline-start:"/Users/Joaquin/ionic2partes/src/pages/estadisticas/estadisticas.html"*/'<!--\n  Generated template for the Estadisticas page.\n\n  See http://ionicframework.com/docs/v2/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n     <button ion-button menuToggle>\n      <ion-icon name=\'menu\'></ion-icon>\n    </button>\n    <ion-title>Estadísticas</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <h2 style="text-align:center">Total de partes hoy: {{numparteshoy}}</h2>\n  <h3 style="text-align:center">Esta semana: {{numpartesdelasemana}} | Este mes {{numpartesmes}} | Este año: {{numpartesanio}}</h3>   \n\n<ion-card>\n      <ion-card-header>\n       <h3> Número de partes de los últimos {{dias}} días</h3> \n      </ion-card-header>\n      <ion-card-content>\n        <canvas #barCanvas></canvas>\n      \n      <button full ion-button (click)="enviarEmail()">\n            <ion-icon name="mail"></ion-icon>\n              Enviar\n          </button>\n            </ion-card-content>\n    </ion-card>\n    \n</ion-content>\n'/*ion-inline-end:"/Users/Joaquin/ionic2partes/src/pages/estadisticas/estadisticas.html"*/
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_3__provider_estadisticas_provider__["a" /* EstadisticasProvider */], __WEBPACK_IMPORTED_MODULE_6__ionic_native_screen_orientation__["a" /* ScreenOrientation */], __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_0__service_estadisticas_service__["a" /* EstadisticasService */]])
 ], EstadisticasPage);
@@ -401,7 +404,7 @@ ClienteEditarComponent = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClienteService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__provider_database_provider__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__provider_database_provider__ = __webpack_require__(47);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -701,9 +704,9 @@ webpackEmptyAsyncContext.id = 155;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__varios_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__settings_service__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_email_composer__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__provider_database_provider__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__provider_database_provider__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_social_sharing__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_file__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_moment_locale_es__ = __webpack_require__(56);
@@ -763,7 +766,7 @@ var EstadisticasService = (function () {
             });
         });
     };
-    EstadisticasService.prototype.enviaPorEmail = function (settings, barChart, partesTotal, partesHoy, partesSemana, partesMes) {
+    EstadisticasService.prototype.enviaPorEmail = function (settings, barChart, partesAnio, partesHoy, partesSemana, partesMes) {
         var _this = this;
         //let msg:String; 
         var email;
@@ -781,10 +784,10 @@ var EstadisticasService = (function () {
                 console.log("Seteo texto a negrita");
                 doc.setFontStyle('bold');
                 doc.text(20, 20, "Fecha: " + __WEBPACK_IMPORTED_MODULE_9_moment__().format('DD MMMM YYYY'));
-                doc.text(20, 30, "Número de partes total: " + partesTotal);
-                doc.text(20, 40, "Número de partes hoy : " + partesHoy);
-                doc.text(20, 50, "Número de partes esta semana: " + partesSemana);
-                doc.text(20, 60, "Número de partes este mes " + partesMes);
+                doc.text(20, 30, "Número de partes hoy : " + partesHoy);
+                doc.text(20, 40, "Número de partes esta semana: " + partesSemana);
+                doc.text(20, 50, "Número de partes este mes " + partesMes);
+                doc.text(20, 60, "Número de partes este año: " + partesAnio);
                 console.log(_this.settings.tecnico);
                 if (_this.settings.tecnico != undefined || _this.settings.tecnico != "") {
                     doc.text(20, 70, "Trabajador: " + _this.settings.tecnico);
@@ -795,7 +798,7 @@ var EstadisticasService = (function () {
                 doc.setFontStyle('normal');
                 if (barChart != undefined) {
                     console.log("La grafica está defininda, procedemos a pintarla");
-                    doc.addImage(barChart, "PNG", 4, 100, 150, 90); // izq, arriba, ancho, alto
+                    doc.addImage(barChart, "PNG", 4, 100); // izq, arriba, ancho, alto
                 }
                 // doc.text(20, 90, "Número de partes este mes " +partesMes);
                 doc.setFontSize(8);
@@ -883,7 +886,7 @@ webpackEmptyAsyncContext.id = 205;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VariosService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_file__ = __webpack_require__(46);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1052,7 +1055,7 @@ VariosService = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EstadisticasProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__provider_database_provider__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__provider_database_provider__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment_locale_es__ = __webpack_require__(56);
@@ -1151,6 +1154,36 @@ var EstadisticasProvider = (function () {
                         var item = data.rows.item(i).n;
                         //console.log("Item -> "+item);
                         if (fechadia.isSame(_this.fechatomoment(item), 'month')) {
+                            //console.log("LAS FECHAS COINCIDEN");	 
+                            nump++;
+                        }
+                    }
+                    console.log('Encontrados ' + nump + ' partes');
+                    resolve(nump);
+                }
+                else {
+                    resolve(0);
+                }
+            }).catch(function (error) {
+                console.log("ERROR No se ha creado la base de datos!!");
+                resolve(0);
+            });
+        });
+    };
+    EstadisticasProvider.prototype.numeropartesdelanio = function (fechadia) {
+        var _this = this;
+        console.log("Obtencion de numero de partes del año " + fechadia);
+        return new Promise(function (resolve) {
+            var sql;
+            sql = 'Select parte.fecha as n from parte';
+            _this.db.query(sql).then(function (data) {
+                if (data.rows.length > 0) {
+                    //console.log('cargando partes');
+                    var nump = 0;
+                    for (var i = 0; i < data.rows.length; i++) {
+                        var item = data.rows.item(i).n;
+                        //console.log("Item -> "+item);
+                        if (fechadia.isSame(_this.fechatomoment(item), 'year')) {
                             //console.log("LAS FECHAS COINCIDEN");	 
                             nump++;
                         }
@@ -1272,7 +1305,7 @@ EstadisticasProvider = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__service_settings_service__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_Rx__ = __webpack_require__(368);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8_rxjs_Rx__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_file__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__estadisticas_estadisticas__ = __webpack_require__(136);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1319,9 +1352,10 @@ var HomePage = (function () {
     }
     HomePage.prototype.createBanner = function () {
         var _this = this;
+        var muestroanuncios = true; // Elijo si quiero anuncios o no
         // console.log("Connection " + this.online.toString() + ". No creo el banner"); 
         this.platform.ready().then(function () {
-            if (AdMob) {
+            if (AdMob && muestroanuncios) {
                 console.log("Creo el banner");
                 console.log('AdMob disponible');
                 AdMob.createBanner({
@@ -1593,7 +1627,7 @@ ParteFotosPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__service_varios_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__ = __webpack_require__(90);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file_transfer__ = __webpack_require__(159);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_file__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_file__ = __webpack_require__(46);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1757,14 +1791,16 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_angular2_signaturepad__ = __webpack_require__(713);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_23_angular2_signaturepad___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_23_angular2_signaturepad__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__ionic_native_sqlite__ = __webpack_require__(714);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__ionic_storage__ = __webpack_require__(245);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__provider_database_provider__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_angular2_elastic__ = __webpack_require__(715);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_angular2_elastic___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27_angular2_elastic__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__ionic_native_screen_orientation__ = __webpack_require__(361);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__angular_platform_browser__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__angular_http__ = __webpack_require__(717);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__ionic_native_splash_screen__ = __webpack_require__(718);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__provider_database_provider__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular2_elastic__ = __webpack_require__(715);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26_angular2_elastic___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_26_angular2_elastic__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__ionic_native_screen_orientation__ = __webpack_require__(361);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__angular_platform_browser__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__angular_http__ = __webpack_require__(717);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__ionic_native_splash_screen__ = __webpack_require__(718);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__ionic_native_native_storage__ = __webpack_require__(719);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__ionic_storage__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__ionic_native_file__ = __webpack_require__(46);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1774,6 +1810,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
+
 
 
 
@@ -1825,11 +1863,12 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_7__pages_estadisticas_estadisticas__["a" /* EstadisticasPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_29__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_30__angular_http__["a" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_28__angular_platform_browser__["a" /* BrowserModule */],
+            __WEBPACK_IMPORTED_MODULE_29__angular_http__["a" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_32__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
             __WEBPACK_IMPORTED_MODULE_10_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_11__app_component__["a" /* MyApp */], {
                 backButtonText: "Atras",
-            }), __WEBPACK_IMPORTED_MODULE_23_angular2_signaturepad__["SignaturePadModule"], __WEBPACK_IMPORTED_MODULE_27_angular2_elastic__["ElasticModule"]
+            }), __WEBPACK_IMPORTED_MODULE_23_angular2_signaturepad__["SignaturePadModule"], __WEBPACK_IMPORTED_MODULE_26_angular2_elastic__["ElasticModule"]
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_10_ionic_angular__["b" /* IonicApp */]],
         entryComponents: [
@@ -1847,20 +1886,22 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_20__service_cliente_service__["a" /* ClienteService */],
             __WEBPACK_IMPORTED_MODULE_19__service_parte_service__["a" /* ParteService */],
             __WEBPACK_IMPORTED_MODULE_6__service_estadisticas_service__["a" /* EstadisticasService */],
-            __WEBPACK_IMPORTED_MODULE_28__ionic_native_screen_orientation__["a" /* ScreenOrientation */],
+            __WEBPACK_IMPORTED_MODULE_27__ionic_native_screen_orientation__["a" /* ScreenOrientation */],
             __WEBPACK_IMPORTED_MODULE_8__provider_estadisticas_provider__["a" /* EstadisticasProvider */],
             __WEBPACK_IMPORTED_MODULE_24__ionic_native_sqlite__["a" /* SQLite */],
-            __WEBPACK_IMPORTED_MODULE_26__provider_database_provider__["a" /* DatabaseProvider */],
-            __WEBPACK_IMPORTED_MODULE_21__service_settings_service__["a" /* SettingsService */],
             __WEBPACK_IMPORTED_MODULE_2__ionic_native_file_transfer__["a" /* FileTransfer */],
+            __WEBPACK_IMPORTED_MODULE_33__ionic_native_file__["a" /* File */],
+            __WEBPACK_IMPORTED_MODULE_25__provider_database_provider__["a" /* DatabaseProvider */],
+            __WEBPACK_IMPORTED_MODULE_21__service_settings_service__["a" /* SettingsService */],
             __WEBPACK_IMPORTED_MODULE_2__ionic_native_file_transfer__["b" /* FileTransferObject */],
             __WEBPACK_IMPORTED_MODULE_0__ionic_native_social_sharing__["a" /* SocialSharing */],
             __WEBPACK_IMPORTED_MODULE_1__ionic_native_email_composer__["a" /* EmailComposer */],
-            __WEBPACK_IMPORTED_MODULE_31__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_30__ionic_native_splash_screen__["a" /* SplashScreen */],
             __WEBPACK_IMPORTED_MODULE_5__ionic_native_camera__["a" /* Camera */],
             __WEBPACK_IMPORTED_MODULE_4__ionic_native_status_bar__["a" /* StatusBar */],
             __WEBPACK_IMPORTED_MODULE_3__ionic_native_keyboard__["a" /* Keyboard */],
-            __WEBPACK_IMPORTED_MODULE_25__ionic_storage__["a" /* Storage */],
+            __WEBPACK_IMPORTED_MODULE_31__ionic_native_native_storage__["a" /* NativeStorage */],
+            __WEBPACK_IMPORTED_MODULE_32__ionic_storage__["a" /* IonicStorageModule */],
             { provide: __WEBPACK_IMPORTED_MODULE_9__angular_core__["ErrorHandler"], useClass: __WEBPACK_IMPORTED_MODULE_10_ionic_angular__["c" /* IonicErrorHandler */] }]
     }),
     __metadata("design:paramtypes", [])
@@ -2135,7 +2176,7 @@ webpackContext.id = 444;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(362);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_clientes_cliente_list_component__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_parte_parte_list_component__ = __webpack_require__(80);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__provider_database_provider__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__provider_database_provider__ = __webpack_require__(47);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2271,7 +2312,7 @@ var Photo = (function () {
 
 /***/ }),
 
-/***/ 46:
+/***/ 47:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2384,7 +2425,7 @@ var SettingsService = (function () {
 }());
 SettingsService = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ionic_storage__["a" /* Storage */], __WEBPACK_IMPORTED_MODULE_2__service_varios_service__["a" /* VariosService */]])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__ionic_storage__["b" /* Storage */], __WEBPACK_IMPORTED_MODULE_2__service_varios_service__["a" /* VariosService */]])
 ], SettingsService);
 
 //# sourceMappingURL=settings.service.js.map
@@ -2518,8 +2559,8 @@ ClienteListComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__varios_service__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__settings_service__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_email_composer__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__provider_database_provider__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_file__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__provider_database_provider__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_social_sharing__ = __webpack_require__(87);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;

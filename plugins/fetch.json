@@ -127,14 +127,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "cordova-plugin-camera": {
-        "source": {
-            "type": "registry",
-            "id": "cordova-plugin-camera@~2.3.0"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-screen-orientation": {
         "source": {
             "type": "registry",
@@ -158,5 +150,16 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-camera": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-camera@~2.3.0"
+        },
+        "is_top_level": true,
+        "variables": {
+            "CAMERA_USAGE_DESCRIPTION": "Necesario para acceder",
+            "PHOTOLIBRARY_USAGE_DESCRIPTION": "Necesario para acceder"
+        }
     }
 }
