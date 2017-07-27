@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Cliente } from '../../model/Cliente'; //si pongo "/cliente" da error , no se pq
+import { Cliente } from '../../model/cliente'; //si pongo "/cliente" da error , no se pq
 import { NavController, NavParams } from 'ionic-angular';
 import { ClienteService } from '../../service/cliente.service';
 import { ClienteListComponent } from './cliente-list.component';

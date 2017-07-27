@@ -1,7 +1,7 @@
 {
     "name": "partes",
-    "author": "Ionic Framework",
-    "homepage": "http://ionicframework.com/",
+    "author": "GOLTRATEC",
+    "homepage": "http://www.goltratec.com",
     "private": true,
     "scripts": {
         "clean": "ionic-app-scripts clean",
@@ -85,7 +85,7 @@
             "locator": "ios"
         }
     ],
-    "description": "partes: An Ionic project",
+    "description": "partes: gestiona tus partes de trabajo",
     "cordova": {
         "plugins": {
             "cordova-plugin-admobpro": {},

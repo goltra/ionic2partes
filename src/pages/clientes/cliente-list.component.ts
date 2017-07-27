@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NavController, NavParams,AlertController} from 'ionic-angular';
 import {ClienteEditarComponent} from './cliente-editar.component';
 import {ParteEditarComponent} from '../parte/parte-editar.component';
-import {Cliente} from '../../model/Cliente';
+import {Cliente} from '../../model/cliente';
 import {ClienteService} from '../../service/cliente.service';
 import {VariosService} from '../../service/varios.service';
 declare var window;
