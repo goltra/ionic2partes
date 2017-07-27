@@ -51,9 +51,10 @@ export class HomePage {
 
 	}
 	createBanner() {
+		const muestroanuncios: boolean = true; // Elijo si quiero anuncios o no
 		// console.log("Connection " + this.online.toString() + ". No creo el banner"); 
 		this.platform.ready().then(() => {
-			if (AdMob) {
+			if (AdMob && muestroanuncios) {
 				console.log("Creo el banner");
 				console.log('AdMob disponible');
 				AdMob.createBanner({
