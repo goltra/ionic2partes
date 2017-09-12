@@ -38,7 +38,16 @@ export class ClienteEditarComponent {
         this.myForm = this.fb.group({
             'id': [this.cliente.id],
             'nombre': [this.cliente.nombre, Validators.required],
-            'telefono': [this.cliente.telefono, Validators.pattern("[0-9]{9}")]
+            'personaContacto': [this.cliente.personaContacto],
+            'telefono': [this.cliente.telefono, Validators.pattern("[0-9]{9}")],
+            'telefono2': [this.cliente.telefono2, Validators.pattern("[0-9]{9}")],
+            'email': [this.cliente.email],
+            'direccion': [this.cliente.direccion],
+            'poblacion': [this.cliente.poblacion],
+            'provincia': [this.cliente.provincia],
+            'cif': [this.cliente.cif],
+            'observaciones': [this.cliente.id]
+            
         });
 
     }
@@ -60,7 +69,7 @@ export class ClienteEditarComponent {
 
 
 
-        this.clienteService.actualizaCliente(f.id, f.nombre, f.telefono).then(
+        this.clienteService.actualizaCliente(f.id, f.nombre, f.personaContacto, f.telefono, f.telefono2, f.email, f.direccion, f.poblacion, f.provincia, f.cif, f.observaciones).then(
             (data) => {
                 this._varios.showToast("Cliente guardado correctamente", "top");
             },

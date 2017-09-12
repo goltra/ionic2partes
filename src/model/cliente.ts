@@ -1,10 +1,30 @@
 export class Cliente{
     public id: number;
     public nombre: string;
+    public personaContacto: string;
     public telefono: string;
+    public telefono2: string;
+    public email: string;
+    public direccion: string;
+    public poblacion: string;
+    public provincia: string;
+    public cif: string;
+    public observaciones: string;
+    
+    
     constructor(){
       this.nombre="";
+      this.personaContacto="";
       this.telefono="";
+      this.telefono2="";
+      this.email="";
+      this.direccion="";
+      this.poblacion="";
+      this.provincia="";
+      this.cif="";
+      this.observaciones="";
+      
+      
     }
     /**Funcion estatica que inicializa un objecto de tipo parte en base a los
      * valores de un objeto pasado.
