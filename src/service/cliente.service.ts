@@ -56,12 +56,12 @@ export class ClienteService{
     actualizaCliente(id:number=null, nombre: string, personaContacto: string, telefono:string,  telefono2: string, email: string, direccion: string, poblacion: string, provincia: string, cif: string, observaciones: string) {
         let sql: string;
         if(id==null){
-            sql = 'INSERT INTO cliente (nombre, personaContacto, telefono, telefono2, email, direccion, poblacion, provincia, cif, observaciones) VALUES (?,?)';
+            sql = 'INSERT INTO cliente (nombre, personaContacto, telefono, telefono2, email, direccion, poblacion, provincia, cif, observaciones) VALUES (?,?,?,?,?,?,?,?,?,?)';
             return this.db.query(sql,[nombre, personaContacto, telefono, telefono2, email, direccion, poblacion, provincia, cif, observaciones]);
             //return this.storage.query(sql,[nombre,telefono]);
         }else{
             sql = "Update cliente set nombre=?,personaContacto=?, telefono=?, telefono2=?, email=?, direccion=?, poblacion=?, provincia=?, cif=?, observaciones=? where id=?"
-            return this.db.query(sql,[nombre, personaContacto, telefono, telefono2, email, direccion, poblacion, provincia, cif, observaciones,id]);
+            return this.db.query(sql,[nombre, personaContacto, telefono, telefono2, email, direccion, poblacion, provincia, cif, observaciones, id]);
         }
     }
 

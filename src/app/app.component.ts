@@ -53,10 +53,10 @@ export class MyApp {
       this.db.init();
      
       let sqlcrearfotos: string;
-      this.db.query('PRAGMA partes1(telefono2);').then(data=>{console.log(data)},error=>{console.log(error)});
-      
 
-      this.db.query('CREATE TABLE IF NOT EXISTS cliente (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, personaContacto TEXT, telefono TEXT, telefono2 TEXT, email TEXT, direccion TEXT, poblacion TEXT, provincia TEXT, cif TEXT, observaciones TEXT;').then(
+
+
+      this.db.query('CREATE TABLE IF NOT EXISTS cliente (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, personaContacto TEXT, telefono TEXT, telefono2 TEXT, email TEXT, direccion TEXT, poblacion TEXT, provincia TEXT, cif TEXT, observaciones TEXT);').then(
                     (data)=>{
                         console.log("Crear tabla cliente")
                     },

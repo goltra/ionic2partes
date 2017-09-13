@@ -46,7 +46,7 @@ export class ClienteEditarComponent {
             'poblacion': [this.cliente.poblacion],
             'provincia': [this.cliente.provincia],
             'cif': [this.cliente.cif],
-            'observaciones': [this.cliente.id]
+            'observaciones': [this.cliente.observaciones]
             
         });
 
