@@ -3,7 +3,7 @@
     <name>Partes de trabajo</name>
     <description>Parte de trabajo para tus clientes.</description>
     <author email="info@goltratec.com" href="http://goltratec.com/">GOLTRATEC S.L.</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.152:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -107,4 +107,5 @@
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <engine name="ios" spec="~4.2.1" />
     <engine name="android" spec="~5.2.2" />
+    <allow-navigation href="http://192.168.1.152:8100" />
 </widget>

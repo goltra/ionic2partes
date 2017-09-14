@@ -161,5 +161,14 @@
             "CAMERA_USAGE_DESCRIPTION": "Necesario para acceder",
             "PHOTOLIBRARY_USAGE_DESCRIPTION": "Necesario para acceder"
         }
+    },
+    "es6-promise-plugin": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/vstirbu/PromisesPlugin.git",
+            "subdir": "."
+        },
+        "is_top_level": false,
+        "variables": {}
     }
 }

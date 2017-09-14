@@ -30,6 +30,7 @@
     <allow-navigation href="http://192.168.56.1:8000" />
     <allow-navigation href="http://192.168.1.28:8000" />
     <allow-navigation href="http://192.168.1.28:8100" />
+    <allow-navigation href="http://192.168.1.152:8100" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />

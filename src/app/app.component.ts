@@ -53,12 +53,50 @@ export class MyApp {
       this.db.init();
      
       let sqlcrearfotos: string;
-
-
-
+      
+      let camposCliente: String[];
+      camposCliente = ["id","nombre","personaContacto","telefono","telefono2","email","direccion","poblacion","provincia","cif","observaciones", "prueba"];
+      var camposBdCliente: String[] = [];  
       this.db.query('CREATE TABLE IF NOT EXISTS cliente (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, personaContacto TEXT, telefono TEXT, telefono2 TEXT, email TEXT, direccion TEXT, poblacion TEXT, provincia TEXT, cif TEXT, observaciones TEXT);').then(
                     (data)=>{
                         console.log("Crear tabla cliente")
+
+                        this.db.query('PRAGMA database_list;').then(data=>{
+                          console.log('Obteniendo nombre de la base de datos...');
+                          console.log(data.rows.item(0).name);
+                          let nomBd = data.rows.item(0).name;
+                          let queryCliente = 'PRAGMA '+nomBd+'.table_info(cliente);';
+                
+                                this.db.query(queryCliente).then(data=>{
+                                  console.log("Obteniendo campos de la tabla cliente...");
+                                  //console.log(data);
+                                      for(var i = 0; i < data.rows.length; i++){
+                                        let campo =data.rows.item(i).name;
+                                        console.log(campo);
+                                        camposBdCliente.push(campo);
+                                     }                  
+                                     for(var i = 0; i < camposCliente.length; i++){
+                                      if(camposBdCliente.some(elem => elem == camposCliente[i])){
+                                        console.log("El elemento "+camposCliente[i]+" está contenido en el array");
+                                          } else{
+                                            console.log("El elemento "+camposCliente[i]+" ¡NO! está contenido en el array, por lo que procedo a añadirlo a la tabla clientes...");
+                                            let queryCampoNuevo = 'ALTER TABLE cliente ADD COLUMN '+ camposCliente[i] +' TEXT;';
+                                            this.db.query(queryCampoNuevo).then(
+                                              (data)=>{
+                                                  console.log("Añado campo a la tabla clientes de la BD");
+                                                },error=>{
+                                                  console.log("Error añadiendo campo a la tabla clientes de la BD");
+                                                  console.log(error)});
+                                          }
+                                     }
+                                },error=>{
+                                  console.log('Error obteniendo el nombre de los campos.');
+                                  console.log(error)});
+                          
+                        },error=>{
+                          console.log('Error obteniendo nombre de la base de datos.');
+                          console.log(error)});
+
                     },
                     (error)=>{
                         console.log("Error al crear la tabla cliente: ");
