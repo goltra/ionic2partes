@@ -7,6 +7,7 @@ export class Cliente{
     public email: string;
     public direccion: string;
     public poblacion: string;
+    public cp: string;
     public provincia: string;
     public cif: string;
     public observaciones: string;
@@ -20,6 +21,7 @@ export class Cliente{
       this.email="";
       this.direccion="";
       this.poblacion="";
+      this.cp="";
       this.provincia="";
       this.cif="";
       this.observaciones="";

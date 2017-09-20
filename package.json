@@ -65,8 +65,8 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "2.0.2",
-    "@ionic/cli-plugin-proxy": "1.4.8",
-    "ionic": "3.10.1",
+    "@ionic/cli-plugin-proxy": "1.4.9",
+    "ionic": "3.10.3",
     "typescript": "2.3.4"
   },
   "cordovaPlugins": [

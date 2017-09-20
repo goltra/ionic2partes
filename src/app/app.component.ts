@@ -55,9 +55,9 @@ export class MyApp {
       let sqlcrearfotos: string;
       
       let camposCliente: String[];
-      camposCliente = ["id","nombre","personaContacto","telefono","telefono2","email","direccion","poblacion","provincia","cif","observaciones", "prueba"];
+      camposCliente = ["id","nombre","personaContacto","telefono","telefono2","email","direccion","poblacion", "cp","provincia","cif","observaciones", "prueba"];
       var camposBdCliente: String[] = [];  
-      this.db.query('CREATE TABLE IF NOT EXISTS cliente (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, personaContacto TEXT, telefono TEXT, telefono2 TEXT, email TEXT, direccion TEXT, poblacion TEXT, provincia TEXT, cif TEXT, observaciones TEXT);').then(
+      this.db.query('CREATE TABLE IF NOT EXISTS cliente (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, personaContacto TEXT, telefono TEXT, telefono2 TEXT, email TEXT, direccion TEXT, poblacion TEXT, cp TEXT, provincia TEXT, cif TEXT, observaciones TEXT);').then(
                     (data)=>{
                         console.log("Crear tabla cliente")
 

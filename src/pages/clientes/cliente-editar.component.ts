@@ -44,6 +44,7 @@ export class ClienteEditarComponent {
             'email': [this.cliente.email],
             'direccion': [this.cliente.direccion],
             'poblacion': [this.cliente.poblacion],
+            'cp': [this.cliente.cp],
             'provincia': [this.cliente.provincia],
             'cif': [this.cliente.cif],
             'observaciones': [this.cliente.observaciones]
@@ -69,7 +70,7 @@ export class ClienteEditarComponent {
 
 
 
-        this.clienteService.actualizaCliente(f.id, f.nombre, f.personaContacto, f.telefono, f.telefono2, f.email, f.direccion, f.poblacion, f.provincia, f.cif, f.observaciones).then(
+        this.clienteService.actualizaCliente(f.id, f.nombre, f.personaContacto, f.telefono, f.telefono2, f.email, f.direccion, f.poblacion, f.cp, f.provincia, f.cif, f.observaciones).then(
             (data) => {
                 this._varios.showToast("Cliente guardado correctamente", "top");
             },
