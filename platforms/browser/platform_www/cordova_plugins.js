@@ -427,7 +427,8 @@ module.exports.metadata =
     "cordova-plugin-screen-orientation": "2.0.1",
     "cordova-plugin-email-composer": "0.8.7",
     "cordova-plugin-nativestorage": "2.2.2",
-    "cordova-plugin-camera": "2.3.1"
+    "cordova-plugin-camera": "2.3.1",
+    "cordova-plugin-inapppurchase": "1.1.0"
 }
 // BOTTOM OF METADATA
 });

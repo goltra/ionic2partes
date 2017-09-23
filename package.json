@@ -25,6 +25,8 @@
     "@ionic-native/email-composer": "^4.1.0",
     "@ionic-native/file": "^4.1.0",
     "@ionic-native/file-transfer": "^4.1.0",
+    "@ionic-native/in-app-purchase": "^4.2.1",
+    "@ionic-native/in-app-purchase-2": "^4.2.1",
     "@ionic-native/keyboard": "^4.1.0",
     "@ionic-native/native-storage": "^4.1.0",
     "@ionic-native/screen-orientation": "4.1.0",
@@ -65,8 +67,8 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "2.0.2",
-    "@ionic/cli-plugin-proxy": "1.4.9",
-    "ionic": "3.10.3",
+    "@ionic/cli-plugin-proxy": "1.4.11",
+    "ionic": "3.12.0",
     "typescript": "2.3.4"
   },
   "cordovaPlugins": [

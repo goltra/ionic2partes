@@ -1,3 +1,4 @@
+import { VersionProPage } from './../pages/version-pro/version-pro';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
@@ -32,7 +33,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { IonicStorageModule } from '@ionic/storage';
 import { File } from '@ionic-native/file';
-
+import { InAppPurchase2 } from '@ionic-native/in-app-purchase-2';
+import { InAppPurchase } from '@ionic-native/in-app-purchase';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { File } from '@ionic-native/file';
     ParteEditarComponent,
     SettingsComponent,
     EstadisticasPage,
+    VersionProPage,
   ],
   imports: [
     BrowserModule,
@@ -64,6 +67,7 @@ import { File } from '@ionic-native/file';
     ParteFotosPage,
     ParteEditarComponent,
     EstadisticasPage,
+    VersionProPage,
     SettingsComponent
   ],
   providers: [VariosService,
@@ -82,6 +86,8 @@ import { File } from '@ionic-native/file';
     EmailComposer,
     SplashScreen,
     Camera,
+    InAppPurchase2,
+    InAppPurchase,
     StatusBar,
     Keyboard,
     NativeStorage,

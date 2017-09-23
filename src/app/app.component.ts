@@ -1,3 +1,4 @@
+import { VersionProPage } from './../pages/version-pro/version-pro';
 import { EstadisticasPage } from './../pages/estadisticas/estadisticas';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
@@ -6,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { ClienteListComponent } from '../pages/clientes/cliente-list.component';
 import { ParteListComponent } from '../pages/parte/parte-list.component';
 import { DatabaseProvider } from '../provider/database.provider';
+import { InAppPurchase2 } from '@ionic-native/in-app-purchase-2';
 
 declare var cordova: any;
 
@@ -20,7 +22,7 @@ export class MyApp {
 
 
   @ViewChild(Nav) nav: Nav;
-  constructor(platform: Platform, private menu: MenuController, private db: DatabaseProvider, private statusBar: StatusBar) {
+  constructor(platform: Platform, private menu: MenuController, private db: DatabaseProvider, private statusBar: StatusBar, private inAppPurchase2: InAppPurchase2) {
     //Seteo pagina inicial
     this.rootPage = HomePage;
     //Seteo rutas para usar en sidemenu
@@ -41,6 +43,10 @@ export class MyApp {
         title: "Estadisticas",
         component: EstadisticasPage
       },
+      {
+        title: "Version pro",
+        component: VersionProPage
+      },
     ];
 
     platform.ready().then(() => {
@@ -48,6 +54,31 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
+
+      // this.inAppPurchase2.register({
+      //   id: "com.goltratec.partestrabajo.versionpro",
+      //   alias: "Versión pro partes de trabajo ",
+      //   type: this.inAppPurchase2.NON_CONSUMABLE
+      // });
+      
+      // var p = this.inAppPurchase2.get("Versión pro partes de trabajo ");
+
+     /* this.inAppPurchase2.ready().then(() => {
+
+        console.log("TIENDA LISTA");
+      });
+
+      var productoTienda = this.inAppPurchase2.get("com.goltratec.partestrabajo.versionpro");*/
+
+      /*this.inAppPurchase2.when("Versión pro partes de trabajo").approved(function(productoTienda) {
+        // download the feature
+        console.log("COMPRA VERSION PRO");
+        //app.downloadExtraChapter().then(function() {
+         //   product.finish();
+        //});
+    });
+   */
+
       //inicializa la bd creando el fichero de bd pero no la estructura.
       this.db.dbname = "partes1";
       this.db.init();

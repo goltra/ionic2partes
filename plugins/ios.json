@@ -62,6 +62,9 @@
             "CAMERA_USAGE_DESCRIPTION": "Necesario para acceder",
             "PHOTOLIBRARY_USAGE_DESCRIPTION": "Necesario para acceder",
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-inapppurchase": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     },
     "dependent_plugins": {

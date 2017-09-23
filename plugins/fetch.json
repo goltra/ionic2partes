@@ -18,7 +18,7 @@
     "cordova-plugin-whitelist": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-whitelist@1.3.0"
+            "id": "cordova-plugin-whitelist@^1.3.2"
         },
         "is_top_level": true,
         "variables": {}
@@ -169,6 +169,24 @@
             "subdir": "."
         },
         "is_top_level": false,
+        "variables": {}
+    },
+    "cc.fovea.cordova.purchase": {
+        "source": {
+            "type": "registry",
+            "id": "cc.fovea.cordova.purchase"
+        },
+        "is_top_level": true,
+        "variables": {
+            "BILLING_KEY": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoL+6AxrT0Ew9kU4E7Z9W7j72XYZVI3IM0p29H1tWEnKVAwnkG4El2qiH0WLp9RKEjbKMHV+s3otNnE+OQY5KuXrb5zvLAaM3P8niom9ZHE2W14Jyq8Vw16X6Ppfxk/M/rPmHnhnFDSI99iGdVdoX8QYmyQ/MyF/vo9rPDyIwVeIBgs0afg4vjBr6UtIeb6Baht+JvyrMpKyqbah71kvk2RtXPtEtVo9VPirBf+FlUTiWXml9bPPfjZZkjg017iyJjnaWPbnupX32P61gJFiyhDszEjSnymCpWlqBBuJz3Qog78ekTMY092qqKoA5ixxhn0xpKxGD0GRJJlN1NwZXEwIDAQAB"
+        }
+    },
+    "cordova-plugin-inapppurchase": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-inapppurchase"
+        },
+        "is_top_level": true,
         "variables": {}
     }
 }

@@ -1,0 +1,47 @@
+<!--
+  Generated template for the VersionProPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  
+    <ion-navbar>
+       <button ion-button menuToggle>
+        <ion-icon name='menu'></ion-icon>
+      </button>
+      <ion-title>Version pro</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+
+<ion-content padding>
+  <ion-row text-center>
+    <ion-col>Versio Pro: <b>{{ versionpro }}</b></ion-col>
+  </ion-row>
+ 
+  <ion-card *ngFor="let producto of productos">
+    <ion-card-header>{{ producto.title }}</ion-card-header>
+    <ion-card-content>
+      {{ producto.description }}
+    </ion-card-content>
+    <ion-row>
+      <ion-col>
+        <button ion-button block (click)="comprar(producto.productId)">
+          Comprar ahora - {{ producto.price }}
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+ 
+  <button ion-button full icon-left color="secondary" (click)="restaurar()">
+  <ion-icon name="refresh"></ion-icon>Restaurar
+</button>
+ 
+  <ion-card *ngFor="let anterior of comprasAnteriores">
+    <ion-card-header>Comprado {{ anterior.date | date:'short' }}</ion-card-header>
+    <ion-card-content>
+      {{ anterior.productId }}
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -60,6 +60,9 @@
         },
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-inapppurchase": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     },
     "dependent_plugins": {
