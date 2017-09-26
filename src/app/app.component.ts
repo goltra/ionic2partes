@@ -1,7 +1,7 @@
 import { VersionProPage } from './../pages/version-pro/version-pro';
 import { EstadisticasPage } from './../pages/estadisticas/estadisticas';
 import { Component, ViewChild } from '@angular/core';
-import { Platform, MenuController, Nav } from 'ionic-angular';
+import { Platform, MenuController, Nav} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HomePage } from '../pages/home/home';
 import { ClienteListComponent } from '../pages/clientes/cliente-list.component';
@@ -19,7 +19,7 @@ export class MyApp {
 
   rootPage: any;
   pages: any[];
-
+ 
 
   @ViewChild(Nav) nav: Nav;
   constructor(platform: Platform, private menu: MenuController, private db: DatabaseProvider, private statusBar: StatusBar, private inAppPurchase2: InAppPurchase2) {
@@ -40,11 +40,11 @@ export class MyApp {
         component: ParteListComponent
       },
       {
-        title: "Estadisticas",
+        title: "Estadísticas",
         component: EstadisticasPage
       },
       {
-        title: "Version pro",
+        title: "Versión pro",
         component: VersionProPage
       },
     ];
@@ -54,6 +54,8 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
+
+
 
       // this.inAppPurchase2.register({
       //   id: "com.goltratec.partestrabajo.versionpro",

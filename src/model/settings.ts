@@ -12,6 +12,7 @@ export class Settings{
   public tecnico: string;
   public imagen: string;
   public imagenBase64: string;
+  public versionPro: boolean;
 
   contructor(){
       this.imagen = "";

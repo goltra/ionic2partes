@@ -10,38 +10,52 @@
        <button ion-button menuToggle>
         <ion-icon name='menu'></ion-icon>
       </button>
-      <ion-title>Version pro</ion-title>
+      <ion-title>VERSIÓN PRO</ion-title>
     </ion-navbar>
   
   </ion-header>
 
 <ion-content padding>
   <ion-row text-center>
-    <ion-col>Versio Pro: <b>{{ versionpro }}</b></ion-col>
+    <div *ngIf="versionPro == true; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+        <ion-col>{{soypro}}</ion-col>
+    </ng-template>
+    <ng-template #elseBlock>
+        <ion-col>{{textoVersionPro}}</ion-col>
+    </ng-template>
   </ion-row>
  
   <ion-card *ngFor="let producto of productos">
-    <ion-card-header>{{ producto.title }}</ion-card-header>
-    <ion-card-content>
+    <ion-card-header text-center>{{ producto.title }}</ion-card-header>
+    <ion-card-content text-center>
       {{ producto.description }}
     </ion-card-content>
-    <ion-row>
+    <ion-row text-center>
       <ion-col>
-        <button ion-button block (click)="comprar(producto.productId)">
-          Comprar ahora - {{ producto.price }}
-        </button>
+          <div *ngIf="versionPro == true; then thenBlock else elseBlock"></div>
+          <ng-template #thenBlock text-center>
+              <button ion-button round disabled="true">
+                  Comprado
+                </button>
+          </ng-template>
+          <ng-template #elseBlock text-center>
+              <button ion-button round (click)="comprar(producto.productId)">
+                  Comprar ahora - {{ producto.price }}
+                </button>
+          </ng-template>
       </ion-col>
     </ion-row>
   </ion-card>
  
   <button ion-button full icon-left color="secondary" (click)="restaurar()">
-  <ion-icon name="refresh"></ion-icon>Restaurar
+  <ion-icon name="refresh"></ion-icon>Restaurar compras
 </button>
  
   <ion-card *ngFor="let anterior of comprasAnteriores">
-    <ion-card-header>Comprado {{ anterior.date | date:'short' }}</ion-card-header>
-    <ion-card-content>
-      {{ anterior.productId }}
+    <ion-card-header text-center>Versión Pro comprada</ion-card-header>
+    <ion-card-content text-center>
+      ¡Muchas gracias por su compra! :-)
     </ion-card-content>
   </ion-card>
 </ion-content>
