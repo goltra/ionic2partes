@@ -9,6 +9,7 @@ import { SettingsService } from '../../service/settings.service';
 import 'rxjs/Rx';
 import { File } from '@ionic-native/file';
 import { EstadisticasPage } from './../estadisticas/estadisticas';
+import { Settings } from '../../model/settings';
 
 
 declare var AdMob: any;
@@ -26,11 +27,13 @@ export class HomePage {
 	// public online: boolean;
 	private admobId: any;
 	private platform: Platform;
+	settings: Settings;
+	versionPro: boolean;
 
 
 
 	constructor(private navCtrl: NavController, private menu: MenuController, private v: VariosService,
-		platform: Platform, private settings: SettingsService, private file: File) {
+		platform: Platform, private s: SettingsService, private file: File) {
 
 		//inicialización de variables
 		this.menu.enable(true);
@@ -51,7 +54,9 @@ export class HomePage {
 
 	}
 	createBanner() {
-		const muestroanuncios: boolean = true; // Elijo si quiero anuncios o no
+		const muestroanuncios: boolean = !this.versionPro; // Elijo si quiero anuncios o no
+		console.log("¿CREO EL BANER?");
+		console.log(!this.versionPro);
 		// console.log("Connection " + this.online.toString() + ". No creo el banner"); 
 		this.platform.ready().then(() => {
 			if (AdMob && muestroanuncios) {
@@ -67,9 +72,24 @@ export class HomePage {
 	}
 
 	ionViewDidLoad() {
+		this.s.getData().then((data)=>{
+			let tmp = JSON.parse(data);
+			this.settings=Settings.inicializa(tmp);
+			if(this.settings.versionPro != true){
+				this.versionPro= false;
+			} else{
+				this.versionPro = this.settings.versionPro;
+			}
+			if(this.versionPro){
+				AdMob.removeBanner();
+			  }
+			
 		console.log('ionViewDidLoad');
-
-		if (/(ipod|iphone|ipad|android)/i.test(navigator.userAgent)) {
+		console.log("¿ENTRO PARA CREAR EL BANNER?");
+		console.log(this.versionPro);
+	
+		if (/(ipod|iphone|ipad|android)/i.test(navigator.userAgent) && this.versionPro == false) {
+			
 			this.platform.ready().then(() => {
 				console.log('Platform ready');
 				console.log(this.platform);
@@ -77,7 +97,23 @@ export class HomePage {
 			}
 			);
 		}
+	});
 	}
+
+
+	ionViewCanEnter(){ 
+		this.s.getData().then((data)=>{
+		  let tmp = JSON.parse(data);
+		  this.settings=Settings.inicializa(tmp);
+		  if(this.settings.versionPro != true){
+			this.versionPro= false;
+		} else{
+			this.versionPro = this.settings.versionPro;
+		}
+		  if(this.versionPro){
+			AdMob.removeBanner();
+		  }
+		});}
 
 	clientelist() {
 		this.navCtrl.push(ClienteListComponent);

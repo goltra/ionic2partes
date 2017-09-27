@@ -61,7 +61,7 @@ export class VersionProPage {
     this.s.getData().then((data)=>{
       let tmp = JSON.parse(data);
       this.settings=Settings.inicializa(tmp);
-      return this.versionPro;
+      return this.settings.versionPro;
     });}
 
   comprar(producto) {

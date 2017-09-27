@@ -20,6 +20,7 @@ declare var cordova: any;
 })
 export class SettingsComponent {
   settings: Settings;
+  versionPro: boolean;
   serie:string;
   logo: string;
   path: string;
@@ -60,6 +61,7 @@ export class SettingsComponent {
       this.settings=Settings.inicializa(tmp);
       this.serie = this.settings.serie;
       this.logo = this.settings.imagenBase64;
+      this.versionPro = this.settings.versionPro;
       console.log(this.settings);
     });
   }
@@ -75,6 +77,14 @@ export class SettingsComponent {
   removeImage(){
     this.logo = "";
   }
+
+  usarioPro(){
+    this.s.getData().then((data)=>{
+      let tmp = JSON.parse(data);
+      this.settings=Settings.inicializa(tmp);
+      return this.settings.versionPro;
+    });}
+
   getCamera(){
     // let imageData: string = "https://dl.dropboxusercontent.com/u/960415/p-selfi.jpg";
     // let self = this;
