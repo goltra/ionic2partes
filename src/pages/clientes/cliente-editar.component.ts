@@ -4,6 +4,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ClienteService } from '../../service/cliente.service';
 import { ClienteListComponent } from './cliente-list.component';
 import { VariosService } from '../../service/varios.service';
+import { Settings } from '../../model/settings';
+import { SettingsService } from '../../service/settings.service';
 
 import {
 
@@ -23,13 +25,17 @@ export class ClienteEditarComponent {
 
     public myForm: FormGroup;
     cliente: Cliente;
+    settings: Settings;
+	versionPro: boolean;
 
     constructor(private _nav: NavController, private _navParams: NavParams,
         private fb: FormBuilder,
+        private s: SettingsService,
         private clienteService: ClienteService,
         private _varios: VariosService) {
         let params = _navParams;
         this.cliente = new Cliente();
+        
 
         if (params.data.length > 0) {
             this.cliente = Cliente.inicializa(params.data[0]);
@@ -52,6 +58,29 @@ export class ClienteEditarComponent {
         });
 
     }
+
+    ionViewCanEnter(){ 
+		this.s.getData().then((data)=>{
+		  let tmp = JSON.parse(data);
+		  this.settings=Settings.inicializa(tmp);
+		  if(this.settings.versionPro != true){
+			this.versionPro= false;
+		} else{
+			this.versionPro = this.settings.versionPro;
+		}
+        });}
+
+        ionViewDidLoad() {
+            this.s.getData().then((data)=>{
+              let tmp = JSON.parse(data);
+              this.settings=Settings.inicializa(tmp);
+              if(this.settings.versionPro != true){
+                this.versionPro= false;
+            } else{
+                this.versionPro = this.settings.versionPro;
+            }
+            });}
+        
     llama() {
         if (this.cliente.telefono !== null && this.cliente.telefono.length > 0) {
             console.log("Llamando al " + this.cliente.telefono);

@@ -57,12 +57,6 @@ export class VersionProPage {
       this.versionPro = this.settings.versionPro;
     });}
 
-  usarioPro(){
-    this.s.getData().then((data)=>{
-      let tmp = JSON.parse(data);
-      this.settings=Settings.inicializa(tmp);
-      return this.settings.versionPro;
-    });}
 
   comprar(producto) {
     this.iap.buy(producto).then(data => {
@@ -71,8 +65,14 @@ export class VersionProPage {
   }
  
   restaurar() {
-    if(this.plt.is('ios')==false && this.plt.is('android')==false && this.plt.is('windows')==false){
-      this.activaProducto(ID_COMPRA_PRO);
+    if(this.plt.is('ios')==false && this.plt.is('android')==false && this.plt.is('windows')==false && this.plt.is('cordova')==false ){
+       if(this.versionPro == false){
+         console.log("ACTIVO PRODUCTO EN NAVEGADOR PARA DEBUG");
+        this.activaProducto(ID_COMPRA_PRO);
+       } else{
+        console.log("DESACTIVO PRODUCTO EN NAVEGADOR PARA DEBUG");
+         this.desactivaProducto(ID_COMPRA_PRO);
+       }
     }else{
     this.iap.restorePurchases().then(compras => {
       this.comprasAnteriores = compras;
@@ -92,6 +92,15 @@ export class VersionProPage {
       this.settings.versionPro=this.versionPro;
       this.s.save(this.settings);
     } 
+}
+
+desactivaProducto(id) {
+  // Normally store these settings/purchases inside your app or server!
+  if (id === ID_COMPRA_PRO) {
+    this.versionPro = false;
+    this.settings.versionPro=this.versionPro;
+    this.s.save(this.settings);
+  } 
 }
 
   ionViewDidLoad() {

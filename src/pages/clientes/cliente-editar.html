@@ -5,14 +5,21 @@
 </ion-header>
 <ion-content>
 
+
+
+
     <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
         <ion-input hidden formControlName="id"></ion-input>
-        <ion-item>
-            
-                <ion-label floating>Nombre</ion-label>
-                <ion-input formControlName="nombre"></ion-input>
-            
-        </ion-item>
+        <div *ngIf="versionPro == true; then thenBlock else elseBlock"></div>
+        <ng-template #thenBlock text-center>
+                <ion-item>
+                        
+                            <ion-label floating>Nombre</ion-label>
+                            <ion-input formControlName="nombre"></ion-input>
+                        
+                </ion-item>
+       
+     
         <ion-item>
             
                 <ion-label floating>Persona de contacto</ion-label>
@@ -22,13 +29,13 @@
         <ion-item>
 
                 <ion-label floating>Telefono</ion-label>
-                <ion-input formControlName="telefono" (click)="llama()"></ion-input>
+                <ion-input formControlName="telefono"></ion-input>
 
         </ion-item>
          <ion-item>
 
                 <ion-label floating>Telefono 2</ion-label>
-                <ion-input formControlName="telefono2" (click)="llama()"></ion-input>
+                <ion-input formControlName="telefono2"></ion-input>
 
         </ion-item>
         <ion-item>
@@ -72,7 +79,32 @@
                 <ion-label floating>Observaciones</ion-label>
                 <ion-input formControlName="observaciones"></ion-input>
             
-        </ion-item>
+        </ion-item>     
+        </ng-template>
+
+        <ng-template #elseBlock>
+                <ion-item>
+                        
+                            <ion-label floating>Nombre</ion-label>
+                            <ion-input formControlName="nombre"></ion-input>
+                        
+                </ion-item>
+                <ion-input hidden formControlName="personaContacto"></ion-input>
+                <ion-item>
+                        
+                                        <ion-label floating>Telefono</ion-label>
+                                        <ion-input formControlName="telefono"></ion-input>
+                        
+                                </ion-item>
+                <ion-input hidden formControlName="telefono2"></ion-input>
+                <ion-input hidden formControlName="email"></ion-input>
+                <ion-input hidden formControlName="direccion"></ion-input>
+                <ion-input hidden formControlName="poblacion"></ion-input>
+                <ion-input hidden formControlName="cp"></ion-input>
+                <ion-input hidden formControlName="provincia"></ion-input>
+                <ion-input hidden formControlName="cif"></ion-input>
+                <ion-input hidden formControlName="observaciones"></ion-input>
+        </ng-template>
         
         <ion-row>
             <ion-col>
