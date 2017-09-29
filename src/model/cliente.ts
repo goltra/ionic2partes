@@ -32,8 +32,8 @@ export class Cliente{
      * valores de un objeto pasado.
      */
     static inicializa(values:Object) {
-        // console.log("parte.inicializa");
-        // console.log(values);
+         console.log("cliente.inicializa");
+         console.log(values);
         try {
             let cliente = new Cliente();
             // console.log("parte inicializado a null")

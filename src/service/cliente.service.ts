@@ -56,7 +56,7 @@ export class ClienteService{
     actualizaCliente(id:number=null, nombre: string, personaContacto: string, telefono:string,  telefono2: string, email: string, direccion: string, poblacion: string, cp: string, provincia: string, cif: string, observaciones: string) {
         let sql: string;
         if(id==null){
-            sql = 'INSERT INTO cliente (nombre, personaContacto, telefono, telefono2, email, direccion, poblacion, cp, provincia, cif, observaciones) VALUES (?,?,?,?,?,?,?,?,?,?)';
+            sql = 'INSERT INTO cliente (nombre, personaContacto, telefono, telefono2, email, direccion, poblacion, cp, provincia, cif, observaciones) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
             return this.db.query(sql,[nombre, personaContacto, telefono, telefono2, email, direccion, poblacion, cp, provincia, cif, observaciones]);
             //return this.storage.query(sql,[nombre,telefono]);
         }else{

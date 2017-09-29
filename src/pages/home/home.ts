@@ -39,7 +39,11 @@ export class HomePage {
 		this.menu.enable(true);
 		this.dia = v.getNowDate();
 		this.platform = platform;
-
+		if (this.platform.is('cordova') == false){
+			console.log("ESTOY EN EL NAVEGADOR");
+		} else{
+			console.log("ESTOY CON EL MOVIL");
+		
 		//seteo ids para anuncios según plataforma
 		if (/(android)/i.test(navigator.userAgent)) {
 			this.admobId = {
@@ -51,7 +55,7 @@ export class HomePage {
 				banner: 'ca-app-pub-2437670687236295/1732838274',
 			};
 		}
-
+	}
 	}
 	createBanner() {
 		const muestroanuncios: boolean = !this.versionPro; // Elijo si quiero anuncios o no
@@ -80,7 +84,8 @@ export class HomePage {
 			} else{
 				this.versionPro = this.settings.versionPro;
 			}
-			if(this.versionPro){
+			
+			if(this.versionPro && this.platform.is('cordova')){
 				AdMob.removeBanner();
 			  }
 			
@@ -110,8 +115,10 @@ export class HomePage {
 		} else{
 			this.versionPro = this.settings.versionPro;
 		}
-		  if(this.versionPro){
-			AdMob.removeBanner();
+		if(this.versionPro && this.platform.is('cordova')){
+		
+				AdMob.removeBanner();
+			
 		  }
 		});}
 
