@@ -79,6 +79,7 @@ export class ParteListComponent {
   }
   enviarEmail(parte: Parte){
     console.log('envia email');
-    this.parteService.enviaPorEmail(parte);
+    //this.parteService.enviaPorEmail(parte);
+    this.parteService.generarPdf(parte);
   }
 }

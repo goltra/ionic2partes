@@ -11,29 +11,6 @@ export class ClienteService{
     constructor(private platform:Platform,_db:DatabaseProvider){
        this.db = _db;
        console.log(this.db);
-
-        // this.db.openDatabase({
-        // name: 'data.db',
-        // location: 'default' // the location field is required
-        // }).then(() => {
-        // this.db.executeSql('create table danceMoves(name VARCHAR(32))', {}).then(() => {
-
-        // }, (err) => {
-        // console.error('Unable to execute sql: ', err);
-        // });
-        // }, (err) => {
-        // console.error('Unable to open database: ', err);
-        // });
-        /*this.db.query('CREATE TABLE IF NOT EXISTS cliente (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, telefono TEXT);').then(
-                    (data)=>{
-                        console.log("Crear tabla cliente")
-                    },
-                    (error)=>{
-                        console.log("Error al crear la tabla cliente: ");
-                        console.log(error);
-                    }
-
-        );*/
     }
 
 
