@@ -70,8 +70,7 @@ export class VersionProPage {
 
   comprar(producto) {
     let loader = this.loadingCtrl.create({
-      content: "Cargando",
-      duration: 2000
+      content: "Cargando"
     });
     loader.present();
     this.iap.buy(producto).then(data => {
@@ -117,8 +116,7 @@ export class VersionProPage {
  
   restaurar() {
     let loader = this.loadingCtrl.create({
-      content: "Cargando",
-      duration: 2000
+      content: "Cargando"
     });
     loader.present();
     if(this.plt.is('ios')==false && this.plt.is('android')==false && this.plt.is('windows')==false && this.plt.is('cordova')==false ){
