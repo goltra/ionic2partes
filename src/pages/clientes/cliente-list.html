@@ -25,19 +25,19 @@
       </p>
       <ion-row>
         <ion-col>
-          <button full ion-button outline (click)="crearParte(cliente.id,cliente.nombre)">
+          <button full ion-button outline icon-left block  (click)="crearParte(cliente.id,cliente.nombre)">
               <ion-icon name="md-document" ></ion-icon>
                 Crear Parte
             </button>
         </ion-col>
         <ion-col>
-          <button full ion-button color="danger" (click)="borrarCliente(cliente.id)">
+          <button full ion-button icon-left block color="danger" (click)="borrarCliente(cliente.id)">
               <ion-icon name="trash" ></ion-icon>
                 Eliminar
             </button>
         </ion-col>
         <ion-col>
-          <button full ion-button color="default" (click)="cargaCliente(cliente)">
+          <button full ion-button icon-left block color="default" (click)="cargaCliente(cliente)">
               <ion-icon name="arrow-dropright" ></ion-icon>
                 Editar
             </button>
