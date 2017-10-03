@@ -102,7 +102,13 @@ export class SettingsComponent {
       (imageData) => {
           console.log('obteniendo imagen');
           console.log(imageData);
-          let self  = this;
+          // pruebas
+          let base64Image = 'data:image/jpeg;base64,' + imageData;
+          this.settings.imagen = imageData;
+          this.settings.imagenBase64 = base64Image;
+          this.s.save(this.settings);
+          // fin pruebas
+          //let self  = this;
           // this.v.imgToBase64(imageData,function(res){
           //   self.logo = res;
           // },'image/jpeg',100);
