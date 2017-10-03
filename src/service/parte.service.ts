@@ -216,7 +216,8 @@ export class ParteService {
     // LOGO EMPRESA //
 
     if(this.settings.imagenBase64!= '' && this.settings.imagenBase64 != null && this.settings.imagenBase64 != undefined){
-      partepdf.addImage(this.settings.imagenBase64, 'PNG', 15, 18, 51, 35);
+      //partepdf.addImage(this.settings.imagenBase64, 'PNG', 15, 18, 50, 35);
+      partepdf.addImage(this.settings.imagenBase64, 'PNG', 15, 18);
       } else{
         console.log("No hay logo");
       }

@@ -96,7 +96,8 @@ export class SettingsComponent {
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       destinationType: this.camera.DestinationType.DATA_URL,
       correctOrientation: true,
-      targetWidth: 100
+      targetWidth: 200,
+      targetHeight: 140
     }
     this.camera.getPicture(options).then(
       (imageData) => {
