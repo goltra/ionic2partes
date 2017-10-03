@@ -88,11 +88,12 @@ export class ParteEditarComponent {
 
     }
 
-    signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor
+    signaturePadOptions: Object = { // passed through to szimek/signature_pad constructor //380 300 //
         'minWidth': 0.5,
         'maxWidth': 2,
-        'canvasWidth': 380,
-        'canvasHeight': 300,
+        'canvasWidth': 340,
+        'canvasHeight': 200,
+        'penColor': "rgb(53, 93, 203)"
     };
     drawStart() {
         console.log("comieza a firmar y oculto teclado");
@@ -109,10 +110,16 @@ export class ParteEditarComponent {
     }
 
     doOnEnd() {
+        this.firmaImg = this.signaturePad.toDataURL("image/png", 1);
+        this.resizeImg(200,this.firmaImg).then(data => { // Le paso un tamaño max de 200px (En el parte pdf tiene un tamaño de 51x30)
+            this.myForm.value.firma = data;
+            this.onSubmit();
+        });
+            
         // will be notified of szimek/signature_pad's onEnd event
-        this.firmaImg = this.signaturePad.toDataURL();
-        this.myForm.value.firma = this.firmaImg;
-        this.onSubmit();
+        // this.firmaImg = this.signaturePad.toDataURL();
+        // this.myForm.value.firma = this.firmaImg;
+        // this.onSubmit();
     }
     limpiarFirma() {
         this.signaturePad.clear();
@@ -125,6 +132,43 @@ export class ParteEditarComponent {
         this.signaturePad.options = this.signaturePadOptions;
         this.signaturePad.clear();
     }
+    
+    resizeImg(longSideMax, url): Promise<string> {
+        return new Promise((resolve, reject) => {
+        var tempImg = new Image();
+        tempImg.src = url;
+        tempImg.onload = function() {
+          // Obtiene la relacion de tamaños de la imagen
+          var targetWidth = tempImg.width;
+          var targetHeight = tempImg.height;
+          var aspect = tempImg.width / tempImg.height;
+      
+          // Calcula el lado mas corto y guarda el "aspec ratio"
+          if (tempImg.width > tempImg.height) {
+            longSideMax = Math.min(tempImg.width, longSideMax);
+            targetWidth = longSideMax;
+            targetHeight = longSideMax / aspect;
+          }
+          else {
+            longSideMax = Math.min(tempImg.height, longSideMax);
+            targetHeight = longSideMax;
+            targetWidth = longSideMax * aspect;
+          }
+      
+          // Creo el canvas
+          var canvas = document.createElement('canvas');
+          canvas.width = targetWidth;
+          canvas.height = targetHeight;
+      
+          var ctx = canvas.getContext("2d");
+          // Cojo la imagen de esquina a esquina y la dibujo
+          ctx.drawImage(tempImg, 0, 0, tempImg.width, tempImg.height, 0, 0, targetWidth, targetHeight);
+          console.log("Dibujada imagen de "+targetWidth+"x"+targetHeight);
+          resolve(canvas.toDataURL("image/png", 1)); // Lo primero indica el tipo de archivo, lo segundo la calidad que va de 0 a 1 (Siendo 0 lo que menos)
+        }
+        });
+        
+      }
 
     hacerFoto() {
         let options = {

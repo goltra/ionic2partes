@@ -239,7 +239,6 @@ export class ParteService {
      partepdf.text(20, 93, "Trabajo realizado:");
      partepdf.setFontType('normal');
  
-     console.log("Sigo generando área de actuacion...");
 
      partepdf.text(50, 70, parte.fechaformato); 
      partepdf.text(50, 78, parte.horainiformato+"h.");
@@ -260,7 +259,7 @@ export class ParteService {
    
  
      // FOOTER //
-   console.log("Generando footer...");
+     console.log("Generando footer...");
      for(var i=1;i<=+partepdf.internal.getNumberOfPages();i++) {
        console.log("Cambio a la pagina -> "+i);
        partepdf.setPage(i);
@@ -287,12 +286,10 @@ export class ParteService {
      } else{
        console.log("No hay firma de cliente");
      }
-   console.log("Footer generado con éxito");
+     console.log("Footer generado con éxito");
      // FIN FOOTER //
       console.log("Guardo el contenido del pdf (blob) en una variable");
-      
-     
-       
+
       let pdfOutput = partepdf.output('blob');
       
       console.log('Creo el pdf');

@@ -86,11 +86,6 @@ export class SettingsComponent {
     });}
 
   getCamera(){
-    // let imageData: string = "https://dl.dropboxusercontent.com/u/960415/p-selfi.jpg";
-    // let self = this;
-    // this.v.imgToBase64(imageData,function(res){
-    //         self.logo = res;
-    //       },'image/jpeg',100);
 
     let options= {
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
@@ -103,16 +98,10 @@ export class SettingsComponent {
       (imageData) => {
           console.log('obteniendo imagen');
           console.log(imageData);
-          // pruebas
           let base64Image = 'data:image/jpeg;base64,' + imageData;
           this.settings.imagen = imageData;
           this.settings.imagenBase64 = base64Image;
           this.s.save(this.settings);
-          // fin pruebas
-          //let self  = this;
-          // this.v.imgToBase64(imageData,function(res){
-          //   self.logo = res;
-          // },'image/jpeg',100);
         }, 
         (err) => {
           console.log("Error al capturar imagen");
