@@ -4,6 +4,8 @@ import {ParteService} from '../../service/parte.service';
 import {VariosService} from '../../service/varios.service';
 import {ParteEditarComponent} from './parte-editar.component';
 import {Parte} from '../../model/parte';
+import { SettingsService } from '../../service/settings.service';
+import { Settings } from '../../model/settings';
 
 
 @Component({
@@ -13,9 +15,11 @@ import {Parte} from '../../model/parte';
 export class ParteListComponent {
   
   public partes:any[];
+  versionPro: boolean;
+  settings: Settings;
   
   constructor(private navCtrl: NavController, private parteService: ParteService,
-  private varios: VariosService, private alertCtrl: AlertController) {
+  private varios: VariosService, private s: SettingsService, private alertCtrl: AlertController) {
     this.listadoPartes();
   }
  
@@ -51,6 +55,22 @@ export class ParteListComponent {
     this.navCtrl.push(ParteEditarComponent);
   }
 
+  ionViewCanEnter(){ 
+    this.s.getData().then((data)=>{
+      let tmp = JSON.parse(data);
+      this.settings=Settings.inicializa(tmp);
+      this.versionPro = this.settings.versionPro;
+    });}
+
+    ionViewDidLoad() {
+      console.log('ionViewDidLoad parte-list component');
+      this.s.getData().then((data)=>{
+        let tmp = JSON.parse(data);
+        this.settings=Settings.inicializa(tmp);
+        this.versionPro = this.settings.versionPro;
+      });
+    }
+
   eliminaParte(parteid: number){
 
      let confirm = this.alertCtrl.create({
@@ -78,8 +98,12 @@ export class ParteListComponent {
     confirm.present();
   }
   enviarEmail(parte: Parte){
-    console.log('envia email');
-    //this.parteService.enviaPorEmail(parte);
-    this.parteService.generarPdf(parte);
+    console.log('Envía parte');
+    if(this.versionPro){
+      this.parteService.generarPdf(parte);
+    }else{
+      this.parteService.enviaPorEmail(parte);
+    }
+   
   }
 }
