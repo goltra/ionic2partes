@@ -162,29 +162,23 @@ export class ParteService {
      let descripcionShare: string;
      let asuntoShare: string;
      let nombrePdf: string;
-     let numParte = parte.id; // AQUÍ DEBERÍA IR EL NUMERO DE PARTE, PERO MIENTRAS Y PARA PRUEBAS ESTOY PONIENDO LA ID //
+     let numParte: String;
+     if(this.settings.serie!=undefined){
+      numParte = this.settings.serie+parte.id;
+      } else{
+       numParte = parte.id.toString();
+      }
+      // AQUÍ DEBERÍA IR EL NUMERO DE PARTE, PERO MIENTRAS Y PARA PRUEBAS ESTOY PONIENDO LA ID //
    
      let alturaExtra=0;
      if(parte.firma!= ''){
          alturaExtra = 30;
      } 
-  
-                    // descripcionShare = hola+'\n'+iniciomensaje+numParte+"\n"+finmensaje;
-     
-                    // asuntoShare = asunto+numParte;
-               
-                    // nombrePdf = parte+"_"+numParte+".pdf";
     
-                    descripcionShare = "hola";
-                    asuntoShare = "asunto";
-                    if(this.settings.serie!=undefined){
-                    nombrePdf = "parte_"+this.settings.serie+parte.id+".pdf";
-                    } else{
-                      nombrePdf = "parte_"+parte.id+".pdf";
-                    }
-                 
-   
-   
+     descripcionShare = "Hola,"+'\n'+"Adjunto envío el parte de trabajo Nº "+numParte+'\n'+"Un cordial saludo.";
+     asuntoShare = "Parte de trabajo Nº "+numParte;
+     nombrePdf = "parte_"+parte.id+".pdf";
+                    
      var partepdf = new jsPDF();
      var numPaginas = 1; // Variable para almacenar el numero de páginas total del documento inizalizada a 1
      var lineaActual = 0;
@@ -192,11 +186,7 @@ export class ParteService {
      console.log("Generando cabecera...");
      partepdf.setFontSize(10);
      partepdf.setFontType('bold');
-     if(this.settings.serie!=undefined){
-     partepdf.text(110, 15, "Parte de trabajo Nº "+this.settings.serie+parte.id);
-     } else{
-      partepdf.text(110, 15, "Parte de trabajo Nº "+parte.id);
-     }
+     partepdf.text(110, 15, "Parte de trabajo Nº "+numParte);
      partepdf.setLineWidth(0.3); // Defino grosor de linea horizontal
      partepdf.line(75, 18, 200, 18); // Linea horizontal
      partepdf.text(75, 25, "Cliente");
