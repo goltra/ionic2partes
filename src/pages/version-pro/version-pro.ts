@@ -3,6 +3,8 @@ import { NavController, NavParams, Platform} from 'ionic-angular';
 import { InAppPurchase } from '@ionic-native/in-app-purchase';
 import { SettingsService } from '../../service/settings.service';
 import { Settings } from '../../model/settings';
+import { LoadingController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 
 
 const ID_COMPRA_PRO = 'com.goltratec.partestrabajo.versionpro';
@@ -25,17 +27,25 @@ export class VersionProPage {
   comprasAnteriores = [];
   textoVersionPro="Actualizar a Versión Premium.";
   soypro: String = "VERSIÓN PRO ACTIVADA";
+ 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private iap: InAppPurchase, private plt: Platform, private s: SettingsService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private iap: InAppPurchase, private plt: Platform, private s: SettingsService, public loadingCtrl: LoadingController, public alertCtrl: AlertController) {
     
-
+    let loader = this.loadingCtrl.create({
+      content: "Cargando",
+      duration: 3000
+    });
+    loader.present();
+    
     this.plt.ready().then(() => {
       this.iap.getProducts([ID_COMPRA_PRO])
         .then((productos) => {
           this.productos = productos;
+          loader.dismiss();
         })
         .catch((err) => {
           console.log(err);
+          loader.dismiss();
           if (this.plt.is('ios')){
           this.textoVersionPro="No se ha podido establecer la conexión con AppStore";
           } else if(this.plt.is('android')){
@@ -59,12 +69,58 @@ export class VersionProPage {
 
 
   comprar(producto) {
+    let loader = this.loadingCtrl.create({
+      content: "Cargando",
+      duration: 2000
+    });
+    loader.present();
     this.iap.buy(producto).then(data => {
+      loader.dismiss();
       this.activaProducto(producto);
     })
+    .catch((err) => {
+      console.log(err);
+      loader.dismiss();
+      if (this.plt.is('ios')){
+        let alert = this.alertCtrl.create({
+          title: 'Fallo en la compra',
+          subTitle: 'Lamentamos informar que no ha sido posible conectar con la AppStore, por favor, revise su conexión o pruebe más tarde',
+          buttons: ['Aceptar']
+        });
+        alert.present();
+      } else if(this.plt.is('android')){
+        let alert = this.alertCtrl.create({
+          title: 'Fallo en la compra',
+          subTitle: 'Lamentamos informar que no ha sido posible conectar con Play Store, por favor, revise su conexión o pruebe más tarde',
+          buttons: ['Aceptar']
+        });
+        alert.present();
+          }else if(this.plt.is('windows')){
+            let alert = this.alertCtrl.create({
+              title: 'Fallo en la compra',
+              subTitle: 'Lamentamos informar que no ha sido posible conectar con Windows Store, por favor, revise su conexión o pruebe más tarde',
+              buttons: ['Aceptar']
+            });
+            alert.present();
+            } else{
+              let alert = this.alertCtrl.create({
+                title: 'Fallo en la compra',
+                subTitle: 'Lamentamos informar que no ha sido posible conectar con la tienda, por favor, revise su conexión o pruebe más tarde',
+                buttons: ['Aceptar']
+              });
+              alert.present();
+              }
+    });
   }
+
+
  
   restaurar() {
+    let loader = this.loadingCtrl.create({
+      content: "Cargando",
+      duration: 2000
+    });
+    loader.present();
     if(this.plt.is('ios')==false && this.plt.is('android')==false && this.plt.is('windows')==false && this.plt.is('cordova')==false ){
        if(this.versionPro == false){
          console.log("ACTIVO PRODUCTO EN NAVEGADOR PARA DEBUG");
@@ -75,12 +131,46 @@ export class VersionProPage {
        }
     }else{
     this.iap.restorePurchases().then(compras => {
+      loader.dismiss();
       this.comprasAnteriores = compras;
       // Unlock the features of the purchases!
       for (let anteriores of this.comprasAnteriores) {
           this.activaProducto(anteriores.productId)
       }
 
+    })
+    .catch((err) => {
+      console.log(err);
+      loader.dismiss();
+      if (this.plt.is('ios')){
+        let alert = this.alertCtrl.create({
+          title: 'Fallo en la restauración',
+          subTitle: 'Lamentamos informar que no ha sido posible conectar con la AppStore, por favor, revise su conexión o pruebe más tarde',
+          buttons: ['Aceptar']
+        });
+        alert.present();
+      } else if(this.plt.is('android')){
+        let alert = this.alertCtrl.create({
+          title: 'Fallo en la restauración',
+          subTitle: 'Lamentamos informar que no ha sido posible conectar con Play Store, por favor, revise su conexión o pruebe más tarde',
+          buttons: ['Aceptar']
+        });
+        alert.present();
+          }else if(this.plt.is('windows')){
+            let alert = this.alertCtrl.create({
+              title: 'Fallo en la restauración',
+              subTitle: 'Lamentamos informar que no ha sido posible conectar con Windows Store, por favor, revise su conexión o pruebe más tarde',
+              buttons: ['Aceptar']
+            });
+            alert.present();
+            } else{
+              let alert = this.alertCtrl.create({
+                title: 'Fallo en la restauración',
+                subTitle: 'Lamentamos informar que no ha sido posible conectar con la tienda, por favor, revise su conexión o pruebe más tarde',
+                buttons: ['Aceptar']
+              });
+              alert.present();
+              }
     });
   }
   }
