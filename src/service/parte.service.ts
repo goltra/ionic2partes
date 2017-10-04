@@ -11,6 +11,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { Photo } from '../model/photo';
 import { Cliente } from '../model/cliente'; 
 import { ClienteService } from './cliente.service';
+import { LoadingController } from 'ionic-angular';
 
 declare let jsPDF;
 declare var cordova: any;
@@ -23,7 +24,7 @@ export class ParteService {
   private dirFiles: string;
   cliente: Cliente;
 
-  constructor(private _varios: VariosService, _db: DatabaseProvider, private clienteService: ClienteService, private platform: Platform, private s: SettingsService, private emailComposer: EmailComposer, private socialSharing: SocialSharing, private file: File) {
+  constructor(private _varios: VariosService, _db: DatabaseProvider, public loadingCtrl: LoadingController, private clienteService: ClienteService, private platform: Platform, private s: SettingsService, private emailComposer: EmailComposer, private socialSharing: SocialSharing, private file: File) {
     
     this.cliente = new Cliente();
     this.db = _db
@@ -149,6 +150,11 @@ export class ParteService {
 
   generarPdf(parte: Parte) {
     console.log("Entro a generar el PDF");
+    let loader = this.loadingCtrl.create({
+      content: "Cargando",
+      duration: 3000
+    });
+    loader.present();
 
     // let cliente: Cliente;
       console.log("CARGO DATOS DEL CLIENTE PARA GENERAR EL PARTE");
@@ -197,7 +203,6 @@ export class ParteService {
      partepdf.text(75, 50, "Teléfono");
      partepdf.setFontType('normal');
      partepdf.text(110, 25, this.cliente.nombre);
-     console.log(this.cliente.direccion);
      if(this.cliente.direccion != null){
       partepdf.text(110, 30, this.cliente.direccion);
      }
@@ -295,6 +300,7 @@ export class ParteService {
               if (this.platform.is('cordova')) {
                this.file.writeFile(this.dirFiles, nombrePdf, pdfOutput, { replace: true }).then(
                  (ok) => {
+                   loader.dismiss();
                    console.log("Fichero guardado en " + this.dirFiles);
                    console.log(ok); 
                  });
@@ -302,6 +308,7 @@ export class ParteService {
                  // You are on a device, cordova plugins are accessible
                    this.socialSharing.share(descripcionShare, asuntoShare, this.dirFiles + nombrePdf);
                      } else {
+                       loader.dismiss();
                            // Cordova not accessible, add mock data if necessary
                           //window.open(this.dirFiles + nombrePdf);
                           //partepdf.output("dataurlnewwindow");
@@ -311,6 +318,7 @@ export class ParteService {
        }
         }).catch((error) => {
           console.log(error);
+          loader.dismiss();
           console.log('error cargando datos de cliente');
           });
    }
@@ -319,6 +327,11 @@ export class ParteService {
 
 
   enviaPorEmail(parte: Parte) {
+    let loader = this.loadingCtrl.create({
+      content: "Cargando",
+      duration: 3000
+    });
+    loader.present();
     //let msg:String; 
     let email;
     var doc = new jsPDF();
@@ -393,6 +406,7 @@ export class ParteService {
             tmpNom = 'partesTrabajoPdf.pdf';
             this.file.writeFile(this.dirFiles, tmpNom, pdfOutput, { replace: true }).then(
               (ok) => {
+                loader.dismiss();
                 console.log("fichero guardado en " + this.dirFiles);
                 console.log(ok);
                 email = {
@@ -410,6 +424,7 @@ export class ParteService {
                     this._varios.showToast("Email enviado", "top");
                   },
                   (error) => {
+                    loader.dismiss();
                     console.log("error enviando mensaje ");
                     this._varios.showToast("Se produjo un error al enviar el Email", "top");
                     console.log(error);
@@ -417,11 +432,13 @@ export class ParteService {
                 );
               },
               (err) => {
+                loader.dismiss();
                 console.log("error al guardar el fichero");
                 console.log(err);
               }
             );
           } else {
+            loader.dismiss();
             console.log("pdf(): cordova no disponible");
           }
         }
