@@ -197,14 +197,23 @@ export class ParteService {
      partepdf.text(75, 50, "Teléfono");
      partepdf.setFontType('normal');
      partepdf.text(110, 25, this.cliente.nombre);
-     partepdf.text(110, 30, this.cliente.direccion);
-     partepdf.text(110, 35, this.cliente.poblacion);
-     partepdf.text(110, 40, this.cliente.provincia);
-     partepdf.text(110, 45, this.cliente.cif);
-     partepdf.text(110, 50, this.cliente.telefono); // Pediente implementar
+     console.log(this.cliente.direccion);
+     if(this.cliente.direccion != null){
+      partepdf.text(110, 30, this.cliente.direccion);
+     }
+     if(this.cliente.poblacion != null){
+      partepdf.text(110, 30, this.cliente.poblacion);
+     }
+     if(this.cliente.provincia != null){
+      partepdf.text(110, 30, this.cliente.provincia);
+     }
+     if(this.cliente.cif != null){
+      partepdf.text(110, 30, this.cliente.cif);
+     }
+    partepdf.text(110, 50, this.cliente.telefono);
 
     // LOGO EMPRESA //
-
+    console.log("Generando logo en cabecera (si lo hay)...");
     if(this.settings.imagenBase64!= '' && this.settings.imagenBase64 != null && this.settings.imagenBase64 != undefined){
       //partepdf.addImage(this.settings.imagenBase64, 'PNG', 15, 18, 50, 35);
       partepdf.addImage(this.settings.imagenBase64, 'PNG', 15, 18);
