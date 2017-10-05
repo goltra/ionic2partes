@@ -207,13 +207,13 @@ export class ParteService {
       partepdf.text(110, 30, this.cliente.direccion);
      }
      if(this.cliente.poblacion != null){
-      partepdf.text(110, 30, this.cliente.poblacion);
+      partepdf.text(110, 35, this.cliente.poblacion);
      }
      if(this.cliente.provincia != null){
-      partepdf.text(110, 30, this.cliente.provincia);
+      partepdf.text(110, 40, this.cliente.provincia);
      }
      if(this.cliente.cif != null){
-      partepdf.text(110, 30, this.cliente.cif);
+      partepdf.text(110, 45, this.cliente.cif);
      }
     partepdf.text(110, 50, this.cliente.telefono);
 

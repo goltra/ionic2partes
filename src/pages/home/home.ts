@@ -1,3 +1,4 @@
+import { VersionProPage } from './../version-pro/version-pro';
 import { Component } from '@angular/core';
 import { NavController, MenuController, Platform } from 'ionic-angular';
 import { ClienteListComponent } from '../clientes/cliente-list.component';
@@ -133,6 +134,9 @@ export class HomePage {
 	}
 	estadisticasmostrar() {
 		this.navCtrl.push(EstadisticasPage);
+	}
+	versionpromostrar() {
+		this.navCtrl.push(VersionProPage);
 	}
 
 	test() {

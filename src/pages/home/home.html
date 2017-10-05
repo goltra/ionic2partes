@@ -37,6 +37,15 @@
         Estadísticas
       </button>
 
- <!-- <h3 style="text-align:center">Número de partes actuales: {{numpartes}}</h3> -->   
-      <!--<button ion-button (click)="test()">aaaa</button>-->
+      <br>
+
+
+      <div *ngIf="versionPro == false; then thenBlock"></div>
+      <ng-template #thenBlock>
+        <button ion-button icon-left block  (click)="versionpromostrar()">
+          <ion-icon name="trophy"> </ion-icon> 
+          Versión Pro
+        </button>
+      </ng-template>
+
 </ion-content>
