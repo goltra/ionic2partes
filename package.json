@@ -63,7 +63,10 @@
     "moment": "^2.18.1",
     "rxjs": "5.4.0",
     "sw-toolbox": "3.6.0",
-    "zone.js": "0.8.12"
+    "zone.js": "0.8.12",
+    "cordova-browser": "~4.1.0",
+    "cordova-ios": "~4.2.1",
+    "cordova-plugin-inapppurchase": "~1.1.0"
   },
   "devDependencies": {
     "@ionic/app-scripts": "2.0.2",
@@ -107,8 +110,12 @@
       "cordova-plugin-screen-orientation": {},
       "cordova-sqlite-storage": {},
       "cordova-plugin-email-composer": {},
-      "cordova-plugin-nativestorage": {}
+      "cordova-plugin-nativestorage": {},
+      "cordova-plugin-inapppurchase": {}
     },
-    "platforms": []
+    "platforms": [
+      "browser",
+      "ios"
+    ]
   }
 }

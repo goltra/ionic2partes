@@ -102,6 +102,9 @@ export class SettingsComponent {
           this.settings.imagen = imageData;
           this.settings.imagenBase64 = base64Image;
           this.s.save(this.settings);
+          this.logo = this.settings.imagenBase64;
+          this.v.showToast("Logo cargado","top");
+          //this.navCtrl.pop();
         }, 
         (err) => {
           console.log("Error al capturar imagen");
