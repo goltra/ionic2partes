@@ -63,6 +63,9 @@
         },
         "cordova-plugin-inapppurchase": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "uk.co.workingedge.cordova.plugin.sqliteporter": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     },
     "dependent_plugins": {

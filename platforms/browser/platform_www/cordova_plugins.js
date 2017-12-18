@@ -403,6 +403,14 @@ module.exports = [
         "id": "cordova-plugin-camera.CameraProxy",
         "pluginId": "cordova-plugin-camera",
         "runs": true
+    },
+    {
+        "file": "plugins/uk.co.workingedge.cordova.plugin.sqliteporter/www/sqlitePorter.js",
+        "id": "uk.co.workingedge.cordova.plugin.sqliteporter.sqlitePorter",
+        "pluginId": "uk.co.workingedge.cordova.plugin.sqliteporter",
+        "clobbers": [
+            "cordova.plugins.sqlitePorter"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -428,7 +436,8 @@ module.exports.metadata =
     "cordova-plugin-email-composer": "0.8.7",
     "cordova-plugin-nativestorage": "2.2.2",
     "cordova-plugin-camera": "2.3.1",
-    "cordova-plugin-inapppurchase": "1.1.0"
+    "cordova-plugin-inapppurchase": "1.1.0",
+    "uk.co.workingedge.cordova.plugin.sqliteporter": "1.0.2"
 }
 // BOTTOM OF METADATA
 });

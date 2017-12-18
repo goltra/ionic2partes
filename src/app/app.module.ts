@@ -24,6 +24,7 @@ import { SettingsService } from '../service/settings.service';
 import { SettingsComponent } from '../pages/settings-component/settings-component';
 import {SignaturePadModule} from 'angular2-signaturepad';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { SQLitePorter } from '@ionic-native/sqlite-porter';
 import { DatabaseProvider } from '../provider/database.provider';
 import { ElasticModule } from 'angular2-elastic';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -92,6 +93,7 @@ import { InAppPurchase } from '@ionic-native/in-app-purchase';
     Keyboard,
     NativeStorage,
     IonicStorageModule,
+    SQLitePorter,
     {provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
 export class AppModule {

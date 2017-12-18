@@ -6,7 +6,9 @@ import { ParteListComponent } from '../parte/parte-list.component';
 import { ClienteEditarComponent } from '../clientes/cliente-editar.component';
 import { SettingsComponent } from '../settings-component/settings-component';
 import { VariosService } from '../../service/varios.service';
+import { DatabaseProvider } from '../../provider/database.provider';
 import { SettingsService } from '../../service/settings.service';
+import { SQLitePorter } from '@ionic-native/sqlite-porter';
 import 'rxjs/Rx';
 import { File } from '@ionic-native/file';
 import { EstadisticasPage } from './../estadisticas/estadisticas';
@@ -34,7 +36,8 @@ export class HomePage {
 
 
 	constructor(private navCtrl: NavController, private menu: MenuController, private v: VariosService,
-		platform: Platform, private s: SettingsService, private file: File) {
+		platform: Platform, private s: SettingsService, private file: File,
+		public sqlporter:SQLitePorter,public db:DatabaseProvider) {
 
 		//inicialización de variables
 		this.menu.enable(true);
@@ -75,7 +78,22 @@ export class HomePage {
 			}
 		});
 	}
-
+	exportBD(){
+		console.log('db');
+		console.log(this.db.db);
+		this.sqlporter.exportDbToJson(this.db.db).then(res=>{
+			 console.log(res);
+			let data = res.data.inserts;
+			for(let item in data){
+				if(data[item].length>0){
+					console.log(item);
+					console.log(data[item]);
+				}
+			}
+			
+			console.log(data);
+		}).catch(err=>{console.log('error'); console.log(err)})
+	}
 	ionViewDidLoad() {
 		this.s.getData().then((data)=>{
 			let tmp = JSON.parse(data);

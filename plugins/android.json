@@ -7,12 +7,73 @@
         "files": {}
     },
     "installed_plugins": {
+        "cordova-plugin-admobpro": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-email": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-nativestorage": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-screen-orientation": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
         "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "uk.co.workingedge.cordova.plugin.sqliteporter": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         },
         "cordova-plugin-inapppurchase": {
             "PACKAGE_NAME": "com.goltratec.partestrabajo"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-extension": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        },
+        "es6-promise-plugin": {
+            "PACKAGE_NAME": "com.goltratec.partestrabajo"
+        }
+    }
 }
