@@ -13,6 +13,7 @@ import 'rxjs/Rx';
 import { File } from '@ionic-native/file';
 import { EstadisticasPage } from './../estadisticas/estadisticas';
 import { Settings } from '../../model/settings';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 
 declare var AdMob: any;
@@ -32,12 +33,13 @@ export class HomePage {
 	private platform: Platform;
 	settings: Settings;
 	versionPro: boolean;
+	private dirFiles: string;
 
 
 
 	constructor(private navCtrl: NavController, private menu: MenuController, private v: VariosService,
 		platform: Platform, private s: SettingsService, private file: File,
-		public sqlporter:SQLitePorter,public db:DatabaseProvider) {
+		public sqlporter: SQLitePorter, public db: DatabaseProvider, private socialSharing: SocialSharing) {
 
 		//inicialización de variables
 		this.menu.enable(true);
@@ -59,6 +61,7 @@ export class HomePage {
 				banner: 'ca-app-pub-2437670687236295/1732838274',
 			};
 		}
+		
 	}
 	}
 	createBanner() {
@@ -78,21 +81,78 @@ export class HomePage {
 			}
 		});
 	}
+	escChar(str:any):string{
+		if(typeof str=="string")
+			return str.replace('/\\([\s\S])|(") / g','\\\\$1$2');
+		else
+			return ''; 	
+	}
 	exportBD(){
-		console.log('db');
-		console.log(this.db.db);
 		this.sqlporter.exportDbToJson(this.db.db).then(res=>{
-			 console.log(res);
 			let data = res.data.inserts;
+			let lineas = '';
+			//leo las propiedades del objeto que en realidad son
+			//las tablas.
 			for(let item in data){
 				if(data[item].length>0){
-					console.log(item);
-					console.log(data[item]);
+					let ray = data[item];
+					let cabecera = '';
+					let count=0;
+					//leo cada registro de la tabla
+					ray.forEach(element=>{
+						//leo las propiedades de cada registro para
+						//construir la linea
+						let linea: string = '';
+						for (let p in element) {
+							if(count==0){
+								console.log('hago cabecera');
+								if(cabecera.length==0)
+									cabecera = '\"' + p + '\"';
+								else
+									cabecera = cabecera + ';' + '\"' + p + '\"';
+							}
+
+							if (linea.length == 0) {
+								linea = '\"' + this.escChar(element[p]) + '\"';
+							} else {
+								linea = linea + ';' + '\"' + this.escChar(element[p]) + '\"';
+							}
+						}
+						
+						if(count==0){
+							lineas = lineas + '\r\n' + cabecera + '\r\n' + linea + '\r\n';
+						} else {
+							lineas = lineas + linea + '\r\n';
+						}
+						count = count++;
+					})
 				}
+				
+				
+
 			}
+			if(lineas.length>0)
+				this.guardaCSV(lineas, 'datos' + ".csv");
 			
-			console.log(data);
+			
+
 		}).catch(err=>{console.log('error'); console.log(err)})
+	}
+	guardaCSV(csv,fileName){
+		if (this.platform.is('cordova')) {
+			console.log('guardaCSV');
+			console.log(csv);
+			this.file.writeFile(this.dirFiles, fileName, csv, { replace: true }).then(
+				(ok) => {
+					console.log("Fichero guardado en " + this.dirFiles);
+					console.log(ok);
+					this.socialSharing.share('fichero exportado', fileName, this.dirFiles + fileName);
+				});
+
+			// You are on a device, cordova plugins are accessible
+			
+		}
+
 	}
 	ionViewDidLoad() {
 		this.s.getData().then((data)=>{
@@ -111,7 +171,7 @@ export class HomePage {
 		console.log('ionViewDidLoad');
 		console.log("¿ENTRO PARA CREAR EL BANNER?");
 		console.log(this.versionPro);
-	
+			  
 		if (/(ipod|iphone|ipad|android)/i.test(navigator.userAgent) && this.versionPro == false) {
 			
 			this.platform.ready().then(() => {
@@ -139,7 +199,20 @@ export class HomePage {
 				AdMob.removeBanner();
 			
 		  }
-		});}
+		});
+		this.platform.ready().then(()=>{
+			if (this.platform.is("ios")) {
+				console.log('Directorio para ios');
+				this.dirFiles = cordova.file.tempDirectory;
+			}
+
+			if (this.platform.is("android")) {
+				console.log("Directorio para android");
+				console.log(cordova);
+				this.dirFiles = cordova.file.externalDataDirectory;
+			}
+		})
+	}
 
 	clientelist() {
 		this.navCtrl.push(ClienteListComponent);
