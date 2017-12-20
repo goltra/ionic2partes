@@ -17,10 +17,12 @@ import { ClienteEditarComponent } from '../pages/clientes/cliente-editar.compone
 import { ParteListComponent } from '../pages/parte/parte-list.component';
 import { ParteEditarComponent } from '../pages/parte/parte-editar.component';
 import { ParteFotosPage } from '../pages/parte/parte-fotos';
+import { PopupPage } from '../pages/popup/popup';
 import { VariosService } from '../service/varios.service';
 import { ParteService } from '../service/parte.service';
 import { ClienteService } from '../service/cliente.service';
 import { SettingsService } from '../service/settings.service';
+import { NotificacionesService } from '../service/notificaciones.service';
 import { SettingsComponent } from '../pages/settings-component/settings-component';
 import {SignaturePadModule} from 'angular2-signaturepad';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
@@ -49,6 +51,7 @@ import { InAppPurchase } from '@ionic-native/in-app-purchase';
     SettingsComponent,
     EstadisticasPage,
     VersionProPage,
+    PopupPage
   ],
   imports: [
     BrowserModule,
@@ -69,6 +72,7 @@ import { InAppPurchase } from '@ionic-native/in-app-purchase';
     ParteEditarComponent,
     EstadisticasPage,
     VersionProPage,
+    PopupPage,
     SettingsComponent
   ],
   providers: [VariosService,
@@ -82,6 +86,7 @@ import { InAppPurchase } from '@ionic-native/in-app-purchase';
     File,
     DatabaseProvider,
     SettingsService,
+    NotificacionesService,
     FileTransferObject,
     SocialSharing,
     EmailComposer,

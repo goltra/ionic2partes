@@ -15,7 +15,7 @@ export class DatabaseProvider {
 
 	init(): Promise<any> {
 		console.log("Init DatabaseProvider, a cotinuación tipo de dispositivo.");
-		return new Promise(resolve => {
+		return new Promise((resolve) => {
 			if (typeof window.sqlitePlugin !== 'undefined') {
 				this.db = window.sqlitePlugin.openDatabase({ name: this.dbname, location: 'default' });
 				 //console.log("--> running on device: ", this.db);

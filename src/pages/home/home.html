@@ -39,7 +39,10 @@
 
       <br>
 
-      <button ion-button (click)="exportBD()">exportar</button>
+      <button ion-button block (click)="exportBD()">
+        <ion-icon name="download">Exportar Datos a CSV</ion-icon>
+      </button>
+
       <div *ngIf="versionPro == false; then thenBlock"></div>
       <ng-template #thenBlock>
         <button ion-button icon-left block  (click)="versionpromostrar()">

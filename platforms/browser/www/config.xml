@@ -33,6 +33,7 @@
     <allow-navigation href="http://192.168.1.152:8100" />
     <allow-navigation href="http://192.168.1.152:8101" />
     <allow-navigation href="http://192.168.56.1:8101" />
+    <allow-navigation href="http://192.168.1.6:8100" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
@@ -43,4 +44,5 @@
     <preference name="FadeSplashScreenDuration" value="0" />
     <preference name="SplashScreenBackgroundColor" value="0xFFFFFFFF" />
     <preference name="SplashScreen" value="screen" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
 </widget>

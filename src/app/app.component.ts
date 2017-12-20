@@ -57,7 +57,11 @@ export class MyApp {
 
       //inicializa la bd creando el fichero de bd pero no la estructura.
       this.db.dbname = "partes1";
-      this.db.init();
+      this.db.init().then(()=>{
+        console.log('bd inicializada');
+      }).catch(()=>{
+        console.log('error al inicializar la bd');
+      });
      
       let sqlcrearfotos: string;
       

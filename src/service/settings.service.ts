@@ -20,12 +20,7 @@ export class SettingsService {
 
   save(data) {
     let newData;
-    newData = JSON.stringify(data);
-    console.log("Guardar settings");
-
-    console.log(data);
-
-
+    
     newData = JSON.stringify(data);
     console.log("Guardar settings sin b64");
     console.log(newData);
