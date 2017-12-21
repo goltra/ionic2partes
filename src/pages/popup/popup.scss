@@ -1,0 +1,20 @@
+page-popup {
+    .scroll-content{
+        display:flex;
+        align-items: stretch;
+        background-color:rgba(0, 0, 0, 0.5);
+        flex-direction: column;
+    }
+    .imagen {
+        width:100%;
+        img{
+            width:100%;
+        }
+    }
+    .texto{
+        color:white;
+        p{text-align: center};
+    }
+    
+    
+}

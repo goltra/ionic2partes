@@ -1,0 +1,9 @@
+
+<ion-content padding>
+  <div class="imagen"><img [src]="imagen"></div>
+  <div class="texto">
+    <p>{{texto}}</p>
+  </div>
+  <p class="texto"><ion-checkbox [(ngModel)]="nomostrar"></ion-checkbox>No mostrar más esta notificación</p>
+  <button ion-button full (click)="dismiss()">Cerrar</button>
+</ion-content>
