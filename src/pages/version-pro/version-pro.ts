@@ -130,6 +130,8 @@ export class VersionProPage {
     }else{
     this.iap.restorePurchases().then(compras => {
       loader.dismiss();
+      console.log('compras');
+      console.log(compras);
       this.comprasAnteriores = compras;
       // Unlock the features of the purchases!
       for (let anteriores of this.comprasAnteriores) {
@@ -138,6 +140,7 @@ export class VersionProPage {
 
     })
     .catch((err) => {
+      console.log('in app error');
       console.log(err);
       loader.dismiss();
       if (this.plt.is('ios')){
